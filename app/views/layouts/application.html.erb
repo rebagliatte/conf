@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Conf</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <title><%= conference_name %></title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
   <header>
-    <h1>My Conf</h1>
+    <h1><%= conference_name %></h1>
     <% if current_user %>
       <%= image_tag current_user.image %>
       Signed in as <%= current_user.nickname %>!
-      <%= link_to "Sign out", logout_path %>
+      <%= link_to 'Sign out', logout_path %>
     <% else %>
-      <%= link_to "Sign in with Twitter", "/auth/twitter" %>
-      <%= link_to "Sign in with Github", "/auth/github" %>
+      <%= link_to 'Sign in with Twitter', '/auth/twitter' %>
+      <%= link_to 'Sign in with Github', '/auth/github' %>
     <% end %>
   </header>
 

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def conference_name
+    CONFIG[:conference_name]
+  end
+
   protected
 
   def current_user
@@ -10,7 +14,6 @@ class ApplicationController < ActionController::Base
   def signed_in?
     !!current_user
   end
-  helper_method :current_user, :signed_in?
 
   def current_user=(user)
     @current_user = user
@@ -20,5 +23,7 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_user!
     redirect_to root_url unless current_user.try(:admin?)
   end
+
+  helper_method :current_user, :signed_in?, :conference_name
 
 end
