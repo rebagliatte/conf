@@ -1,5 +1,4 @@
 class Talk < ActiveRecord::Base
-
   attr_accessible :description, :room, :room_id, :slides_url, :slot, :slot_id, :status, :title, :video_url
 
   belongs_to :slot
@@ -11,5 +10,4 @@ class Talk < ActiveRecord::Base
 
   validates :title, presence: true
   validates :status, inclusion: { in: STATES }
-
 end

@@ -1,6 +1,5 @@
 class ConferenceEdition < ActiveRecord::Base
-
-  attr_accessible :name, :description, :venue, :kind, :promotional_video_url, :status
+  attr_accessible :conference_year, :description, :country, :city, :venue, :kind, :promotional_video_url, :status
 
   has_many :sponsors
   has_many :slots
@@ -9,7 +8,7 @@ class ConferenceEdition < ActiveRecord::Base
   KINDS = %w( single_track multiple_track )
   STATUSES = %w( past present future )
 
-  validates :name, presence: true
+  validates :conference_year, presence: true, uniqueness: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
 
@@ -29,5 +28,4 @@ class ConferenceEdition < ActiveRecord::Base
   def future?
     self.status == 'future'
   end
-
 end

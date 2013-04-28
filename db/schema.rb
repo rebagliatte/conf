@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428054256) do
+ActiveRecord::Schema.define(:version => 20130428043247) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -29,14 +29,16 @@ ActiveRecord::Schema.define(:version => 20130428054256) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "conference_editions", :force => true do |t|
-    t.string   "name",                  :default => "",             :null => false
+    t.integer  "conference_year",                                   :null => false
     t.string   "description",           :default => ""
+    t.string   "kind",                  :default => "single_track", :null => false
+    t.string   "status",                :default => "past",         :null => false
+    t.string   "country",               :default => ""
+    t.string   "city",                  :default => ""
     t.string   "venue",                 :default => ""
-    t.string   "kind",                  :default => "single_track"
     t.string   "promotional_video_url", :default => ""
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
-    t.string   "status",                :default => "past",         :null => false
   end
 
   create_table "identities", :force => true do |t|
@@ -51,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20130428054256) do
 
   create_table "posts", :force => true do |t|
     t.string   "title",                 :default => "", :null => false
-    t.string   "body",                  :default => ""
-    t.string   "summary",               :default => ""
+    t.text     "body",                  :default => ""
+    t.text     "summary",               :default => ""
     t.integer  "conference_edition_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
@@ -65,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20130428054256) do
   end
 
   create_table "slots", :force => true do |t|
-    t.datetime "from"
-    t.datetime "to"
+    t.datetime "from_datetime"
+    t.datetime "to_datetime"
     t.string   "kind",                  :default => "talk", :null => false
     t.integer  "conference_edition_id"
     t.datetime "created_at",                                :null => false
