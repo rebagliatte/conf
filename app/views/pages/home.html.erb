@@ -1,0 +1,34 @@
+<h1><%= conference_metadata['name'] %></h1>
+
+<section id="location">
+  <h1>Location</h1>
+  <%= current_edition.venue %>
+</section>
+
+<section id="call-for-proposals">
+  <h1>Call for proposals</h1>
+  <p>Don't miss out</h1>
+  <%= link_to 'Submit your proposal', '#', class:'btn btn-primary' %>
+</section>
+
+<section id="previous-edition">
+  <h1>Previous Edition</h1>
+  <!-- TODO: previous edition video and link to previous editions -->
+</section>
+
+<section id="sponsorship-packages">
+  <h1>Become a sponsor</h1>
+  <p>Support <%= conference_metadata['name'] %></h1>
+  <%= link_to 'Download sponsorship packages', '#', class:'btn btn-primary' %>
+</section>
+
+<section id="blog">
+  <h1>News</h1>
+  <% @posts.each do |post| %>
+    <article>
+      <h1><%= post.title %></h1>
+      <%= post.summary %>
+      <!-- TODO: read more link -->
+    </article>
+  <% end %>
+</section>
