@@ -12,7 +12,7 @@ class ConferenceEdition < ActiveRecord::Base
   validates :conference_year, presence: true, uniqueness: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
-  with_options :if => "promo_video_uid.present?" do |c|
+  with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
   end
 
@@ -22,7 +22,7 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def self.previous_editions
-    self.where(status: 'past')
+    self.where(status: 'past').order('conference_year').reverse
   end
 
   def present?
@@ -31,5 +31,9 @@ class ConferenceEdition < ActiveRecord::Base
 
   def future?
     self.status == 'future'
+  end
+
+  def to_s
+    self.conference_year
   end
 end

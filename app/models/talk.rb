@@ -6,8 +6,8 @@ class Talk < ActiveRecord::Base
   has_many :speakers
   belongs_to :room
 
-  STATES = %w( pending approved rejected )
+  STATUSES = %w( pending approved rejected )
 
   validates :title, presence: true
-  validates :status, inclusion: { in: STATES }
+  validates :status, inclusion: { in: STATUSES }
 end
