@@ -1,6 +1,8 @@
 Conf
 ====
 
+Work in progress for a conference site template.
+
 To install:
 
 ```
