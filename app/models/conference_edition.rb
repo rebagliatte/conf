@@ -1,5 +1,5 @@
 class ConferenceEdition < ActiveRecord::Base
-  attr_accessible :conference_year, :description, :country, :city, :venue, :kind, :promotional_video_url, :status
+  attr_accessible :conference_year, :description, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status
 
   has_many :sponsors
   has_many :slots
@@ -7,10 +7,14 @@ class ConferenceEdition < ActiveRecord::Base
 
   KINDS = %w( single_track multiple_track )
   STATUSES = %w( past present future )
+  VIDEO_PROVIDERS = %w( youtube vimeo )
 
   validates :conference_year, presence: true, uniqueness: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
+  with_options :if => "promo_video_uid.present?" do |c|
+    c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
+  end
 
   def self.current_edition
     # Current edition, wether it's present or future

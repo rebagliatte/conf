@@ -29,16 +29,17 @@ ActiveRecord::Schema.define(:version => 20130428043247) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "conference_editions", :force => true do |t|
-    t.integer  "conference_year",                                   :null => false
-    t.string   "description",           :default => ""
-    t.string   "kind",                  :default => "single_track", :null => false
-    t.string   "status",                :default => "past",         :null => false
-    t.string   "country",               :default => ""
-    t.string   "city",                  :default => ""
-    t.string   "venue",                 :default => ""
-    t.string   "promotional_video_url", :default => ""
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.integer  "conference_year",                                  :null => false
+    t.string   "description",          :default => ""
+    t.string   "kind",                 :default => "single_track", :null => false
+    t.string   "status",               :default => "past",         :null => false
+    t.string   "country",              :default => ""
+    t.string   "city",                 :default => ""
+    t.string   "venue",                :default => ""
+    t.string   "promo_video_provider", :default => ""
+    t.string   "promo_video_uid",      :default => ""
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   create_table "identities", :force => true do |t|

@@ -8,7 +8,8 @@ class CreateConferenceEditions < ActiveRecord::Migration
       t.string :country, default: ''
       t.string :city, default: ''
       t.string :venue, default: ''
-      t.string :promotional_video_url, default: ''
+      t.string :promo_video_provider, default: ''
+      t.string :promo_video_uid, default: ''
 
       t.timestamps
     end
