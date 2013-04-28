@@ -13,3 +13,6 @@ end
 gem 'carrierwave'
 
 gem 'jquery-rails'
+
+gem 'omniauth-twitter'
+gem 'omniauth-github'

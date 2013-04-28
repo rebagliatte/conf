@@ -4,4 +4,11 @@ twitter_username: ''
 twitter_hashtag: ''
 facebook_page: ''
 
+# Rails secret token
 secret_token: ''
+
+# Omniauth
+twitter_key: ''
+twitter_secret: ''
+github_key: ''
+github_secret: ''
