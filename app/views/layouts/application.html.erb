@@ -19,9 +19,9 @@
         <% if current_edition.present? %>
           <li><%= link_to 'Schedule', '#' %></li>
           <li><%= link_to 'Location', '#' %></li>
-          <li><%= link_to 'Sponsors', '#' %></li>
+          <li><%= link_to 'Sponsors', conference_edition_sponsors_path(current_edition) %></li>
           <li><%= link_to 'News', '#' %></li>
-          <li><%= link_to 'Previous Editions', '#' %></li>
+          <li><%= link_to 'Previous Editions', conference_editions_path %></li>
           <li><%= link_to 'Register', '#' %></li>
         <% elsif current_edition.future? %>
           <li><%= link_to 'Call for proposals', '#call-for-proposals' %></li>

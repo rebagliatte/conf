@@ -1,6 +1,8 @@
 Conf::Application.routes.draw do
 
-  resources :conference_editions
+  resources :conference_editions, only: %w(index show) do
+    resources :sponsors, only: %w(index)
+  end
 
   # Authentication
   match '/auth/:provider/callback', to: 'sessions#create'

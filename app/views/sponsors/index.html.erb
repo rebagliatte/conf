@@ -1,0 +1,13 @@
+<h1>Sponsors</h1>
+
+<% @sponsor_kinds.each do |sponsor_kind, sponsors| %>
+  <section>
+    <h1><%= sponsor_kind %></h1>
+    <% for sponsor in sponsors %>
+      <article>
+        <h1><%= sponsor.name %></h1>
+        <p><%= sponsor.description %></p>
+      </article>
+    <% end %>
+  </section>
+<% end %>

@@ -1,6 +1,8 @@
 module ApplicationHelper
 
   def video_embed_code(provider, uid)
+    return '' unless provider && uid
+
     case provider
     when 'youtube'
       "<iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"385\"
