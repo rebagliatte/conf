@@ -1,4 +1,5 @@
 Conf::Application.routes.draw do
+
   resources :conference_editions
 
   # Authentication
@@ -6,7 +7,7 @@ Conf::Application.routes.draw do
   match '/auth/failure', to: redirect('/')
   match '/logout', to: 'sessions#destroy', as: 'logout'
 
-  root to: 'conference_editions#show'
+  root to: 'pages#home'
 
   ActiveAdmin.routes(self)
 end

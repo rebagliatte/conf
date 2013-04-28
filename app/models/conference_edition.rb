@@ -7,10 +7,27 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :posts
 
   KINDS = %w( single_track multiple_track )
-  STATUSES = %w( past current future )
+  STATUSES = %w( past present future )
 
   validates :name, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
+
+  def self.current_edition
+    # Current edition, wether it's present or future
+    self.where('status != ?', 'past').last
+  end
+
+  def self.previous_editions
+    self.where(status: 'past')
+  end
+
+  def present?
+    self.status == 'present'
+  end
+
+  def future?
+    self.status == 'future'
+  end
 
 end

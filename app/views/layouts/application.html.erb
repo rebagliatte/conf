@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= conference_name %></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title><%= conference_metadata['name'] %></title>
+  <meta name="description" content="<%= conference_metadata['description'] %>">
+  <meta name="viewport" content="width=device-width">
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -9,20 +12,54 @@
 <body>
 
   <header>
-    <h1><%= conference_name %></h1>
-    <% if current_user %>
-      <%= image_tag current_user.image %>
-      Signed in as <%= current_user.nickname %>!
-      <%= link_to 'Sign out', logout_path %>
-    <% else %>
-      <%= link_to 'Sign in with Twitter', '/auth/twitter' %>
-      <%= link_to 'Sign in with Github', '/auth/github' %>
-    <% end %>
+    <nav>
+      <h1><%= conference_metadata['name'] %></h1>
+
+      <ul>
+        <% if current_edition.present? %>
+          <li><%= link_to 'Schedule', '#' %></li>
+          <li><%= link_to 'Location', '#' %></li>
+          <li><%= link_to 'Sponsors', '#' %></li>
+          <li><%= link_to 'News', '#' %></li>
+          <li><%= link_to 'Previous Editions', '#' %></li>
+          <li><%= link_to 'Register', '#' %></li>
+        <% elsif current_edition.future? %>
+          <li><%= link_to 'Call for proposals', '#call-for-proposals' %></li>
+          <li><%= link_to 'Previous Edition', '#previous-edition' %></li>
+          <li><%= link_to 'Sponsorship Packages', '#sponsorship-packages' %></li>
+          <li><%= link_to 'News', '#news' %></li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <p class="authentication">
+      <% if current_user %>
+        Signed in as <%= current_user.nickname %>!
+        <%= link_to 'Sign out', logout_path %>
+      <% else %>
+        <%= link_to 'Sign in with Twitter', '/auth/twitter' %>
+        <%= link_to 'Sign in with Github', '/auth/github' %>
+      <% end %>
+    </p>
   </header>
 
   <main>
     <%= yield %>
+
+    <section class="sponsors">
+      <h1>Sponsors</h1>
+      <!-- TODO: Sponsors -->
+    </section>
   </main>
+
+  <footer>
+    <h1>Networks</h1>
+    <ul>
+      <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{conference_metadata['twitter_username']}", target: 'blank' %></li>
+      <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{conference_metadata['facebook_username']}", target: 'blank' %></li>
+      <li><%= link_to 'Drop us a line', "mailto:#{conference_metadata['email']}", target: 'blank' %></li>
+    </ul>
+  </footer>
 
 </body>
 </html>

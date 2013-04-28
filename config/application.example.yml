@@ -1,8 +1,9 @@
-conference_name: ''
-conference_email: ''
-twitter_username: ''
-twitter_hashtag: ''
-facebook_page: ''
+conference_metadata:
+  name: ''
+  email: ''
+  twitter_username: ''
+  twitter_hashtag: ''
+  facebook_page: ''
 
 # Rails secret token
 secret_token: ''
