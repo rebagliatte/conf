@@ -7,4 +7,6 @@ Conf::Application.routes.draw do
   match '/logout', to: 'sessions#destroy', as: 'logout'
 
   root to: 'conference_editions#show'
+
+  ActiveAdmin.routes(self)
 end

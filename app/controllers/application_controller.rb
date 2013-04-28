@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.nil? ? user : user.id
   end
 
+  def authenticate_admin_user!
+    redirect_to root_url unless current_user.try(:admin?)
+  end
+
 end

@@ -1,8 +1,8 @@
 class CreateIdentities < ActiveRecord::Migration
   def change
     create_table :identities do |t|
-      t.string :provider
-      t.string :uid
+      t.string :provider, null:false, default: ''
+      t.string :uid, null:false, default: ''
       t.integer :user_id
 
       t.timestamps
