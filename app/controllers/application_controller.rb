@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def conference_name
-    CONFIG[:conference_name]
+  def conference_metadata
+    CONFIG[:conference_metadata]
   end
 
   protected
@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless current_user.try(:admin?)
   end
 
-  helper_method :current_user, :signed_in?, :conference_name
+  helper_method :current_user, :signed_in?, :conference_metadata
 
 end
