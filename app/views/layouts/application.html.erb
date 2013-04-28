@@ -17,17 +17,17 @@
 
       <ul>
         <% if current_edition.present? %>
-          <li><%= link_to 'Location', '#' %></li>
           <li><%= link_to 'Schedule', '#' %></li>
+          <li><%= link_to 'Location', '#' %></li>
           <li><%= link_to 'Sponsors', '#' %></li>
-          <li><%= link_to 'Blog', '#' %></li>
+          <li><%= link_to 'News', '#' %></li>
           <li><%= link_to 'Previous Editions', '#' %></li>
+          <li><%= link_to 'Register', '#' %></li>
         <% elsif current_edition.future? %>
-          <li><%= link_to 'Location', '#location' %></li>
           <li><%= link_to 'Call for proposals', '#call-for-proposals' %></li>
-          <li><%= link_to 'Previous Editions', '#previous-editions' %></li>
-          <li><%= link_to 'Sponsors', '#sponsors' %></li>
-          <li><%= link_to 'Blog', '#blog' %></li>
+          <li><%= link_to 'Previous Edition', '#previous-edition' %></li>
+          <li><%= link_to 'Sponsorship Packages', '#sponsorship-packages' %></li>
+          <li><%= link_to 'News', '#news' %></li>
         <% end %>
       </ul>
     </nav>
@@ -45,7 +45,21 @@
 
   <main>
     <%= yield %>
+
+    <section class="sponsors">
+      <h1>Sponsors</h1>
+      <!-- TODO: Sponsors -->
+    </section>
   </main>
+
+  <footer>
+    <h1>Networks</h1>
+    <ul>
+      <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{conference_metadata['twitter_username']}", target: 'blank' %></li>
+      <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{conference_metadata['facebook_username']}", target: 'blank' %></li>
+      <li><%= link_to 'Drop us a line', "mailto:#{conference_metadata['email']}", target: 'blank' %></li>
+    </ul>
+  </footer>
 
 </body>
 </html>
