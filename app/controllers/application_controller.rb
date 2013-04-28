@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     CONFIG[:conference_metadata]
   end
 
+  def current_edition
+    ConferenceEdition.current_edition
+  end
+
   protected
 
   def current_user
@@ -24,6 +28,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless current_user.try(:admin?)
   end
 
-  helper_method :current_user, :signed_in?, :conference_metadata
+  helper_method :current_user, :signed_in?, :conference_metadata, :current_edition
 
 end
