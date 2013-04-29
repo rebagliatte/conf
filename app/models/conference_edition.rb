@@ -2,8 +2,10 @@ class ConferenceEdition < ActiveRecord::Base
   attr_accessible :conference_year, :description, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status
 
   has_many :sponsors
-  has_many :slots
   has_many :posts
+  has_many :slots
+  has_many :talks, through: :slots
+  has_many :speakers, through: :talks
 
   KINDS = %w( single_track multiple_track )
   STATUSES = %w( past present future )
