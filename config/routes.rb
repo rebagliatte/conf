@@ -2,6 +2,7 @@ Conf::Application.routes.draw do
 
   resources :conference_editions, only: %w(index show) do
     resources :sponsors, only: %w(index)
+    resources :posts, only: %w(index show)
     resources :speakers, only: %w(index)
   end
 

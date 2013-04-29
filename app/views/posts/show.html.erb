@@ -1,0 +1,4 @@
+<h1><%= @post.title %></h1>
+
+<p class="created-at">Posted <%= time_ago_in_words(@post.created_at) %> ago</p>
+<%= markdown(@post.body) %>

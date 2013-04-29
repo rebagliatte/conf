@@ -21,7 +21,7 @@
           <li><%= link_to 'Location', '#' %></li>
           <li><%= link_to 'Sponsors', conference_edition_sponsors_path(current_edition) %></li>
           <li><%= link_to 'Speakers', conference_edition_speakers_path(current_edition) %></li>
-          <li><%= link_to 'News', '#' %></li>
+          <li><%= link_to 'News', conference_edition_posts_path(current_edition) %></li>
           <li><%= link_to 'Previous Editions', conference_editions_path %></li>
           <li><%= link_to 'Register', '#' %></li>
         <% elsif current_edition.future? %>
