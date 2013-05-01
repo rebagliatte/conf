@@ -38,4 +38,14 @@ class ConferenceEdition < ActiveRecord::Base
   def to_s
     self.conference_year
   end
+
+  def grouped_slots
+    # Slots grouped by date
+    self.slots.order('from_datetime').group_by { |s| s.from_datetime.beginning_of_day }
+  end
+
+  def grouped_sponsors
+    # Sponsors grouped by kind
+    self.sponsors.group_by { |s| s.kind }
+  end
 end

@@ -48,8 +48,7 @@
     <%= yield %>
 
     <section class="sponsors">
-      <h1>Sponsors</h1>
-      <!-- TODO: Sponsors -->
+      <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition }) %>
     </section>
   </main>
 
