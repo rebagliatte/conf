@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_edition
-    ConferenceEdition.current_edition
+    @current_edition ||= ConferenceEdition.current_edition
   end
 
   protected
