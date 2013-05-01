@@ -17,7 +17,7 @@
 
       <ul>
         <% if current_edition.present? %>
-          <li><%= link_to 'Schedule', '#' %></li>
+          <li><%= link_to 'Schedule', conference_edition_slots_path(current_edition) %></li>
           <li><%= link_to 'Location', '#' %></li>
           <li><%= link_to 'Sponsors', conference_edition_sponsors_path(current_edition) %></li>
           <li><%= link_to 'Speakers', conference_edition_speakers_path(current_edition) %></li>

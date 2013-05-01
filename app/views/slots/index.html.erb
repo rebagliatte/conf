@@ -1,0 +1,30 @@
+<h1>Schedule</h1>
+
+<% @slot_days.sort.each do |day, slots| %>
+  <section>
+    <h1><%= day.to_date.to_s(:short) %></h1>
+    <table>
+      <% for slot in slots %>
+        <tr class="<%= slot.kind %>">
+          <td><%= slot.time_to_s %></td>
+          <% if slot.kind == 'talk' %>
+            <td>
+              <% if slot.talks.count == 1 %>
+                <% talk = slot.talks.first %>
+                <%= talk.title %> by <%= talk.speaker_names %>
+              <% elsif slot.talks.count > 1 %>
+                  <ul>
+                    <% slot.talks.each do |talk| %>
+                      <li><%= talk.title %> by <%= talk.speaker_names %> on <%= talk.room.name %></li>
+                    <% end %>
+                  </ul>
+              <% end %>
+            </td>
+          <% else %>
+            <td><%= slot.kind %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+<% end %>

@@ -13,4 +13,8 @@ class Slot < ActiveRecord::Base
   def to_s
     "#{from_datetime.to_s(:short)} - #{to_datetime.to_s(:short)}"
   end
+
+  def time_to_s
+    "#{from_datetime.strftime('%H:%M')} - #{to_datetime.strftime('%H:%M')}"
+  end
 end

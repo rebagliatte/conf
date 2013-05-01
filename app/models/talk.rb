@@ -10,4 +10,14 @@ class Talk < ActiveRecord::Base
 
   validates :title, presence: true
   validates :status, inclusion: { in: STATUSES }
+
+  def speaker_names
+    speakers = self.speakers
+
+    if speakers.count == 1
+      speakers.first.name
+    else
+      speakers.map(&:name).to_sentence
+    end
+  end
 end

@@ -4,6 +4,7 @@ Conf::Application.routes.draw do
     resources :sponsors, only: %w(index)
     resources :posts, only: %w(index show)
     resources :speakers, only: %w(index)
+    resources :slots, only: %w(index)
   end
 
   # Authentication
