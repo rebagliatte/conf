@@ -1,19 +1,17 @@
-<h1><%= conference_metadata['name'] %></h1>
-
 <% if current_edition.future? %>
   <section id="call-for-proposals">
-    <h1>Call for proposals</h1>
+    <h1 class="primary-heading">Call for proposals</h1>
     <p>Don't miss out</h1>
     <%= link_to 'Submit your proposal', '#', class:'btn btn-primary' %>
   </section>
 
   <section id="previous-edition">
-    <h1>Previous Edition</h1>
+    <h1 class="primary-heading">Previous Edition</h1>
     <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
   </section>
 
   <section id="sponsorship-packages">
-    <h1>Sponsorhip Packages</h1>
+    <h1 class="primary-heading">Sponsorhip Packages</h1>
     <p>Become a sponsor and support <%= conference_metadata['name'] %></h1>
     <%= link_to 'Download sponsorship packages', '#', class:'btn btn-primary' %>
   </section>
@@ -23,20 +21,8 @@
   <section id="schedule">
     <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
   </section>
-
-  <section id="location">
-    <h1>Location</h1>
-    <%= current_edition.venue %>
-  </section>
 <% end %>
 
 <section id="news">
-  <h1>News</h1>
-  <% @posts.each do |post| %>
-    <article>
-      <h1><%= post.title %></h1>
-      <%= post.summary %>
-      <!-- TODO: read more link -->
-    </article>
-  <% end %>
+  <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
 </section>

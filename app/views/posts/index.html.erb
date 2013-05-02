@@ -1,10 +1,1 @@
-<h1>News</h1>
-
-<% @posts.each do |post| %>
-  <article>
-    <h1><%= post.title %></h1>
-    <p class="created-at">Posted <%= time_ago_in_words(post.created_at) %> ago</p>
-    <%= markdown(post.summary) %>
-    <%= link_to 'Read more', conference_edition_post_path(params[:conference_edition_id], post) %>
-  </article>
-<% end %>
+<%= render(partial: 'list', locals: { posts: @posts, conference_edition: @conference_edition }) %>

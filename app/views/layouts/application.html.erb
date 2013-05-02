@@ -5,24 +5,23 @@
   <title><%= conference_metadata['name'] %></title>
   <meta name="description" content="<%= conference_metadata['description'] %>">
   <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
-  <header>
+  <header class="main-header">
     <nav>
-      <h1><%= conference_metadata['name'] %></h1>
-
+      <h1><%= link_to conference_metadata['name'], root_url %></h1>
       <ul>
         <% if current_edition.present? %>
-          <li><%= link_to 'Schedule', conference_edition_slots_path(current_edition) %></li>
-          <li><%= link_to 'Sponsors', conference_edition_sponsors_path(current_edition) %></li>
-          <li><%= link_to 'Speakers', conference_edition_speakers_path(current_edition) %></li>
-          <li><%= link_to 'News', conference_edition_posts_path(current_edition) %></li>
-          <li><%= link_to 'Previous Editions', conference_editions_path %></li>
-          <li><%= link_to 'Register', '#' %></li>
+          <li><%= link_to_unless_current 'Schedule', conference_edition_slots_path(current_edition) %></li>
+          <li><%= link_to_unless_current 'Sponsors', conference_edition_sponsors_path(current_edition) %></li>
+          <li><%= link_to_unless_current 'Speakers', conference_edition_speakers_path(current_edition) %></li>
+          <li><%= link_to_unless_current 'News', conference_edition_posts_path(current_edition) %></li>
+          <li><%= link_to_unless_current 'Previous Editions', conference_editions_path %></li>
+          <li><%= link_to_unless_current 'Register', '#' %></li>
         <% elsif current_edition.future? %>
           <li><%= link_to 'Call for proposals', '#call-for-proposals' %></li>
           <li><%= link_to 'Previous Edition', '#previous-edition' %></li>
@@ -43,7 +42,7 @@
     </p>
   </header>
 
-  <main>
+  <main class="main-content">
     <%= yield %>
 
     <section class="sponsors">
@@ -51,8 +50,8 @@
     </section>
   </main>
 
-  <footer>
-    <h1>Networks</h1>
+  <footer class="main-footer">
+    <h1 class="hidden">Networks</h1>
     <ul>
       <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{conference_metadata['twitter_username']}", target: 'blank' %></li>
       <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{conference_metadata['facebook_username']}", target: 'blank' %></li>
@@ -60,5 +59,6 @@
     </ul>
   </footer>
 
+  <%= javascript_include_tag 'application' %>
 </body>
 </html>

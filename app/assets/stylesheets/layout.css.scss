@@ -1,0 +1,82 @@
+/*
+ * Layout
+ */
+
+.main-header,
+.main-content,
+.main-footer {
+  width: 80%;
+  padding: 0 10%;
+}
+
+// Header
+.main-header {
+  h1,
+  ul,
+  li,
+  .authentication {
+    display: inline-block;
+    line-height: 60px;
+  }
+  h1 {
+    font-weight: bold;
+    margin-right: 1em;
+  }
+  nav {
+    float: left;
+  }
+  .authentication {
+    float: right;
+  }
+}
+
+// Content
+.main-content {
+  clear: both;
+
+  .schedule {
+    table {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    td {
+      border: 1px solid #dedede;
+      padding: 1em;
+    }
+  }
+  .sponsors {
+    section {
+      margin-bottom: 20px;
+    }
+    article {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+  .speaker {
+    position: relative;
+    padding-left: 95px;
+    margin-bottom: 50px;
+    img {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+    }
+  }
+}
+
+// Footer
+.main-footer {
+  border-top: 1px solid #d0d0d0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  li {
+    display: inline-block;
+    a {
+      padding: 10px;
+    }
+  }
+}
+
+

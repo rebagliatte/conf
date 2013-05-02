@@ -35,6 +35,10 @@ class ConferenceEdition < ActiveRecord::Base
     self.status == 'future'
   end
 
+  def multiple_track?
+    self.kind == 'multiple_track'
+  end
+
   def to_s
     self.conference_year
   end
@@ -47,5 +51,18 @@ class ConferenceEdition < ActiveRecord::Base
   def grouped_sponsors
     # Sponsors grouped by kind
     self.sponsors.group_by { |s| s.kind }
+  end
+
+  def max_simultaneous_talks_count
+    max_simultaneous_talks_count = 0
+
+    self.slots.each do |s|
+      slot_talks_count = s.talks.count
+      if slot_talks_count > max_simultaneous_talks_count
+        max_simultaneous_talks_count = slot_talks_count
+      end
+    end
+
+    max_simultaneous_talks_count
   end
 end

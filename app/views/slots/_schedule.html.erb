@@ -1,29 +1,34 @@
 <%# @param conference_edition [Array<Conf::Models::ConferenceEdition>] %>
 
-<h1>Schedule</h1>
+<h1 class="primary-heading">Schedule</h1>
+
+<% max_simultaneous_talks_count = conference_edition.max_simultaneous_talks_count if conference_edition.multiple_track? %>
 
 <% conference_edition.grouped_slots.sort.each do |day, slots| %>
-  <section>
-    <h1><%= day.to_date.to_s(:short) %></h1>
+  <section class="schedule">
+    <h1 class="secondary-heading"><%= day.to_date.to_s(:short) %></h1>
     <table>
       <% for slot in slots %>
         <tr class="<%= slot.kind %>">
           <td><%= slot.time_to_s %></td>
           <% if slot.kind == 'talk' %>
-            <td>
-              <% if slot.talks.count == 1 %>
+            <% if slot.talks.count == 1 %>
+              <td <% if max_simultaneous_talks_count %>colspan="<%= max_simultaneous_talks_count %>"<% end %>>
                 <% talk = slot.talks.first %>
                 <%= talk.title %> by <%= talk.speaker_names %>
-              <% elsif slot.talks.count > 1 %>
-                  <ul>
-                    <% slot.talks.each do |talk| %>
-                      <li><%= talk.title %> by <%= talk.speaker_names %> on <%= talk.room.name %></li>
-                    <% end %>
-                  </ul>
+              </td>
+            <% elsif slot.talks.count > 1 %>
+              <% slot.talks.each do |talk| %>
+                <td>
+                  <p><%= talk.title %> by <%= talk.speaker_names %></p>
+                  <p><span class="room"><%= talk.room.name %></span></p>
+                </td>
               <% end %>
-            </td>
+            <% end %>
           <% else %>
-            <td><%= slot.kind %></td>
+            <td <% if max_simultaneous_talks_count %>colspan="<%= max_simultaneous_talks_count %>"<% end %>>
+              <%= slot.kind %>
+            </td>
           <% end %>
         </tr>
       <% end %>
