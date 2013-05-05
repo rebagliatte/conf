@@ -68,7 +68,31 @@ a:hover {
   text-decoration: none;
 }
 
+/* tabs */
+.tabs {
+  border-bottom: 1px solid #ddd;
+  & > li {
+    display: inline-block;
+    margin-bottom: -1px;
+  }
+  a {
+    border: 1px solid transparent;
+    display: inline-block;
+    padding: 10px;
+    &.current {
+      border: 1px solid #ddd;
+      border-bottom-color: transparent;
+      background-color: #fff;
+    }
+  }
+}
+
 /* Utilitites */
 .hidden {
   display: none;
+}
+.current {
+  color: #333;
+  text-decoration: none;
+  cursor: default;
 }

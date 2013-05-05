@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
     @post = Post.find(params[:id])
   end
 end

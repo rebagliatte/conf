@@ -9,6 +9,18 @@ class ApplicationController < ActionController::Base
     @current_edition ||= ConferenceEdition.current_edition
   end
 
+  layout :conditional_layout
+
+  private
+
+  def conditional_layout
+    if @conference_edition && @conference_edition != current_edition
+      'previous_edition'
+    else
+      'application'
+    end
+  end
+
   protected
 
   def current_user

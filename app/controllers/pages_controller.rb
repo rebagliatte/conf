@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @posts = Post.limit(3)
+    @posts = current_edition.posts.limit(3)
   end
 end

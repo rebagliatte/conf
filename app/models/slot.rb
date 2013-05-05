@@ -10,6 +10,8 @@ class Slot < ActiveRecord::Base
   validates :to_datetime, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
 
+  default_scope order('from_datetime ASC')
+
   def to_s
     "#{from_datetime.to_s(:short)} - #{to_datetime.to_s(:short)}"
   end

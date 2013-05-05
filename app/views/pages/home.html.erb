@@ -18,9 +18,7 @@
 <% end %>
 
 <% if current_edition.present? %>
-  <section id="schedule">
-    <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
-  </section>
+  <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
 <% end %>
 
 <section id="news">

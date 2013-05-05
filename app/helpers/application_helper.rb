@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def nav_link_to(text, path)
+    if current_page?(path)
+      link_to text, '#', class: 'current'
+    else
+      link_to text, path
+    end
+  end
+
   def video_embed_code(provider, uid)
     return '' unless provider && uid
 
