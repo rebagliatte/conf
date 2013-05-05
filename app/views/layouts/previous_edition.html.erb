@@ -5,6 +5,7 @@
   <p class="tagline"><%= tagline(@conference_edition) %></p>
 
   <ul class="tabs">
+    <li><%= nav_link_to 'Talks', conference_edition_path(@conference_edition) %></li>
     <li><%= nav_link_to 'Schedule', conference_edition_slots_path(@conference_edition) %></li>
     <li><%= nav_link_to 'Sponsors', conference_edition_sponsors_path(@conference_edition) %></li>
     <li><%= nav_link_to 'Speakers', conference_edition_speakers_path(@conference_edition) %></li>
