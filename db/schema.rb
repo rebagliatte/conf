@@ -78,7 +78,10 @@ ActiveRecord::Schema.define(:version => 20130428043247) do
 
   create_table "speakers", :force => true do |t|
     t.string   "name",             :default => "", :null => false
-    t.string   "description",      :default => ""
+    t.text     "bio",              :default => ""
+    t.string   "company",          :default => ""
+    t.string   "city",             :default => ""
+    t.string   "country",          :default => ""
     t.string   "twitter_username", :default => ""
     t.string   "github_username",  :default => ""
     t.string   "email",            :default => ""

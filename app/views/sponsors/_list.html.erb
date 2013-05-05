@@ -3,10 +3,10 @@
 <h1 class="primary-heading">Sponsors</h1>
 
 <% conference_edition.grouped_sponsors.each do |sponsor_kind, sponsors| %>
-  <section class="sponsors">
+  <section class="sponsor-kind">
     <h1 class="secondary-heading"><%= sponsor_kind %></h1>
     <% for sponsor in sponsors %>
-      <article>
+      <article class="sponsor">
         <h1 class="tertiary-heading"><%= sponsor.name %></h1>
         <p><%= sponsor.description %></p>
       </article>

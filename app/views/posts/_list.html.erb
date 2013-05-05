@@ -4,7 +4,7 @@
 <h1 class="primary-heading">News</h1>
 
 <% posts.each do |post| %>
-  <article>
+  <article class="post">
     <h1 class="secondary-heading"><%= post.title %></h1>
     <p class="created-at">Posted <%= time_ago_in_words(post.created_at) %> ago</p>
     <%= markdown(post.summary) %>

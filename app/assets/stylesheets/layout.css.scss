@@ -44,23 +44,32 @@
       padding: 1em;
     }
   }
-  .sponsors {
-    section {
-      margin-bottom: 20px;
-    }
-    article {
-      display: inline-block;
-      margin-right: 20px;
-    }
+  .speaker,
+  .post,
+  .conference-edition,
+  .sponsor-kind {
+    margin-bottom: 40px;
+  }
+  .sponsor {
+    display: inline-block;
+    margin-right: 20px;
   }
   .speaker {
-    position: relative;
-    padding-left: 95px;
-    margin-bottom: 50px;
+    h1 {
+      margin-bottom: 0;
+    }
+    .company,
+    .city {
+      margin-bottom: 0;
+      color: #777;
+      font-size: 0.9em;
+    }
+    .city {
+      margin-bottom: 1em;
+    }
     img {
-      position: absolute;
-      left: 5px;
-      top: 5px;
+      float: left;
+      margin-right: 20px;
     }
   }
 }
@@ -78,5 +87,3 @@
     }
   }
 }
-
-
