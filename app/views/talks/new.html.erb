@@ -1,0 +1,7 @@
+<h1 class="primary-heading">Submit your proposal</h1>
+
+<%= simple_form_for [current_edition, @talk] do |form| %>
+  <%= form.input :title %>
+  <%= form.input :description %>
+  <%= form.submit('Submit', class: 'btn btn-primary') %>
+<% end %>

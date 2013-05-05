@@ -5,6 +5,7 @@ Conf::Application.routes.draw do
     resources :speakers, only: %w(index)
     resources :slots, only: %w(index)
     resources :sponsors, only: %w(index)
+    resources :talks, only: %w(new create edit update index show)
   end
 
   # Authentication
