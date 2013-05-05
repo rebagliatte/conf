@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20130428043247) do
   create_table "conference_editions", :force => true do |t|
     t.date     "from_date",                                        :null => false
     t.date     "to_date",                                          :null => false
-    t.string   "description",          :default => ""
+    t.string   "tagline",              :default => ""
     t.string   "kind",                 :default => "single_track", :null => false
     t.string   "status",               :default => "past",         :null => false
     t.string   "country",              :default => ""

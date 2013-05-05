@@ -3,7 +3,7 @@ class CreateConferenceEditions < ActiveRecord::Migration
     create_table :conference_editions do |t|
       t.date :from_date, null:false
       t.date :to_date, null:false
-      t.string :description, default: ''
+      t.string :tagline, default: ''
       t.string :kind, null: false, default: 'single_track'
       t.string :status, null: false, default: 'past'
       t.string :country, default: ''

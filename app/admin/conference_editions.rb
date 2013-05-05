@@ -1,9 +1,9 @@
 ActiveAdmin.register ConferenceEdition do
   form do |f|
     f.inputs 'Details' do
-      f.date :from_date
-      f.date :to_date
-      f.input :description
+      f.input :from_date
+      f.input :to_date
+      f.input :tagline
       f.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false
       f.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false
       f.input :country, as: :string

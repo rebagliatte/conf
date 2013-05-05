@@ -1,4 +1,10 @@
 <% if current_edition.future? %>
+  <section class="intro">
+    <h1 class="primary-heading"><%= conference_metadata['name'] %></h1>
+    <p><%= current_edition.tagline %></p>
+    <p><%= when_and_where(current_edition) %></p>
+  </section>
+
   <section id="call-for-proposals">
     <h1 class="primary-heading">Call for proposals</h1>
     <p>Don't miss out</h1>

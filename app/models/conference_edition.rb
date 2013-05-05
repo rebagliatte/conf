@@ -1,5 +1,5 @@
 class ConferenceEdition < ActiveRecord::Base
-  attr_accessible :from_date, :to_date, :description, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status
+  attr_accessible :from_date, :to_date, :tagline, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status
 
   has_many :sponsors
   has_many :posts

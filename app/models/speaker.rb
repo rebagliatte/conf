@@ -1,5 +1,5 @@
 class Speaker < ActiveRecord::Base
-  attr_accessible :bio, :city, :company, :country, :description, :email, :github_username, :name, :talk, :talk_id, :twitter_username
+  attr_accessible :bio, :city, :company, :country, :email, :github_username, :name, :talk, :talk_id, :twitter_username
 
   belongs_to :talk
 
