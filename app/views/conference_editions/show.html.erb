@@ -1,4 +1,7 @@
-<h1><%= @conference_edition.conference_year %>Edition</h1>
+<h1 class="primary-heading with-tagline"><%= @conference_edition.to_s %></h1>
+<p class="tagline"><%= tagline(@conference_edition) %></p>
 
+<%#= video_embed_code(@conference_edition.promo_video_provider, @conference_edition.promo_video_uid) %>
 <%= @conference_edition.inspect %>
+
 <!-- TODO: Insert schedule and sponsors partials -->

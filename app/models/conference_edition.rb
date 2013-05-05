@@ -1,5 +1,5 @@
 class ConferenceEdition < ActiveRecord::Base
-  attr_accessible :conference_year, :description, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status
+  attr_accessible :from_date, :to_date, :description, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status
 
   has_many :sponsors
   has_many :posts
@@ -11,7 +11,8 @@ class ConferenceEdition < ActiveRecord::Base
   STATUSES = %w( past present future )
   VIDEO_PROVIDERS = %w( youtube vimeo )
 
-  validates :conference_year, presence: true, uniqueness: true
+  validates :from_date, presence: true
+  validates :to_date, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
   with_options if: 'promo_video_uid.present?' do |c|
@@ -24,7 +25,7 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def self.previous_editions
-    self.where(status: 'past').order('conference_year').reverse
+    self.where(status: 'past').order('from_date').reverse
   end
 
   def present?
@@ -40,7 +41,7 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def to_s
-    self.conference_year
+    "#{self.from_date.year} Edition "
   end
 
   def grouped_slots

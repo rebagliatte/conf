@@ -2,7 +2,7 @@
 
 <% @conference_editions.each do |edition| %>
   <article class="conference-edition">
-    <h1 class="secondary-heading"><%= link_to "#{edition.conference_year} Edition", conference_edition_path(edition) %></h1>
+    <h1 class="secondary-heading"><%= link_to "#{edition.to_s}", conference_edition_path(edition) %></h1>
     <p><%= edition.description %></p>
     <%= video_embed_code(edition.promo_video_provider, edition.promo_video_uid) %>
   </article>
