@@ -1,4 +1,5 @@
 <%# @param conference_edition [Array<Conf::Models::ConferenceEdition>] %>
+<%# @param display_descriptions boolean %>
 
 <h1 class="primary-heading">Sponsors</h1>
 
@@ -7,8 +8,12 @@
     <h1 class="secondary-heading"><%= sponsor_kind %></h1>
     <% for sponsor in sponsors %>
       <article class="sponsor">
-        <h1 class="tertiary-heading"><%= sponsor.name %></h1>
-        <p><%= sponsor.description %></p>
+        <% if display_descriptions %>
+          <h1 class="tertiary-heading"><%= sponsor.name %></h1>
+          <p><%= sponsor.description %></p>
+        <% else %>
+          <h1 class="tertiary-heading"><%= sponsor.name %></h1>
+        <% end %>
       </article>
     <% end %>
   </section>

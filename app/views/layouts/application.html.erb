@@ -44,19 +44,21 @@
 
   <main class="main-content">
     <%= yield %>
-
-    <section class="sponsors">
-      <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition }) %>
-    </section>
   </main>
 
   <footer class="main-footer">
-    <h1 class="hidden">Networks</h1>
-    <ul>
-      <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{conference_metadata['twitter_username']}", target: 'blank' %></li>
-      <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{conference_metadata['facebook_username']}", target: 'blank' %></li>
-      <li><%= link_to 'Drop us a line', "mailto:#{conference_metadata['email']}", target: 'blank' %></li>
-    </ul>
+    <section class="sponsors">
+      <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
+    </section>
+
+    <section class="networks">
+      <h1 class="primary-heading">Networks</h1>
+      <ul>
+        <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{conference_metadata['twitter_username']}", target: 'blank' %></li>
+        <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{conference_metadata['facebook_username']}", target: 'blank' %></li>
+        <li><%= link_to 'Drop us a line', "mailto:#{conference_metadata['email']}", target: 'blank' %></li>
+      </ul>
+    </section>
   </footer>
 
   <%= javascript_include_tag 'application' %>

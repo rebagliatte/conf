@@ -50,10 +50,6 @@
   .sponsor-kind {
     margin-bottom: 40px;
   }
-  .sponsor {
-    display: inline-block;
-    margin-right: 20px;
-  }
   .speaker {
     h1 {
       margin-bottom: 0;
@@ -77,10 +73,15 @@
 // Footer
 .main-footer {
   border-top: 1px solid #d0d0d0;
-  padding-top: 20px;
-  padding-bottom: 20px;
   text-align: center;
-  li {
+  .primary-heading {
+    font-size: 24px;
+  }
+  .secondary-heading {
+    font-size: 18px;
+  }
+  .sponsor,
+  .networks li {
     display: inline-block;
     a {
       padding: 10px;
