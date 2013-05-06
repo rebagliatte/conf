@@ -11,6 +11,9 @@
     <%= speaker.input :bio %>
     <%= speaker.input :twitter_username %>
     <%= speaker.input :github_username %>
+    <% if current_user %>
+      <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <% end %>
   <% end %>
 
   <%= form.submit('Submit', class: 'btn btn-primary') %>

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :nickname, :email, :image, :role
 
   has_many :identities
+  has_one :speaker
 
   ROLES = %w( user admin )
 

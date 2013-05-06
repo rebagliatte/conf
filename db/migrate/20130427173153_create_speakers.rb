@@ -9,7 +9,8 @@ class CreateSpeakers < ActiveRecord::Migration
       t.string :twitter_username, default: ''
       t.string :github_username, default: ''
       t.string :email, default: ''
-      t.integer :talk_id
+      t.integer :talk_id, null:false
+      t.integer :user_id
 
       t.timestamps
     end

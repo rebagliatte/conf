@@ -86,7 +86,8 @@ ActiveRecord::Schema.define(:version => 20130428043247) do
     t.string   "twitter_username", :default => ""
     t.string   "github_username",  :default => ""
     t.string   "email",            :default => ""
-    t.integer  "talk_id"
+    t.integer  "talk_id",                          :null => false
+    t.integer  "user_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
