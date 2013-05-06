@@ -3,7 +3,9 @@ class Speaker < ActiveRecord::Base
 
   belongs_to :talk
 
+  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+
   validates :name, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, format: EMAIL_REGEX
   validates :twitter_username, presence: true
 end
