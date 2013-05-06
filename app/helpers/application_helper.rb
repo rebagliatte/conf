@@ -1,10 +1,27 @@
 module ApplicationHelper
 
+  def title(text, options = {})
+    content_for(:title, text)
+    "<h1 class='primary-heading'>#{text}</h1>".html_safe unless options[:visible] == false
+  end
+
+  def error_messages_for(object)
+    render(partial: 'shared/error_messages', locals: { object: object })
+  end
+
   def nav_link_to(text, path)
     if current_page?(path)
       link_to text, '#', class: 'current'
     else
       link_to text, path
+    end
+  end
+
+  def anchor_nav_link_to(text, anchor)
+    if current_page?(root_url)
+      link_to text, anchor
+    else
+      link_to text, "#{root_url}#{anchor}"
     end
   end
 

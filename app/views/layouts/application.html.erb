@@ -23,10 +23,10 @@
           <li><%= nav_link_to 'Previous Editions', conference_editions_path %></li>
           <li><%= nav_link_to 'Register', '#' %></li>
         <% elsif current_edition.future? %>
-          <li><%= link_to 'Call for proposals', '#call-for-proposals' %></li>
-          <li><%= link_to 'Previous Edition', '#previous-edition' %></li>
-          <li><%= link_to 'Sponsorship Packages', '#sponsorship-packages' %></li>
-          <li><%= link_to 'News', '#news' %></li>
+          <li><%= anchor_nav_link_to 'Call for proposals', "#call-for-proposals" %></li>
+          <li><%= anchor_nav_link_to 'Previous Edition', "#previous-edition" %></li>
+          <li><%= anchor_nav_link_to 'Sponsorship Packages', "#sponsorship-packages" %></li>
+          <li><%= anchor_nav_link_to 'News', "#news" %></li>
         <% end %>
       </ul>
     </nav>
@@ -43,6 +43,10 @@
   </header>
 
   <main class="main-content">
+    <% flash.each do |name, msg| %>
+      <p class="alert alert-<%= name %>"><%= msg %></p>
+    <% end %>
+
     <%= content_for?(:content) ? yield(:content) : yield %>
   </main>
 
