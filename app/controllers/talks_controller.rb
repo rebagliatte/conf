@@ -1,6 +1,7 @@
 class TalksController < ApplicationController
   def new
     @talk = Talk.new
+    @talk.speakers.build
   end
 
   def create
@@ -14,6 +15,7 @@ class TalksController < ApplicationController
   end
 
   def edit
+    @talk = Talk.find(params[:id])
   end
 
   def update
@@ -29,5 +31,6 @@ class TalksController < ApplicationController
 
   def show
     @talk = Talk.find(params[:id])
+    @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
   end
 end

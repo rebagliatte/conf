@@ -4,5 +4,14 @@
   <%= error_messages_for(@talk) %>
   <%= form.input :title %>
   <%= form.input :description %>
+
+  <%= form.simple_fields_for :speakers do |speaker| %>
+    <%= speaker.input :name %>
+    <%= speaker.input :email %>
+    <%= speaker.input :bio %>
+    <%= speaker.input :twitter_username %>
+    <%= speaker.input :github_username %>
+  <% end %>
+
   <%= form.submit('Submit', class: 'btn btn-primary') %>
 <% end %>
