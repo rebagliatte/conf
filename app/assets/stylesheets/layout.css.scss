@@ -11,6 +11,7 @@
 
 // Header
 .main-header {
+  line-height: 30px;
   h1,
   ul,
   li,
@@ -27,6 +28,14 @@
   }
   .authentication {
     float: right;
+    position: relative;
+    padding-left: 40px;
+    img {
+      width: 30px;
+      position: absolute;
+      top: 15px;
+      left: 0;
+    }
   }
 }
 
