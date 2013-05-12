@@ -1,5 +1,5 @@
 class Sponsor < ActiveRecord::Base
-  attr_accessible :description, :name, :kind, :conference_edition, :conference_edition_id, :logo
+  attr_accessible :description, :name, :kind, :conference_edition, :conference_edition_id, :logo, :website_url
 
   belongs_to :conference_edition
 
@@ -7,6 +7,7 @@ class Sponsor < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {scope: :conference_edition_id}
   validates :logo, presence: true
+  validates :website_url, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
 
   mount_uploader :logo, ImageUploader

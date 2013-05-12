@@ -1,15 +1,20 @@
 <h1 class="primary-heading">Speakers</h1>
 
 <% @speakers.each do |speaker| %>
-  <article class="speaker" id="speaker-<%= speaker.twitter_username %>">
-    <h1 class="secondary-heading"><%= speaker.name %></h1>
-    <p class="company"><%= speaker.company %></p>
-    <p class="city"><%= speaker.city %>, <%= speaker.country %></p>
+  <article class="speaker block" id="speaker-<%= speaker.twitter_username %>">
+    <% if speaker.avatar_url %>
+      <%= image_tag speaker.avatar_url(:inline_y_230), alt: speaker.name %>
+    <% else %>
+      <%= image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{speaker.twitter_username}&size=original", alt: speaker.name %>
+    <% end %>
 
-    <%= image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{speaker.twitter_username}&size=bigger", alt: speaker.name %>
+    <div class="info">
+      <h1 class="secondary-heading"><%= speaker.name %></h1>
+      <p class="tagline company"><%= speaker.company %></p>
+      <p class="tagline last city"><%= speaker.city %>, <%= speaker.country %></p>
 
-    <div class="bio">
       <%= markdown(speaker.bio) %>
+
       <ul class="networks">
         <li>Twitter: <%= link_to speaker.twitter_username, "http://twitter.com/#{speaker.twitter_username}", target: 'blank' %></li>
         <li>Github: <%= link_to speaker.github_username, "http://github.com/#{speaker.github_username}", target: 'blank' %></li>

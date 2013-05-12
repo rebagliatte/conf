@@ -4,17 +4,24 @@
 <h1 class="primary-heading">Sponsors</h1>
 
 <% conference_edition.grouped_sponsors.each do |sponsor_kind, sponsors| %>
+
   <section class="sponsor-kind">
     <h1 class="secondary-heading"><%= sponsor_kind %></h1>
     <% for sponsor in sponsors %>
-      <article class="sponsor">
-        <% if display_descriptions %>
-          <h1 class="tertiary-heading"><%= sponsor.name %></h1>
-          <p><%= sponsor.description %></p>
-        <% else %>
-          <h1 class="tertiary-heading"><%= sponsor.name %></h1>
+      <article class="sponsor block">
+        <%= link_to sponsor.website_url, target: 'blank' do %>
+          <% if display_descriptions %>
+            <%= image_tag sponsor.logo_url(:inline_y_230), alt: sponsor.name %>
+            <div class="info">
+              <h1 class="tertiary-heading"><%= sponsor.name %></h1>
+              <p><%= sponsor.description %></p>
+            </div>
+          <% else %>
+            <%= image_tag sponsor.logo_url(:inline_x_60), alt: sponsor.name %>
+          <% end %>
         <% end %>
       </article>
     <% end %>
   </section>
+
 <% end %>

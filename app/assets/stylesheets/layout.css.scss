@@ -57,24 +57,23 @@
   .post,
   .conference-edition,
   .sponsor-kind {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
-  .speaker {
-    h1 {
-      margin-bottom: 0;
-    }
-    .company,
-    .city {
-      margin-bottom: 0;
-      color: #777;
-      font-size: 0.9em;
-    }
-    .city {
-      margin-bottom: 1em;
-    }
+  .block {
+    clear: both;
+    overflow: auto;
+    margin-bottom: 60px;
     img {
       float: left;
-      margin-right: 20px;
+      max-width: 230px;
+    }
+    .info {
+      padding-left: 250px;
+      border-bottom: 1px solid transparent;
+      h1 {
+        display: inline-block;
+        margin-bottom: 0;
+      }
     }
   }
 }

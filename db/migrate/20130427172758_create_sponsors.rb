@@ -5,6 +5,7 @@ class CreateSponsors < ActiveRecord::Migration
       t.string :description, default: ''
       t.string :kind, default: ''
       t.string :logo, default: ''
+      t.string :website_url, default: ''
       t.integer :conference_edition_id
 
       t.timestamps

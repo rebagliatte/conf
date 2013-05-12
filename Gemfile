@@ -18,8 +18,11 @@ gem 'activeadmin'
 gem 'sass-rails'
 gem 'meta_search', '>= 1.1.0.pre'
 
-# Utilities
+# Images
 gem 'carrierwave'
+gem 'mini_magick'
+
+# Utilities
 gem 'redcarpet'
 gem 'simple_form'
 gem 'country_select'

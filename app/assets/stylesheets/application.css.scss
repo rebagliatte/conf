@@ -38,6 +38,10 @@ body {
 }
 .tagline {
   color: #777;
+  margin-bottom: 0;
+  &.last {
+    margin-bottom: 1em;
+  }
 }
 
 /* paragraphs */

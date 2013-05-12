@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
     t.string   "description",           :default => ""
     t.string   "kind",                  :default => ""
     t.string   "logo",                  :default => ""
+    t.string   "website_url",           :default => ""
     t.integer  "conference_edition_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
