@@ -3,10 +3,10 @@
 <%= simple_form_for [current_edition, @talk] do |form| %>
   <%= error_messages_for(@talk) %>
   <%= form.input :title %>
-  <%= form.input :description %>
+  <%= form.input :abstract %>
 
   <%= form.simple_fields_for :speakers do |speaker| %>
-    <%= speaker.input :name %>
+    <%= speaker.input :name, input_html: { value: "#{ current_user ? current_user.name : '' }" } %>
     <%= speaker.input :email %>
     <%= speaker.input :bio %>
     <%= speaker.input :twitter_username %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428043247) do
+ActiveRecord::Schema.define(:version => 20130512152749) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,11 +86,18 @@ ActiveRecord::Schema.define(:version => 20130428043247) do
     t.string   "twitter_username", :default => ""
     t.string   "github_username",  :default => ""
     t.string   "email",            :default => ""
-    t.integer  "talk_id",                          :null => false
     t.integer  "user_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
+
+  create_table "speakers_talks", :id => false, :force => true do |t|
+    t.integer "speaker_id"
+    t.integer "talk_id"
+  end
+
+  add_index "speakers_talks", ["speaker_id", "talk_id"], :name => "index_speakers_talks_on_speaker_id_and_talk_id"
+  add_index "speakers_talks", ["talk_id", "speaker_id"], :name => "index_speakers_talks_on_talk_id_and_speaker_id"
 
   create_table "sponsors", :force => true do |t|
     t.string   "name",                  :default => "", :null => false
@@ -102,15 +109,15 @@ ActiveRecord::Schema.define(:version => 20130428043247) do
   end
 
   create_table "talks", :force => true do |t|
-    t.string   "title",       :default => "", :null => false
-    t.string   "description", :default => ""
-    t.string   "status",      :default => ""
-    t.string   "slides_url",  :default => ""
-    t.string   "video_url",   :default => ""
+    t.string   "title",      :default => "", :null => false
+    t.string   "abstract",   :default => ""
+    t.string   "status",     :default => ""
+    t.string   "slides_url", :default => ""
+    t.string   "video_url",  :default => ""
     t.integer  "slot_id"
     t.integer  "room_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

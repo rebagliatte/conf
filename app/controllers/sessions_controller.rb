@@ -32,14 +32,14 @@ class SessionsController < ApplicationController
         @identity.update_attributes(user: user)
         self.current_user = user
 
-        redirect_to root_url, notice: 'Successfully created a new user and its first identity'
+        redirect_to root_url, notice: "Welcome #{current_user.name}!"
       end
     end
   end
 
   def destroy
     self.current_user = nil
-    redirect_to root_url, notice: "Signed out!"
+    redirect_to root_url, notice: "Signed out"
   end
 
 end
