@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title, null: false, default: ''
       t.text :body, default: ''
       t.text :summary, default: ''
+      t.string :image, default: ''
       t.integer :conference_edition_id
 
       t.timestamps

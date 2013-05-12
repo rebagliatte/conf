@@ -6,11 +6,12 @@
   <%= form.input :abstract %>
 
   <%= form.simple_fields_for :speakers do |speaker| %>
-    <%= speaker.input :name, input_html: { value: "#{ current_user ? current_user.name : '' }" } %>
+    <%= speaker.input :name %>
     <%= speaker.input :email %>
     <%= speaker.input :bio %>
     <%= speaker.input :twitter_username %>
     <%= speaker.input :github_username %>
+    <%= speaker.input :avatar, required: !signed_in? %>
     <% if current_user %>
       <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
     <% end %>

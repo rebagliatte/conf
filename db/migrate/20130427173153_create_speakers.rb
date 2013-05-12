@@ -4,6 +4,7 @@ class CreateSpeakers < ActiveRecord::Migration
       t.string :name, null:false, default: ''
       t.text :bio, default: ''
       t.string :company, default: ''
+      t.string :avatar, default: ''
       t.string :city, default: ''
       t.string :country, default: ''
       t.string :twitter_username, default: ''

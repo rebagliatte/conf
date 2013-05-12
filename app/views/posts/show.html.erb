@@ -1,4 +1,8 @@
 <h1 class="primary-heading"><%= @post.title %></h1>
-
 <p class="created-at">Posted <%= time_ago_in_words(@post.created_at) %> ago</p>
+
+<% unless @post.image.blank? %>
+  <%= image_tag @post.image, alt: @post.title, class: 'primary-img' %>
+<% end %>
+
 <%= markdown(@post.body) %>

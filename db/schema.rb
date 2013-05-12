@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
     t.string   "venue",                :default => ""
     t.string   "promo_video_provider", :default => ""
     t.string   "promo_video_uid",      :default => ""
+    t.string   "promo_image",          :default => ""
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
     t.string   "title",                 :default => "", :null => false
     t.text     "body",                  :default => ""
     t.text     "summary",               :default => ""
+    t.string   "image",                 :default => ""
     t.integer  "conference_edition_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
     t.string   "name",             :default => "", :null => false
     t.text     "bio",              :default => ""
     t.string   "company",          :default => ""
+    t.string   "avatar",           :default => ""
     t.string   "city",             :default => ""
     t.string   "country",          :default => ""
     t.string   "twitter_username", :default => ""
@@ -103,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
     t.string   "name",                  :default => "", :null => false
     t.string   "description",           :default => ""
     t.string   "kind",                  :default => ""
+    t.string   "logo",                  :default => ""
     t.integer  "conference_edition_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false

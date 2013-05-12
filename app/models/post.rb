@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :conference_edition, :conference_edition_id, :summary, :title
+  attr_accessible :body, :conference_edition, :conference_edition_id, :image, :summary, :title
 
   default_scope order('created_at DESC')
 
@@ -7,4 +7,6 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :conference_edition_id, presence: true
+
+  mount_uploader :image, ImageUploader
 end

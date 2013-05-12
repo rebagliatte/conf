@@ -11,6 +11,7 @@ class CreateConferenceEditions < ActiveRecord::Migration
       t.string :venue, default: ''
       t.string :promo_video_provider, default: ''
       t.string :promo_video_uid, default: ''
+      t.string :promo_image, default: ''
 
       t.timestamps
     end
