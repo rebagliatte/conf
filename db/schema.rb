@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130513001858) do
     t.string   "promo_video_provider", :default => ""
     t.string   "promo_video_uid",      :default => ""
     t.string   "promo_image",          :default => ""
+    t.string   "logo",                 :default => ""
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end

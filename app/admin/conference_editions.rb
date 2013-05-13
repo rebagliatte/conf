@@ -1,4 +1,15 @@
 ActiveAdmin.register ConferenceEdition do
+
+  menu parent: 'Conferences'
+
+  index do
+    column :id
+    column :conference
+    column :from_date
+    column :to_date
+    actions
+  end
+
   form do |f|
     f.inputs 'Details' do
       f.input :from_date
@@ -9,6 +20,8 @@ ActiveAdmin.register ConferenceEdition do
       f.input :country, as: :string
       f.input :city
       f.input :venue
+      f.input :logo
+      f.input :promo_image
       f.input :promo_video_provider
       f.input :promo_video_uid
     end

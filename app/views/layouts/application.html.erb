@@ -13,7 +13,11 @@
 <body>
   <header class="main-header">
     <nav>
-      <h1><%= link_to conference_metadata['name'], root_url %></h1>
+      <h1>
+        <%= link_to root_url do %>
+          <%= image_tag current_edition.logo_url, alt: conference_metadata['name'] %>
+        <% end %>
+      </h1>
       <ul>
         <% if current_edition.present? %>
           <li><%= nav_link_to 'Schedule', conference_edition_slots_path(current_edition) %></li>

@@ -13,6 +13,7 @@ class CreateConferenceEditions < ActiveRecord::Migration
       t.string :promo_video_provider, default: ''
       t.string :promo_video_uid, default: ''
       t.string :promo_image, default: ''
+      t.string :logo, default: ''
 
       t.timestamps
     end
