@@ -21,6 +21,7 @@ gem 'meta_search', '>= 1.1.0.pre'
 # Images
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog', '~> 1.3.1'
 
 # Utilities
 gem 'redcarpet'
