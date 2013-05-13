@@ -1,0 +1,32 @@
+<% if current_edition.future? %>
+  <section class="intro">
+    <h1 class="primary-heading"><%= conference_metadata['name'] %></h1>
+    <p><%= current_edition.tagline %></p>
+    <p><%= when_and_where(current_edition) %></p>
+  </section>
+
+  <section id="call-for-proposals">
+    <h1 class="primary-heading">Call for proposals</h1>
+    <p>Don't miss out</h1>
+    <%= link_to 'Submit your proposal', new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
+  </section>
+
+  <section id="previous-edition">
+    <h1 class="primary-heading">Previous Edition</h1>
+    <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
+  </section>
+
+  <section id="sponsorship-packages">
+    <h1 class="primary-heading">Sponsorhip Packages</h1>
+    <p>Become a sponsor and support <%= conference_metadata['name'] %></h1>
+    <%= link_to 'Download sponsorship packages', '#', class:'btn btn-primary' %>
+  </section>
+<% end %>
+
+<% if current_edition.present? %>
+  <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
+<% end %>
+
+<section id="news">
+  <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
+</section>

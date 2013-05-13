@@ -1,4 +1,8 @@
+require 'Subdomain'
+
 Conf::Application.routes.draw do
+
+  resources :conferences, only: %w(index)
 
   resources :conference_editions, only: %w(index show) do
     resources :posts, only: %w(index show)
@@ -13,7 +17,11 @@ Conf::Application.routes.draw do
   match '/auth/failure', to: redirect('/')
   match '/logout', to: 'sessions#destroy', as: 'logout'
 
-  root to: 'pages#home'
+  constraints(Subdomain) do
+    match '/' => 'conferences#show'
+  end
+
+  root to: 'conferences#index'
 
   ActiveAdmin.routes(self)
 end

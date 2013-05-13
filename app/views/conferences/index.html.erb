@@ -1,0 +1,5 @@
+<h1 class="primary-heading">All Conferences</h1>
+
+<% @conferences.each do |conference| %>
+  <%= link_to conference.name, root_url(:subdomain => conference.subdomain) %>
+<% end %>

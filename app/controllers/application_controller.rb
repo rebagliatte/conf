@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  include UrlHelper
+
   def conference_metadata
     CONFIG[:conference_metadata]
   end

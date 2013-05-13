@@ -68,6 +68,8 @@
         <li><%= link_to 'Drop us a line', "mailto:#{conference_metadata['email']}", target: 'blank' %></li>
       </ul>
     </section>
+
+    <p>Runnning on <%= link_to 'Confnu', root_url(subdomain: false) %></p>
   </footer>
 
   <%= javascript_include_tag 'application' %>
