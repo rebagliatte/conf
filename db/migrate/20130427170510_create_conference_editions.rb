@@ -1,6 +1,7 @@
 class CreateConferenceEditions < ActiveRecord::Migration
   def change
     create_table :conference_editions do |t|
+      t.integer :conference_id, null:false
       t.date :from_date, null:false
       t.date :to_date, null:false
       t.string :tagline, default: ''

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512152749) do
+ActiveRecord::Schema.define(:version => 20130513001858) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "conference_editions", :force => true do |t|
+    t.integer  "conference_id",                                    :null => false
     t.date     "from_date",                                        :null => false
     t.date     "to_date",                                          :null => false
     t.string   "tagline",              :default => ""
@@ -42,6 +43,16 @@ ActiveRecord::Schema.define(:version => 20130512152749) do
     t.string   "promo_image",          :default => ""
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
+  end
+
+  create_table "conferences", :force => true do |t|
+    t.string   "name",                                   :null => false
+    t.string   "email",                                  :null => false
+    t.string   "twitter_username",       :default => ""
+    t.string   "twitter_hashtag",        :default => ""
+    t.string   "facebook_page_username", :default => ""
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "identities", :force => true do |t|

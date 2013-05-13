@@ -1,6 +1,7 @@
 class ConferenceEdition < ActiveRecord::Base
-  attr_accessible :from_date, :to_date, :tagline, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image
+  attr_accessible :from_date, :to_date, :tagline, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image, :conference, :conference_id
 
+  belongs_to :conference
   has_many :sponsors
   has_many :posts
   has_many :slots
@@ -11,6 +12,7 @@ class ConferenceEdition < ActiveRecord::Base
   STATUSES = %w( past present future )
   VIDEO_PROVIDERS = %w( youtube vimeo )
 
+  validates :conference, presence: true
   validates :from_date, presence: true
   validates :to_date, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
