@@ -12,6 +12,7 @@
     <%= speaker.input :twitter_username %>
     <%= speaker.input :github_username %>
     <%= speaker.input :avatar, required: !signed_in? %>
+    <%= speaker.input :avatar_cache, as: :hidden %>
     <% if current_user %>
       <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
     <% end %>
