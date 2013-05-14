@@ -10,9 +10,12 @@ if defined?(Bundler)
 end
 
 # Load application custom configurations
-CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
-CONFIG.merge! CONFIG.fetch(Rails.env, {})
-CONFIG.symbolize_keys!
+config_file = File.expand_path('../application.yml', __FILE__)
+if File.exists?(config_file)
+  CONFIG = YAML.load(File.read(config_file))
+  CONFIG.merge! CONFIG.fetch(Rails.env, {})
+  CONFIG.symbolize_keys!
+end
 
 module Conf
   class Application < Rails::Application

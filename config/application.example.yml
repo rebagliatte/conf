@@ -1,15 +1,32 @@
-conference_metadata:
-  name: ''
-  email: ''
-  twitter_username: ''
-  twitter_hashtag: ''
-  facebook_page: ''
-
 # Rails secret token
 secret_token: ''
 
-# Omniauth
-twitter_key: ''
-twitter_secret: ''
-github_key: ''
-github_secret: ''
+# AWS
+aws_access_key_id: ''
+aws_secret_access_key: ''
+
+# Environment dependant settings
+development:
+  # Mailer
+  host: 'localhost:3000'
+  # AWS
+  aws_s3_bucket: 'confnu-development'
+  # Omniauth
+  twitter_key: ''
+  twitter_secret: ''
+  github_key: ''
+  github_secret: ''
+
+production:
+  # Mailer
+  host: 'conf.nu'
+  # AWS
+  aws_s3_bucket: 'confnu'
+  # Omniauth
+  twitter_key: ''
+  twitter_secret: ''
+  github_key: ''
+  github_secret: ''
+
+test:
+  host: 'test.local'
