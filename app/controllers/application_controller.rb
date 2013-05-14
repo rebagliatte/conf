@@ -1,29 +1,31 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
   include UrlHelper
-
-  def conference_metadata
-    CONFIG[:conference_metadata]
-  end
-
-  def current_edition
-    @current_edition ||= ConferenceEdition.current_edition
-  end
-
   layout :conditional_layout
 
   private
 
   def conditional_layout
-    if @conference_edition && @conference_edition != current_edition
-      'previous_edition'
+    if current_conference
+      if @conference_edition && @conference_edition != current_edition
+        'previous_edition'
+      else
+        'application'
+      end
     else
-      'application'
+      'marketing'
     end
   end
 
   protected
+
+  def current_conference
+    request.subdomain.present? ? Conference.find_by_subdomain!(request.subdomain) : nil
+  end
+
+  def current_edition
+    ConferenceEdition.where(conference_id: current_conference).last
+  end
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
@@ -42,6 +44,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless current_user.try(:admin?)
   end
 
-  helper_method :current_user, :signed_in?, :conference_metadata, :current_edition
+  helper_method :current_user, :signed_in?, :current_conference, :current_edition
 
 end

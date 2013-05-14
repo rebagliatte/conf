@@ -1,6 +1,6 @@
-<% if current_edition.future? %>
+<% if current_edition.coming_soon? %>
   <section class="intro">
-    <h1 class="primary-heading"><%= conference_metadata['name'] %></h1>
+    <h1 class="primary-heading"><%= current_conference.name %></h1>
     <p><%= current_edition.tagline %></p>
     <p><%= when_and_where(current_edition) %></p>
   </section>
@@ -18,12 +18,12 @@
 
   <section id="sponsorship-packages">
     <h1 class="primary-heading">Sponsorhip Packages</h1>
-    <p>Become a sponsor and support <%= conference_metadata['name'] %></h1>
+    <p>Become a sponsor and support <%= current_conference.name %></h1>
     <%= link_to 'Download sponsorship packages', '#', class:'btn btn-primary' %>
   </section>
 <% end %>
 
-<% if current_edition.present? %>
+<% if current_edition.live? %>
   <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
 <% end %>
 

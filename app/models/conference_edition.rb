@@ -9,7 +9,7 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :speakers, through: :talks
 
   KINDS = %w( single_track multiple_track )
-  STATUSES = %w( past present future )
+  STATUSES = %w( coming_soon live sold_out past )
   VIDEO_PROVIDERS = %w( youtube vimeo )
 
   validates :conference, presence: true
@@ -22,25 +22,22 @@ class ConferenceEdition < ActiveRecord::Base
   mount_uploader :logo, ImageUploader
   mount_uploader :promo_image, ImageUploader
 
+  default_scope order('from_date ASC')
+
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
-  end
-
-  def self.current_edition
-    # Current edition, wether it's present or future
-    self.where('status != ?', 'past').last
   end
 
   def self.previous_editions
     self.where(status: 'past').order('from_date').reverse
   end
 
-  def present?
-    self.status == 'present'
+  def coming_soon?
+    self.status == 'coming_soon'
   end
 
-  def future?
-    self.status == 'future'
+  def live?
+    self.status == 'live'
   end
 
   def multiple_track?

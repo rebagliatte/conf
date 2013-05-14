@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title><%= conference_metadata['name'] %></title>
-  <meta name="description" content="<%= conference_metadata['description'] %>">
+  <title><%= current_conference.name %></title>
+  <meta name="description" content="<%= current_edition.tagline %>">
   <meta name="viewport" content="width=device-width">
   <meta charset="utf-8">
   <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -15,7 +15,7 @@
     <nav>
       <h1>
         <%= link_to root_url do %>
-          <%= image_tag current_edition.logo_url, alt: conference_metadata['name'] %>
+          <%= image_tag current_edition.logo_url, alt: current_conference.name %>
         <% end %>
       </h1>
       <ul>
@@ -35,16 +35,7 @@
       </ul>
     </nav>
 
-    <p class="authentication">
-      <% if current_user %>
-        <%= image_tag current_user.image %>
-        Signed in as <%= current_user.nickname %>!
-        <%= link_to 'Sign out', logout_path %>
-      <% else %>
-        <%= link_to 'Sign in with Twitter', '/auth/twitter' %>
-        <%= link_to 'Sign in with Github', '/auth/github' %>
-      <% end %>
-    </p>
+    <%= render partial: 'shared/authentication' %>
   </header>
 
   <main class="main-content">
@@ -63,9 +54,9 @@
     <section class="networks">
       <h1 class="primary-heading">Networks</h1>
       <ul>
-        <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{conference_metadata['twitter_username']}", target: 'blank' %></li>
-        <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{conference_metadata['facebook_username']}", target: 'blank' %></li>
-        <li><%= link_to 'Drop us a line', "mailto:#{conference_metadata['email']}", target: 'blank' %></li>
+        <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{current_conference.twitter_username}", target: 'blank' %></li>
+        <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank' %></li>
+        <li><%= link_to 'Drop us a line', "mailto:#{current_conference.email}", target: 'blank' %></li>
       </ul>
     </section>
 
