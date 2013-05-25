@@ -1,13 +1,15 @@
 <%# @param posts [Array<Conf::Models::Post>] %>
 <%# @param conference_edition [Conf::Model::ConferenceEdition] %>
 
-<h1 class="primary-heading">News</h1>
+<% if posts.any? %>
+  <h1 class="primary-heading">News</h1>
 
-<% posts.each do |post| %>
-  <article class="post">
-    <h1 class="secondary-heading"><%= post.title %></h1>
-    <p class="created-at">Posted <%= time_ago_in_words(post.created_at) %> ago</p>
-    <%= markdown(post.summary) %>
-    <p><%= link_to 'Read more', conference_edition_post_path(conference_edition, post) %></p>
-  </article>
+  <% posts.each do |post| %>
+    <article class="post">
+      <h1 class="secondary-heading"><%= post.title %></h1>
+      <p class="created-at">Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+      <%= markdown(post.summary) %>
+      <p><%= link_to 'Read more', conference_edition_post_path(conference_edition, post) %></p>
+    </article>
+  <% end %>
 <% end %>

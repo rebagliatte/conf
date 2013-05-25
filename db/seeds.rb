@@ -58,6 +58,17 @@ ce3 = ConferenceEdition.create(
     kind: 'single_track',
     conference: c1
   )
+ce4 = ConferenceEdition.create(
+    status: 'coming_soon',
+    from_date: Date.today + 1.month,
+    to_date: Date.tomorrow + 1.month,
+    tagline: 'Nice coming soon conference',
+    country: 'Uruguay',
+    city: 'Montevideo',
+    venue: 'Auditorium B',
+    kind: 'multiple_track',
+    conference: c2
+  )
 
 # Slots
 slot1 = Slot.create(
