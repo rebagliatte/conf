@@ -1,5 +1,3 @@
-require 'Subdomain'
-
 Conf::Application.routes.draw do
 
   resources :conferences, only: %w(index)
