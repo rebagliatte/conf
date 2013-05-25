@@ -27,3 +27,9 @@ gem 'fog', '~> 1.3.1'
 gem 'redcarpet'
 gem 'simple_form'
 gem 'country_select'
+
+# Deployer
+gem 'capistrano'
+
+# App Server
+gem 'unicorn'
