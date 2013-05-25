@@ -5,7 +5,7 @@ development: &default
   timeout: 5000
   host: localhost
 
-test: &TEST
+test:
   <<: *default
   database: conf_test
   min_messages: warning
