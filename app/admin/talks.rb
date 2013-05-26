@@ -2,7 +2,7 @@ ActiveAdmin.register Talk do
   form do |f|
     f.inputs 'Details' do
       f.input :title
-      f.input :description
+      f.input :abstract
       f.input :slot
       f.input :room
       f.input :speakers

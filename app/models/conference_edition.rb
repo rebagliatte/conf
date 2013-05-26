@@ -15,7 +15,7 @@ class ConferenceEdition < ActiveRecord::Base
   validates :conference, presence: true
   validates :from_date, presence: true
   validates :to_date, presence: true
-  # validates :logo, presence: true
+  validates :logo, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
 

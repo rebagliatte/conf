@@ -5,6 +5,7 @@ ActiveAdmin.register ConferenceEdition do
   index do
     column :id
     column :conference
+    column :status
     column :from_date
     column :to_date
     actions
