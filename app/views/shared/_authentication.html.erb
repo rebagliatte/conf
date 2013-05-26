@@ -1,8 +1,8 @@
 <p class="authentication">
   <% if current_user %>
-    <%= image_tag current_user.image %><%= current_user.name %><%= link_to 'Sign out', logout_path %>
+    <%= image_tag current_user.image %><%= current_user.name %><%= link_to t('sign_out'), logout_path %>
   <% else %>
-    <%= link_to 'Sign in with Twitter', '/auth/twitter', class: 'twitter first' %>
-    <%= link_to 'Sign in with Github', '/auth/github', class: 'github' %>
+    <%= link_to t('sign_in_twitter'), '/auth/twitter', class: 'twitter first' %>
+    <%= link_to t('sign_in_github'), '/auth/github', class: 'github' %>
   <% end %>
 </p>

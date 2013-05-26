@@ -1,6 +1,6 @@
-<h1 class="primary-heading">Talks</h1>
+<%= title t 'talks' %>
 
-<% @conference_edition.talks.each do |talk| %>
+<% @talks.each do |talk| %>
   <article>
     <h1 class="secondary-heading"><%= talk.title %></h1>
     <p class="author"><%= speaker_names(talk, @conference_edition) %></p>

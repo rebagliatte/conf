@@ -28,6 +28,8 @@ class TalksController < ApplicationController
   end
 
   def index
+    @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
+    @talks = @conference_edition.talks
   end
 
   def show

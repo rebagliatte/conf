@@ -6,20 +6,20 @@
   </section>
 
   <section id="call-for-proposals">
-    <h1 class="primary-heading">Call for proposals</h1>
-    <p>Don't miss out</h1>
-    <%= link_to 'Submit your proposal', new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
+    <h1 class="primary-heading"><%= t('call_for_proposals') %></h1>
+    <p><%= t('do_not_miss_out') %></p>
+    <%= link_to t('submit_your_proposal'), new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
   </section>
 
   <section id="previous-edition">
-    <h1 class="primary-heading">Previous Edition</h1>
+    <h1 class="primary-heading"><%= t('previous_edition') %></h1>
     <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
   </section>
 
   <section id="sponsorship-packages">
-    <h1 class="primary-heading">Sponsorhip Packages</h1>
-    <p>Become a sponsor and support <%= current_conference.name %></h1>
-    <%= link_to 'Download sponsorship packages', '#', class:'btn btn-primary' %>
+    <h1 class="primary-heading"></h1>
+    <p><%= t('show_your_support_to') %> <%= current_conference.name %></h1>
+    <%= link_to t('download_sponsorship_packages'), '#', class:'btn btn-primary' %>
   </section>
 <% end %>
 

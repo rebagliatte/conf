@@ -1,7 +1,7 @@
 <%# @param conference_edition [Array<Conf::Models::ConferenceEdition>] %>
 <%# @param display_descriptions boolean %>
 
-<h1 class="primary-heading">Sponsors</h1>
+<h1 class="primary-heading"><%= t 'sponsors' %></h1>
 
 <% conference_edition.grouped_sponsors.each do |sponsor_kind, sponsors| %>
 

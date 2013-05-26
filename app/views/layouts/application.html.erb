@@ -20,18 +20,18 @@
         <% end %>
       </h1>
       <ul>
-        <% if current_edition.present? %>
-          <li><%= nav_link_to 'Schedule', conference_edition_slots_path(current_edition) %></li>
-          <li><%= nav_link_to 'Sponsors', conference_edition_sponsors_path(current_edition) %></li>
-          <li><%= nav_link_to 'Speakers', conference_edition_speakers_path(current_edition) %></li>
-          <li><%= nav_link_to 'News', conference_edition_posts_path(current_edition) %></li>
-          <li><%= nav_link_to 'Previous Editions', conference_editions_path %></li>
-          <li><%= nav_link_to 'Register', '#' %></li>
-        <% elsif current_edition.future? %>
-          <li><%= anchor_nav_link_to 'Call for proposals', "#call-for-proposals" %></li>
-          <li><%= anchor_nav_link_to 'Previous Edition', "#previous-edition" %></li>
-          <li><%= anchor_nav_link_to 'Sponsorship Packages', "#sponsorship-packages" %></li>
-          <li><%= anchor_nav_link_to 'News', "#news" %></li>
+        <% if current_edition.live? %>
+          <li><%= nav_link_to t('schedule'), conference_edition_slots_path(current_edition) %></li>
+          <li><%= nav_link_to t('sponsors'), conference_edition_sponsors_path(current_edition) %></li>
+          <li><%= nav_link_to t('speakers'), conference_edition_speakers_path(current_edition) %></li>
+          <li><%= nav_link_to t('news'), conference_edition_posts_path(current_edition) %></li>
+          <li><%= nav_link_to t('previous_editions'), conference_editions_path %></li>
+          <li><%= nav_link_to t('register'), '#' %></li>
+        <% else %>
+          <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
+          <li><%= anchor_nav_link_to t('previous_edition'), "#previous-edition" %></li>
+          <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
+          <li><%= anchor_nav_link_to t('news'), "#news" %></li>
         <% end %>
       </ul>
     </nav>
@@ -53,15 +53,15 @@
     </section>
 
     <section class="networks">
-      <h1 class="primary-heading">Networks</h1>
+      <h1 class="primary-heading"><%= t 'networks' %></h1>
       <ul>
-        <li><%= link_to 'Follow us on twitter', "http://twitter.com/#{current_conference.twitter_username}", target: 'blank' %></li>
-        <li><%= link_to 'Friend us on facebook', "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank' %></li>
-        <li><%= link_to 'Drop us a line', "mailto:#{current_conference.email}", target: 'blank' %></li>
+        <li><%= link_to t('follow_us_on_twitter'), "http://twitter.com/#{current_conference.twitter_username}", target: 'blank' %></li>
+        <li><%= link_to t('friend_us_on_facebook'), "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank' %></li>
+        <li><%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank' %></li>
       </ul>
     </section>
 
-    <p>Runnning on <%= link_to 'Confnu', root_url(subdomain: false) %></p>
+    <p><%= t 'powered_by' %> <%= link_to 'Confnu', root_url(subdomain: false) %></p>
   </footer>
 
   <%= javascript_include_tag 'application' %>

@@ -2,14 +2,14 @@
 <%# @param conference_edition [Conf::Model::ConferenceEdition] %>
 
 <% if posts.any? %>
-  <h1 class="primary-heading">News</h1>
+  <h1 class="primary-heading"><%= t 'news' %></h1>
 
   <% posts.each do |post| %>
     <article class="post">
       <h1 class="secondary-heading"><%= post.title %></h1>
-      <p class="created-at">Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+      <p class="created-at"><%= t 'posted' %> <%= time_ago_in_words(post.created_at) %> ago</p>
       <%= markdown(post.summary) %>
-      <p><%= link_to 'Read more', conference_edition_post_path(conference_edition, post) %></p>
+      <p><%= link_to t('read_more'), conference_edition_post_path(conference_edition, post) %></p>
     </article>
   <% end %>
 <% end %>

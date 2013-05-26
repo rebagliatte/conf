@@ -1,6 +1,6 @@
 <% if object && object.errors.size > 0 %>
   <div class="alert alert-error">
-    <p><strong>Oh snap!</strong> Change a few things up and try submitting again</p>
+    <p><strong><%= t 'oh_snap' %></strong><%= t 'please_resubmit' %></p>
     <ul>
       <% object.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
