@@ -47,6 +47,9 @@
       margin-left: 0.5em;
       padding-left: 0.5em;
       border-left: 1px solid #ccc;
+      &.first {
+        border: none;
+      }
     }
   }
 }

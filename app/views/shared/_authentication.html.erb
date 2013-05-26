@@ -2,7 +2,7 @@
   <% if current_user %>
     <%= image_tag current_user.image %><%= current_user.name %><%= link_to 'Sign out', logout_path %>
   <% else %>
-    <%= link_to 'Sign in with Twitter', '/auth/twitter' %>
-    <%= link_to 'Sign in with Github', '/auth/github' %>
+    <%= link_to 'Sign in with Twitter', '/auth/twitter', class: 'twitter first' %>
+    <%= link_to 'Sign in with Github', '/auth/github', class: 'github' %>
   <% end %>
 </p>
