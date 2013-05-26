@@ -1,4 +1,9 @@
 en:
+  conference_editions:
+    index:
+      previous_editions: 'Previous Editions'
+
+
   conferences:
     index:
       all_conferences: 'All conferences'

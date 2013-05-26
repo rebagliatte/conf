@@ -1,8 +1,8 @@
 module ApplicationHelper
 
-  def title(text, options = {})
+  def title(text)
     content_for(:title, text)
-    "<h1 class='primary-heading'>#{text}</h1>".html_safe unless options[:visible] == false
+    "<h1 class='primary-heading'>#{text}</h1>".html_safe
   end
 
   def error_messages_for(object)
