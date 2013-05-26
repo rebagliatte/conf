@@ -12,6 +12,7 @@ ActiveAdmin.register ConferenceEdition do
 
   form do |f|
     f.inputs 'Details' do
+      f.input :conference
       f.input :from_date
       f.input :to_date
       f.input :tagline
