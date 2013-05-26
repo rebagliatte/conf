@@ -25,6 +25,7 @@ namespace :deploy do
     end
   end
 
+  desc "Create symlinks for config files, create database.yml and application.yml based on the example files"
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
@@ -35,13 +36,14 @@ namespace :deploy do
   end
   after "deploy:setup", "deploy:setup_config"
 
+  desc "Set symlinks for application.yml and database.yml"
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
-  desc "Make sure local git is in sync with remote."
+  desc "Make sure local git is in sync with remote"
   task :check_revision, roles: :web do
     unless `git rev-parse HEAD` == `git rev-parse origin/master`
       puts "WARNING: HEAD is not the same as origin/master"
@@ -50,6 +52,11 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+
+  desc "Migrate the DB"
+  task :migrate do
+    run "cd #{current_path}; bundle exec rake db:migrate RAILS_ENV=#{rails_env}"
+  end
 end
 
 # if you want to clean up old releases on each deploy uncomment this:
