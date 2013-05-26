@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
+
   include UrlHelper
+
   layout :conditional_layout
+
+  before_filter :set_locale
 
   private
 
@@ -15,6 +20,14 @@ class ApplicationController < ActionController::Base
     else
       'marketing'
     end
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+  end
+
+  def default_url_options(options = {})
+    { locale: I18n.locale }
   end
 
   protected

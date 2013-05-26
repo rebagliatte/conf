@@ -53,6 +53,19 @@
       }
     }
   }
+  .lang {
+    display: block;
+    clear: both;
+    float: right;
+    li {
+      background-color: yellow;
+    }
+    a {
+      background-color: white;
+      line-height: 30px;
+      display: block;
+    }
+  }
 }
 
 // Content
