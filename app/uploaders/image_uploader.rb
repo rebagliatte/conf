@@ -30,13 +30,19 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+
+  # Make them 60px tall, keeping ratio
   version :inline_x_60 do
-    # Make them 60px tall, keeping ratio
     process resize_to_fit: [nil, 60]
   end
 
+  # Make them 30px tall, keeping ratio
+  version :inline_x_30 do
+    process resize_to_fit: [nil, 30]
+  end
+
+  # Make them 230px wide, keeping ratio
   version :inline_y_230 do
-    # Make them 230px wide, keeping ratio
     process resize_to_fit: [230, nil]
   end
 

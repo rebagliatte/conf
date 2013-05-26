@@ -11,30 +11,42 @@
 
 // Header
 .main-header {
+  height: 30px;
+  padding: 20px 10%;
   line-height: 30px;
-  h1,
-  ul,
-  li,
-  .authentication {
-    display: inline-block;
-    line-height: 60px;
-  }
+  background: #fefefe;
+  border-bottom: 1px solid #d0d0d0;
+
   h1 {
-    font-weight: bold;
-    margin-right: 1em;
-  }
-  nav {
+    margin-right: 30px;
     float: left;
+    a {
+      line-height: 0;
+      display: block;
+    }
+  }
+  nav,
+  ul {
+    float: left;
+  }
+  li {
+    display: inline-block;
+    a {
+      padding: 0 0.5em;
+    }
   }
   .authentication {
     float: right;
-    position: relative;
-    padding-left: 40px;
+    margin: 0;
     img {
-      width: 30px;
-      position: absolute;
-      top: 15px;
-      left: 0;
+      height: 30px;
+      float: left;
+      margin-right: 0.5em;
+    }
+    a {
+      margin-left: 0.5em;
+      padding-left: 0.5em;
+      border-left: 1px solid #ccc;
     }
   }
 }

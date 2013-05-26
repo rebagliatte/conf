@@ -15,7 +15,7 @@
     <nav>
       <h1>
         <%= link_to root_url do %>
-          <%= image_tag current_edition.logo_url, alt: current_conference.name %>
+          <%= image_tag current_edition.logo_url(:inline_x_30), alt: current_conference.name %>
         <% end %>
       </h1>
       <ul>
@@ -34,7 +34,6 @@
         <% end %>
       </ul>
     </nav>
-
     <%= render partial: 'shared/authentication' %>
   </header>
 
