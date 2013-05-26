@@ -27,6 +27,8 @@ gem 'fog', '~> 1.3.1'
 gem 'redcarpet'
 gem 'simple_form'
 gem 'country_select'
+gem 'exception_notification'
+gem 'letter_opener', group: :development
 
 # Deployer
 gem 'capistrano'
