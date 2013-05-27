@@ -11,11 +11,9 @@
 
 // Header
 .main-header {
-  height: 30px;
+  height: 31px;
   padding: 20px 10%;
   line-height: 30px;
-  background: #fefefe;
-  border-bottom: 1px solid #d0d0d0;
 
   h1 {
     font-weight: bold;
@@ -54,16 +52,17 @@
     }
   }
   .lang {
-    display: block;
-    clear: both;
     float: right;
-    li {
-      background-color: yellow;
-    }
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #333;
     a {
-      background-color: white;
-      line-height: 30px;
-      display: block;
+      color: #777;
+      padding: 0;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

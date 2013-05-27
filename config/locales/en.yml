@@ -8,6 +8,8 @@ en:
   friend_us_on_facebook: "Friend us on facebook"
   networks: "Networks"
   news: "News"
+  oh_snap: "Oh snap!"
+  please_resubmit: "Please change a few things up and try submitting again"
   posted: "Posted"
   powered_by: "Powered by"
   previous_edition: "Previous Edition"
@@ -16,17 +18,11 @@ en:
   register: "Register"
   schedule: "Schedule"
   show_your_support_to: "Become a sponsor and support"
+  sign_in_github: "Sign in with Github"
+  sign_in_twitter: "Sign in with Twitter"
+  sign_out: "Sign out"
   speakers: "Speakers"
   sponsors: "Sponsors"
   sponsorship_packages: "Sponsorship Packages"
   submit_your_proposal: "Submit your proposal"
   talks: "Talks"
-  sign_out: "Sign out"
-  sign_in_twitter: "Sign in with Twitter"
-  sign_in_github: "Sign in with Github"
-  oh_snap: "Oh snap!"
-  please_resubmit: "Please change a few things up and try submitting again"
-
-
-
-
