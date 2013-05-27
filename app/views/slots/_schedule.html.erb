@@ -1,7 +1,7 @@
 <%# @param conference_edition [Array<Conf::Models::ConferenceEdition>] %>
 
 <section id="schedule">
-  <h1 class="primary-heading">Schedule</h1>
+  <h1 class="primary-heading"><%= t 'schedule'%></h1>
 
   <% max_simultaneous_talks_count = conference_edition.max_simultaneous_talks_count if conference_edition.multiple_track? %>
 
