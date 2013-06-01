@@ -26,6 +26,7 @@ pt:
   sponsorship_packages: Pacotes de Patrocínio
   submit_your_proposal: Envie sua proposta
   talks: Palestras
+  submit: Enviar
 
   date:
     abbr_day_names:
@@ -233,3 +234,24 @@ pt:
   activerecord:
     errors:
       <<: *errors
+    models:
+      conference: conferência
+      conference_edition: edição
+      identity: identidade
+      post: posto
+      room: sala
+      speaker: palestrante
+      sponsor: patrocinador
+      talk: palestra
+      user: usuário
+    attributes:
+      talk:
+        title: Título
+        abstract: Abstrato
+      speaker:
+        name: Nome
+        email: E-mail
+        bio: Bio
+        twitter_username: Usuário do Twitter
+        github_username: Usuário do Github
+        avatar: Imagem

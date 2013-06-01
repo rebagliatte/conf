@@ -21,11 +21,12 @@ es:
   sign_in_github: Entrar con Github
   sign_in_twitter: Entrar con Twitter
   sign_out: Salir
-  speakers: Speakers
-  sponsors: Sponsors
-  sponsorship_packages: Planes para Sponsors
-  submit_your_proposal: Propone una charla
+  speakers: Oradores
+  sponsors: Patrocinadores
+  sponsorship_packages: Planes de Patrocinio
+  submit_your_proposal: Propón tu charla
   talks: Charlas
+  submit: Enviar
 
   date:
     abbr_day_names:
@@ -218,10 +219,32 @@ es:
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+
   activemodel:
     errors:
       <<: *errors
   activerecord:
     errors:
       <<: *errors
+    models:
+      conference: conferencia
+      conference_edition: edición
+      identity: identidad
+      post: artículo
+      room: sala
+      speaker: orador
+      sponsor: patrocinador
+      talk: charla
+      user: usuario
+    attributes:
+      talk:
+        title: Título
+        abstract: Abstracto
+      speaker:
+        name: Nombre
+        email: Email
+        bio: Biografía
+        twitter_username: Usuario de Twitter
+        github_username: Usuario de Github
+        avatar: Imágen
+
