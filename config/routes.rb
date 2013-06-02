@@ -1,5 +1,4 @@
 Conf::Application.routes.draw do
-
   resources :conferences, only: %w(index)
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
@@ -28,6 +27,4 @@ Conf::Application.routes.draw do
 
   # I18N
   match '', to: redirect("/#{I18n.default_locale}")
-
-  ActiveAdmin.routes(self)
 end
