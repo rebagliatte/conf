@@ -33,3 +33,4 @@ gem 'capistrano'
 
 # App Server
 gem 'unicorn'
+gem 'unicorn-rails', group: :development
