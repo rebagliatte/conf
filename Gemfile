@@ -33,4 +33,9 @@ gem 'capistrano'
 
 # App Server
 gem 'unicorn'
-gem 'unicorn-rails', group: :development
+
+# Development goodies
+group :development do
+  gem 'unicorn-rails'
+  gem 'quiet_assets'
+end
