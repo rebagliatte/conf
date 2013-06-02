@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602013801) do
+ActiveRecord::Schema.define(:version => 20130602175846) do
 
   create_table "conference_editions", :force => true do |t|
     t.integer  "conference_id",                                    :null => false
@@ -32,15 +32,25 @@ ActiveRecord::Schema.define(:version => 20130602013801) do
   end
 
   create_table "conferences", :force => true do |t|
-    t.string   "subdomain",                              :null => false
-    t.string   "name",                                   :null => false
-    t.string   "email",                                  :null => false
+    t.string   "subdomain",                                :null => false
+    t.string   "name",                                     :null => false
+    t.string   "email",                                    :null => false
     t.string   "twitter_username",       :default => ""
     t.string   "twitter_hashtag",        :default => ""
     t.string   "facebook_page_username", :default => ""
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "owner_id"
+    t.string   "available_languages",    :default => "en"
   end
+
+  create_table "conferences_users", :force => true do |t|
+    t.integer "conference_id"
+    t.integer "user_id"
+  end
+
+  add_index "conferences_users", ["conference_id"], :name => "index_conferences_users_on_conference_id"
+  add_index "conferences_users", ["user_id"], :name => "index_conferences_users_on_user_id"
 
   create_table "identities", :force => true do |t|
     t.string   "provider",   :default => "", :null => false

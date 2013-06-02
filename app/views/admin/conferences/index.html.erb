@@ -1,8 +1,32 @@
-<%= title t 'all_conferences' %>
-<%= link_to 'New conference', new_admin_conference_path, class: 'btn primary-btn' %>
+<header class="admin-header">
+  <%= title t 'all_conferences' %>
+  <%= link_to 'New conference', new_admin_conference_path, class: 'btn primary-btn main-cta' %>
+</header>
 
-<ul>
-  <% @conferences.each do |conference| %>
-    <li><%= link_to conference.name, root_url(:subdomain => conference.subdomain) %></li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Organizers</th>
+      <th>Available Languages</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conferences.each do |conference| %>
+      <tr>
+        <td><%= conference.id %></td>
+        <td><%= conference.name %></td>
+        <td><%= conference.owner.inspect %></td>
+        <td><%= conference.organizers.inspect %></td>
+        <td><%= conference.available_languages.inspect %></td>
+        <td>
+          <%= link_to 'View', admin_conference_path(conference) %>
+          <%= link_to 'Edit', edit_admin_conference_path(conference) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

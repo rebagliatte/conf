@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :identities
   has_one :speaker
+  has_and_belongs_to_many :conferences
+  has_many :conferences
 
   ROLES = %w( user admin )
 
