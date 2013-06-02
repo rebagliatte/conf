@@ -72,6 +72,19 @@ a:hover {
   text-decoration: none;
 }
 
+/* buttons */
+.btn {
+  background: #dedede;
+  border: 1px solid #cecece;
+  color: #333;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  &:hover {
+    background-color: #cecece;
+  }
+}
+
 /* tabs */
 .tabs {
   border-bottom: 1px solid #ddd;
@@ -120,6 +133,21 @@ a:hover {
 /* Forms */
 form .control-group {
   margin-bottom: 20px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  th,
+  td {
+    text-align: left;
+    padding: 1em;
+    border: 1px solid #dfdfdf;
+  }
+  th {
+    width: 30%;
+    font-weight: bold;
+  }
 }
 
 /* Utilitites */

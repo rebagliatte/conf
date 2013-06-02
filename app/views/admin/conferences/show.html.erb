@@ -1,0 +1,31 @@
+<header class="admin-header">
+  <%= title @conference.name %>
+  <%= link_to 'Edit', edit_admin_conference_path(@conference), class: 'btn btn-primary main-cta' %>
+</header>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <td><%= @conference.name %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= @conference.email %></td>
+  </tr>
+  <tr>
+    <th>Twitter username</th>
+    <td><%= @conference.twitter_username %></td>
+  </tr>
+  <tr>
+    <th>Twitter Hashtag</th>
+    <td><%= @conference.twitter_hashtag %></td>
+  </tr>
+  <tr>
+    <th>Facebook page username</th>
+    <td><%= @conference.facebook_page_username %></td>
+  </tr>
+  <tr>
+    <th>Subdomain</th>
+    <td><%= @conference.subdomain %></td>
+  </tr>
+</table>

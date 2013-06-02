@@ -1,4 +1,5 @@
 <%= title t 'all_conferences' %>
+<%= link_to 'New conference', new_admin_conference_path, class: 'btn primary-btn' %>
 
 <ul>
   <% @conferences.each do |conference| %>

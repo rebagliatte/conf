@@ -12,7 +12,6 @@ class ConferenceEdition < ActiveRecord::Base
   STATUSES = %w( coming_soon live sold_out past )
   VIDEO_PROVIDERS = %w( youtube vimeo )
 
-  validates :conference, presence: true
   validates :from_date, presence: true
   validates :to_date, presence: true
   validates :logo, presence: true

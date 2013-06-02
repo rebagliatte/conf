@@ -1,0 +1,13 @@
+.admin {
+  .main-header h1 a {
+    line-height: 30px;
+  }
+  .admin-header {
+    position: relative;
+    .main-cta {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
