@@ -11,5 +11,7 @@ class Talk < ActiveRecord::Base
   validates :title, presence: true
   validates :status, inclusion: { in: STATUSES }
 
+  translates :title, :abstract
+
   accepts_nested_attributes_for :speakers
 end

@@ -26,3 +26,9 @@ en:
   sponsorship_packages: Sponsorship Packages
   submit_your_proposal: Submit your proposal
   talks: Talks
+  submit: Submit
+
+  translation:
+    en: English
+    pt: Portuguese
+    es: Spanish

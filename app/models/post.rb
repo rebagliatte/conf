@@ -8,5 +8,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :conference_edition_id, presence: true
 
+  translates :title, :summary, :body
+
   mount_uploader :image, ImageUploader
 end

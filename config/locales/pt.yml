@@ -28,6 +28,11 @@ pt:
   talks: Palestras
   submit: Enviar
 
+  translation:
+    en: Inglês
+    pt: Português
+    es: Espanhol
+
   date:
     abbr_day_names:
     - Dom

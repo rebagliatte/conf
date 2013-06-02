@@ -28,6 +28,11 @@ es:
   talks: Charlas
   submit: Enviar
 
+  translation:
+    en: Inglés
+    pt: Portugués
+    es: Español
+
   date:
     abbr_day_names:
     - dom

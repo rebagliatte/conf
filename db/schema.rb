@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513001858) do
+ActiveRecord::Schema.define(:version => 20130602002350) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,6 +66,19 @@ ActiveRecord::Schema.define(:version => 20130513001858) do
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
+
+  create_table "post_translations", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "locale"
+    t.string   "title"
+    t.string   "summary"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "post_translations", ["locale"], :name => "index_post_translations_on_locale"
+  add_index "post_translations", ["post_id"], :name => "index_post_translations_on_post_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title",                 :default => "", :null => false
@@ -125,6 +138,18 @@ ActiveRecord::Schema.define(:version => 20130513001858) do
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
   end
+
+  create_table "talk_translations", :force => true do |t|
+    t.integer  "talk_id"
+    t.string   "locale"
+    t.string   "title"
+    t.string   "abstract"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "talk_translations", ["locale"], :name => "index_talk_translations_on_locale"
+  add_index "talk_translations", ["talk_id"], :name => "index_talk_translations_on_talk_id"
 
   create_table "talks", :force => true do |t|
     t.string   "title",      :default => "", :null => false
