@@ -23,4 +23,17 @@ class Admin::ConferencesController < ApplicationController
     end
   end
 
+  def edit
+    @conference = Conference.find(params[:id])
+  end
+
+  def update
+    @conference = Conference.find(params[:id])
+    if @conference.update_attributes(params[:conference])
+      redirect_to admin_conference_path(@conference), flash: { success: 'Conference updated successfully!' }
+    else
+      render :edit
+    end
+  end
+
 end

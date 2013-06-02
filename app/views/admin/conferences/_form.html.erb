@@ -1,0 +1,41 @@
+<%# @param conference [Models::Conference] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference] do |form| %>
+  <%= error_messages_for(conference) %>
+  <%= form.input :name %>
+
+  <% if @conference.new_record? %>
+    <%= form.input :owner_id, as: :hidden, input_html: { value: current_user.id } %>
+  <% end %>
+
+  <%= form.input :email %>
+  <%= form.input :twitter_username %>
+  <%= form.input :twitter_hashtag %>
+  <%= form.input :facebook_page_username %>
+
+  <%= form.input :subdomain %>
+
+  <%= form.simple_fields_for :conference_editions do |ce| %>
+    <fieldset>
+      <legend>Conference Edition</legend>
+      <%= ce.input :tagline %>
+      <%= ce.input :logo %>
+
+      <%= ce.input :from_date %>
+      <%= ce.input :to_date %>
+
+      <%= ce.input :country %>
+      <%= ce.input :city %>
+      <%= ce.input :venue %>
+
+      <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
+      <%= ce.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false %>
+      <%= ce.input :promo_video_provider %>
+      <%= ce.input :promo_video_uid %>
+      <%= ce.input :promo_image %>
+    </fieldset>
+  <% end %>
+
+  <%= form.submit "#{action.titleize} Conference", class: 'btn btn-primary' %>
+<% end %>
