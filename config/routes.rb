@@ -1,5 +1,8 @@
 Conf::Application.routes.draw do
-  resources :conferences, only: %w(index)
+
+  namespace :admin do
+    resources :conferences, only: %w(show index new create edit update)
+  end
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :conferences, only: %w(index)
