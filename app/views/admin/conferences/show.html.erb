@@ -9,6 +9,10 @@
     <td><%= @conference.name %></td>
   </tr>
   <tr>
+    <th>Available languages</th>
+    <td><%= @conference.languages.map(&:name).to_sentence %></td>
+  </tr>
+  <tr>
     <th>Email</th>
     <td><%= @conference.email %></td>
   </tr>

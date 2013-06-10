@@ -9,12 +9,13 @@
     <%= form.input :owner_id, as: :hidden, input_html: { value: current_user.id } %>
   <% end %>
 
+  <%= form.input :subdomain %>
+  <%= form.association :languages %>
+
   <%= form.input :email %>
   <%= form.input :twitter_username %>
   <%= form.input :twitter_hashtag %>
   <%= form.input :facebook_page_username %>
-
-  <%= form.input :subdomain %>
 
   <%= form.simple_fields_for :conference_editions do |ce| %>
     <fieldset>

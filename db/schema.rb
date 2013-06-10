@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602175846) do
+ActiveRecord::Schema.define(:version => 20130610004233) do
 
   create_table "conference_editions", :force => true do |t|
     t.integer  "conference_id",                                    :null => false
@@ -32,17 +32,24 @@ ActiveRecord::Schema.define(:version => 20130602175846) do
   end
 
   create_table "conferences", :force => true do |t|
-    t.string   "subdomain",                                :null => false
-    t.string   "name",                                     :null => false
-    t.string   "email",                                    :null => false
+    t.string   "subdomain",                              :null => false
+    t.string   "name",                                   :null => false
+    t.string   "email",                                  :null => false
     t.string   "twitter_username",       :default => ""
     t.string   "twitter_hashtag",        :default => ""
     t.string   "facebook_page_username", :default => ""
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "owner_id"
-    t.string   "available_languages",    :default => "en"
   end
+
+  create_table "conferences_languages", :force => true do |t|
+    t.integer "conference_id"
+    t.integer "language_id"
+  end
+
+  add_index "conferences_languages", ["conference_id"], :name => "index_conferences_languages_on_conference_id"
+  add_index "conferences_languages", ["language_id"], :name => "index_conferences_languages_on_language_id"
 
   create_table "conferences_users", :force => true do |t|
     t.integer "conference_id"
@@ -61,6 +68,13 @@ ActiveRecord::Schema.define(:version => 20130602175846) do
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
+
+  create_table "languages", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "post_translations", :force => true do |t|
     t.integer  "post_id"

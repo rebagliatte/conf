@@ -21,7 +21,6 @@
         <td><%= conference.name %></td>
         <td><%= conference.owner.inspect %></td>
         <td><%= conference.organizers.inspect %></td>
-        <td><%= conference.available_languages.inspect %></td>
         <td>
           <%= link_to 'View', admin_conference_path(conference) %>
           <%= link_to 'Edit', edit_admin_conference_path(conference) %>
