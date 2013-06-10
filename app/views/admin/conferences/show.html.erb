@@ -9,12 +9,26 @@
     <td><%= @conference.name %></td>
   </tr>
   <tr>
-    <th>Available languages</th>
-    <td><%= @conference.languages.map(&:name).to_sentence %></td>
+    <th>Owner</th>
+    <td><%= link_to @conference.owner.name, '#' %></td>
   </tr>
   <tr>
     <th>Email</th>
     <td><%= @conference.email %></td>
+  </tr>
+  <tr>
+    <th>Available languages</th>
+    <td><%= @conference.languages.map(&:name).to_sentence %></td>
+  </tr>
+  <tr>
+    <th>Conference Editions</th>
+    <td>
+      <ul>
+        <% @conference.conference_editions.each do |ce| %>
+          <li><%= link_to ce, '#' %></li>
+        <% end %>
+      </ul>
+    </td>
   </tr>
   <tr>
     <th>Twitter username</th>

@@ -19,8 +19,9 @@
       <tr>
         <td><%= conference.id %></td>
         <td><%= conference.name %></td>
-        <td><%= conference.owner.inspect %></td>
-        <td><%= conference.organizers.inspect %></td>
+        <td><%= link_to conference.owner.name, '#' %></td>
+        <td><%= conference.organizers.map(&:name).to_sentence %></td>
+        <td><%= conference.languages.map(&:name).to_sentence %></td>
         <td>
           <%= link_to 'View', admin_conference_path(conference) %>
           <%= link_to 'Edit', edit_admin_conference_path(conference) %>
