@@ -1,6 +1,11 @@
 .admin {
-  .main-header h1 a {
-    line-height: 30px;
+  .main-header {
+    width: auto;
+    padding: 0 20px;
+    border-bottom: 1px solid #cecece;
+    h1 a {
+      line-height: 30px;
+    }
   }
   .admin-header {
     position: relative;
@@ -8,6 +13,24 @@
       position: absolute;
       top: 0;
       right: 0;
+    }
+  }
+  .admin-nav,
+  .admin-content {
+    float: left;
+    padding-top: 40px;
+  }
+  .admin-nav {
+    width: 20%;
+    li {
+      padding-left: 20px;
+      line-height: 30px;
+    }
+  }
+  .admin-content {
+    width: 78%;
+    .primary-heading {
+      margin-top: 0;
     }
   }
 }
