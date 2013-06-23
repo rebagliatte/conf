@@ -12,4 +12,6 @@ class Speaker < ActiveRecord::Base
   validates :twitter_username, presence: true
 
   mount_uploader :avatar, ImageUploader
+
+  default_scope order('name ASC')
 end
