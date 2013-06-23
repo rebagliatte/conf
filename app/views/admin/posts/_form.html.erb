@@ -1,0 +1,28 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param post [Models::Post] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, post] do |form| %>
+
+  <%= error_messages_for(post) %>
+
+  <%= form.fields_for :translations do |t| %>
+    <%= t.input :title, required: true %>
+  <% end %>
+
+  <%= form.fields_for :translations do |t| %>
+    <%= t.input :body %>
+  <% end %>
+
+  <%= form.fields_for :translations do |t| %>
+    <%= t.input :summary %>
+  <% end %>
+
+  <%= form.input :image %>
+
+  <%= form.submit "#{action.titleize} Post", class: 'btn btn-primary' %>
+<% end %>
+
+
+
+

@@ -1,0 +1,19 @@
+<%# @param speaker [Models::Speaker] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, speaker] do |form| %>
+
+  <%= error_messages_for(speaker) %>
+
+  <%= form.input :name %>
+  <%= form.input :bio %>
+  <%= form.input :company %>
+  <%= form.input :avatar, required: true %>
+  <%= form.input :city %>
+  <%= form.input :country %>
+  <%= form.input :twitter_username %>
+  <%= form.input :github_username %>
+  <%= form.input :email %>
+
+  <%= form.submit "#{action.titleize} Speaker", class: 'btn btn-primary' %>
+<% end %>

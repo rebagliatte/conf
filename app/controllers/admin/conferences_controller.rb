@@ -1,6 +1,4 @@
-class Admin::ConferencesController < ApplicationController
-  layout 'admin'
-
+class Admin::ConferencesController < AdminController
   def show
     @conference = Conference.find(params[:id])
   end
@@ -35,5 +33,4 @@ class Admin::ConferencesController < ApplicationController
       render :edit
     end
   end
-
 end

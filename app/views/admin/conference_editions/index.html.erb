@@ -1,0 +1,24 @@
+<header class="admin-header">
+  <%= title t 'all_conference_editions' %>
+  <%= link_to 'New conference_edition', new_admin_conference_edition_path, class: 'btn primary-btn main-cta' %>
+</header>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conference_editions.each do |conference_edition| %>
+      <tr>
+        <td><%= conference_edition.id %></td>
+        <td>
+          <%= link_to 'View', admin_conference_edition_path(conference_edition) %>
+          <%= link_to 'Edit', edit_admin_conference_edition_path(conference_edition) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

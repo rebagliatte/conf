@@ -7,6 +7,8 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :slots
   has_many :talks, through: :slots
   has_many :speakers, through: :talks
+  has_many :languages, through: :conference
+
 
   KINDS = %w( single_track multiple_track )
   STATUSES = %w( coming_soon live sold_out past )
@@ -18,14 +20,14 @@ class ConferenceEdition < ActiveRecord::Base
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
 
-  mount_uploader :logo, ImageUploader
-  mount_uploader :promo_image, ImageUploader
-
-  default_scope order('from_date ASC')
-
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
   end
+
+  mount_uploader :logo, ImageUploader
+  mount_uploader :promo_image, ImageUploader
+
+  default_scope order('from_date DESC')
 
   def self.previous_editions
     self.where(status: 'past').order('from_date').reverse
@@ -43,8 +45,8 @@ class ConferenceEdition < ActiveRecord::Base
     self.kind == 'multiple_track'
   end
 
-  def to_s
-    "#{self.from_date.year} Edition "
+  def full_name
+    "#{self.conference.name} #{self.from_date.year}"
   end
 
   def grouped_slots

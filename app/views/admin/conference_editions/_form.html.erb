@@ -1,0 +1,22 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition] do |form| %>
+  <%= error_messages_for(conference_edition) %>
+
+  <%= form.input :id %>
+  <%= form.input :from_date %>
+  <%= form.input :to_date %>
+  <%= form.input :tagline %>
+  <%= form.input :kind %>
+  <%= form.input :status %>
+  <%= form.input :country %>
+  <%= form.input :city %>
+  <%= form.input :venue %>
+  <%= form.input :promo_video_provider %>
+  <%= form.input :promo_video_uid %>
+  <%= form.input :promo_image %>
+  <%= form.input :logo %>
+
+  <%= form.submit "#{action.titleize} ConferenceEdition", class: 'btn btn-primary' %>
+<% end %>

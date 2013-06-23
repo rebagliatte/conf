@@ -1,10 +1,20 @@
 Conf::Application.routes.draw do
 
+  # Admin
   namespace :admin do
     resources :conferences, only: %w(show index new create edit update)
+
+    resources :conference_editions, only: %w(show index new create edit update) do
+      resources :talks, only: %w(show index new create edit update)
+      resources :speakers, only: %w(show index new create edit update)
+      resources :sponsors, only: %w(show index new create edit update)
+      resources :posts, only: %w(show index new create edit update)
+    end
+
     match '/' => 'conferences#index'
   end
 
+  # Public site
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :conferences, only: %w(index)
 

@@ -1,0 +1,3 @@
+<%= title "Edit Post ##{@post.id}" %>
+
+<%= render partial: 'form', locals: { post: @post, conference_edition: @conference_edition, action: 'update' } %>

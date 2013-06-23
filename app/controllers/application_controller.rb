@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
+
+
   def current_conference
     request.subdomain.present? ? Conference.find_by_subdomain!(request.subdomain) : nil
   end
