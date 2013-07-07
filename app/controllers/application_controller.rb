@@ -32,8 +32,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-
-
   def current_conference
     request.subdomain.present? ? Conference.find_by_subdomain!(request.subdomain) : nil
   end
@@ -56,9 +54,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    redirect_to root_url unless current_user.try(:admin?)
+    unless current_user.try(:admin?)
+      redirect_to root_url, alert: "You are not authorized to access this page. Please log in as an admin and try again."
+    end
   end
 
   helper_method :current_user, :signed_in?, :current_conference, :current_edition
-
 end
