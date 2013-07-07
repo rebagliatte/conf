@@ -46,4 +46,14 @@
       }
     }
   }
+  fieldset {
+    border: 1px solid #dedede;
+    padding: 20px;
+    margin-bottom: 20px;
+    legend {
+      text-transform: uppercase;
+      font-size: 0.8em;
+      color: #777;
+    }
+  }
 }

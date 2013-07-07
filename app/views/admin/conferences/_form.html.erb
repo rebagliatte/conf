@@ -3,23 +3,27 @@
 
 <%= simple_form_for [:admin, conference] do |form| %>
   <%= error_messages_for(conference) %>
-  <%= form.input :name %>
+
 
   <% if @conference.new_record? %>
     <%= form.input :owner_id, as: :hidden, input_html: { value: current_user.id } %>
   <% end %>
 
-  <%= form.input :subdomain %>
-  <%= form.association :languages %>
+  <fieldset>
+    <legend>General information</legend>
+    <%= form.input :name %>
+    <%= form.input :subdomain %>
+    <%= form.association :languages %>
 
-  <%= form.input :email %>
-  <%= form.input :twitter_username %>
-  <%= form.input :twitter_hashtag %>
-  <%= form.input :facebook_page_username %>
+    <%= form.input :email %>
+    <%= form.input :twitter_username %>
+    <%= form.input :twitter_hashtag %>
+    <%= form.input :facebook_page_username %>
+  </fieldset>
 
   <%= form.simple_fields_for :conference_editions do |ce| %>
     <fieldset>
-      <legend>Conference Edition</legend>
+      <legend>Current Conference Edition information</legend>
       <%= ce.input :tagline %>
       <%= ce.input :logo %>
 

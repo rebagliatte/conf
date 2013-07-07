@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    unless current_user.try(:admin?)
+    unless current_user.try(:admin?) || current_user.try(:superadmin?)
       redirect_to root_url, alert: "You are not authorized to access this page. Please log in as an admin and try again."
     end
   end
