@@ -33,4 +33,17 @@
       margin-top: 0;
     }
   }
+  .translatable-form {
+    th,
+    td {
+      border: 0;
+      padding: 0 0 20px 0;
+      vertical-align: top;
+      input,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  }
 }

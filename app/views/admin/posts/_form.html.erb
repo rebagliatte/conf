@@ -3,26 +3,34 @@
 <%# @param action [String] %>
 
 <%= simple_form_for [:admin, conference_edition, post] do |form| %>
-
   <%= error_messages_for(post) %>
 
-  <%= form.fields_for :translations do |t| %>
-    <%= t.input :title, required: true %>
-  <% end %>
-
-  <%= form.fields_for :translations do |t| %>
-    <%= t.input :body %>
-  <% end %>
-
-  <%= form.fields_for :translations do |t| %>
-    <%= t.input :summary %>
-  <% end %>
-
-  <%= form.input :image %>
+  <table class="translatable-form">
+    <tr>
+      <th>Title</th>
+      <%= form.fields_for :translations do |t| %>
+        <td><%= t.input_field :title %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <th>Body</th>
+      <%= form.fields_for :translations do |t| %>
+        <td><%= t.input_field :body %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <th>Summary</th>
+      <%= form.fields_for :translations do |t| %>
+        <td><%= t.input_field :summary %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <th>Image</th>
+      <td><%= form.input_field :image %></td>
+    </tr>
+  </table>
 
   <%= form.submit "#{action.titleize} Post", class: 'btn btn-primary' %>
 <% end %>
 
-
-
-
+<%# TODO: print translations codes in each cell's class %>
