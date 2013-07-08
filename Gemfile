@@ -24,6 +24,7 @@ gem 'redcarpet'
 gem 'simple_form'
 gem 'country_select'
 gem 'globalize3'
+gem 'cancan'
 
 # Deployer
 gem 'capistrano'

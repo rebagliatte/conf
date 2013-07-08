@@ -19,7 +19,7 @@
 
   <nav class="admin-nav">
     <ul>
-      <% current_user.manageable_conference_editions.each do |e| %>
+      <% conference_editions.each do |e| %>
         <li>
           <%= link_to_unless_current e.full_name, admin_conference_edition_path(e) %>
           <ul>

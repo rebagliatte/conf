@@ -22,12 +22,4 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(info)
     create!(name: info['name'], nickname: info['nickname'], email: info['email'], image: info['image'])
   end
-
-  def manageable_conference_editions
-    conference_editions = []
-    Conference.where(owner_id: id).each do |c|
-      conference_editions << c.conference_editions
-    end
-    conference_editions.flatten
-  end
 end

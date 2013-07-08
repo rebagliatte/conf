@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   private
 
   def conditional_layout
@@ -51,12 +55,6 @@ class ApplicationController < ActionController::Base
   def current_user=(user)
     @current_user = user
     session[:user_id] = user.nil? ? user : user.id
-  end
-
-  def authenticate_admin_user!
-    unless current_user.try(:admin?) || current_user.try(:superadmin?)
-      redirect_to root_url, alert: "You are not authorized to access this page. Please log in as an admin and try again."
-    end
   end
 
   helper_method :current_user, :signed_in?, :current_conference, :current_edition

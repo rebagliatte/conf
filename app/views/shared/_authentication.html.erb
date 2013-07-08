@@ -1,6 +1,8 @@
 <p class="authentication">
   <% if current_user %>
     <%= image_tag current_user.image %><%= current_user.name %><%= link_to t('sign_out'), logout_path %>
+    <%= current_user.role %>
+    <%= Conference.where(owner_id: current_user.id).count %>
   <% else %>
     <%= link_to t('sign_in_twitter'), '/auth/twitter', class: 'twitter first' %>
     <%= link_to t('sign_in_github'), '/auth/github', class: 'github' %>
