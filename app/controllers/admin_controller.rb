@@ -3,8 +3,8 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_admin_user
 
-  def conference_editions
-    ConferenceEdition.accessible_by(current_ability)
+  def conferences
+    Conference.accessible_by(current_ability)
   end
 
   private
@@ -15,6 +15,6 @@ class AdminController < ApplicationController
     end
   end
 
-  helper_method :conference_editions
+  helper_method :conferences
 
 end

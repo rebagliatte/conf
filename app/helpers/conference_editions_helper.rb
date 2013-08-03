@@ -9,4 +9,12 @@ module ConferenceEditionsHelper
     string << ", #{ce.from_date.strftime('%Y')}. #{ce.city}, #{ce.country}"
   end
 
+  def pretty_conference_and_year(ce)
+    "#{ce.conference.name} #{ce.from_date.year}"
+  end
+
+  def pretty_year(ce)
+    ce.from_date.year
+  end
+
 end

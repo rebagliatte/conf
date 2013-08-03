@@ -45,10 +45,6 @@ class ConferenceEdition < ActiveRecord::Base
     self.kind == 'multiple_track'
   end
 
-  def full_name
-    "#{self.conference.name} #{self.from_date.year}"
-  end
-
   def grouped_slots
     # Slots grouped by date
     self.slots.order('from_datetime').group_by { |s| s.from_datetime.beginning_of_day }

@@ -19,21 +19,30 @@
 
   <nav class="admin-nav">
     <ul>
-      <% conference_editions.each do |e| %>
+      <% conferences.each do |conference| %>
         <li>
-          <%= link_to_unless_current e.full_name, admin_conference_edition_path(e) %>
+          <%= conference.name %>
+
           <ul>
-            <li><%= link_to_unless_current 'Talks', admin_conference_edition_talks_path(e) %></li>
-            <li><%= link_to_unless_current 'Speakers', admin_conference_edition_speakers_path(e) %></li>
-            <li><%= link_to_unless_current 'Sponsors', admin_conference_edition_sponsors_path(e) %></li>
-            <li><%= link_to_unless_current 'Schedule', '#' %></li>
-            <li><%= link_to_unless_current 'Posts', admin_conference_edition_posts_path(e) %></li>
-            <li><%= link_to_unless_current 'Tickets', '#' %></li>
-            <li><%= link_to_unless_current 'Settings', '#' %></li>
+            <% conference.conference_editions.each do |e| %>
+              <li>
+                <%= link_to_unless_current pretty_year(e), admin_conference_edition_path(e) %>
+                <ul>
+                  <li><%= link_to_unless_current 'Talks', admin_conference_edition_talks_path(e) %></li>
+                  <li><%= link_to_unless_current 'Speakers', admin_conference_edition_speakers_path(e) %></li>
+                  <li><%= link_to_unless_current 'Sponsors', admin_conference_edition_sponsors_path(e) %></li>
+                  <li><%= link_to_unless_current 'Schedule', '#' %></li>
+                  <li><%= link_to_unless_current 'Posts', admin_conference_edition_posts_path(e) %></li>
+                  <li><%= link_to_unless_current 'Tickets', '#' %></li>
+                  <li><%= link_to_unless_current 'Settings', '#' %></li>
+                </ul>
+              </li>
+            <% end %>
+
           </ul>
         </li>
+
       <% end %>
-      <li><%= link_to_unless_current 'New', '#' %></li>
     </ul>
   </nav>
 
