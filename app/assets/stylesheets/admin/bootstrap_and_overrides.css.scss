@@ -1,0 +1,51 @@
+/*
+  Bootstrap and Overrides
+*/
+
+// VARIABLES
+
+// Colors
+// $textColor:           #555555;
+
+// $blue:                #28A0B5;
+// $orange:              #b23D31;
+// $green:               #0f9147;
+// $black:               #000;
+// $grayDarker:          #222;
+// $grayDark:            #333;
+// $gray:                #555;
+// $grayLight:           #999;
+// $grayLighter:         #eee;
+// $white:               #fff;
+
+// // Typography
+// $linkColor:           #0f90ba;
+// $baseFontFamily:      "Lucida Grande", tahoma, helvetica;
+// $headingsFontFamily:  "Lucida Grande", tahoma, helvetica;
+
+// // Buttons
+// $btnBackground:                   #0F90BA;
+// $btnPrimaryBackground:            #72aa00;
+// $btnPrimaryBackgroundHighlight:   #b6e026;
+
+// // COMPONENT VARIABLES
+
+// // Navbar
+// $navbarHeight:                    50px;
+// $navbarBackgroundHighlight:       #19b1cd;
+// $navbarBackground:                #159fb8;
+
+// $navbarLinkColor:                 #eafcff;
+// $navbarLinkColorHover:            $white;
+// $navbarLinkColorActive:           $white;
+
+// // Tables
+// $tableBackground:                 $white; // overall background-color
+// $tableBackgroundAccent:           #f9f9f9; // for striping
+// $tableBackgroundHover:            #e8fbff; // for hover
+// $tableBorder:                     #ddd; // table and cell border
+
+// IMPORTS
+
+@import "bootstrap";
+@import "bootstrap-responsive";
