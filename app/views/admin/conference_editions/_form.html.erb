@@ -1,7 +1,7 @@
 <%# @param conference_edition [Models::ConferenceEdition] %>
 <%# @param action [String] %>
 
-<%= simple_form_for [:admin, conference_edition] do |form| %>
+<%= simple_form_for [:admin, conference_edition], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(conference_edition) %>
 
   <%= form.input :id %>
@@ -18,5 +18,7 @@
   <%= form.input :promo_image %>
   <%= form.input :logo %>
 
-  <%= form.submit "#{action.titleize} ConferenceEdition", class: 'btn btn-primary' %>
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} ConferenceEdition", class: 'btn btn-large btn-primary' %>
+  </div>
 <% end %>
