@@ -9,7 +9,6 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :speakers, through: :talks
   has_many :languages, through: :conference
 
-
   KINDS = %w( single_track multiple_track )
   STATUSES = %w( coming_soon live sold_out past )
   VIDEO_PROVIDERS = %w( youtube vimeo )

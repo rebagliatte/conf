@@ -5,12 +5,11 @@
 <%= simple_form_for [:admin, conference_edition, post], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(post) %>
 
-  <%= translation_tabs(form) do |t| %>
+  <%= translatable_fields_for(form) do |t| %>
     <%= t.input :title %>
     <%= t.input :body %>
     <%= t.input :summary %>
   <% end %>
-
 
   <%= form.input :image %>
 

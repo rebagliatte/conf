@@ -42,8 +42,8 @@ module ApplicationHelper
     Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true).render(text).html_safe
   end
 
-  def translation_tabs(form, &block)
+  def translatable_fields_for(form, &block)
     translations = form.object.translations
-    render(partial: 'admin/shared/langtabs', locals: { form: form, translations: translations, block: block })
+    render(partial: 'admin/shared/translatable_fields', locals: { form: form, translations: translations, block: block })
   end
  end

@@ -1,0 +1,9 @@
+<%# @param translations %>
+
+<ul class="nav nav-tabs">
+  <% translations.each do |translation| %>
+    <li class="<%= params[:locale] == translation.locale.to_s ? 'active' : ''%>">
+      <%= link_to translation.locale, admin_conference_edition_post_path(@conference_edition, @post, params: {locale: translation.locale}) %>
+    </li>
+  <% end %>
+</ul>

@@ -3,7 +3,9 @@
   <%= link_to 'Edit', edit_admin_conference_edition_post_path(@conference_edition, @post), class: 'btn btn-primary main-cta' %>
 </header>
 
-<table class="table">
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @post.translations }) %>
+
+<table class="table translated-table">
   <tr>
     <th>ID</th>
     <td><%= @post.id %></td>
@@ -13,19 +15,19 @@
     <td><%= @post.title %></td>
   </tr>
   <tr>
-    <th>Body</th>
-    <td><%= @post.body %></td>
-  </tr>
-  <tr>
     <th>Summary</th>
     <td><%= @post.summary %></td>
   </tr>
   <tr>
-    <th>Image</th>
-    <td><%= image_tag(@post.image) %></td>
+    <th>Body</th>
+    <td><%= @post.body %></td>
   </tr>
   <tr>
     <th>Created at</th>
     <td><%= @post.created_at %></td>
+  </tr>
+  <tr>
+    <th>Image</th>
+    <td><%= image_tag(@post.image) %></td>
   </tr>
 </table>

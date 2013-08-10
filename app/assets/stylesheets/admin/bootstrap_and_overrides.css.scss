@@ -86,3 +86,11 @@ $linkColor:           $green;
     }
   }
 }
+
+/* Tables */
+.translated-table {
+  tr:first-of-type td,
+  tr:first-of-type th {
+    border-top: 0;
+  }
+}
