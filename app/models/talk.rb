@@ -1,5 +1,5 @@
 class Talk < ActiveRecord::Base
-  attr_accessible :abstract, :room, :room_id, :slides_url, :slot, :slot_id, :status, :title, :video_url, :speaker_ids, :speakers_attributes
+  attr_accessible :abstract, :room, :room_id, :slides_url, :slot, :slot_id, :status, :title, :video_url, :speaker_ids, :speakers_attributes, :translations_attributes
 
   belongs_to :slot
   belongs_to :room
@@ -11,6 +11,9 @@ class Talk < ActiveRecord::Base
   validates :title, presence: true
   validates :status, inclusion: { in: STATUSES }
 
+  # Translations
+  has_many :translations
+  accepts_nested_attributes_for :translations
   translates :title, :abstract
 
   accepts_nested_attributes_for :speakers

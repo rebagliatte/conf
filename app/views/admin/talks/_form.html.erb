@@ -1,0 +1,24 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param talk [Models::Talk] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, talk], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(talk) %>
+
+  <%= translatable_fields_for(form) do |t| %>
+    <%= t.input :title %>
+    <%= t.input :abstract %>
+  <% end %>
+
+  <%#= form.input :speakers %>
+
+  <%#= form.input :room %>
+  <%#= form.input :slot %>
+
+  <%= form.input :slides_url %>
+  <%= form.input :video_url %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Talk", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

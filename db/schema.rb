@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610004233) do
+ActiveRecord::Schema.define(:version => 20130810203854) do
 
   create_table "conference_editions", :force => true do |t|
     t.integer  "conference_id",                                    :null => false
@@ -94,39 +94,41 @@ ActiveRecord::Schema.define(:version => 20130610004233) do
     t.text     "body",                  :default => ""
     t.text     "summary",               :default => ""
     t.string   "image",                 :default => ""
-    t.integer  "conference_edition_id"
+    t.integer  "conference_edition_id",                 :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
   end
 
   create_table "rooms", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "name",                  :default => "", :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "conference_edition_id",                 :null => false
   end
 
   create_table "slots", :force => true do |t|
     t.datetime "from_datetime"
     t.datetime "to_datetime"
     t.string   "kind",                  :default => "talk", :null => false
-    t.integer  "conference_edition_id"
+    t.integer  "conference_edition_id",                     :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
 
   create_table "speakers", :force => true do |t|
-    t.string   "name",             :default => "", :null => false
-    t.text     "bio",              :default => ""
-    t.string   "company",          :default => ""
-    t.string   "avatar",           :default => ""
-    t.string   "city",             :default => ""
-    t.string   "country",          :default => ""
-    t.string   "twitter_username", :default => ""
-    t.string   "github_username",  :default => ""
-    t.string   "email",            :default => ""
+    t.string   "name",                  :default => "", :null => false
+    t.text     "bio",                   :default => ""
+    t.string   "company",               :default => ""
+    t.string   "avatar",                :default => ""
+    t.string   "city",                  :default => ""
+    t.string   "country",               :default => ""
+    t.string   "twitter_username",      :default => ""
+    t.string   "github_username",       :default => ""
+    t.string   "email",                 :default => ""
     t.integer  "user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "conference_edition_id",                 :null => false
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|
@@ -143,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20130610004233) do
     t.string   "kind",                  :default => ""
     t.string   "logo",                  :default => ""
     t.string   "website_url",           :default => ""
-    t.integer  "conference_edition_id"
+    t.integer  "conference_edition_id",                 :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
   end
@@ -161,15 +163,16 @@ ActiveRecord::Schema.define(:version => 20130610004233) do
   add_index "talk_translations", ["talk_id"], :name => "index_talk_translations_on_talk_id"
 
   create_table "talks", :force => true do |t|
-    t.string   "title",      :default => "", :null => false
-    t.string   "abstract",   :default => ""
-    t.string   "status",     :default => ""
-    t.string   "slides_url", :default => ""
-    t.string   "video_url",  :default => ""
+    t.string   "title",                 :default => "",        :null => false
+    t.string   "abstract",              :default => ""
+    t.string   "status",                :default => "pending", :null => false
+    t.string   "slides_url",            :default => ""
+    t.string   "video_url",             :default => ""
     t.integer  "slot_id"
     t.integer  "room_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "conference_edition_id",                        :null => false
   end
 
   create_table "users", :force => true do |t|
