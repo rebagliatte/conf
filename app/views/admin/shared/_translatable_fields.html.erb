@@ -16,6 +16,7 @@
   <%= form.fields_for :translations do |translation_form| %>
     <div class="tab-pane <%= translations.first == translation_form.object ? 'active' : '' %>" id="tabs-<%= translation_form.object.locale %>">
       <fieldset>
+        <%= translation_form.hidden_field :locale %>
         <%= capture(translation_form, &block) %>
       </fieldset>
     </div>

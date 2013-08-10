@@ -17,9 +17,13 @@
         <tr>
           <td><%= post.id %></td>
           <td><%= post.title %></td>
-          <td>
-            <%= link_to 'View', admin_conference_edition_post_path(@conference_edition, post) %>
-            <%= link_to 'Edit', edit_admin_conference_edition_post_path(@conference_edition, post) %>
+          <td class="actions">
+            <%= link_to admin_conference_edition_post_path(@conference_edition, post), title:'View' do %>
+              <i class="icon-eye-open"></i>
+            <% end %>
+            <%= link_to edit_admin_conference_edition_post_path(@conference_edition, post), title: 'Edit' do %>
+              <i class="icon-pencil"></i>
+            <% end %>
           </td>
         </tr>
       <% end %>
