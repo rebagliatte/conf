@@ -2,35 +2,19 @@
 <%# @param post [Models::Post] %>
 <%# @param action [String] %>
 
-<%= simple_form_for [:admin, conference_edition, post] do |form| %>
+<%= simple_form_for [:admin, conference_edition, post], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(post) %>
 
-  <table class="translatable-form">
-    <tr>
-      <th>Title</th>
-      <%= form.fields_for :translations do |t| %>
-        <td><%= t.input_field :title %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <th>Body</th>
-      <%= form.fields_for :translations do |t| %>
-        <td><%= t.input_field :body %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <th>Summary</th>
-      <%= form.fields_for :translations do |t| %>
-        <td><%= t.input_field :summary %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <th>Image</th>
-      <td><%= form.input_field :image %></td>
-    </tr>
-  </table>
+  <%= translation_tabs(form) do |t| %>
+    <%= t.input :title %>
+    <%= t.input :body %>
+    <%= t.input :summary %>
+  <% end %>
 
-  <%= form.submit "#{action.titleize} Post", class: 'btn btn-primary' %>
+
+  <%= form.input :image %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Post", class: 'btn btn-large btn-primary' %>
+  </div>
 <% end %>
-
-<%# TODO: print translations codes in each cell's class %>
