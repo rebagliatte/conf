@@ -24,9 +24,13 @@
         <td><%= conference.organizers.map(&:name).to_sentence %></td>
         <td><%= conference.languages.map(&:name).to_sentence %></td>
         <th><%= conference.conference_editions.count %></th>
-        <td>
-          <%= link_to 'View', admin_conference_path(conference) %>
-          <%= link_to 'Edit', edit_admin_conference_path(conference) %>
+        <td class="actions">
+          <%= link_to admin_conference_path(conference), title: 'View' do %>
+            <i class="icon-eye-open"></i>
+          <% end %>
+          <%= link_to edit_admin_conference_path(conference), title: 'Edit' do %>
+            <i class="icon-pencil"></i>
+          <% end %>
         </td>
       </tr>
     <% end %>

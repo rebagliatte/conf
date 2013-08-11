@@ -23,9 +23,9 @@
   <tr>
     <th>Conference Editions</th>
     <td>
-      <ul>
+      <ul class="unstyled">
         <% @conference.conference_editions.each do |ce| %>
-          <li><%= link_to ce, '#' %></li>
+          <li><%= link_to pretty_year(ce), admin_conference_edition_path(ce) %></li>
         <% end %>
       </ul>
     </td>

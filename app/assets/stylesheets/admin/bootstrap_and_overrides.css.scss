@@ -94,3 +94,9 @@ $linkColor:           $green;
     border-top: 0;
   }
 }
+
+/* Alerts */
+.alert a {
+  color: inherit;
+  font-weight: bold;
+}
