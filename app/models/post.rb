@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :conference_edition
 
+  # Validations
   validates :title, presence: true
   validates :conference_edition_id, presence: true
 
@@ -11,7 +12,9 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :translations
   translates :title, :summary, :body
 
+  # Uploaders
   mount_uploader :image, ImageUploader
 
+  # Scopes
   default_scope order('created_at DESC')
 end

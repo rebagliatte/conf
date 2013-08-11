@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   ROLES = %w( user admin superadmin )
 
+  # Validations
   validates :name, presence: true
   validates :role, inclusion: { in: ROLES }
 

@@ -6,10 +6,12 @@ class Slot < ActiveRecord::Base
 
   KINDS = %w( talk registration break lunch after_party )
 
+  # Validations
   validates :from_datetime, presence: true
   validates :to_datetime, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
 
+  # Scopes
   default_scope order('from_datetime ASC')
 
   def to_s

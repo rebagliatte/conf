@@ -1,18 +1,20 @@
 class ConferenceEdition < ActiveRecord::Base
-  attr_accessible :from_date, :to_date, :tagline, :country, :city, :venue, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image, :logo, :conference, :conference_id
+  attr_accessible :from_date, :to_date, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image, \
+  :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue
 
   belongs_to :conference
   has_many :sponsors
   has_many :posts
   has_many :slots
-  has_many :talks, through: :slots
-  has_many :speakers, through: :talks
+  has_many :talks
+  has_many :speakers
   has_many :languages, through: :conference
 
   KINDS = %w( single_track multiple_track )
   STATUSES = %w( coming_soon live sold_out past )
   VIDEO_PROVIDERS = %w( youtube vimeo )
 
+  # Validations
   validates :from_date, presence: true
   validates :to_date, presence: true
   validates :logo, presence: true
@@ -23,9 +25,16 @@ class ConferenceEdition < ActiveRecord::Base
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
   end
 
+  # Translations
+  has_many :translations
+  accepts_nested_attributes_for :translations
+  translates :tagline, :country, :city, :venue
+
+  # Uploaders
   mount_uploader :logo, ImageUploader
   mount_uploader :promo_image, ImageUploader
 
+  # Scopes
   default_scope order('from_date DESC')
 
   def self.previous_editions

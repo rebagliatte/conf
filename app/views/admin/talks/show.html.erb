@@ -3,7 +3,13 @@
   <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition, @talk), class: 'btn btn-primary main-cta' %>
 </header>
 
-<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations }) %>
+<ul class="nav nav-tabs">
+  <% @talk.translations.each do |translation| %>
+    <li class="<%= params[:locale] == translation.locale.to_s ? 'active' : ''%>">
+      <%= link_to translation.locale, admin_conference_edition_talk_path(@conference_edition, @talk, params: {locale: translation.locale}) %>
+    </li>
+  <% end %>
+</ul>
 
 <table class="table translated-table">
   <tr>
@@ -11,7 +17,35 @@
     <td><%= @talk.id %></td>
   </tr>
   <tr>
+    <th>Status</th>
+    <td><%= @talk.status %></td>
+  </tr>
+  <tr>
     <th>Title</th>
     <td><%= @talk.title %></td>
+  </tr>
+  <tr>
+    <th>Abstract</th>
+    <td><%= @talk.abstract %></td>
+  </tr>
+  <tr>
+    <th>Slides URL</th>
+    <td><%= @talk.slides_url %></td>
+  </tr>
+  <tr>
+    <th>Video URL</th>
+    <td><%= @talk.video_url %></td>
+  </tr>
+  <tr>
+    <th>Slot ID</th>
+    <td><%= @talk.slot_id %></td>
+  </tr>
+  <tr>
+    <th>Room ID</th>
+    <td><%= @talk.room_id %></td>
+  </tr>
+  <tr>
+    <th>Speaker</th>
+    <td></td>
   </tr>
 </table>

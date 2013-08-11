@@ -11,18 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810203854) do
+ActiveRecord::Schema.define(:version => 20130811202521) do
+
+  create_table "conference_edition_translations", :force => true do |t|
+    t.integer  "conference_edition_id"
+    t.string   "locale"
+    t.string   "tagline",               :default => ""
+    t.string   "country",               :default => ""
+    t.string   "city",                  :default => ""
+    t.string   "venue",                 :default => ""
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
+  add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"
+  add_index "conference_edition_translations", ["locale"], :name => "index_conference_edition_translations_on_locale"
 
   create_table "conference_editions", :force => true do |t|
     t.integer  "conference_id",                                    :null => false
     t.date     "from_date",                                        :null => false
     t.date     "to_date",                                          :null => false
-    t.string   "tagline",              :default => ""
     t.string   "kind",                 :default => "single_track", :null => false
     t.string   "status",               :default => "past",         :null => false
-    t.string   "country",              :default => ""
-    t.string   "city",                 :default => ""
-    t.string   "venue",                :default => ""
     t.string   "promo_video_provider", :default => ""
     t.string   "promo_video_uid",      :default => ""
     t.string   "promo_image",          :default => ""
@@ -32,15 +42,15 @@ ActiveRecord::Schema.define(:version => 20130810203854) do
   end
 
   create_table "conferences", :force => true do |t|
-    t.string   "subdomain",                              :null => false
-    t.string   "name",                                   :null => false
-    t.string   "email",                                  :null => false
+    t.string   "subdomain",              :default => "", :null => false
+    t.string   "name",                   :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
     t.string   "twitter_username",       :default => ""
     t.string   "twitter_hashtag",        :default => ""
     t.string   "facebook_page_username", :default => ""
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.integer  "owner_id"
+    t.integer  "owner_id",                               :null => false
   end
 
   create_table "conferences_languages", :force => true do |t|
@@ -79,20 +89,17 @@ ActiveRecord::Schema.define(:version => 20130810203854) do
   create_table "post_translations", :force => true do |t|
     t.integer  "post_id"
     t.string   "locale"
-    t.string   "title"
-    t.string   "summary"
-    t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title",      :default => "", :null => false
+    t.text     "summary",    :default => "", :null => false
+    t.text     "body",       :default => "", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "post_translations", ["locale"], :name => "index_post_translations_on_locale"
   add_index "post_translations", ["post_id"], :name => "index_post_translations_on_post_id"
 
   create_table "posts", :force => true do |t|
-    t.string   "title",                 :default => "", :null => false
-    t.text     "body",                  :default => ""
-    t.text     "summary",               :default => ""
     t.string   "image",                 :default => ""
     t.integer  "conference_edition_id",                 :null => false
     t.datetime "created_at",                            :null => false
@@ -107,24 +114,34 @@ ActiveRecord::Schema.define(:version => 20130810203854) do
   end
 
   create_table "slots", :force => true do |t|
-    t.datetime "from_datetime"
-    t.datetime "to_datetime"
+    t.datetime "from_datetime",                             :null => false
+    t.datetime "to_datetime",                               :null => false
     t.string   "kind",                  :default => "talk", :null => false
     t.integer  "conference_edition_id",                     :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
 
+  create_table "speaker_translations", :force => true do |t|
+    t.integer  "speaker_id"
+    t.string   "locale"
+    t.text     "bio",        :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "speaker_translations", ["locale"], :name => "index_speaker_translations_on_locale"
+  add_index "speaker_translations", ["speaker_id"], :name => "index_speaker_translations_on_speaker_id"
+
   create_table "speakers", :force => true do |t|
     t.string   "name",                  :default => "", :null => false
-    t.text     "bio",                   :default => ""
     t.string   "company",               :default => ""
     t.string   "avatar",                :default => ""
     t.string   "city",                  :default => ""
     t.string   "country",               :default => ""
     t.string   "twitter_username",      :default => ""
     t.string   "github_username",       :default => ""
-    t.string   "email",                 :default => ""
+    t.string   "email",                 :default => "", :null => false
     t.integer  "user_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
@@ -139,9 +156,19 @@ ActiveRecord::Schema.define(:version => 20130810203854) do
   add_index "speakers_talks", ["speaker_id", "talk_id"], :name => "index_speakers_talks_on_speaker_id_and_talk_id"
   add_index "speakers_talks", ["talk_id", "speaker_id"], :name => "index_speakers_talks_on_talk_id_and_speaker_id"
 
+  create_table "sponsor_translations", :force => true do |t|
+    t.integer  "sponsor_id"
+    t.string   "locale"
+    t.text     "description", :default => "", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "sponsor_translations", ["locale"], :name => "index_sponsor_translations_on_locale"
+  add_index "sponsor_translations", ["sponsor_id"], :name => "index_sponsor_translations_on_sponsor_id"
+
   create_table "sponsors", :force => true do |t|
     t.string   "name",                  :default => "", :null => false
-    t.string   "description",           :default => ""
     t.string   "kind",                  :default => ""
     t.string   "logo",                  :default => ""
     t.string   "website_url",           :default => ""
@@ -153,18 +180,16 @@ ActiveRecord::Schema.define(:version => 20130810203854) do
   create_table "talk_translations", :force => true do |t|
     t.integer  "talk_id"
     t.string   "locale"
-    t.string   "title"
-    t.string   "abstract"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title",      :default => "", :null => false
+    t.text     "abstract",   :default => "", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "talk_translations", ["locale"], :name => "index_talk_translations_on_locale"
   add_index "talk_translations", ["talk_id"], :name => "index_talk_translations_on_talk_id"
 
   create_table "talks", :force => true do |t|
-    t.string   "title",                 :default => "",        :null => false
-    t.string   "abstract",              :default => ""
     t.string   "status",                :default => "pending", :null => false
     t.string   "slides_url",            :default => ""
     t.string   "video_url",             :default => ""

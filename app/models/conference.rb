@@ -9,6 +9,7 @@ class Conference < ActiveRecord::Base
 
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
+  # Validations
   validates :name, presence: true
   validates :subdomain, presence: true, uniqueness: true, length: { maximum: 60 }
   validates :owner, presence: true

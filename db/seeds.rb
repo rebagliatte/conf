@@ -6,10 +6,10 @@ en = Language.create(
   code: 'en'
 )
 es = Language.create(
-  name: 'Español',
+  name: 'Spanish',
   code: 'es'
 )
 pt = Language.create(
-  name: 'Portugueis',
+  name: 'Portuguese',
   code: 'pt'
 )
