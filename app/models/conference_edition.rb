@@ -20,6 +20,7 @@ class ConferenceEdition < ActiveRecord::Base
   validates :logo, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
+  validates :conference_id, presence: true
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }

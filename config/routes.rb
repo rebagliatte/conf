@@ -4,7 +4,7 @@ Conf::Application.routes.draw do
   namespace :admin do
     resources :conferences, only: %w(show index new create edit update)
 
-    resources :conference_editions, only: %w(show index new create edit update) do
+    resources :conference_editions, only: %w(show new create edit update) do
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)

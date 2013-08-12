@@ -18,12 +18,8 @@
           <td><%= talk.id %></td>
           <td><%= talk.title %></td>
           <td class="actions">
-            <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title:'View' do %>
-              <i class="icon-eye-open"></i>
-            <% end %>
-            <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %>
-              <i class="icon-pencil"></i>
-            <% end %>
+            <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
           </td>
         </tr>
       <% end %>

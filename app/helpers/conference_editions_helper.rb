@@ -1,12 +1,14 @@
 module ConferenceEditionsHelper
 
-  def when_and_where(ce)
+  def pretty_date_and_location(ce)
     string = if ce.from_date.month == ce.to_date.month
       "#{ce.from_date.strftime('%b')} #{ce.from_date.strftime('%d')}-#{ce.to_date.strftime('%d')}"
     else
       "#{ce.from_date.strftime('%b %d')} - #{ce.to_date.strftime('%b %d')}"
     end
-    string << ", #{ce.from_date.strftime('%Y')}. #{ce.city}, #{ce.country}"
+    string << ", #{ce.from_date.strftime('%Y')}."
+    string << " #{ce.city}, #{ce.country}" if ce.city.present? && ce.country.present?
+    string
   end
 
   def pretty_conference_and_year(ce)

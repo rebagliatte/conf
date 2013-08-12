@@ -3,6 +3,8 @@
   <%= link_to 'Edit', edit_admin_conference_edition_speaker_path(@conference_edition, @speaker), class: 'btn btn-primary main-cta' %>
 </header>
 
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @speaker.translations, resource: @speaker }) %>
+
 <table class="table">
   <tr>
     <th>ID</th>

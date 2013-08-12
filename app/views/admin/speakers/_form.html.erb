@@ -1,3 +1,4 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
 <%# @param speaker [Models::Speaker] %>
 <%# @param action [String] %>
 
@@ -5,6 +6,7 @@
 
   <%= error_messages_for(speaker) %>
 
+  <%= form.hidden_field :conference_edition_id %>
   <%= form.input :name %>
   <%= form.input :bio %>
   <%= form.input :company %>

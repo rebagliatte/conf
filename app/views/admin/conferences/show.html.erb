@@ -1,12 +1,25 @@
 <header class="admin-header">
   <%= title @conference.name %>
-  <%= link_to 'Edit', edit_admin_conference_path(@conference), class: 'btn btn-primary main-cta' %>
+  <div class="btn-wrapper">
+    <%= link_to 'Create a new conference edition', new_admin_conference_edition_path(conference_id: @conference.id), class: 'btn btn-primary' %>
+    <%= link_to 'Edit preferences', edit_admin_conference_path(@conference), class: 'btn' %>
+  </div>
 </header>
 
 <table class="table">
   <tr>
     <th>Name</th>
     <td><%= @conference.name %></td>
+  </tr>
+  <tr>
+    <th>Editions</th>
+    <td>
+      <ul class="unstyled">
+        <% @conference.conference_editions.each do |ce| %>
+          <li><%= link_to pretty_year(ce), admin_conference_edition_path(ce) %></li>
+        <% end %>
+      </ul>
+    </td>
   </tr>
   <tr>
     <th>Owner</th>
@@ -19,16 +32,6 @@
   <tr>
     <th>Available languages</th>
     <td><%= @conference.languages.map(&:name).to_sentence %></td>
-  </tr>
-  <tr>
-    <th>Conference Editions</th>
-    <td>
-      <ul class="unstyled">
-        <% @conference.conference_editions.each do |ce| %>
-          <li><%= link_to pretty_year(ce), admin_conference_edition_path(ce) %></li>
-        <% end %>
-      </ul>
-    </td>
   </tr>
   <tr>
     <th>Twitter username</th>

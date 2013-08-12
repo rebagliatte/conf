@@ -10,7 +10,9 @@ class Talk < ActiveRecord::Base
   STATUSES = %w( pending approved rejected )
 
   # Validations
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { scope: :conference_edition_id }
+  validates :abstract, presence: true
+  validates :conference_edition_id, presence: true
   validates :status, inclusion: { in: STATUSES }
 
   # Translations

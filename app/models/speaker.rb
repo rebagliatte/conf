@@ -1,5 +1,5 @@
 class Speaker < ActiveRecord::Base
-  attr_accessible :city, :company, :country, :email, :github_username, :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, :avatar_cache, :translations_attributes
+  attr_accessible :bio, :city, :company, :country, :email, :github_username, :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, :avatar_cache, :translations_attributes, :conference_edition_id
 
   belongs_to :conference_edition
   belongs_to :user

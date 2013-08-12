@@ -3,13 +3,7 @@
   <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition, @talk), class: 'btn btn-primary main-cta' %>
 </header>
 
-<ul class="nav nav-tabs">
-  <% @talk.translations.each do |translation| %>
-    <li class="<%= params[:locale] == translation.locale.to_s ? 'active' : ''%>">
-      <%= link_to translation.locale, admin_conference_edition_talk_path(@conference_edition, @talk, params: {locale: translation.locale}) %>
-    </li>
-  <% end %>
-</ul>
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
 
 <table class="table translated-table">
   <tr>

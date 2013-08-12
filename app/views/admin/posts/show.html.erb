@@ -3,7 +3,7 @@
   <%= link_to 'Edit', edit_admin_conference_edition_post_path(@conference_edition, @post), class: 'btn btn-primary main-cta' %>
 </header>
 
-<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @post.translations }) %>
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @post.translations, resource: @post }) %>
 
 <table class="table translated-table">
   <tr>

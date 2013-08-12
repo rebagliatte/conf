@@ -4,21 +4,21 @@
 <%= simple_form_for [:admin, conference_edition], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(conference_edition) %>
 
-  <%= form.input :id %>
+  <%= form.association :conference, include_blank: false, selected: @conference_edition.conference_id || params[:conference_id] %>
   <%= form.input :from_date %>
   <%= form.input :to_date %>
-  <%= form.input :tagline %>
-  <%= form.input :kind %>
-  <%= form.input :status %>
+  <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
+  <%= form.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false %>
   <%= form.input :country %>
   <%= form.input :city %>
   <%= form.input :venue %>
+  <%= form.input :tagline %>
   <%= form.input :promo_video_provider %>
   <%= form.input :promo_video_uid %>
   <%= form.input :promo_image %>
   <%= form.input :logo %>
 
   <div class="form-actions">
-    <%= form.submit "#{action.titleize} ConferenceEdition", class: 'btn btn-large btn-primary' %>
+    <%= form.submit "#{action.titleize} Conference Edition", class: 'btn btn-large btn-primary' %>
   </div>
 <% end %>

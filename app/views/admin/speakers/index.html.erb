@@ -19,9 +19,9 @@
           <td><%= speaker.id %></td>
           <td><%= speaker.name %></td>
           <td><%= speaker.email %></td>
-          <td>
-            <%= link_to 'View', admin_conference_edition_speaker_path(@conference_edition, speaker) %>
-            <%= link_to 'Edit', edit_admin_conference_edition_speaker_path(@conference_edition, speaker) %>
+          <td class="actions">
+            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
           </td>
         </tr>
       <% end %>

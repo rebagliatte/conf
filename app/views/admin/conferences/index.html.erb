@@ -11,7 +11,7 @@
       <th>Owner</th>
       <th>Organizers</th>
       <th>Available Languages</th>
-      <th>ConferenceEditions</th>
+      <th>Conference Editions</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,12 +25,8 @@
         <td><%= conference.languages.map(&:name).to_sentence %></td>
         <th><%= conference.conference_editions.count %></th>
         <td class="actions">
-          <%= link_to admin_conference_path(conference), title: 'View' do %>
-            <i class="icon-eye-open"></i>
-          <% end %>
-          <%= link_to edit_admin_conference_path(conference), title: 'Edit' do %>
-            <i class="icon-pencil"></i>
-          <% end %>
+          <%= link_to admin_conference_path(conference), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+          <%= link_to edit_admin_conference_path(conference), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
         </td>
       </tr>
     <% end %>

@@ -14,7 +14,6 @@
     <%= form.input :name %>
     <%= form.input :subdomain %>
     <%= form.association :languages %>
-
     <%= form.input :email %>
     <%= form.input :twitter_username %>
     <%= form.input :twitter_hashtag %>
@@ -26,14 +25,11 @@
       <legend>Current Conference Edition information</legend>
       <%= ce.input :tagline %>
       <%= ce.input :logo %>
-
       <%= ce.input :from_date %>
       <%= ce.input :to_date %>
-
       <%= ce.input :country %>
       <%= ce.input :city %>
       <%= ce.input :venue %>
-
       <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
       <%= ce.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false %>
       <%= ce.input :promo_video_provider %>
