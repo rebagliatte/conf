@@ -8,6 +8,7 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :slots
   has_many :talks
   has_many :speakers
+  has_many :rooms
   has_many :languages, through: :conference
 
   KINDS = %w( single_track multiple_track )
