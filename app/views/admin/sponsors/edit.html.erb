@@ -1,0 +1,3 @@
+<%= title "Edit Sponsor ##{@sponsor.id}" %>
+
+<%= render partial: 'form', locals: { sponsor: @sponsor, conference_edition: @conference_edition, action: 'update' } %>

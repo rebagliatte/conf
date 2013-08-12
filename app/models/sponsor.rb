@@ -1,5 +1,5 @@
 class Sponsor < ActiveRecord::Base
-  attr_accessible :name, :kind, :conference_edition, :conference_edition_id, :logo, :website_url, :translations_attributes
+  attr_accessible :name, :kind, :conference_edition, :conference_edition_id, :logo, :website_url, :translations_attributes, :description
 
   belongs_to :conference_edition
 
