@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131201051128) do
+ActiveRecord::Schema.define(:version => 20131201171904) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20131201051128) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "sponsorship_packages_pdf", :default => ""
+    t.string   "registration_url",         :default => ""
   end
 
   create_table "conferences", :force => true do |t|

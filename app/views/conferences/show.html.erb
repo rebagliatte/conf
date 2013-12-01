@@ -7,6 +7,9 @@
     <h1 class="primary-heading"><%= current_conference.name %></h1>
     <p><%= current_edition.tagline %></p>
     <p><%= pretty_date_and_location(current_edition) %></p>
+    <% if current_edition.registration_url.present? %>
+      <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
+    <% end %>
   </section>
 
   <section id="call-for-proposals">

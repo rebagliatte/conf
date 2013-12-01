@@ -1,7 +1,7 @@
 class ConferenceEdition < ActiveRecord::Base
   attr_accessible :from_date, :to_date, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image, \
   :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue, \
-  :sponsorship_packages_pdf
+  :sponsorship_packages_pdf, :registration_url
 
   belongs_to :conference
   has_many :posts, dependent: :destroy
