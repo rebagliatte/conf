@@ -1,7 +1,7 @@
 class Admin::TalksController < AdminController
 
   load_and_authorize_resource :conference_edition
-  load_and_authorize_resource :talk, :through => :conference_edition
+  load_and_authorize_resource :talk, through: :conference_edition
 
   def index
   end

@@ -6,6 +6,7 @@ class Talk < ActiveRecord::Base
   has_and_belongs_to_many :speakers
   belongs_to :room
   belongs_to :conference_edition
+  has_one :conference, through: :conference_edition
 
   STATUSES = %w( pending approved rejected )
 

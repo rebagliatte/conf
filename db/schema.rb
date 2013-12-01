@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(:version => 20130811202521) do
   create_table "sponsor_translations", :force => true do |t|
     t.integer  "sponsor_id"
     t.string   "locale"
-    t.text     "description", :default => "", :null => false
+    t.text     "description", :default => ""
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20130811202521) do
     t.integer  "talk_id"
     t.string   "locale"
     t.string   "title",      :default => "", :null => false
-    t.text     "abstract",   :default => "", :null => false
+    t.string   "abstract"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
@@ -190,6 +190,8 @@ ActiveRecord::Schema.define(:version => 20130811202521) do
   add_index "talk_translations", ["talk_id"], :name => "index_talk_translations_on_talk_id"
 
   create_table "talks", :force => true do |t|
+    t.string   "title",                 :default => "",        :null => false
+    t.string   "abstract",              :default => ""
     t.string   "status",                :default => "pending", :null => false
     t.string   "slides_url",            :default => ""
     t.string   "video_url",             :default => ""

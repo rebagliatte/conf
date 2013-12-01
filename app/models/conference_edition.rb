@@ -3,12 +3,12 @@ class ConferenceEdition < ActiveRecord::Base
   :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue
 
   belongs_to :conference
-  has_many :sponsors
-  has_many :posts
-  has_many :slots
-  has_many :talks
-  has_many :speakers
-  has_many :rooms
+  has_many :posts, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :slots, dependent: :destroy
+  has_many :speakers, dependent: :destroy
+  has_many :sponsors, dependent: :destroy
+  has_many :talks, dependent: :destroy
   has_many :languages, through: :conference
 
   KINDS = %w( single_track multiple_track )
@@ -21,7 +21,6 @@ class ConferenceEdition < ActiveRecord::Base
   validates :logo, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :status, presence: true, inclusion: { in: STATUSES }
-  validates :conference_id, presence: true
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
