@@ -15,10 +15,13 @@ class ConferenceEdition < ActiveRecord::Base
 
   KINDS = %w( single_track multiple_track )
   VIDEO_PROVIDERS = %w( youtube vimeo )
+  MAX_CONFERENCE_DURATION_IN_DAYS = 30
 
   # Validations
   validates :from_date, presence: true
   validates :to_date, presence: true
+  validates :to_date, presence: true
+  validate :valid_date_range
   validates :logo, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
 
@@ -76,5 +79,17 @@ class ConferenceEdition < ActiveRecord::Base
 
   def location
     "#{venue}, #{city} - #{country}" if venue.present? && city.present? && country.present?
+  end
+
+  private
+
+  def valid_date_range
+    if to_date < from_date
+      errors.add(:to_date, "must be after the start date")
+    end
+
+    if (to_date - from_date).to_i > MAX_CONFERENCE_DURATION_IN_DAYS
+      errors.add(:to_date, "must be at most #{MAX_CONFERENCE_DURATION_IN_DAYS} days after the start date")
+    end
   end
 end
