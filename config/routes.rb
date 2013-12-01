@@ -2,9 +2,11 @@ Conf::Application.routes.draw do
 
   # Admin
   namespace :admin do
-    resources :conferences, only: %w(show index new create edit update)
+    resources :conferences, only: %w(show index new create edit update) do
+      resources :conference_editions, only: %w(show new create edit update)
+    end
 
-    resources :conference_editions, only: %w(show new create edit update) do
+    resources :conference_editions do
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)

@@ -1,7 +1,7 @@
 <header class="admin-header">
   <%= title @conference.name %>
   <div class="btn-wrapper">
-    <%= link_to 'Create a new conference edition', new_admin_conference_edition_path(conference_id: @conference.id), class: 'btn btn-primary' %>
+    <%= link_to 'Create a new conference edition', new_admin_conference_conference_edition_path(@conference), class: 'btn btn-primary' %>
     <%= link_to 'Edit preferences', edit_admin_conference_path(@conference), class: 'btn' %>
   </div>
 </header>

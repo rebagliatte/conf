@@ -1,10 +1,9 @@
 <%# @param conference_edition [Models::ConferenceEdition] %>
 <%# @param action [String] %>
 
-<%= simple_form_for [:admin, conference_edition], html: { class: 'form-horizontal' } do |form| %>
+<%= simple_form_for [:admin, conference, conference_edition], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(conference_edition) %>
 
-  <%= form.association :conference, include_blank: false, selected: @conference_edition.conference_id || params[:conference_id] %>
   <%= form.input :from_date %>
   <%= form.input :to_date %>
   <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
