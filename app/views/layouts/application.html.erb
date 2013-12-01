@@ -48,20 +48,24 @@
   </main>
 
   <footer class="main-footer">
-    <section class="sponsors">
-      <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
-    </section>
+    <% if current_edition.sponsors.any? %>
+      <section class="sponsors">
+        <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
+      </section>
+    <% end %>
 
     <section class="networks">
-      <h1 class="primary-heading"><%= t 'networks' %></h1>
+      <h1 class="hidden"><%= t 'networks' %></h1>
       <ul>
-        <li><%= link_to t('follow_us_on_twitter'), "http://twitter.com/#{current_conference.twitter_username}", target: 'blank' %></li>
-        <li><%= link_to t('friend_us_on_facebook'), "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank' %></li>
+        <% if current_conference.twitter_username.present? %>
+          <li><%= link_to t('follow_us_on_twitter'), "http://twitter.com/#{current_conference.twitter_username}", target: 'blank' %></li>
+        <% end %>
+        <% if current_conference.facebook_page_username.present? %>
+          <li><%= link_to t('friend_us_on_facebook'), "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank' %></li>
+        <% end %>
         <li><%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank' %></li>
       </ul>
     </section>
-
-    <p><%= t 'powered_by' %> <%= link_to 'Confnu', root_url(subdomain: false) %></p>
   </footer>
 
   <%= javascript_include_tag 'application' %>
