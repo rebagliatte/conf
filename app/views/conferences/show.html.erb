@@ -1,14 +1,14 @@
-<% if current_edition.promo_video_uid.present? %>
-  <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
-<% end %>
+<%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
 
 <section class="intro">
   <h1 class="primary-heading"><%= current_conference.name %></h1>
   <p><%= current_edition.tagline %></p>
   <p><%= pretty_date_and_location(current_edition) %></p>
-  <% if current_edition.registration_url.present? %>
+
+  <% if display_registration_link?(current_edition) %>
     <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
   <% end %>
+
 </section>
 
 <section id="location">
@@ -17,9 +17,11 @@
   <div id="map-canvas"></div>
 </section>
 
-<section id="news">
-  <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
-</section>
+<% if current_edition.posts.any? %>
+  <section id="news">
+    <%= render(partial: 'posts/list', locals: { posts: current_edition.posts, conference_edition: current_edition }) %>
+  </section>
+<% end %>
 
 <% if current_edition.previous_editions.any? %>
   <section id="previous-editions">
@@ -28,24 +30,31 @@
   </section>
 <% end %>
 
-<% if current_edition.coming_soon? %>
+<% if display_call_for_proposals?(current_edition) %>
   <section id="call-for-proposals">
     <h1 class="primary-heading"><%= t('call_for_proposals') %></h1>
     <p><%= t('do_not_miss_out') %></p>
     <%= link_to t('submit_your_proposal'), new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
   </section>
-
-  <% if current_edition.sponsorship_packages_pdf %>
-    <section id="sponsorship-packages">
-      <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
-      <p><%= t('show_your_support_to') %> <%= current_conference.name %></p>
-      <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
-    </section>
-  <% end %>
 <% end %>
 
-<% if current_edition.live? %>
+<% if display_call_for_sponsorships?(current_edition) %>
+  <section id="sponsorship-packages">
+    <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
+    <p><%= t('show_your_support_to') %> <%= current_conference.name %></p>
+    <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
+  </section>
+<% end %>
+
+<% if current_edition.is_schedule_available %>
   <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
+<% end %>
+
+<% if display_confirmed_speakers?(current_edition) %>
+  <section id="sponsorship-packages">
+    <h1 class="primary-heading"><%= t('confirmed_speakers') %></h1>
+    <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>
+  </section>
 <% end %>
 
 <% content_for :head_js do %>

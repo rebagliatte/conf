@@ -1,7 +1,8 @@
 class ConferenceEdition < ActiveRecord::Base
-  attr_accessible :from_date, :to_date, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image, \
+  attr_accessible :from_date, :to_date, :kind, :promo_video_provider, :promo_video_uid, :promo_image, \
   :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue, \
-  :sponsorship_packages_pdf, :registration_url
+  :sponsorship_packages_pdf, :registration_url, :is_registration_open, :is_call_for_proposals_open, \
+  :is_call_for_sponsorships_open, :is_schedule_available
 
   belongs_to :conference
   has_many :posts, dependent: :destroy
@@ -13,7 +14,6 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :languages, through: :conference
 
   KINDS = %w( single_track multiple_track )
-  STATUSES = %w( coming_soon live sold_out past )
   VIDEO_PROVIDERS = %w( youtube vimeo )
 
   # Validations
@@ -21,7 +21,6 @@ class ConferenceEdition < ActiveRecord::Base
   validates :to_date, presence: true
   validates :logo, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
-  validates :status, presence: true, inclusion: { in: STATUSES }
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
@@ -42,14 +41,6 @@ class ConferenceEdition < ActiveRecord::Base
 
   def previous_editions
     self.conference.conference_editions - [self]
-  end
-
-  def coming_soon?
-    self.status == 'coming_soon'
-  end
-
-  def live?
-    self.status == 'live'
   end
 
   def multiple_track?

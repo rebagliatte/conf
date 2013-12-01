@@ -9,14 +9,6 @@ module ApplicationHelper
     render(partial: 'shared/error_messages', locals: { object: object })
   end
 
-  def nav_link_to(text, path)
-    if current_page?(path)
-      link_to text, '#', class: 'current'
-    else
-      link_to text, path
-    end
-  end
-
   def anchor_nav_link_to(text, anchor)
     if current_page?(root_url)
       link_to text, anchor

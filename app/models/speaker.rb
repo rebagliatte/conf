@@ -1,7 +1,7 @@
 class Speaker < ActiveRecord::Base
   attr_accessible :bio, :city, :company, :country, :email, :github_username, \
   :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
-  :avatar_cache, :translations_attributes, :conference_edition_id
+  :avatar_cache, :translations_attributes, :conference_edition_id, :is_confirmed
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
@@ -26,4 +26,5 @@ class Speaker < ActiveRecord::Base
 
   # Scopes
   default_scope order('name ASC')
+  scope :confirmed, -> { where(is_confirmed: true) }
 end

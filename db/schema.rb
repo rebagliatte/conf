@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131201171904) do
+ActiveRecord::Schema.define(:version => 20131201210557) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -28,19 +28,22 @@ ActiveRecord::Schema.define(:version => 20131201171904) do
   add_index "conference_edition_translations", ["locale"], :name => "index_conference_edition_translations_on_locale"
 
   create_table "conference_editions", :force => true do |t|
-    t.integer  "conference_id",                                        :null => false
-    t.date     "from_date",                                            :null => false
-    t.date     "to_date",                                              :null => false
-    t.string   "kind",                     :default => "single_track", :null => false
-    t.string   "status",                   :default => "past",         :null => false
-    t.string   "promo_video_provider",     :default => ""
-    t.string   "promo_video_uid",          :default => ""
-    t.string   "promo_image",              :default => ""
-    t.string   "logo",                     :default => ""
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.string   "sponsorship_packages_pdf", :default => ""
-    t.string   "registration_url",         :default => ""
+    t.integer  "conference_id",                                             :null => false
+    t.date     "from_date",                                                 :null => false
+    t.date     "to_date",                                                   :null => false
+    t.string   "kind",                          :default => "single_track", :null => false
+    t.string   "promo_video_provider",          :default => ""
+    t.string   "promo_video_uid",               :default => ""
+    t.string   "promo_image",                   :default => ""
+    t.string   "logo",                          :default => ""
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.string   "sponsorship_packages_pdf",      :default => ""
+    t.string   "registration_url",              :default => ""
+    t.boolean  "is_registration_open",          :default => true
+    t.boolean  "is_call_for_proposals_open",    :default => true
+    t.boolean  "is_call_for_sponsorships_open", :default => true
+    t.boolean  "is_schedule_available",         :default => false
   end
 
   create_table "conferences", :force => true do |t|
@@ -136,18 +139,19 @@ ActiveRecord::Schema.define(:version => 20131201171904) do
   add_index "speaker_translations", ["speaker_id"], :name => "index_speaker_translations_on_speaker_id"
 
   create_table "speakers", :force => true do |t|
-    t.string   "name",                  :default => "", :null => false
+    t.string   "name",                  :default => "",    :null => false
     t.string   "company",               :default => ""
     t.string   "avatar",                :default => ""
     t.string   "city",                  :default => ""
     t.string   "country",               :default => ""
     t.string   "twitter_username",      :default => ""
     t.string   "github_username",       :default => ""
-    t.string   "email",                 :default => "", :null => false
+    t.string   "email",                 :default => "",    :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "conference_edition_id",                 :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "conference_edition_id",                    :null => false
+    t.boolean  "is_confirmed",          :default => false
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|

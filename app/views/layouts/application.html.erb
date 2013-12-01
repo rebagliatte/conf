@@ -20,29 +20,10 @@
           <%= image_tag current_edition.logo_url(:inline_x_30), alt: current_conference.name %>
         <% end %>
       </h1>
-      <ul>
-        <% if current_edition.live? %>
-          <li><%= nav_link_to t('schedule'), conference_edition_slots_path(current_edition) %></li>
-          <li><%= nav_link_to t('sponsors'), conference_edition_sponsors_path(current_edition) %></li>
-          <li><%= nav_link_to t('speakers'), conference_edition_speakers_path(current_edition) %></li>
-          <li><%= nav_link_to t('news'), conference_edition_posts_path(current_edition) %></li>
-          <li><%= nav_link_to t('previous_editions'), conference_editions_path %></li>
-          <li><%= nav_link_to t('register'), '#' %></li>
-        <% else %>
-          <li><%= anchor_nav_link_to t('location'), "#location" %></li>
-          <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
-          <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
-          <% if current_edition.posts.any? %>
-            <li><%= anchor_nav_link_to t('news'), "#news" %></li>
-          <% end %>
-          <% if current_edition.previous_editions.any? %>
-            <li><%= anchor_nav_link_to t('previous_editions'), "#previous-editions" %></li>
-          <% end %>
-        <% end %>
-      </ul>
+      <%= render(partial: 'shared/navigation', locals: { conference_edition: current_edition }) %>
     </nav>
-    <%= render partial: 'shared/authentication' %>
-    <%= render partial: 'shared/language_selector' %>
+    <%= render(partial: 'shared/authentication') %>
+    <%= render(partial: 'shared/language_selector') %>
   </header>
 
   <main class="main-content">
