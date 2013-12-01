@@ -82,4 +82,8 @@ class ConferenceEdition < ActiveRecord::Base
 
     max_simultaneous_talks_count
   end
+
+  def location
+    "#{venue}, #{city} - #{country}" if venue.present? && city.present? && country.present?
+  end
 end

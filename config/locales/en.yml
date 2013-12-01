@@ -6,6 +6,7 @@ en:
   drop_us_a_line: Drop us a line
   follow_us_on_twitter: Follow us on twitter
   friend_us_on_facebook: Friend us on facebook
+  location: Location
   networks: Networks
   news: News
   oh_snap: Oh snap!
@@ -24,9 +25,9 @@ en:
   speakers: Speakers
   sponsors: Sponsors
   sponsorship_packages: Sponsorship Packages
+  submit: Submit
   submit_your_proposal: Submit your proposal
   talks: Talks
-  submit: Submit
 
   translation:
     en: English
