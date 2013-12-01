@@ -54,6 +54,10 @@
   </tr>
   <tr>
     <th>Sponsorship Packages PDF</th>
-    <td><%= link_to @conference_edition.sponsorship_packages_pdf.file.filename, @conference_edition.sponsorship_packages_pdf.url %></td>
+    <td>
+      <% if @conference_edition.sponsorship_packages_pdf.present? %>
+      <%= link_to @conference_edition.sponsorship_packages_pdf.file.filename, @conference_edition.sponsorship_packages_pdf.url %>
+      <% end %>
+    </td>
   </tr>
 </table>

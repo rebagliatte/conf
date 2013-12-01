@@ -29,9 +29,13 @@
           <li><%= nav_link_to t('register'), '#' %></li>
         <% else %>
           <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
-          <li><%= anchor_nav_link_to t('previous_edition'), "#previous-edition" %></li>
           <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
-          <li><%= anchor_nav_link_to t('news'), "#news" %></li>
+          <% if current_edition.posts.any? %>
+            <li><%= anchor_nav_link_to t('news'), "#news" %></li>
+          <% end %>
+          <% if current_edition.previous_editions.any? %>
+            <li><%= anchor_nav_link_to t('previous_editions'), "#previous-editions" %></li>
+          <% end %>
         <% end %>
       </ul>
     </nav>
