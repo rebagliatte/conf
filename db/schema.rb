@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811202521) do
+ActiveRecord::Schema.define(:version => 20131201041359) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -28,17 +28,18 @@ ActiveRecord::Schema.define(:version => 20130811202521) do
   add_index "conference_edition_translations", ["locale"], :name => "index_conference_edition_translations_on_locale"
 
   create_table "conference_editions", :force => true do |t|
-    t.integer  "conference_id",                                    :null => false
-    t.date     "from_date",                                        :null => false
-    t.date     "to_date",                                          :null => false
-    t.string   "kind",                 :default => "single_track", :null => false
-    t.string   "status",               :default => "past",         :null => false
-    t.string   "promo_video_provider", :default => ""
-    t.string   "promo_video_uid",      :default => ""
-    t.string   "promo_image",          :default => ""
-    t.string   "logo",                 :default => ""
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.integer  "conference_id",                                        :null => false
+    t.date     "from_date",                                            :null => false
+    t.date     "to_date",                                              :null => false
+    t.string   "kind",                     :default => "single_track", :null => false
+    t.string   "status",                   :default => "past",         :null => false
+    t.string   "promo_video_provider",     :default => ""
+    t.string   "promo_video_uid",          :default => ""
+    t.string   "promo_image",              :default => ""
+    t.string   "logo",                     :default => ""
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.string   "sponsorship_packages_pdf", :default => ""
   end
 
   create_table "conferences", :force => true do |t|

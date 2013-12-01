@@ -52,4 +52,8 @@
     <th>Promo Video</th>
     <td><%= @conference_edition.promo_video_uid %></td>
   </tr>
+  <tr>
+    <th>Sponsorship Packages PDF</th>
+    <td><%= link_to @conference_edition.sponsorship_packages_pdf.file.filename, @conference_edition.sponsorship_packages_pdf.url %></td>
+  </tr>
 </table>

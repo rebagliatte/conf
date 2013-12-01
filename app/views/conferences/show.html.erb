@@ -19,7 +19,7 @@
   <section id="sponsorship-packages">
     <h1 class="primary-heading"></h1>
     <p><%= t('show_your_support_to') %> <%= current_conference.name %></h1>
-    <%= link_to t('download_sponsorship_packages'), '#', class:'btn btn-primary' %>
+    <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
   </section>
 <% end %>
 

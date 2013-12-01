@@ -1,6 +1,7 @@
 class ConferenceEdition < ActiveRecord::Base
   attr_accessible :from_date, :to_date, :kind, :promo_video_provider, :promo_video_uid, :status, :promo_image, \
-  :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue
+  :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue, \
+  :sponsorship_packages_pdf
 
   belongs_to :conference
   has_many :posts, dependent: :destroy
@@ -34,6 +35,7 @@ class ConferenceEdition < ActiveRecord::Base
   # Uploaders
   mount_uploader :logo, ImageUploader
   mount_uploader :promo_image, ImageUploader
+  mount_uploader :sponsorship_packages_pdf, AttachmentUploader
 
   # Scopes
   default_scope order('from_date DESC')
