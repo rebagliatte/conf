@@ -14,6 +14,7 @@ class Conference < ActiveRecord::Base
   validates :subdomain, presence: true, uniqueness: true, length: { maximum: 60 }
   validates :owner, presence: true
   validates :email, presence: true, format: EMAIL_REGEX
+  validates :languages, presence: true
 
   accepts_nested_attributes_for :conference_editions
 end
