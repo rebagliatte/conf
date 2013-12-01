@@ -7,7 +7,6 @@
   <%= form.input :from_date %>
   <%= form.input :to_date %>
   <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
-  <%= form.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false %>
   <%= form.input :country %>
   <%= form.input :city %>
   <%= form.input :venue %>
