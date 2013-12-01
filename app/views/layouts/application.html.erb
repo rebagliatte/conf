@@ -29,6 +29,7 @@
           <li><%= nav_link_to t('previous_editions'), conference_editions_path %></li>
           <li><%= nav_link_to t('register'), '#' %></li>
         <% else %>
+          <li><%= anchor_nav_link_to t('location'), "#location" %></li>
           <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
           <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
           <% if current_edition.posts.any? %>

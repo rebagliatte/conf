@@ -2,16 +2,33 @@
   <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
 <% end %>
 
-<% if current_edition.coming_soon? %>
-  <section class="intro">
-    <h1 class="primary-heading"><%= current_conference.name %></h1>
-    <p><%= current_edition.tagline %></p>
-    <p><%= pretty_date_and_location(current_edition) %></p>
-    <% if current_edition.registration_url.present? %>
-      <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
-    <% end %>
-  </section>
+<section class="intro">
+  <h1 class="primary-heading"><%= current_conference.name %></h1>
+  <p><%= current_edition.tagline %></p>
+  <p><%= pretty_date_and_location(current_edition) %></p>
+  <% if current_edition.registration_url.present? %>
+    <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
+  <% end %>
+</section>
 
+<section id="location">
+  <h1 class="primary-heading"><%= t('location') %></h1>
+  <p><%= current_edition.location %></p>
+  <div id="map-canvas"></div>
+</section>
+
+<section id="news">
+  <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
+</section>
+
+<% if current_edition.previous_editions.any? %>
+  <section id="previous-editions">
+    <h1 class="primary-heading"><%= t('previous_editions') %></h1>
+    <%= render(partial: 'conference_editions/list', locals: { conference_editions: current_edition.previous_editions }) %>
+  </section>
+<% end %>
+
+<% if current_edition.coming_soon? %>
   <section id="call-for-proposals">
     <h1 class="primary-heading"><%= t('call_for_proposals') %></h1>
     <p><%= t('do_not_miss_out') %></p>
@@ -27,25 +44,8 @@
   <% end %>
 <% end %>
 
-<section id="location">
-  <h1 class="primary-heading"><%= t('location') %></h1>
-  <p><%= current_edition.location %></p>
-  <div id="map-canvas"></div>
-</section>
-
 <% if current_edition.live? %>
   <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
-<% end %>
-
-<section id="news">
-  <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
-</section>
-
-<% if current_edition.previous_editions.any? %>
-  <section id="previous-editions">
-    <h1 class="primary-heading"><%= t('previous_editions') %></h1>
-    <%= render(partial: 'conference_editions/list', locals: { conference_editions: current_edition.previous_editions }) %>
-  </section>
 <% end %>
 
 <% content_for :head_js do %>
