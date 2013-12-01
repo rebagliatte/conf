@@ -1,8 +1,3 @@
 <%= title t 'previous_editions' %>
 
-<% @conference_editions.each do |edition| %>
-  <article class="conference-edition">
-    <h1 class="secondary-heading"><%= link_to "#{edition.to_s}", conference_edition_talks_path(edition) %></h1>
-    <%= video_embed_code(edition.promo_video_provider, edition.promo_video_uid) %>
-  </article>
-<% end %>
+

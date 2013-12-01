@@ -32,3 +32,10 @@
 <section id="news">
   <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
 </section>
+
+<% if current_edition.previous_editions.any? %>
+  <section id="previous-editions">
+    <h1 class="primary-heading"><%= t('previous_editions') %></h1>
+    <%= render(partial: 'conference_editions/list', locals: { conference_editions: current_edition.previous_editions }) %>
+  </section>
+<% end %>

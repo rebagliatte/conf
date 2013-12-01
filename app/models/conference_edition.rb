@@ -40,8 +40,8 @@ class ConferenceEdition < ActiveRecord::Base
   # Scopes
   default_scope order('from_date DESC')
 
-  def self.previous_editions
-    self.where(status: 'past').order('from_date').reverse
+  def previous_editions
+    self.conference.conference_editions - [self]
   end
 
   def coming_soon?
@@ -54,6 +54,10 @@ class ConferenceEdition < ActiveRecord::Base
 
   def multiple_track?
     self.kind == 'multiple_track'
+  end
+
+  def to_s
+    "#{conference.name} #{from_date.year}"
   end
 
   def grouped_slots
