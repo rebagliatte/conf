@@ -1,11 +1,11 @@
 class TalksController < ApplicationController
   def new
-    @talk = Talk.new
+    @talk = current_edition.talks.new
     @talk.speakers.build
   end
 
   def create
-    @talk = Talk.new(params[:talk])
+    @talk = current_edition.talks.new(params[:talk])
     @talk.status = 'pending'
     if @talk.save
       redirect_to conference_edition_talk_path(current_edition, @talk), flash: { success: 'Talk created successfully!' }

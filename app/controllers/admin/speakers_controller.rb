@@ -1,7 +1,7 @@
 class Admin::SpeakersController < AdminController
 
   load_and_authorize_resource :conference_edition
-  load_and_authorize_resource :speaker, :through => :conference_edition
+  load_and_authorize_resource :speaker, through: :conference_edition
 
   def index
   end
