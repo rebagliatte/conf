@@ -11,14 +11,16 @@
     <%= link_to t('submit_your_proposal'), new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
   </section>
 
-  <section id="previous-edition">
-    <h1 class="primary-heading"><%= t('previous_edition') %></h1>
-    <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
-  </section>
+  <% if current_edition.promo_video_uid.present? %>
+    <section id="previous-edition">
+      <h1 class="primary-heading"><%= t('previous_edition') %></h1>
+      <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
+    </section>
+  <% end %>
 
   <section id="sponsorship-packages">
-    <h1 class="primary-heading"></h1>
-    <p><%= t('show_your_support_to') %> <%= current_conference.name %></h1>
+    <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
+    <p><%= t('show_your_support_to') %> <%= current_conference.name %></p>
     <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
   </section>
 <% end %>
