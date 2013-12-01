@@ -32,7 +32,7 @@ Conf::Application.routes.draw do
       resources :talks, only: %w(index show new create edit update)
     end
 
-    root to: 'conferences#index'
+    root to: 'marketing#home'
   end
 
   # Authentication
