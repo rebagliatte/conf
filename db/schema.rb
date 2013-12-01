@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131201041359) do
+ActiveRecord::Schema.define(:version => 20131201051128) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(:version => 20131201041359) do
     t.integer  "talk_id"
     t.string   "locale"
     t.string   "title",      :default => "", :null => false
-    t.string   "abstract"
+    t.text     "abstract",   :default => ""
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(:version => 20131201041359) do
 
   create_table "talks", :force => true do |t|
     t.string   "title",                 :default => "",        :null => false
-    t.string   "abstract",              :default => ""
+    t.text     "abstract",              :default => ""
     t.string   "status",                :default => "pending", :null => false
     t.string   "slides_url",            :default => ""
     t.string   "video_url",             :default => ""
