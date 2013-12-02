@@ -1,0 +1,33 @@
+<header class="admin-header">
+  <%= title 'Posts' %>
+  <%= link_to 'New post', new_admin_conference_edition_post_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+</header>
+
+<% if @posts.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= post.title %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_post_path(@conference_edition, post), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to edit_admin_conference_edition_post_path(@conference_edition, post), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no posts for this conference edition. Would you like to
+    <%= link_to 'create one', new_admin_conference_edition_post_path(@conference_edition) %>?
+  </p>
+<% end %>

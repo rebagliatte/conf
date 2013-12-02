@@ -14,18 +14,6 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activeadmin (0.6.0)
-      arbre (>= 1.0.1)
-      bourbon (>= 1.0.0)
-      devise (>= 1.1.2)
-      fastercsv
-      formtastic (>= 2.0.0)
-      inherited_resources (>= 1.3.1)
-      jquery-rails (>= 1.0.0)
-      kaminari (>= 0.13.0)
-      meta_search (>= 0.9.2)
-      rails (>= 3.0.0)
-      sass (>= 3.1.0)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -40,14 +28,11 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    arbre (1.0.1)
-      activesupport (>= 3.0.0)
     arel (3.0.2)
-    bcrypt-ruby (3.0.1)
-    bourbon (3.1.5)
-      sass (>= 3.2.0)
-      thor
+    bootstrap-sass (2.3.2.1)
+      sass (~> 3.2)
     builder (3.0.4)
+    cancan (1.6.10)
     capistrano (2.15.4)
       highline
       net-scp (>= 1.0.0)
@@ -65,18 +50,12 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     country_select (1.1.3)
-    devise (2.2.3)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (~> 3.1)
-      warden (~> 1.2.1)
     erubis (2.7.0)
     excon (0.13.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
-    fastercsv (1.5.5)
     fog (1.3.1)
       builder
       excon (~> 0.13.0)
@@ -88,17 +67,15 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
-    formtastic (2.2.1)
-      actionpack (>= 3.0)
-    has_scope (0.5.1)
+    globalize3 (0.3.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      paper_trail (~> 2)
     hashie (2.0.4)
     highline (1.6.19)
     hike (1.2.2)
     httpauth (0.2.0)
     i18n (0.6.1)
-    inherited_resources (1.4.0)
-      has_scope (~> 0.5.0)
-      responders (~> 0.9)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -106,19 +83,11 @@ GEM
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    kaminari (0.14.1)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     kgio (2.8.0)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_search (1.1.3)
-      actionpack (~> 3.1)
-      activerecord (~> 3.1)
-      activesupport (~> 3.1)
-      polyamorous (~> 0.5.0)
     mime-types (1.23)
     mini_magick (3.5.0)
       subexec (~> 0.2.1)
@@ -154,11 +123,13 @@ GEM
     omniauth-twitter (0.0.16)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
-    orm_adapter (0.4.0)
-    pg (0.15.1)
-    polyamorous (0.5.0)
+    paper_trail (2.7.2)
       activerecord (~> 3.0)
+      railties (~> 3.0)
+    pg (0.15.1)
     polyglot (0.3.3)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -186,8 +157,6 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     redcarpet (2.2.2)
-    responders (0.9.3)
-      railties (~> 3.1)
     ruby-hmac (0.4.0)
     sass (3.2.8)
     sass-rails (3.2.6)
@@ -216,28 +185,32 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    warden (1.2.1)
-      rack (>= 1.0)
+    unicorn-rails (1.0.1)
+      rack
+      unicorn
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  bootstrap-sass (~> 2.3.2.1)
+  cancan
   capistrano
   carrierwave
   coffee-rails (~> 3.2.1)
   country_select
   fog (~> 1.3.1)
+  globalize3
   jquery-rails
-  meta_search (>= 1.1.0.pre)
   mini_magick
   omniauth-github
   omniauth-twitter
   pg
+  quiet_assets
   rails (= 3.2.13)
   redcarpet
-  sass-rails
+  sass-rails (~> 3.2)
   simple_form
   uglifier (>= 1.0.3)
   unicorn
+  unicorn-rails

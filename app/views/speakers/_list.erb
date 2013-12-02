@@ -1,0 +1,36 @@
+<%# @param speakers [Array<Conf::Models::Speaker>] %>
+<%# @param display_speakers_meta_data boolean %>
+
+<% speakers.each do |speaker| %>
+  <% unless display_speakers_meta_data %>
+    <a href="<%= conference_edition_speakers_path(current_edition) %>#speaker-<%= speaker.twitter_username %>">
+  <% end %>
+
+    <article class="speaker <%= display_speakers_meta_data ? 'block' : '' %>" id="speaker-<%= speaker.twitter_username %>">
+      <% if speaker.avatar_url %>
+        <%= image_tag speaker.avatar_url(:inline_y_230), alt: speaker.name %>
+      <% else %>
+        <%= image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{speaker.twitter_username}&size=original", alt: speaker.name %>
+      <% end %>
+
+      <% if display_speakers_meta_data %>
+        <div class="info">
+          <h1 class="secondary-heading"><%= speaker.name %></h1>
+          <p class="tagline company"><%= speaker.company %></p>
+          <p class="tagline last city"><%= speaker.city %>, <%= speaker.country %></p>
+
+          <%= markdown(speaker.bio) %>
+
+          <ul class="networks">
+            <li>Twitter: <%= link_to speaker.twitter_username, "http://twitter.com/#{speaker.twitter_username}", target: 'blank' %></li>
+            <li>Github: <%= link_to speaker.github_username, "http://github.com/#{speaker.github_username}", target: 'blank' %></li>
+          </ul>
+        </div>
+      <% end %>
+    </article>
+
+  <% unless display_speakers_meta_data %>
+    </a>
+  <% end %>
+
+<% end %>

@@ -1,11 +1,13 @@
 pt:
   all_conferences: Todas as conferências
   call_for_proposals: Chamada para apresentação de propostas
+  confirmed_speakers: Palestrantes confirmados
   do_not_miss_out: Não perca
   download_sponsorship_packages: Baixar pacotes de patrocínio
   drop_us_a_line: Contate-nos
   follow_us_on_twitter: Siga-nos no twitter
   friend_us_on_facebook: Seja nosso amigo no Facebook
+  location: Locação
   networks: Networks
   news: Notícias
   oh_snap: Oh!
@@ -26,6 +28,12 @@ pt:
   sponsorship_packages: Pacotes de Patrocínio
   submit_your_proposal: Envie sua proposta
   talks: Palestras
+  submit: Enviar
+
+  translation:
+    en: Inglês
+    pt: Português
+    es: Espanhol
 
   date:
     abbr_day_names:
@@ -233,3 +241,24 @@ pt:
   activerecord:
     errors:
       <<: *errors
+    models:
+      conference: conferência
+      conference_edition: edição
+      identity: identidade
+      post: posto
+      room: sala
+      speaker: palestrante
+      sponsor: patrocinador
+      talk: palestra
+      user: usuário
+    attributes:
+      talk:
+        title: Título
+        abstract: Abstrato
+      speaker:
+        name: Nome
+        email: E-mail
+        bio: Bio
+        twitter_username: Usuário do Twitter
+        github_username: Usuário do Github
+        avatar: Imagem

@@ -1,0 +1,105 @@
+/*
+  Bootstrap and Overrides
+*/
+
+// VARIABLES
+
+// Colors
+$textColor:           #555555;
+
+$blue:                #113F8C;
+$turquoise:           #01A4A4;
+$skyBlue:             #00A1CB;
+$green:               #61AE24;
+$yellow:              #D0D102;
+$darkGreen:           #32742C;
+$fucsia:              #D70060;
+$orange:              #E54028;
+$lightOrange:         #F18D05;
+$black:               #000;
+$grayDarker:          #222;
+$grayDark:            #333;
+$gray:                #616161;
+$grayLight:           #dedede;
+$grayLighter:         #fafafa;
+$white:               #fff;
+
+// Typography
+$linkColor:           $green;
+
+// IMPORTS
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+// OVERRIDES
+
+/* Navbar */
+.navbar .nav > li > a {
+  padding-right: 0;
+}
+
+/* Forms */
+.form-horizontal {
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="url"],
+  input[type="tel"],
+  textarea,
+  select {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 35px;
+    margin: 0;
+  }
+  select.date {
+    width: auto;
+  }
+  textarea {
+    max-height: 100px;
+  }
+  input[type="file"] {
+    margin-top: 0;
+    line-height: 0;
+    padding-top: 5px;
+  }
+  .help-block,
+  select + .help-block,
+  input + .help-block {
+    color: #666;
+    font-size: 10px;
+    margin-top: 0;
+  }
+  .control-label {
+    width: 200px;
+    text-align: left;
+  }
+  .controls {
+    margin-left: 220px;
+  }
+  .form-actions {
+    background: none;
+    padding: 19px 0 0 0;
+    input {
+      float: right;
+    }
+  }
+}
+
+/* Tables */
+.translated-table {
+  tr:first-of-type td,
+  tr:first-of-type th {
+    border-top: 0;
+  }
+}
+.table .unstyled {
+  margin-bottom: 0;
+}
+
+/* Alerts */
+.alert a {
+  color: inherit;
+  font-weight: bold;
+}

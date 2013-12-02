@@ -1,9 +1,28 @@
 Conf::Application.routes.draw do
 
-  resources :conferences, only: %w(index)
+  # Admin
+  namespace :admin do
+    resources :conferences, only: %w(show index new create edit update) do
+      resources :conference_editions, only: %w(show new create edit update)
+    end
 
+    resources :conference_editions do
+      resources :talks, only: %w(show index new create edit update)
+      resources :speakers, only: %w(show index new create edit update)
+      resources :sponsors, only: %w(show index new create edit update)
+      resources :posts, only: %w(show index new create edit update)
+    end
+
+    match '/' => 'conferences#index'
+  end
+
+  # Public site
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :conferences, only: %w(index)
+
+    constraints(Subdomain) do
+      match '/' => 'conferences#show'
+    end
 
     resources :conference_editions, only: %w(index) do
       resources :posts, only: %w(index show)
@@ -13,7 +32,7 @@ Conf::Application.routes.draw do
       resources :talks, only: %w(index show new create edit update)
     end
 
-    root to: 'conferences#index'
+    root to: 'marketing#home'
   end
 
   # Authentication
@@ -21,13 +40,6 @@ Conf::Application.routes.draw do
   match '/auth/failure', to: redirect('/')
   match '/logout', to: 'sessions#destroy', as: 'logout'
 
-  # Subdomains
-  constraints(Subdomain) do
-    match '/' => 'conferences#show'
-  end
-
   # I18N
   match '', to: redirect("/#{I18n.default_locale}")
-
-  ActiveAdmin.routes(self)
 end

@@ -2,21 +2,29 @@
 
 <%= simple_form_for [current_edition, @talk] do |form| %>
   <%= error_messages_for(@talk) %>
-  <%= form.input :title %>
-  <%= form.input :abstract %>
 
-  <%= form.simple_fields_for :speakers do |speaker| %>
-    <%= speaker.input :name %>
-    <%= speaker.input :email %>
-    <%= speaker.input :bio %>
-    <%= speaker.input :twitter_username %>
-    <%= speaker.input :github_username %>
-    <%= speaker.input :avatar, required: !signed_in? %>
-    <%= speaker.input :avatar_cache, as: :hidden %>
-    <% if current_user %>
-      <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+  <fieldset>
+    <legend>Proposed Session</legend>
+    <%= form.input :title %>
+    <%= form.input :abstract %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Speaker Info</legend>
+    <%= form.simple_fields_for :speakers do |speaker| %>
+      <%= speaker.input :name %>
+      <%= speaker.input :email %>
+      <%= speaker.input :bio, as: :text %>
+      <%= speaker.input :twitter_username %>
+      <%= speaker.input :github_username %>
+      <%= speaker.input :avatar, required: !signed_in? %>
+      <%= speaker.input :avatar_cache, as: :hidden %>
+      <% if current_user %>
+        <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+      <% end %>
+      <%= speaker.input :conference_edition_id, as: :hidden, input_html: { value: params[:conference_edition_id] } %>
     <% end %>
-  <% end %>
+  </fieldset>
 
-  <%= form.submit('Submit', class: 'btn btn-primary') %>
+  <%= form.submit t('submit'), class: 'btn btn-primary' %>
 <% end %>

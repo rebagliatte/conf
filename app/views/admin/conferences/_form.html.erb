@@ -1,0 +1,44 @@
+<%# @param conference [Models::Conference] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(conference) %>
+
+  <% if conference.new_record? %>
+    <%= form.input :owner_id, as: :hidden, input_html: { value: current_user.id } %>
+  <% end %>
+
+  <fieldset>
+    <legend>General information</legend>
+    <%= form.input :name %>
+    <%= form.input :subdomain %>
+    <%= form.association :languages, required: true %>
+    <%= form.input :email %>
+    <%= form.input :twitter_username %>
+    <%= form.input :twitter_hashtag %>
+    <%= form.input :facebook_page_username %>
+  </fieldset>
+
+  <%= form.simple_fields_for :conference_editions do |ce| %>
+    <fieldset>
+      <legend>Current Conference Edition information</legend>
+      <%= ce.input :tagline %>
+      <%= ce.input :logo %>
+      <%= ce.input :from_date %>
+      <%= ce.input :to_date %>
+      <%= ce.input :country %>
+      <%= ce.input :city %>
+      <%= ce.input :venue %>
+      <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
+      <%= ce.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false %>
+      <%= ce.input :promo_video_provider %>
+      <%= ce.input :promo_video_uid %>
+      <%= ce.input :promo_image %>
+      <%= ce.input :sponsorship_packages_pdf %>
+    </fieldset>
+  <% end %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Conference", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

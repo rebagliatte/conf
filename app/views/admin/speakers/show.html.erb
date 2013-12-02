@@ -1,0 +1,61 @@
+<header class="admin-header">
+  <%= title @speaker.name %>
+  <%= link_to 'Edit', edit_admin_conference_edition_speaker_path(@conference_edition, @speaker), class: 'btn btn-primary main-cta' %>
+</header>
+
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @speaker.translations, resource: @speaker }) %>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <td><%= @speaker.id %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @speaker.name %></td>
+  </tr>
+  <tr>
+    <th>Bio</th>
+    <td><%= @speaker.bio %></td>
+  </tr>
+  <tr>
+    <th>Company</th>
+    <td><%= @speaker.company %></td>
+  </tr>
+  <tr>
+    <th>Avatar</th>
+    <td><%= image_tag(@speaker.avatar) %></td>
+  </tr>
+  <tr>
+    <th>City</th>
+    <td><%= @speaker.city %></td>
+  </tr>
+  <tr>
+    <th>Country</th>
+    <td><%= @speaker.country %></td>
+  </tr>
+  <tr>
+    <th>Twitter username</th>
+    <td><%= @speaker.twitter_username %></td>
+  </tr>
+  <tr>
+    <th>Github Username</th>
+    <td><%= @speaker.github_username %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= @speaker.email %></td>
+  </tr>
+  <tr>
+    <th>User</th>
+    <td><%= @speaker.user_id %></td><%# TODO: link %>
+  </tr>
+  <tr>
+    <th>Is confirmed?</th>
+    <td><%= @speaker.is_confirmed %></td>
+  </tr>
+  <tr>
+    <th>Created at</th>
+    <td><%= @speaker.created_at %></td>
+  </tr>
+</table>

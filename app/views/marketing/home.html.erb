@@ -1,0 +1,53 @@
+<h1 class="primary-heading">Confnu</h1>
+
+<section>
+  <h1 class="secondary-heading">A different site on each stage</h1>
+
+  <h2>Pre Conferenece</h2>
+  <p>Emphasis on call for proposals, sponsorship packages and info about previous editions.</p>
+
+  <h2>During Conference</h2>
+  <p>The schedule, the speakers and the sponsors are all set. Let’s show them off!</p>
+
+  <h2>After Conference</h2>
+  <p>Get everyone emotional with conference pics and easy access to each speaker’s video and presentation slides.</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">Support for single and multi track conferences</h1>
+  <p>Host one or more simultaneous sessions at your conference.</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">Vanilla Styles</h1>
+  <p>This project includes the backend to make this all happen, an admin to manage it and semantic markup on the frontend ready for you to customize it with your own skin.</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">Multi Language</h1>
+  <p>English, Spanish, Portuguese and more to come!</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">Web mobile support</h1>
+  <p>Media query based mobile support for mobile devices</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">Talk lifecycles</h1>
+  <p>Talks start their life as proposals, then they are voted, rated by each organizer and finally accepted or rejected. After the event is over add links to their slides and videos to keep all the information together.</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">News</h1>
+  <p>Update your site often with fresh news to keep everyone excited. Get them ready for early bird fees, announce new sponsors and speakers as they come.</p>
+</section>
+
+<section>
+  <h1 class="secondary-heading">Conferences already using Confnu</h1>
+  <ul>
+    <% @conferences.each do |conference| %>
+      <li><%= link_to conference.name, root_url(:subdomain => conference.subdomain) %></li>
+    <% end %>
+  </ul>
+</section>

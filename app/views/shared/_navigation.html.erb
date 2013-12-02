@@ -1,0 +1,22 @@
+<%# @param conference_edition [Conf::Models::ConferenceEdition] %>
+
+<ul>
+  <li><%= anchor_nav_link_to t('location'), "#location" %></li>
+
+  <% if display_call_for_proposals?(conference_edition) %>
+    <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
+  <% end %>
+
+  <% if display_call_for_sponsorships?(conference_edition) %>
+    <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
+  <% end %>
+
+  <% if conference_edition.posts.any? %>
+    <li><%= anchor_nav_link_to t('news'), "#news" %></li>
+  <% end %>
+
+  <% if conference_edition.previous_editions.any? %>
+    <li><%= anchor_nav_link_to t('previous_editions'), "#previous-editions" %></li>
+  <% end %>
+
+</ul>

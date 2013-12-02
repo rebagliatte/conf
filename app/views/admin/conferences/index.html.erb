@@ -1,0 +1,34 @@
+<header class="admin-header">
+  <%= title t 'all_conferences' %>
+  <%= link_to 'New conference', new_admin_conference_path, class: 'btn btn-primary main-cta pull-right' %>
+</header>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Organizers</th>
+      <th>Available Languages</th>
+      <th>Conference Editions</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conferences.each do |conference| %>
+      <tr>
+        <td><%= conference.id %></td>
+        <td><%= conference.name %></td>
+        <td><%= link_to conference.owner.name, '#' %></td>
+        <td><%= conference.organizers.map(&:name).to_sentence %></td>
+        <td><%= conference.languages.map(&:name).to_sentence %></td>
+        <th><%= conference.conference_editions.count %></th>
+        <td class="actions">
+          <%= link_to admin_conference_path(conference), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+          <%= link_to edit_admin_conference_path(conference), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

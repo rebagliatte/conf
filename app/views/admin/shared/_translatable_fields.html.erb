@@ -1,0 +1,24 @@
+<%# @param form %>
+<%# @param translations %>
+<%# @param block %>
+
+<ul class="nav nav-tabs">
+  <% translations.each_with_index do |translation, index| %>
+    <li class="<%= index == 0 ? 'active' : ''%>">
+      <a href="#tabs-<%= translation.locale %>" data-toggle="tab">
+        <%= translation.locale %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <%= form.fields_for :translations do |translation_form| %>
+    <div class="tab-pane <%= translations.first == translation_form.object ? 'active' : '' %>" id="tabs-<%= translation_form.object.locale %>">
+      <fieldset>
+        <%= translation_form.hidden_field :locale %>
+        <%= capture(translation_form, &block) %>
+      </fieldset>
+    </div>
+  <% end %>
+</div>

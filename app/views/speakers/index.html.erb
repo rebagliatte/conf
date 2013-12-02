@@ -1,24 +1,3 @@
 <%= title t 'speakers' %>
 
-<% @speakers.each do |speaker| %>
-  <article class="speaker block" id="speaker-<%= speaker.twitter_username %>">
-    <% if speaker.avatar_url %>
-      <%= image_tag speaker.avatar_url(:inline_y_230), alt: speaker.name %>
-    <% else %>
-      <%= image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{speaker.twitter_username}&size=original", alt: speaker.name %>
-    <% end %>
-
-    <div class="info">
-      <h1 class="secondary-heading"><%= speaker.name %></h1>
-      <p class="tagline company"><%= speaker.company %></p>
-      <p class="tagline last city"><%= speaker.city %>, <%= speaker.country %></p>
-
-      <%= markdown(speaker.bio) %>
-
-      <ul class="networks">
-        <li>Twitter: <%= link_to speaker.twitter_username, "http://twitter.com/#{speaker.twitter_username}", target: 'blank' %></li>
-        <li>Github: <%= link_to speaker.github_username, "http://github.com/#{speaker.github_username}", target: 'blank' %></li>
-      </ul>
-    </div>
-  </article>
-<% end %>
+<%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers, display_speakers_meta_data: true }) %>
