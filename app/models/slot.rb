@@ -2,14 +2,17 @@ class Slot < ActiveRecord::Base
   attr_accessible :from_datetime, :kind, :to_datetime, :conference_edition, :conference_edition_id
 
   belongs_to :conference_edition
+  has_one :conference, through: :conference_edition
   has_many :talks
 
   KINDS = %w( talk registration break lunch after_party )
 
+  # Validations
   validates :from_datetime, presence: true
   validates :to_datetime, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
 
+  # Scopes
   default_scope order('from_datetime ASC')
 
   def to_s

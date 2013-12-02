@@ -1,0 +1,52 @@
+<header class="admin-header">
+  <%= title @conference.name %>
+  <div class="btn-wrapper">
+    <%= link_to 'Create a new conference edition', new_admin_conference_conference_edition_path(@conference), class: 'btn btn-primary' %>
+    <%= link_to 'Edit preferences', edit_admin_conference_path(@conference), class: 'btn' %>
+  </div>
+</header>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <td><%= @conference.name %></td>
+  </tr>
+  <tr>
+    <th>Editions</th>
+    <td>
+      <ul class="unstyled">
+        <% @conference.conference_editions.each do |ce| %>
+          <li><%= link_to pretty_year(ce), admin_conference_edition_path(ce) %></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Owner</th>
+    <td><%= link_to @conference.owner.name, '#' %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= @conference.email %></td>
+  </tr>
+  <tr>
+    <th>Available languages</th>
+    <td><%= @conference.languages.map(&:name).to_sentence %></td>
+  </tr>
+  <tr>
+    <th>Twitter username</th>
+    <td><%= @conference.twitter_username %></td>
+  </tr>
+  <tr>
+    <th>Twitter Hashtag</th>
+    <td><%= @conference.twitter_hashtag %></td>
+  </tr>
+  <tr>
+    <th>Facebook page username</th>
+    <td><%= @conference.facebook_page_username %></td>
+  </tr>
+  <tr>
+    <th>Subdomain</th>
+    <td><%= @conference.subdomain %></td>
+  </tr>
+</table>

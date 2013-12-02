@@ -1,0 +1,30 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference, conference_edition], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(conference_edition) %>
+
+  <%= form.input :from_date %>
+  <%= form.input :to_date %>
+  <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
+  <%= form.input :country %>
+  <%= form.input :city %>
+  <%= form.input :venue %>
+  <%= form.input :tagline %>
+  <%= form.input :promo_video_provider %>
+  <%= form.input :promo_video_uid %>
+  <%= form.input :promo_image %>
+  <%= form.input :logo %>
+  <%= form.input :sponsorship_packages_pdf %>
+  <%= form.input :registration_url %>
+  <% if display_settings?(conference_edition) %>
+    <%= form.input :is_registration_open %>
+    <%= form.input :is_call_for_proposals_open %>
+    <%= form.input :is_call_for_sponsorships_open %>
+    <%= form.input :is_schedule_available %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Conference Edition", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<header class="admin-header">
+  <%= title 'Speakers' %>
+  <%= link_to 'New speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+</header>
+
+<% if @speakers.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @speakers.each do |speaker| %>
+        <tr>
+          <td><%= speaker.id %></td>
+          <td><%= speaker.name %></td>
+          <td><%= speaker.email %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no speakers for this conference edition. Would you like to
+    <%= link_to 'create one', new_admin_conference_edition_speaker_path(@conference_edition) %>?
+  </p>
+<% end %>

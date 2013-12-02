@@ -1,0 +1,73 @@
+/*
+  Admin Styles
+*/
+
+@import 'admin/bootstrap_and_overrides';
+
+.main-admin-header {
+  padding: 0 10px;
+  border-bottom: 5px solid $turquoise;
+  .brand {
+    color: $gray;
+  }
+  .authentication {
+    img {
+      height: 30px;
+      float: left;
+      margin: -5px 5px;
+    }
+  }
+}
+
+.main-admin-sidebar {
+  padding-top: 8px;
+  background: #fff;
+  ul {
+    margin: 0;
+  }
+  a {
+    display: block;
+    text-decoration: none;
+    padding: 3px 20px;
+    color: #777;
+    border-left: 3px solid transparent;
+    &.conference-edition-nav-item,
+    &.conference-nav-item {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 3px 10px;
+    }
+    &.conference-edition-nav-item {
+      color: $darkGreen;
+    }
+    &.conference-nav-item {
+      color: $green;
+    }
+    &:hover {
+      border-color: $orange;
+      color: $orange;
+    }
+  }
+}
+
+.main-admin-content-area {
+  padding-right: 10px;
+  .admin-header {
+    margin-bottom: 20px;
+    position: relative;
+    .btn-wrapper,
+    .main-cta {
+      position: absolute;
+      top: 5px;
+      right: 0;
+    }
+  }
+  .primary-heading {
+    margin-bottom: 40px;
+  }
+  .table .actions a {
+    margin-right: 10px;
+    text-decoration: none;
+  }
+}

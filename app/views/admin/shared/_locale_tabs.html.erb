@@ -1,0 +1,12 @@
+<%# @param translations %>
+<%# @param resource %>
+
+<ul class="nav nav-tabs">
+  <% translations.each do |translation| %>
+    <li class="<%= params[:locale] == translation.locale.to_s ? 'active' : ''%>">
+      <a href="<%= send("admin_conference_edition_#{resource.class.to_s.underscore()}_path", @conference_edition, resource, params: {locale: translation.locale}) %>">
+        <%= translation.locale %>
+      </a>
+    </li>
+  <% end %>
+</ul>

@@ -9,14 +9,6 @@ module ApplicationHelper
     render(partial: 'shared/error_messages', locals: { object: object })
   end
 
-  def nav_link_to(text, path)
-    if current_page?(path)
-      link_to text, '#', class: 'current'
-    else
-      link_to text, path
-    end
-  end
-
   def anchor_nav_link_to(text, anchor)
     if current_page?(root_url)
       link_to text, anchor
@@ -42,4 +34,8 @@ module ApplicationHelper
     Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true).render(text).html_safe
   end
 
-end
+  def translatable_fields_for(form, &block)
+    translations = form.object.translations
+    render(partial: 'admin/shared/translatable_fields', locals: { form: form, translations: translations, block: block })
+  end
+ end

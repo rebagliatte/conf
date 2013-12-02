@@ -1,32 +1,92 @@
-<% if current_edition.coming_soon? %>
-  <section class="intro">
-    <h1 class="primary-heading"><%= current_conference.name %></h1>
-    <p><%= current_edition.tagline %></p>
-    <p><%= when_and_where(current_edition) %></p>
-  </section>
+<%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
 
+<section class="intro">
+  <h1 class="primary-heading"><%= current_conference.name %></h1>
+  <p><%= current_edition.tagline %></p>
+  <p><%= pretty_date_and_location(current_edition) %></p>
+
+  <% if display_registration_link?(current_edition) %>
+    <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
+  <% end %>
+
+</section>
+
+<section id="location">
+  <h1 class="primary-heading"><%= t('location') %></h1>
+  <p><%= current_edition.location %></p>
+  <div id="map-canvas"></div>
+</section>
+
+<% if current_edition.posts.any? %>
+  <section id="news">
+    <%= render(partial: 'posts/list', locals: { posts: current_edition.posts, conference_edition: current_edition }) %>
+  </section>
+<% end %>
+
+<% if current_edition.previous_editions.any? %>
+  <section id="previous-editions">
+    <h1 class="primary-heading"><%= t('previous_editions') %></h1>
+    <%= render(partial: 'conference_editions/list', locals: { conference_editions: current_edition.previous_editions }) %>
+  </section>
+<% end %>
+
+<% if display_call_for_proposals?(current_edition) %>
   <section id="call-for-proposals">
     <h1 class="primary-heading"><%= t('call_for_proposals') %></h1>
     <p><%= t('do_not_miss_out') %></p>
     <%= link_to t('submit_your_proposal'), new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
   </section>
+<% end %>
 
-  <section id="previous-edition">
-    <h1 class="primary-heading"><%= t('previous_edition') %></h1>
-    <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
-  </section>
-
+<% if display_call_for_sponsorships?(current_edition) %>
   <section id="sponsorship-packages">
-    <h1 class="primary-heading"></h1>
-    <p><%= t('show_your_support_to') %> <%= current_conference.name %></h1>
-    <%= link_to t('download_sponsorship_packages'), '#', class:'btn btn-primary' %>
+    <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
+    <p><%= t('show_your_support_to') %> <%= current_conference.name %></p>
+    <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
   </section>
 <% end %>
 
-<% if current_edition.live? %>
+<% if current_edition.is_schedule_available %>
   <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
 <% end %>
 
-<section id="news">
-  <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
-</section>
+<% if display_confirmed_speakers?(current_edition) %>
+  <section id="sponsorship-packages">
+    <h1 class="primary-heading"><%= t('confirmed_speakers') %></h1>
+    <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>
+  </section>
+<% end %>
+
+<% content_for :head_js do %>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script>
+    var geocoder;
+    var map;
+
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var mapOptions = {
+        zoom: 13
+      }
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      codeAddress('<%= current_edition.location %>');
+    }
+
+    function codeAddress(address) {
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location,
+              title: address
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+<% end %>

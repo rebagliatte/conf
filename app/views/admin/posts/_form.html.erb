@@ -1,0 +1,19 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param post [Models::Post] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, post], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(post) %>
+
+  <%= translatable_fields_for(form) do |t| %>
+    <%= t.input :title %>
+    <%= t.input :body %>
+    <%= t.input :summary %>
+  <% end %>
+
+  <%= form.input :image %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Post", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

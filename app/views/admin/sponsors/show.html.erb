@@ -1,0 +1,33 @@
+<header class="admin-header">
+  <%= title @sponsor.name %>
+  <%= link_to 'Edit', edit_admin_conference_edition_sponsor_path(@conference_edition, @sponsor), class: 'btn btn-primary main-cta' %>
+</header>
+
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @sponsor.translations, resource: @sponsor }) %>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <td><%= @sponsor.id %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @sponsor.name %></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><%= @sponsor.description %></td>
+  </tr>
+  <tr>
+    <th>Website</th>
+    <td><%= @sponsor.website_url %></td>
+  </tr>
+  <tr>
+    <th>Kind</th>
+    <td><%= @sponsor.kind %></td>
+  </tr>
+  <tr>
+    <th>Logo</th>
+    <td><%= image_tag @sponsor.logo %></td>
+  </tr>
+</table>
