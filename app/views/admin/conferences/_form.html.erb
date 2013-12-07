@@ -30,7 +30,6 @@
       <%= ce.input :city %>
       <%= ce.input :venue %>
       <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
-      <%= ce.input :status, as: :select, collection: ConferenceEdition::STATUSES, include_blank: false %>
       <%= ce.input :promo_video_provider %>
       <%= ce.input :promo_video_uid %>
       <%= ce.input :promo_image %>
