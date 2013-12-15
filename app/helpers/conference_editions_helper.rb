@@ -19,10 +19,6 @@ module ConferenceEditionsHelper
     ce.from_date.year
   end
 
-  def display_settings?(ce)
-    ce.new_record? || is_coming_soon?(ce)
-  end
-
   def is_coming_soon?(ce)
     ce.from_date > Date.today
   end

@@ -60,22 +60,20 @@
     <th>Registration url</th>
     <td><%= link_to @conference_edition.registration_url %></td>
   </tr>
-  <% if display_settings?(@conference_edition) %>
-    <tr>
-      <th>Is registration open?</th>
-      <td><%= @conference_edition.is_registration_open %></td>
-    </tr>
-    <tr>
-      <th>Is call for proposals open?</th>
-      <td><%= @conference_edition.is_call_for_proposals_open %></td>
-    </tr>
-    <tr>
-      <th>Is call for call for sponsorships open?</th>
-      <td><%= @conference_edition.is_call_for_sponsorships_open %></td>
-    </tr>
-    <tr>
-      <th>Is schedule avaialable?</th>
-      <td><%= @conference_edition.is_schedule_available %></td>
-    </tr>
-  <% end %>
+  <tr>
+    <th>Is registration open?</th>
+    <td><%= @conference_edition.is_registration_open %></td>
+  </tr>
+  <tr>
+    <th>Is call for proposals open?</th>
+    <td><%= @conference_edition.is_call_for_proposals_open %></td>
+  </tr>
+  <tr>
+    <th>Is call for call for sponsorships open?</th>
+    <td><%= @conference_edition.is_call_for_sponsorships_open %></td>
+  </tr>
+  <tr>
+    <th>Is schedule avaialable?</th>
+    <td><%= @conference_edition.is_schedule_available %></td>
+  </tr>
 </table>

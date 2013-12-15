@@ -17,12 +17,10 @@
   <%= form.input :logo %>
   <%= form.input :sponsorship_packages_pdf %>
   <%= form.input :registration_url %>
-  <% if display_settings?(conference_edition) %>
-    <%= form.input :is_registration_open %>
-    <%= form.input :is_call_for_proposals_open %>
-    <%= form.input :is_call_for_sponsorships_open %>
-    <%= form.input :is_schedule_available %>
-  <% end %>
+  <%= form.input :is_registration_open %>
+  <%= form.input :is_call_for_proposals_open %>
+  <%= form.input :is_call_for_sponsorships_open %>
+  <%= form.input :is_schedule_available %>
 
   <div class="form-actions">
     <%= form.submit "#{action.titleize} Conference Edition", class: 'btn btn-large btn-primary' %>
