@@ -1,16 +1,10 @@
 # Rails secret token
 secret_token: ''
 
-# AWS
-aws_access_key_id: ''
-aws_secret_access_key: ''
-
 # Environment dependant settings
 development:
   # Mailer
   host: 'localhost:3000'
-  # AWS
-  aws_s3_bucket: 'confnu-development'
   # Omniauth
   twitter_key: ''
   twitter_secret: ''
@@ -20,8 +14,6 @@ development:
 production:
   # Mailer
   host: 'conf.nu'
-  # AWS
-  aws_s3_bucket: 'confnu'
   # Omniauth
   twitter_key: ''
   twitter_secret: ''
