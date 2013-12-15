@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131201210557) do
+ActiveRecord::Schema.define(:version => 20131215231811) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20131201210557) do
     t.boolean  "is_call_for_proposals_open",    :default => true
     t.boolean  "is_call_for_sponsorships_open", :default => true
     t.boolean  "is_schedule_available",         :default => false
+    t.boolean  "is_location_available",         :default => false
   end
 
   create_table "conferences", :force => true do |t|

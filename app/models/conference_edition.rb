@@ -2,7 +2,7 @@ class ConferenceEdition < ActiveRecord::Base
   attr_accessible :from_date, :to_date, :kind, :promo_video_provider, :promo_video_uid, :promo_image, \
   :logo, :conference, :conference_id, :translations_attributes, :tagline, :country, :city, :venue, \
   :sponsorship_packages_pdf, :registration_url, :is_registration_open, :is_call_for_proposals_open, \
-  :is_call_for_sponsorships_open, :is_schedule_available
+  :is_call_for_sponsorships_open, :is_schedule_available, :is_location_available
 
   belongs_to :conference
   has_many :posts, dependent: :destroy

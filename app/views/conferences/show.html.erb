@@ -8,14 +8,15 @@
   <% if display_registration_link?(current_edition) %>
     <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
   <% end %>
-
 </section>
 
-<section id="location">
-  <h1 class="primary-heading"><%= t('location') %></h1>
-  <p><%= current_edition.location %></p>
-  <div id="map-canvas"></div>
-</section>
+<% if current_edition.is_schedule_available %>
+  <section id="location">
+    <h1 class="primary-heading"><%= t('location') %></h1>
+    <p><%= current_edition.location %></p>
+    <div id="map-canvas"></div>
+  </section>
+<% end %>
 
 <% if current_edition.posts.any? %>
   <section id="news">
