@@ -29,6 +29,9 @@ class ConferenceEdition < ActiveRecord::Base
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
   end
 
+  # Callbacks
+  after_destroy :destroy_uploads_folder
+
   # Translations
   has_many :translations
   accepts_nested_attributes_for :translations
@@ -91,5 +94,9 @@ class ConferenceEdition < ActiveRecord::Base
     if (to_date - from_date).to_i > MAX_CONFERENCE_DURATION_IN_DAYS
       errors.add(:to_date, "must be at most #{MAX_CONFERENCE_DURATION_IN_DAYS} days after the start date")
     end
+  end
+
+  def destroy_uploads_folder
+    FileUtils.rm_rf("#{Rails.root}/public/conference_editions/#{id}")
   end
 end
