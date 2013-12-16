@@ -4,24 +4,47 @@
 <%= simple_form_for [:admin, conference, conference_edition], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(conference_edition) %>
 
-  <%= form.input :from_date %>
-  <%= form.input :to_date %>
-  <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
-  <%= form.input :country %>
-  <%= form.input :city %>
-  <%= form.input :venue %>
-  <%= form.input :tagline %>
-  <%= form.input :promo_video_provider %>
-  <%= form.input :promo_video_uid %>
-  <%= form.input :promo_image %>
-  <%= form.input :logo %>
-  <%= form.input :sponsorship_packages_pdf %>
-  <%= form.input :registration_url %>
-  <%= form.input :is_registration_open %>
-  <%= form.input :is_call_for_proposals_open %>
-  <%= form.input :is_call_for_sponsorships_open %>
-  <%= form.input :is_location_available %>
-  <%= form.input :is_schedule_available %>
+  <fieldset>
+    <legend>Marketing Info</legend>
+    <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false, label: 'Tracks' %>
+    <%= form.input :logo %>
+    <%= form.input :promo_image %>
+    <%= form.input :tagline %>
+    <%= form.input :promo_video_provider, as: :select, collection: ConferenceEdition::VIDEO_PROVIDERS, include_blank: false %>
+    <%= form.input :promo_video_uid %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Date</legend>
+    <%= form.input :from_date %>
+    <%= form.input :to_date %>
+    <%= form.input :is_schedule_available, label: 'Is schedule available?', inline_label: 'Yes' %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Location</legend>
+    <%= form.input :is_location_available, label: 'Is location available?', inline_label: 'Yes' %>
+    <%= form.input :country %>
+    <%= form.input :city %>
+    <%= form.input :venue %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Registration</legend>
+    <%= form.input :is_registration_open, label: 'Is registration open?', inline_label: 'Yes' %>
+    <%= form.input :registration_url %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Call for Sponsorships</legend>
+    <%= form.input :is_call_for_sponsorships_open, label: 'Is call for sponsorships open?', inline_label: 'Yes' %>
+    <%= form.input :sponsorship_packages_pdf %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Call for Proposals</legend>
+    <%= form.input :is_call_for_proposals_open, label: 'Is call for proposals open?', inline_label: 'Yes' %>
+  </fieldset>
 
   <div class="form-actions">
     <%= form.submit "#{action.titleize} Conference Edition", class: 'btn btn-large btn-primary' %>

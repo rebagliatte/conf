@@ -5,24 +5,40 @@
 
 <table class="table">
   <tr>
-    <th>ID</th>
-    <td><%= @conference_edition.id %></td>
+    <th>Tracks</th>
+    <td><%= @conference_edition.kind %></td>
   </tr>
   <tr>
-    <th>From date</th>
-    <td><%= @conference_edition.from_date %></td>
+    <th>Logo</th>
+    <td><%= image_tag @conference_edition.logo %></td>
   </tr>
   <tr>
-    <th>To date</th>
-    <td><%= @conference_edition.to_date %></td>
+    <th>Promo image</th>
+    <td><%= image_tag @conference_edition.promo_image %></td>
   </tr>
   <tr>
     <th>Tagline</th>
     <td><%= @conference_edition.tagline %></td>
   </tr>
   <tr>
-    <th>Kind</th>
-    <td><%= @conference_edition.kind %></td>
+    <th>Video</th>
+    <td><%= video_embed_code(@conference_edition.promo_video_provider, @conference_edition.promo_video_uid) %></td>
+  </tr>
+  <tr>
+    <th>From Date</th>
+    <td><%= @conference_edition.from_date %></td>
+  </tr>
+  <tr>
+    <th>To Date</th>
+    <td><%= @conference_edition.to_date %></td>
+  </tr>
+  <tr>
+    <th>Is schedule available?</th>
+    <td><%= @conference_edition.is_schedule_available %></td>
+  </tr>
+  <tr>
+    <th>Is location available?</th>
+    <td><%= @conference_edition.is_location_available %></td>
   </tr>
   <tr>
     <th>Country</th>
@@ -37,47 +53,19 @@
     <td><%= @conference_edition.venue %></td>
   </tr>
   <tr>
-    <th>Logo</th>
-    <td><%= image_tag @conference_edition.logo %></td>
-  </tr>
-  <tr>
-    <th>Promo Image</th>
-    <td><%= image_tag @conference_edition.promo_image %></td>
-  </tr>
-  <tr>
-    <th>Promo Video</th>
-    <td><%= @conference_edition.promo_video_uid %></td>
-  </tr>
-  <tr>
-    <th>Sponsorship Packages PDF</th>
-    <td>
-      <% if @conference_edition.sponsorship_packages_pdf.present? %>
-      <%= link_to @conference_edition.sponsorship_packages_pdf.file.filename, @conference_edition.sponsorship_packages_pdf.url %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>Registration url</th>
-    <td><%= link_to @conference_edition.registration_url %></td>
-  </tr>
-  <tr>
     <th>Is registration open?</th>
     <td><%= @conference_edition.is_registration_open %></td>
   </tr>
   <tr>
-    <th>Is call for proposals open?</th>
-    <td><%= @conference_edition.is_call_for_proposals_open %></td>
-  </tr>
-  <tr>
-    <th>Is call for call for sponsorships open?</th>
+    <th>Is call for sponsorships open?</th>
     <td><%= @conference_edition.is_call_for_sponsorships_open %></td>
   </tr>
   <tr>
-    <th>Is location avaialable?</th>
-    <td><%= @conference_edition.is_location_available %></td>
+    <th>Sponsorship packages pdf</th>
+    <td><%= link_to @conference_edition.sponsorship_packages_pdf %></td>
   </tr>
   <tr>
-    <th>Is schedule avaialable?</th>
-    <td><%= @conference_edition.is_schedule_available %></td>
+    <th>Is call for proposals open?</th>
+    <td><%= @conference_edition.is_call_for_proposals_open %></td>
   </tr>
 </table>
