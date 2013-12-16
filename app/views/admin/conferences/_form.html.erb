@@ -22,18 +22,13 @@
   <%= form.simple_fields_for :conference_editions do |ce| %>
     <fieldset>
       <legend>Current Conference Edition information</legend>
-      <%= ce.input :tagline %>
       <%= ce.input :logo %>
       <%= ce.input :from_date %>
       <%= ce.input :to_date %>
+      <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
       <%= ce.input :country %>
       <%= ce.input :city %>
       <%= ce.input :venue %>
-      <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
-      <%= ce.input :promo_video_provider %>
-      <%= ce.input :promo_video_uid %>
-      <%= ce.input :promo_image %>
-      <%= ce.input :sponsorship_packages_pdf %>
     </fieldset>
   <% end %>
 
