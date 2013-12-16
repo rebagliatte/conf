@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131215231811) do
+ActiveRecord::Schema.define(:version => 20131216002643) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20131215231811) do
     t.boolean  "is_call_for_sponsorships_open", :default => true
     t.boolean  "is_schedule_available",         :default => false
     t.boolean  "is_location_available",         :default => false
+    t.text     "notes_to_speakers",             :default => ""
   end
 
   create_table "conferences", :force => true do |t|
@@ -153,6 +154,10 @@ ActiveRecord::Schema.define(:version => 20131215231811) do
     t.datetime "updated_at",                               :null => false
     t.integer  "conference_edition_id",                    :null => false
     t.boolean  "is_confirmed",          :default => false
+    t.string   "lanyrd_username",       :default => ""
+    t.string   "job_title",             :default => ""
+    t.string   "phone",                 :default => ""
+    t.string   "website",               :default => ""
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|
@@ -207,6 +212,8 @@ ActiveRecord::Schema.define(:version => 20131215231811) do
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.integer  "conference_edition_id",                        :null => false
+    t.text     "notes_to_organizers",   :default => ""
+    t.string   "language",                                     :null => false
   end
 
   create_table "users", :force => true do |t|

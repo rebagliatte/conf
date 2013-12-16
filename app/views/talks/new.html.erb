@@ -3,21 +3,32 @@
 <%= simple_form_for [current_edition, @talk] do |form| %>
   <%= error_messages_for(@talk) %>
 
+  <%= markdown(current_edition.notes_to_speakers) %>
+
   <fieldset>
-    <legend>Proposed Session</legend>
+    <legend>About your proposal</legend>
     <%= form.input :title %>
     <%= form.input :abstract %>
+    <%= form.input :language %>
+    <%= form.input :notes_to_organizers %>
   </fieldset>
 
   <fieldset>
-    <legend>Speaker Info</legend>
+    <legend>About you</legend>
     <%= form.simple_fields_for :speakers do |speaker| %>
       <%= speaker.input :name %>
       <%= speaker.input :email %>
       <%= speaker.input :bio, as: :text %>
+      <%= speaker.input :company %>
+      <%= speaker.input :job_title %>
+      <%= speaker.input :country %>
+      <%= speaker.input :city %>
+      <%= speaker.input :phone %>
+      <%= speaker.input :website %>
       <%= speaker.input :twitter_username %>
       <%= speaker.input :github_username %>
-      <%= speaker.input :avatar, required: !signed_in? %>
+      <%= speaker.input :lanyrd_username %>
+      <%= speaker.input :avatar %>
       <%= speaker.input :avatar_cache, as: :hidden %>
       <% if current_user %>
         <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
