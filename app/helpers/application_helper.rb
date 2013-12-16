@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def video_embed_code(provider, uid)
-    return '' unless provider && uid
+    return '' unless provider.present? && uid.present?
 
     case provider
     when 'youtube'
