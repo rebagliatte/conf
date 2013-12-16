@@ -34,6 +34,15 @@ pt:
   pt: Português
   es: Espanhol
 
+  talks:
+    new:
+      about_your_proposal: Sobre a sua proposta
+      abstract_hint: "Breve descrição de sua palestra. Este será o público, se esta proposta for aceito. Pode usar remarcação neste campo."
+      language_hint: Em que língua você entregar essa conversa?
+      notes_to_organizers_hint: "Qualquer coisa que você queira nos dizer sobre esta proposta? Já deu essa conversa em algum lugar? Existem vídeos / slides de sobre ele? Você tem necessidades especiais para a palestra? É a sua primeira vez falando em uma conferência? Não se preocupe, tudo o que nos dizem aqui é particular."
+      about_you: Sobre você
+      bio_hint: "Um curto parágrafo sobre você. Este será o público, se esta proposta for aceito. Pode usar remarcação neste campo."
+
   date:
     abbr_day_names:
     - Dom
@@ -254,10 +263,19 @@ pt:
       talk:
         title: Título
         abstract: Abstrato
+        language: Linguagem
+        notes_to_organizers: Notas aos organizadores
       speaker:
         name: Nome
         email: E-mail
         bio: Bio
+        company: Companhia
+        job_title: Cargo
+        country: País
+        city: Cidade
+        phone: Telefone
+        website: Site
         twitter_username: Usuário do Twitter
         github_username: Usuário do Github
+        lanyrd_username: Usuário do Lanyrd
         avatar: Imagem

@@ -6,19 +6,19 @@
   <%= markdown(current_edition.notes_to_speakers) %>
 
   <fieldset>
-    <legend>About your proposal</legend>
+    <legend><%= t('.about_your_proposal') %></legend>
     <%= form.input :title %>
-    <%= form.input :abstract %>
-    <%= form.input :language %>
-    <%= form.input :notes_to_organizers %>
+    <%= form.input :abstract, hint: t('.abstract_hint') %>
+    <%= form.input :language, hint: t('.language_hint') %>
+    <%= form.input :notes_to_organizers, hint: t('.notes_to_organizers_hint') %>
   </fieldset>
 
   <fieldset>
-    <legend>About you</legend>
+    <legend><%= t('.about_you') %></legend>
     <%= form.simple_fields_for :speakers do |speaker| %>
       <%= speaker.input :name %>
       <%= speaker.input :email %>
-      <%= speaker.input :bio, as: :text %>
+      <%= speaker.input :bio, as: :text, hint: t('.bio_hint') %>
       <%= speaker.input :company %>
       <%= speaker.input :job_title %>
       <%= speaker.input :country %>
@@ -30,6 +30,7 @@
       <%= speaker.input :lanyrd_username %>
       <%= speaker.input :avatar %>
       <%= speaker.input :avatar_cache, as: :hidden %>
+
       <% if current_user %>
         <%= speaker.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
       <% end %>

@@ -33,3 +33,12 @@ en:
   en: English
   pt: Portuguese
   es: Spanish
+
+  talks:
+    new:
+      about_your_proposal: About your proposal
+      abstract_hint: Short description of your talk. This will be public if this proposal gets accepted. You may use markdown in this field.
+      language_hint: In which language would you deliver this talk?
+      notes_to_organizers_hint: "Anything you want to tell us about this proposal? Already gave this talk somewhere? Are there any videos/slides about it out there? Do you have any special needs for the talk? Is this your first time speaking? Don't worry, anything you tell us here is private. Pinky swear."
+      about_you: About you
+      bio_hint: A short paragraph about yourself. This will be public if this proposal gets accepted. You may use markdown in this field.

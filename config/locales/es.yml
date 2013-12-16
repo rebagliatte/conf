@@ -34,6 +34,15 @@ es:
   pt: Portugués
   es: Español
 
+  talks:
+    new:
+      about_your_proposal: Sobre tu charla
+      abstract_hint: Breve descripción de tu charla. Será pública si la aceptamos.
+      language_hint: ¿En qué idioma darías la charla?
+      notes_to_organizers_hint: "¿Quieres agregar algo para los organizadores? ¿Ya diste esta charla? ¿Hay videos/slides en algún lado? ¿Hay algo en especial que necesites durante la charla? ¿Es tu primera vez presentando en una conferencia? No te preocupes, cualquier cosa que nos cuentes aquí va a ser privada :)"
+      about_you: Sobre ti
+      bio_hint: Un párrafo breve sobre ti. Se hará público si aceptamos la charla.
+
   date:
     abbr_day_names:
     - dom
@@ -246,11 +255,19 @@ es:
       talk:
         title: Título
         abstract: Abstracto
+        language: Idioma
+        notes_to_organizers: Notas para los organizadores
       speaker:
         name: Nombre
         email: Email
-        bio: Biografía
+        bio: Bio
+        company: Empresa
+        job_title: Posición
+        country: País
+        city: Ciudad
+        phone: Celular
+        website: Sitio web
         twitter_username: Usuario de Twitter
         github_username: Usuario de Github
+        lanyrd_username: Usuario de Lanyrd
         avatar: Imágen
-
