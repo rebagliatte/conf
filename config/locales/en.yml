@@ -30,7 +30,6 @@ en:
   submit_your_proposal: Submit your proposal
   talks: Talks
 
-  translation:
-    en: English
-    pt: Portuguese
-    es: Spanish
+  en: English
+  pt: Portuguese
+  es: Spanish

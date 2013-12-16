@@ -1,5 +1,5 @@
 <ul class="lang">
-  <li><%= link_to_unless_current "English", locale: "en" %></li>
-  <li><%= link_to_unless_current "Español", locale: "es" %></li>
-  <li><%= link_to_unless_current "Português", locale: "pt" %></li>
+  <li><%= link_to_unless_current( t('en'), locale: "en") %></li>
+  <li><%= link_to_unless_current( t('es'), locale: "es") %></li>
+  <li><%= link_to_unless_current( t('pt'), locale: "pt") %></li>
 </ul>
