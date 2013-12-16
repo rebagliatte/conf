@@ -1,7 +1,7 @@
 class RemoveTranslatedColumns < ActiveRecord::Migration
   def change
-    # remove_columns :talks, :title
-    # remove_columns :talks, :abstract
+    remove_columns :talks, :title
+    remove_columns :talks, :abstract
     remove_columns :posts, :title
     remove_columns :posts, :body
     remove_columns :posts, :summary

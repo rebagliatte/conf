@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131216002643) do
+ActiveRecord::Schema.define(:version => 20131216024414) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20131216002643) do
     t.string   "venue",                 :default => ""
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
+    t.text     "notes_to_speakers",     :default => ""
   end
 
   add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"
@@ -45,7 +46,6 @@ ActiveRecord::Schema.define(:version => 20131216002643) do
     t.boolean  "is_call_for_sponsorships_open", :default => true
     t.boolean  "is_schedule_available",         :default => false
     t.boolean  "is_location_available",         :default => false
-    t.text     "notes_to_speakers",             :default => ""
   end
 
   create_table "conferences", :force => true do |t|
