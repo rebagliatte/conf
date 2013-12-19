@@ -17,6 +17,7 @@ class Talk < ActiveRecord::Base
   validates :abstract, presence: true
   validates :conference_edition_id, presence: true
   validates :status, inclusion: { in: STATUSES }
+  validates :language, presence: true
 
   # Translations
   has_many :translations
