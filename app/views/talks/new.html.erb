@@ -9,7 +9,7 @@
     <legend><%= t('.about_your_proposal') %></legend>
     <%= form.input :title %>
     <%= form.input :abstract, hint: t('.abstract_hint') %>
-    <%= form.input :language, hint: t('.language_hint') %>
+    <%= form.input :language, hint: t('.language_hint'), collection: current_edition.languages, include_blank: false %>
     <%= form.input :notes_to_organizers, hint: t('.notes_to_organizers_hint') %>
   </fieldset>
 

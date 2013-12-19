@@ -1,7 +1,8 @@
 class Talk < ActiveRecord::Base
   attr_accessible :abstract, :room, :room_id, :slides_url, :slot, :slot_id, \
   :status, :title, :video_url, :speaker_ids, :speakers_attributes, \
-  :conference_edition, :conference_edition_id, :translations_attributes
+  :conference_edition, :conference_edition_id, :translations_attributes, \
+  :notes_to_organizers, :language
 
   belongs_to :slot
   belongs_to :room

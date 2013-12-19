@@ -135,6 +135,7 @@ a:hover {
 
 /* Forms */
 .simple_form {
+  text-align: left;
   fieldset {
     margin-bottom: 4em;
   }
@@ -154,12 +155,9 @@ a:hover {
   input[type="tel"],
   textarea,
   select {
-    font-size: 1em;
-    line-height: 1.5em;
-    width: 100%;
     box-sizing: border-box;
-    border: 1px solid #aeaeae;
-    padding: 0.5em;
+    width: 100%;
+    min-height: 35px;
   }
   textarea {
     height: 8em;
