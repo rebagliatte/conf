@@ -50,6 +50,7 @@
 <% if current_edition.is_email_subscription_enabled %>
   <section id="subscriptions">
     <h1 class="primary-heading"><%= t('stay_up_to_date') %></h1>
+    <%= markdown(current_edition.notes_to_subscribers) %>
     <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form' }) do |form| %>
       <%= error_messages_for(@subscriber) %>
       <%= form.input_field :email, placeholder: 'john@doe.com' %>

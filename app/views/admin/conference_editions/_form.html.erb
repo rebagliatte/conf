@@ -47,6 +47,12 @@
     <%= form.input :notes_to_speakers, as: :text, hint: 'Markdown available' %>
   </fieldset>
 
+  <fieldset>
+    <legend>Email Subscribers</legend>
+    <%= form.input :is_email_subscription_enabled, label: 'Collect subscriber emails?', inline_label: 'Yes' %>
+    <%= form.input :notes_to_subscribers, as: :text, hint: 'Markdown available' %>
+  </fieldset>
+
   <div class="form-actions">
     <%= form.submit "#{action.titleize} Conference Edition", class: 'btn btn-large btn-primary' %>
   </div>

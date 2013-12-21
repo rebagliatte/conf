@@ -72,4 +72,12 @@
     <th>Notes to speakers</th>
     <td><%= markdown(@conference_edition.notes_to_speakers) %></td>
   </tr>
+  <tr>
+    <th>Collect subscriber emails?</th>
+    <td><%= @conference_edition.is_email_subscription_enabled %></td>
+  </tr>
+  <tr>
+    <th>Notes to subscribers</th>
+    <td><%= markdown(@conference_edition.notes_to_subscribers) %></td>
+  </tr>
 </table>
