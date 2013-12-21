@@ -11,6 +11,7 @@ Conf::Application.routes.draw do
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)
       resources :posts, only: %w(show index new create edit update)
+      resources :subscribers, only: %w(index)
     end
 
     match '/' => 'conferences#index'
@@ -30,6 +31,7 @@ Conf::Application.routes.draw do
       resources :slots, only: %w(index)
       resources :sponsors, only: %w(index)
       resources :talks, only: %w(index show new create edit update)
+      resources :subscribers, only: %w(create)
     end
 
     root to: 'marketing#home'

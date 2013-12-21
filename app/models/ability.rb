@@ -9,6 +9,7 @@ class Ability
       can :manage, Slot, conference: { owner_id: user.id }
       can :manage, Speaker, conference: { owner_id: user.id }
       can :manage, Sponsor, conference: { owner_id: user.id }
+      can :manage, Subscriber, conference: { owner_id: user.id }
       can :manage, Talk, conference: { owner_id: user.id }
     elsif user.superadmin?
       can :manage, :all

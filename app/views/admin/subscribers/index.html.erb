@@ -1,0 +1,27 @@
+<header class="admin-header">
+  <%= title 'Subscribers' %>
+  <%= link_to 'Download as CSV', admin_conference_edition_subscribers_path(@conference_edition, format: :csv), class: 'btn main-cta' %>
+</header>
+
+<% if @subscribers.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subscribers.each do |subscriber| %>
+        <tr>
+          <td><%= subscriber.id %></td>
+          <td><%= subscriber.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no subscribers for this conference edition yet.
+  </p>
+<% end %>

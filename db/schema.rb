@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131216024414) do
+ActiveRecord::Schema.define(:version => 20131219194436) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20131216024414) do
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
     t.text     "notes_to_speakers",     :default => ""
+    t.text     "notes_to_subscribers",  :default => ""
   end
 
   add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20131216024414) do
     t.boolean  "is_call_for_sponsorships_open", :default => true
     t.boolean  "is_schedule_available",         :default => false
     t.boolean  "is_location_available",         :default => false
+    t.boolean  "is_email_subscription_enabled", :default => true,           :null => false
   end
 
   create_table "conferences", :force => true do |t|
@@ -85,6 +87,16 @@ ActiveRecord::Schema.define(:version => 20131216024414) do
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "sender_id",                       :null => false
+    t.integer  "conference_id",                   :null => false
+    t.string   "recipient_email", :default => "", :null => false
+    t.string   "token",           :default => "", :null => false
+    t.datetime "sent_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
 
   create_table "languages", :force => true do |t|
     t.string   "name"
@@ -189,6 +201,13 @@ ActiveRecord::Schema.define(:version => 20131216024414) do
     t.datetime "updated_at",                            :null => false
   end
 
+  create_table "subscribers", :force => true do |t|
+    t.integer  "conference_edition_id"
+    t.string   "email"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "talk_translations", :force => true do |t|
     t.integer  "talk_id"
     t.string   "locale"
@@ -217,13 +236,14 @@ ActiveRecord::Schema.define(:version => 20131216024414) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",       :default => "",     :null => false
-    t.string   "nickname",   :default => ""
-    t.string   "email",      :default => ""
-    t.string   "image",      :default => ""
-    t.string   "role",       :default => "user"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.string   "name",          :default => "",     :null => false
+    t.string   "nickname",      :default => ""
+    t.string   "email",         :default => ""
+    t.string   "image",         :default => ""
+    t.string   "role",          :default => "user"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "invitation_id"
   end
 
 end
