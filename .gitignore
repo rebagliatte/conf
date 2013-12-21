@@ -8,6 +8,3 @@
 # App configs
 /config/application.yml
 /config/database.yml
-
-* Public folder
-/public/
