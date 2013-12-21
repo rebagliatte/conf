@@ -1,5 +1,6 @@
 <header class="admin-header">
   <%= title 'Subscribers' %>
+  <%= link_to 'Download as CSV', admin_conference_edition_subscribers_path(@conference_edition, format: :csv), class: 'btn main-cta' %>
 </header>
 
 <% if @subscribers.any? %>
