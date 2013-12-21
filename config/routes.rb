@@ -11,6 +11,7 @@ Conf::Application.routes.draw do
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)
       resources :posts, only: %w(show index new create edit update)
+      resources :subscribers, only: %w(index)
     end
 
     match '/' => 'conferences#index'
