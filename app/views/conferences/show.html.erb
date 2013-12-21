@@ -18,12 +18,6 @@
   </section>
 <% end %>
 
-<% if @posts.any? %>
-  <section id="news">
-    <%= render(partial: 'posts/summarized_list', locals: { conference_edition: current_edition, posts: @posts }) %>
-  </section>
-<% end %>
-
 <% if current_edition.previous_editions.any? %>
   <section id="previous-editions">
     <h1 class="primary-heading"><%= t('previous_editions') %></h1>
@@ -44,6 +38,12 @@
     <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
     <p><%= t('show_your_support_to') %> <%= current_conference.name %></p>
     <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
+  </section>
+<% end %>
+
+<% if @posts.any? %>
+  <section id="news">
+    <%= render(partial: 'posts/summarized_list', locals: { conference_edition: current_edition, posts: @posts }) %>
   </section>
 <% end %>
 
