@@ -6,6 +6,7 @@ class ConferenceEdition < ActiveRecord::Base
 
   belongs_to :conference
   has_many :posts, dependent: :destroy
+  has_many :subscribers, dependent: :destroy
   has_many :rooms, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :speakers, dependent: :destroy
@@ -16,6 +17,7 @@ class ConferenceEdition < ActiveRecord::Base
   KINDS = %w( single_track multiple_track )
   VIDEO_PROVIDERS = %w( youtube vimeo )
   MAX_CONFERENCE_DURATION_IN_DAYS = 30
+  URL_REGEX = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
   # Validations
   validates :from_date, presence: true
@@ -24,6 +26,7 @@ class ConferenceEdition < ActiveRecord::Base
   validate :valid_date_range
   validates :logo, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
+  validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }

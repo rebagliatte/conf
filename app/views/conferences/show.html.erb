@@ -47,6 +47,17 @@
   </section>
 <% end %>
 
+<% if current_edition.is_email_subscription_enabled %>
+  <section id="subscriptions">
+    <h1 class="primary-heading"><%= t('stay_up_to_date') %></h1>
+    <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form' }) do |form| %>
+      <%= error_messages_for(@subscriber) %>
+      <%= form.input_field :email, placeholder: 'john@doe.com' %>
+      <%= form.submit t('subscribe'), class: 'btn btn-primary' %>
+    <% end %>
+  </section>
+<% end %>
+
 <% if current_edition.is_schedule_available %>
   <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
 <% end %>

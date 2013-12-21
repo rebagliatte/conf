@@ -162,10 +162,32 @@ a:hover {
   textarea {
     height: 8em;
   }
+  input[type="submit"] {
+    min-height: 35px;
+  }
   .help-block {
     font-size: 0.8em;
     color: #888;
     font-style: italic;
+  }
+  &.form-inline {
+    input {
+      display: inline-block;
+    }
+  }
+  &.subscription-form {
+    text-align: center;
+    input {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    input[type="text"] {
+      width: 50%;
+    }
+    input[type="submit"] {
+      width: 10%;
+    }
   }
 }
 

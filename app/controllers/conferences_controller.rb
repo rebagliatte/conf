@@ -5,5 +5,6 @@ class ConferencesController < ApplicationController
 
   def show
     @posts = current_edition.posts.limit(3)
+    @subscriber = current_edition.subscribers.new()
   end
 end
