@@ -18,7 +18,8 @@ gem 'omniauth-github'
 # Images
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog', '~> 1.3.1'
+gem 'fog'
+gem 'unf'
 
 # Utilities
 gem 'redcarpet'
