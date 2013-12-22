@@ -8,7 +8,7 @@ class Sponsor < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true, uniqueness: {scope: :conference_edition_id}
-  validates :logo, presence: true
+  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }, if: :logo?
   validates :website_url, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS }
 

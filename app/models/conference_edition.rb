@@ -28,7 +28,8 @@ class ConferenceEdition < ActiveRecord::Base
   validates :to_date, presence: true
   validates :to_date, presence: true
   validate :valid_date_range
-  validates :logo, presence: true
+  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
+  validates :sponsorship_packages_pdf, file_size: { maximum: 1.megabytes.to_i }, if: :sponsorship_packages_pdf?
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
 

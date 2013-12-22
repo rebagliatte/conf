@@ -17,6 +17,7 @@ class Speaker < ActiveRecord::Base
   validates :email, presence: true, format: EMAIL_REGEX
   validates :website, format: URL_REGEX, if: :website?
   validates :twitter_username, presence: true
+  validates :avatar, file_size: { maximum: 0.5.megabytes.to_i }, if: :avatar?
 
   # Translations
   has_many :translations

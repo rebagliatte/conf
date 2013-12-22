@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   # Validations
   validates :title, presence: true
   validates :conference_edition_id, presence: true
+  validates :image, file_size: { maximum: 0.5.megabytes.to_i }, if: :image?
 
   # Translations
   has_many :translations
