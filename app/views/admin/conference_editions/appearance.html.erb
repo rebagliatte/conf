@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <th>Uploaded images</th>
-    <td>
+    <td class="edition-custom-images">
       <%= render(partial: 'admin/images/list', locals: { images: @conference_edition.images }) %>
 
       <% if available_image_uploads(@conference_edition) > 0 %>

@@ -7,7 +7,7 @@ class Image < ActiveRecord::Base
   MAX_IMAGES_PER_EDITION = 10
 
   # Validations
-  validates :image, presence: true
+  validates :image, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
   validate :edition_images_length
 
   def edition_images_length
