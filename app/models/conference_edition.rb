@@ -5,7 +5,7 @@ class ConferenceEdition < ActiveRecord::Base
   :sponsorship_packages_pdf, :registration_url, :is_registration_open, \
   :is_call_for_proposals_open, :is_call_for_sponsorships_open, \
   :is_schedule_available, :is_location_available, :notes_to_speakers, \
-  :is_email_subscription_enabled, :notes_to_subscribers
+  :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles
 
   belongs_to :conference
   has_many :posts, dependent: :destroy

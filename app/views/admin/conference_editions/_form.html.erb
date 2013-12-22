@@ -47,9 +47,14 @@
   </fieldset>
 
   <fieldset>
-    <legend>Email Subscribers</legend>
+    <legend>Subscribers</legend>
     <%= form.input :is_email_subscription_enabled, label: 'Collect subscriber emails?', inline_label: 'Yes' %>
     <%= form.input :notes_to_subscribers, as: :text, hint: 'Markdown available' %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Appearance</legend>
+    <%= form.input :custom_styles %>
   </fieldset>
 
   <div class="form-actions">
