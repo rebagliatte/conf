@@ -8,7 +8,6 @@
     <legend>Marketing Info</legend>
     <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false, label: 'Tracks' %>
     <%= form.input :logo %>
-    <%= form.input :promo_image %>
     <%= form.input :tagline %>
     <%= form.input :promo_video_provider, as: :select, collection: ConferenceEdition::VIDEO_PROVIDERS, include_blank: false %>
     <%= form.input :promo_video_uid %>
@@ -48,7 +47,7 @@
   </fieldset>
 
   <fieldset>
-    <legend>Email Subscribers</legend>
+    <legend>Subscribers</legend>
     <%= form.input :is_email_subscription_enabled, label: 'Collect subscriber emails?', inline_label: 'Yes' %>
     <%= form.input :notes_to_subscribers, as: :text, hint: 'Markdown available' %>
   </fieldset>

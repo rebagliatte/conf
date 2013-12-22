@@ -43,4 +43,10 @@ module ConferenceEditionsHelper
     ce.speakers.confirmed.any?
   end
 
+  def available_image_uploads(ce)
+    maximum = Image::MAX_IMAGES_PER_EDITION
+    uploaded_images = ce.images.count
+    maximum - uploaded_images
+  end
+
 end

@@ -3,10 +3,21 @@ Conf::Application.routes.draw do
   # Admin
   namespace :admin do
     resources :conferences, only: %w(show index new create edit update) do
-      resources :conference_editions, only: %w(show new create edit update)
+      resources :conference_editions, only: %w(show new create edit update) do
+        member do
+          get :appearance
+          get :edit_appearance
+          put :update_appearance
+        end
+      end
     end
 
     resources :conference_editions do
+      resources :images, only: %w(new create) do
+        member do
+          put :destroy
+        end
+      end
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)

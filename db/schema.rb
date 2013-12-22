@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219194436) do
+ActiveRecord::Schema.define(:version => 20131222170332) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20131219194436) do
     t.string   "kind",                          :default => "single_track", :null => false
     t.string   "promo_video_provider",          :default => ""
     t.string   "promo_video_uid",               :default => ""
-    t.string   "promo_image",                   :default => ""
     t.string   "logo",                          :default => ""
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20131219194436) do
     t.boolean  "is_schedule_available",         :default => false
     t.boolean  "is_location_available",         :default => false
     t.boolean  "is_email_subscription_enabled", :default => true,           :null => false
+    t.text     "custom_styles",                 :default => ""
   end
 
   create_table "conferences", :force => true do |t|
@@ -87,6 +87,13 @@ ActiveRecord::Schema.define(:version => 20131219194436) do
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
+
+  create_table "images", :force => true do |t|
+    t.integer  "conference_edition_id"
+    t.string   "image"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id",                       :null => false

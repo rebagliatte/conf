@@ -1,0 +1,29 @@
+<header class="admin-header">
+  <%= title 'Appearance' %>
+</header>
+
+<table class="table">
+  <tr>
+    <th>Custom styles</th>
+    <td>
+      <% if @conference_edition.custom_styles.present? %>
+        <pre><%= @conference_edition.custom_styles %></pre>
+      <% end %>
+      <%= link_to 'Edit', edit_appearance_admin_conference_conference_edition_path(@conference, @conference_edition), class: 'btn' %>
+    </td>
+  </tr>
+  <tr>
+    <th>Uploaded images</th>
+    <td class="edition-custom-images">
+      <%= render(partial: 'admin/images/list', locals: { images: @conference_edition.images }) %>
+
+      <% if available_image_uploads(@conference_edition) > 0 %>
+        <p class="alert alert-info">You still have <%= available_image_uploads(@conference_edition) %> image uploads available for this conference edition</p>
+        <%= link_to 'Upload an image', new_admin_conference_edition_image_path(@conference_edition), class: 'btn' %>
+      <% else %>
+        <p class="alert alert-danger">You don't have any available image uploads for this conference edition.</p>
+      <% end %>
+
+    </td>
+  </tr>
+</table>

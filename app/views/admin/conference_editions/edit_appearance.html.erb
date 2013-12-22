@@ -1,0 +1,14 @@
+<%= title "Edit custom styles" %>
+
+<%= simple_form_for [:admin, @conference,@conference_edition],
+  url: update_appearance_admin_conference_conference_edition_path,
+  html: { class: 'form-horizontal' } do |form| %>
+
+  <%= error_messages_for(@conference_edition) %>
+
+  <%= form.input_field :custom_styles, class: 'custom-styles' %>
+
+  <div class="form-actions">
+    <%= form.submit "Update styles", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

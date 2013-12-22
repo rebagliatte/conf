@@ -1,13 +1,14 @@
 class ConferenceEdition < ActiveRecord::Base
   attr_accessible :from_date, :to_date, :kind, :promo_video_provider, \
-  :promo_video_uid, :promo_image, :logo, :conference, :conference_id, \
+  :promo_video_uid, :logo, :conference, :conference_id, \
   :translations_attributes, :tagline, :country, :city, :venue, \
   :sponsorship_packages_pdf, :registration_url, :is_registration_open, \
   :is_call_for_proposals_open, :is_call_for_sponsorships_open, \
   :is_schedule_available, :is_location_available, :notes_to_speakers, \
-  :is_email_subscription_enabled, :notes_to_subscribers
+  :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles
 
   belongs_to :conference
+  has_many :images, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :subscribers, dependent: :destroy
   has_many :rooms, dependent: :destroy
@@ -27,7 +28,8 @@ class ConferenceEdition < ActiveRecord::Base
   validates :to_date, presence: true
   validates :to_date, presence: true
   validate :valid_date_range
-  validates :logo, presence: true
+  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
+  validates :sponsorship_packages_pdf, file_size: { maximum: 1.megabytes.to_i }, if: :sponsorship_packages_pdf?
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
 
@@ -46,7 +48,6 @@ class ConferenceEdition < ActiveRecord::Base
 
   # Uploaders
   mount_uploader :logo, ImageUploader
-  mount_uploader :promo_image, ImageUploader
   mount_uploader :sponsorship_packages_pdf, AttachmentUploader
 
   # Scopes
