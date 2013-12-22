@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :identities
   has_one :speaker
-  has_and_belongs_to_many :manageable_conferences, class_name: 'Conference'
+  has_and_belongs_to_many :manageable_conference_editions, class_name: 'ConferenceEdition'
   has_many :owned_conferences, class_name: 'Conference', foreign_key: :owner_id
 
   ROLES = %w( user admin )

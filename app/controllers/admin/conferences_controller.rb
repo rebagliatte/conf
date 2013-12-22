@@ -13,8 +13,11 @@ class Admin::ConferencesController < AdminController
   end
 
   def create
+    first_edition = @conference.conference_editions.first
+    first_edition.organizers << current_user
+
     if @conference.save
-      link = edit_admin_conference_conference_edition_path(@conference, @conference.conference_editions.first)
+      link = edit_admin_conference_conference_edition_path(@conference, first_edition)
       message = "Conference created successfully! Want to add more details on its \
       #{view_context.link_to('first edition', link)}?".html_safe
       redirect_to admin_conference_path(@conference), flash: { success: message }

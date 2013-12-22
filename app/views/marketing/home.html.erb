@@ -5,3 +5,5 @@
     <li><%= link_to conference.name, root_url(:subdomain => conference.subdomain) %></li>
   <% end %>
 </ul>
+
+<%= link_to 'Create a new conference', new_admin_conference_path, class: 'btn btn-primary' %>
