@@ -71,3 +71,19 @@
     text-decoration: none;
   }
 }
+.edition-custom-images li {
+  position: relative;
+  padding-left: 120px;
+  height: 60px;
+  line-height: 60px;
+  display: block;
+  font-size: 0.8em;
+
+  img {
+    position: absolute;
+    left: 0;
+    height: 50px;
+    max-width: 120px;
+    overflow: hidden;
+  }
+}

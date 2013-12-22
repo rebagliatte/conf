@@ -1,0 +1,11 @@
+<%= title "Upload a new image" %>
+
+<%= simple_form_for [:admin, @conference_edition, @image], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(@image) %>
+
+  <%= form.input_field :image %>
+
+  <div class="form-actions">
+    <%= form.submit "Upload", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

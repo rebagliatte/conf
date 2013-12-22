@@ -1,0 +1,10 @@
+<%# @param images [Models::Image] %>
+
+<% images.each do |i| %>
+  <ul class="edition-custom-images unstyled">
+    <li>
+      <%= image_tag i.image %>
+      <%= i.image %>
+    </li>
+  </ul>
+<% end %>

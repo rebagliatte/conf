@@ -1,6 +1,7 @@
 class Conference < ActiveRecord::Base
-  attr_accessible :email, :facebook_page_username, :name, :twitter_hashtag, :twitter_username, :subdomain, :owner_id, \
-  :conference_editions_attributes, :language_ids
+  attr_accessible :email, :facebook_page_username, :name, :twitter_hashtag, \
+  :twitter_username, :subdomain, :owner_id, :conference_editions_attributes, \
+  :language_ids
 
   belongs_to :owner, class_name: 'User'
   has_and_belongs_to_many :organizers, class_name: 'User'
@@ -16,5 +17,6 @@ class Conference < ActiveRecord::Base
   validates :email, presence: true, format: EMAIL_REGEX
   validates :languages, presence: true
 
+  # Nested attributes
   accepts_nested_attributes_for :conference_editions
 end

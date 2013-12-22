@@ -1,0 +1,20 @@
+<header class="admin-header">
+  <%= title 'Appearance' %>
+</header>
+
+<table class="table">
+  <tr>
+    <th>Custom styles</th>
+    <td>
+      <pre><%= @conference_edition.custom_styles %></pre>
+      <%= link_to 'Edit', edit_appearance_admin_conference_conference_edition_path(@conference, @conference_edition), class: 'btn' %>
+    </td>
+  </tr>
+  <tr>
+    <th>Uploaded images</th>
+    <td>
+      <%= render(partial: 'admin/images/list', locals: { images: @conference_edition.images }) %>
+      <%= link_to 'Add another image', new_admin_conference_edition_image_path(@conference_edition), class: 'btn' %>
+    </td>
+  </tr>
+</table>

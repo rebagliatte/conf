@@ -27,4 +27,19 @@ class Admin::ConferenceEditionsController < AdminController
       render :edit
     end
   end
+
+  def appearance
+  end
+
+  def edit_appearance
+  end
+
+  def update_appearance
+    if @conference_edition.update_attributes(params[:conference_edition])
+      redirect_to appearance_admin_conference_conference_edition_path(@conference, @conference_edition), flash: { success: 'Conference Edition updated successfully!' }
+    else
+      render :edit_appearance
+    end
+  end
+
 end
