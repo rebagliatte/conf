@@ -8,6 +8,7 @@ class ConferenceEdition < ActiveRecord::Base
   :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles
 
   belongs_to :conference
+  has_many :images, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :subscribers, dependent: :destroy
   has_many :rooms, dependent: :destroy
