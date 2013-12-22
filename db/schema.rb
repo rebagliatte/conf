@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131222170332) do
+ActiveRecord::Schema.define(:version => 20131222211039) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20131222170332) do
     t.datetime "updated_at",                                                :null => false
     t.string   "sponsorship_packages_pdf",      :default => ""
     t.string   "registration_url",              :default => ""
-    t.boolean  "is_registration_open",          :default => true
+    t.boolean  "is_registration_open",          :default => false
     t.boolean  "is_call_for_proposals_open",    :default => true
     t.boolean  "is_call_for_sponsorships_open", :default => true
     t.boolean  "is_schedule_available",         :default => false
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(:version => 20131222170332) do
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
 
   create_table "images", :force => true do |t|
-    t.integer  "conference_edition_id"
-    t.string   "image"
+    t.integer  "conference_edition_id", :null => false
+    t.string   "image",                 :null => false
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
