@@ -6,15 +6,11 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :manageable_conferences, class_name: 'Conference'
   has_many :owned_conferences, class_name: 'Conference', foreign_key: :owner_id
 
-  ROLES = %w( user admin superadmin )
+  ROLES = %w( user admin )
 
   # Validations
   validates :name, presence: true
   validates :role, inclusion: { in: ROLES }
-
-  def superadmin?
-    self.role == 'superadmin'
-  end
 
   def admin?
     self.role == 'admin'
