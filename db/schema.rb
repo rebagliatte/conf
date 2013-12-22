@@ -95,16 +95,6 @@ ActiveRecord::Schema.define(:version => 20131222211039) do
     t.datetime "updated_at",            :null => false
   end
 
-  create_table "invitations", :force => true do |t|
-    t.integer  "sender_id",                       :null => false
-    t.integer  "conference_id",                   :null => false
-    t.string   "recipient_email", :default => "", :null => false
-    t.string   "token",           :default => "", :null => false
-    t.datetime "sent_at"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-  end
-
   create_table "languages", :force => true do |t|
     t.string   "name"
     t.string   "code"
@@ -250,7 +240,6 @@ ActiveRecord::Schema.define(:version => 20131222211039) do
     t.string   "role",          :default => "user"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.integer  "invitation_id"
   end
 
 end
