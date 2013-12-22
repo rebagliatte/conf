@@ -13,4 +13,9 @@ class Admin::ImagesController < AdminController
       render :new
     end
   end
+
+  def destroy
+    @image.destroy
+    redirect_to appearance_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition), flash: { success: 'Image removed' }
+  end
 end

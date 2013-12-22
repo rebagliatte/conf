@@ -13,7 +13,11 @@ Conf::Application.routes.draw do
     end
 
     resources :conference_editions do
-      resources :images, only: %w(new create)
+      resources :images, only: %w(new create) do
+        member do
+          put :destroy
+        end
+      end
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)

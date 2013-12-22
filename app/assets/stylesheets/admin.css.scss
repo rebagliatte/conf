@@ -75,10 +75,11 @@
   li {
     position: relative;
     padding-left: 120px;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     display: block;
     font-size: 0.8em;
+    margin-bottom: 10px;
     img {
       position: absolute;
       left: 0;
@@ -86,8 +87,17 @@
       max-width: 120px;
       overflow: hidden;
     }
+    .removal-form {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    &:hover {
+      background: #f7f7f9;
+    }
   }
   .alert {
     margin-bottom: 10px;
   }
+
 }

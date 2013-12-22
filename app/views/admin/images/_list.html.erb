@@ -5,6 +5,10 @@
     <li>
       <%= image_tag i.image %>
       <%= i.image %>
+      <%= simple_form_for [:admin, @conference_edition, i], html: { class: 'removal-form' }  do |form| %>
+        <%= form.input_field :remove_image, as: :hidden %>
+        <%= form.submit "Remove", class: 'btn remove-btn' %>
+      <% end %>
     </li>
   <% end %>
 </ul>
