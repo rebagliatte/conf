@@ -1,9 +1,17 @@
 <header class="admin-header">
   <%= title pretty_conference_and_year(@conference_edition) %>
-  <%= link_to 'Edit', edit_admin_conference_conference_edition_path(@conference, @conference_edition), class: 'btn btn-primary main-cta' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_conference_edition_path(@conference, @conference_edition), class: 'btn btn-primary main-cta' %>
+  <% end %>
+
 </header>
 
 <table class="table">
+  <tr>
+    <th>Organizers</th>
+    <td><%= @conference_edition.organizers.pluck(:name) %></td>
+  </tr>
   <tr>
     <th>Tracks</th>
     <td><%= @conference_edition.kind %></td>

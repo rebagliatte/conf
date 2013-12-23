@@ -1,6 +1,9 @@
 <header class="admin-header">
   <%= title @sponsor.name %>
-  <%= link_to 'Edit', edit_admin_conference_edition_sponsor_path(@conference_edition, @sponsor), class: 'btn btn-primary main-cta' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_edition_sponsor_path(@conference_edition, @sponsor), class: 'btn btn-primary main-cta' %>
+  <% end %>
 </header>
 
 <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @sponsor.translations, resource: @sponsor }) %>
