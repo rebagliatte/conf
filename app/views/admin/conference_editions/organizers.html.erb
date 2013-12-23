@@ -1,0 +1,20 @@
+<header class="admin-header">
+  <%= title 'Organizers' %>
+</header>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @organizers.each do |organizer| %>
+      <tr>
+        <td><%= organizer.id %></td>
+        <td><%= organizer.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

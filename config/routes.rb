@@ -5,9 +5,15 @@ Conf::Application.routes.draw do
     resources :conferences, only: %w(show index new create edit update) do
       resources :conference_editions, only: %w(show new create edit update) do
         member do
+          # Appearance
           get :appearance
           get :edit_appearance
           put :update_appearance
+
+          # Organizers
+          get :organizers
+          get :new_organizer_invitation
+          put :create_organizer_invitation
         end
       end
     end

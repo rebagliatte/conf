@@ -35,7 +35,7 @@ class Ability
 
     # Can read all in the scope of his/her manageable editions' conference
     can :read, Conference, id: user.readable_conference_ids
-    can [:read, :appearance], ConferenceEdition, conference_id: user.readable_conference_ids
+    can [:read, :appearance, :organizers], ConferenceEdition, conference_id: user.readable_conference_ids
 
     #
     # Admin

@@ -30,6 +30,8 @@ class Admin::ConferenceEditionsController < AdminController
     end
   end
 
+  # Appearance
+
   def appearance
   end
 
@@ -42,6 +44,19 @@ class Admin::ConferenceEditionsController < AdminController
     else
       render :edit_appearance
     end
+  end
+
+  # Organizers
+
+  def organizers
+    @organizers = @conference_edition.organizers
+  end
+
+  def new_organizer_invitation
+    @organizer = @conference_edition.organizer.new
+  end
+
+  def create_organizer_invitation
   end
 
 end
