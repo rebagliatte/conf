@@ -9,10 +9,6 @@
 
 <table class="table">
   <tr>
-    <th>Organizers</th>
-    <td><%= @conference_edition.organizers.pluck(:name) %></td>
-  </tr>
-  <tr>
     <th>Tracks</th>
     <td><%= @conference_edition.kind %></td>
   </tr>
@@ -23,6 +19,10 @@
   <tr>
     <th>Tagline</th>
     <td><%= @conference_edition.tagline %></td>
+  </tr>
+  <tr>
+    <th>Organizers</th>
+    <td><%= @conference_edition.organizers.pluck(:name).to_sentence %></td>
   </tr>
   <tr>
     <th>Video</th>
