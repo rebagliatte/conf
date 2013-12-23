@@ -10,6 +10,8 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def create
+    @conference_edition.organizers << current_user
+
     if @conference_edition.save
       redirect_to admin_conference_conference_edition_path(@conference, @conference_edition), flash: { success: 'Conference Edition created successfully!' }
     else
