@@ -52,11 +52,4 @@ class Admin::ConferenceEditionsController < AdminController
     @organizers = @conference_edition.organizers
   end
 
-  def new_organizer_invitation
-    @organizer = @conference_edition.organizer.new
-  end
-
-  def create_organizer_invitation
-  end
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131222222156) do
+ActiveRecord::Schema.define(:version => 20131223220008) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(:version => 20131222222156) do
     t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "organizer_invitations", :force => true do |t|
+    t.integer  "inviter_id",            :null => false
+    t.integer  "invitee_id"
+    t.string   "invitee_email",         :null => false
+    t.string   "token",                 :null => false
+    t.integer  "conference_edition_id", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "post_translations", :force => true do |t|
@@ -233,13 +243,13 @@ ActiveRecord::Schema.define(:version => 20131222222156) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",          :default => "",     :null => false
-    t.string   "nickname",      :default => ""
-    t.string   "email",         :default => ""
-    t.string   "image",         :default => ""
-    t.string   "role",          :default => "user"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.string   "name",       :default => "",     :null => false
+    t.string   "nickname",   :default => ""
+    t.string   "email",      :default => ""
+    t.string   "image",      :default => ""
+    t.string   "role",       :default => "user"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
 end

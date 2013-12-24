@@ -11,6 +11,7 @@ class Ability
     can :manage, Conference, owner_id: user.id
     can :manage, ConferenceEdition, conference: { owner_id: user.id }
     can :manage, Image, conference: { owner_id: user.id }
+    can :manage, OrganizerInvitation, conference: { owner_id: user.id }
     can :manage, Post, conference: { owner_id: user.id }
     can :manage, Slot, conference: { owner_id: user.id }
     can :manage, Speaker, conference: { owner_id: user.id }
@@ -25,6 +26,7 @@ class Ability
     # Can manage all in the scope of his/her manageable editions
     can :manage, ConferenceEdition, id: user.manageable_edition_ids
 
+    can :manage, OrganizerInvitation, conference_edition_id: user.manageable_edition_ids
     can :manage, Image, conference_edition_id: user.manageable_edition_ids
     can :manage, Post, conference_edition_id: user.manageable_edition_ids
     can :manage, Slot, conference_edition_id: user.manageable_edition_ids

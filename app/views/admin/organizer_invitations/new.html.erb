@@ -1,0 +1,11 @@
+<%= title "Invite a new organizer" %>
+
+<%= simple_form_for [:admin, @conference_edition, @organizer_invitation], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(@organizer_invitation) %>
+
+  <%= form.input :invitee_email %>
+
+  <div class="form-actions">
+    <%= form.submit "Invite", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>
