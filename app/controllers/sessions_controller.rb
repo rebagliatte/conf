@@ -1,5 +1,17 @@
 class SessionsController < ApplicationController
 
+  def new
+    if current_user
+      redirect_to root_url, notice: 'You are already signed in'
+    else
+      if params[:organizer_invitation_token]
+        @organizer_invitation = OrganizerInvitation.find_by_token(params[:organizer_invitation_token])
+        session[:organizer_invitation_token] = @organizer_invitation.token
+      end
+      render layout: 'admin'
+    end
+  end
+
   def create
     auth = request.env['omniauth.auth']
 
@@ -25,14 +37,28 @@ class SessionsController < ApplicationController
       if @identity.user.present?
         # The identity is associated with a user, let's log it in
         self.current_user = @identity.user
-        redirect_to root_url, notice: 'Signed in!'
+        flash[:notice] = 'Signed in!'
       else
         # No user is associated with the identity, let's create a new one
         user = User.create_with_omniauth(auth['info'])
         @identity.update_attributes(user: user)
         self.current_user = user
+        flash[:notice] = 'Welcome #{current_user.name}!'
+      end
 
-        redirect_to root_url, notice: "Welcome #{current_user.name}!"
+      # If a organizer invitations token is present, use it and destroy it
+      if session[:organizer_invitation_token]
+        organizer_invitation = OrganizerInvitation.find_by_token(session[:organizer_invitation_token])
+        organizer_invitation.conference_edition.organizers << current_user
+        current_user.update_attributes(email: organizer_invitation.invitee_email)
+        session[:organizer_invitation_token] = nil
+      end
+
+      # Redirect to admin if he/she is an organizer
+      if current_user.manageable_editions.any?
+        redirect_to admin_conferences_url
+      else
+        redirect_to root_url
       end
     end
   end

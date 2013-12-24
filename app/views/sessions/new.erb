@@ -1,0 +1,16 @@
+<div class="signup">
+  <%= title 'Welcome' %>
+
+  <p>
+    <% if @organizer_invitation %>
+      To join the <strong><%= @organizer_invitation.conference.name %>'s organizing team</strong> please sign in using your favorite service.
+    <% else %>
+      Please sign in using your favorite service.
+    <% end %>
+  </p>
+
+  <ul class="authentications-list">
+    <li><%= link_to t('sign_in_twitter'), '/auth/twitter', class: 'twitter btn' %></li>
+    <li><%= link_to t('sign_in_github'), '/auth/github', class: 'github btn' %></li>
+  </ul>
+</div>

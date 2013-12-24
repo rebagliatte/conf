@@ -1,17 +1,12 @@
-<ul class="authentication nav pull-right">
-  <% if current_user %>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <%= image_tag current_user.image %>
-        <%= current_user.name %>
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li><%= link_to t('sign_out'), logout_path %></li>
-      </ul>
-    </li>
-  <% else %>
-    <li><%= link_to t('sign_in_twitter'), '/auth/twitter', class: 'twitter first' %></li>
-    <li><%= link_to t('sign_in_github'), '/auth/github', class: 'github' %></li>
-  <% end %>
-</ul>
+<% if current_user %>
+  <div class="nav pull-right dropdown authentication">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <%= image_tag current_user.image %>
+      <%= current_user.name %>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to t('sign_out'), logout_path %></li>
+    </ul>
+  </div>
+<% end %>

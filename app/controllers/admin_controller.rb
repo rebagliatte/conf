@@ -12,7 +12,7 @@ class AdminController < ApplicationController
 
   def authenticate_user
     unless current_user
-      redirect_to root_url, alert: "Please log in and try again"
+      redirect_to signup_url, alert: "Please sign in"
     end
   end
 

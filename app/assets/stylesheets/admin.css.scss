@@ -7,10 +7,24 @@
 .main-admin-header {
   padding: 0 10px;
   border-bottom: 5px solid $turquoise;
+  position: relative;
   .brand {
     color: $gray;
   }
   .authentication {
+    height: 20px;
+    padding: 10px 0;
+    display: block;
+    a {
+      color: #777;
+      &:hover {
+        text-decoration: none;
+      }
+      .caret {
+        border-top-color: #777;
+        border-bottom-color: #777;
+      }
+    }
     img {
       height: 30px;
       float: left;
@@ -71,6 +85,9 @@
     text-decoration: none;
   }
 }
+
+// conference_editions#appearance
+
 .edition-custom-images {
   li {
     position: relative;
@@ -99,5 +116,18 @@
   .alert {
     margin-bottom: 10px;
   }
-
 }
+
+// sessions#new
+
+.signup {
+  margin: 70px auto;
+  text-align: center;
+  .authentications-list {
+    margin: 3em 0 0 0;
+    li {
+      display: inline-block;
+    }
+  }
+}
+
