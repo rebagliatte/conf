@@ -5,7 +5,8 @@ class ConferenceEdition < ActiveRecord::Base
   :sponsorship_packages_pdf, :registration_url, :is_registration_open, \
   :is_call_for_proposals_open, :is_call_for_sponsorships_open, \
   :is_schedule_available, :is_location_available, :notes_to_speakers, \
-  :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles
+  :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles, \
+  :speakers_call_to_action_text, :sponsors_call_to_action_text
 
   belongs_to :conference
   has_many :organizer_invitations
@@ -46,7 +47,8 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :translations
   accepts_nested_attributes_for :translations
   translates :tagline, :country, :city, :venue, :notes_to_speakers, \
-    :notes_to_subscribers
+    :notes_to_subscribers, :sponsors_call_to_action_text, \
+    :speakers_call_to_action_text
 
   # Uploaders
   mount_uploader :logo, ImageUploader

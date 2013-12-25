@@ -38,12 +38,14 @@
     <legend>Call for Sponsorships</legend>
     <%= form.input :is_call_for_sponsorships_open, label: 'Is call for sponsorships open?', inline_label: 'Yes' %>
     <%= form.input :sponsorship_packages_pdf %>
+    <%= form.input :sponsors_call_to_action_text, hint: "Visible on the conference's homepage. Markdown available", as: :text %>
   </fieldset>
 
   <fieldset>
     <legend>Call for Proposals</legend>
     <%= form.input :is_call_for_proposals_open, label: 'Is call for proposals open?', inline_label: 'Yes' %>
     <%= form.input :notes_to_speakers, as: :text, hint: 'Markdown available' %>
+    <%= form.input :speakers_call_to_action_text, hint: "Visible on the conference's homepage. Markdown available", as: :text %>
   </fieldset>
 
   <fieldset>
