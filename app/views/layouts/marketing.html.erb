@@ -16,8 +16,6 @@
     <nav>
       <h1>CONFNU</h1>
     </nav>
-    <%= render partial: 'shared/authentication' %>
-    <%= render partial: 'shared/language_selector' %>
   </header>
 
   <main class="main-content">
@@ -27,9 +25,6 @@
 
     <%= content_for?(:content) ? yield(:content) : yield %>
   </main>
-
-  <footer class="main-footer">
-  </footer>
 
   <%= javascript_include_tag 'application' %>
 </body>

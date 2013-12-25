@@ -1,6 +1,10 @@
 <header class="admin-header">
   <%= title @talk.title %>
-  <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition, @talk), class: 'btn btn-primary main-cta' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition, @talk), class: 'btn btn-primary main-cta' %>
+  <% end %>
+
 </header>
 
 <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>

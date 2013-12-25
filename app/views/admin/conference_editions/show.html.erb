@@ -1,6 +1,10 @@
 <header class="admin-header">
   <%= title pretty_conference_and_year(@conference_edition) %>
-  <%= link_to 'Edit', edit_admin_conference_conference_edition_path(@conference, @conference_edition), class: 'btn btn-primary main-cta' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_conference_edition_path(@conference, @conference_edition), class: 'btn btn-primary main-cta' %>
+  <% end %>
+
 </header>
 
 <table class="table">
@@ -15,6 +19,10 @@
   <tr>
     <th>Tagline</th>
     <td><%= @conference_edition.tagline %></td>
+  </tr>
+  <tr>
+    <th>Organizers</th>
+    <td><%= @conference_edition.organizers.pluck(:name).to_sentence %></td>
   </tr>
   <tr>
     <th>Video</th>

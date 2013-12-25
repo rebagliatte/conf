@@ -15,38 +15,41 @@
   <header class="navbar main-admin-header">
     <div class="container">
       <%= link_to 'Confnu ADMIN', admin_conferences_path, class: 'brand' %>
-      <%= render partial: 'shared/authentication' %>
+      <%= render(partial: 'shared/authentication') %>
     </div>
   </header>
 
   <div class="row-fluid">
-    <nav class="main-admin-sidebar span2">
-      <ul>
-        <% conferences.each do |conference| %>
-          <li>
-            <%= link_to conference.name, admin_conference_path(conference), class: 'conference-nav-item' %>
+    <% if current_user %>
+      <nav class="main-admin-sidebar span2">
+        <ul>
+          <% conferences.each do |conference| %>
+            <li>
+              <%= link_to conference.name, admin_conference_path(conference), class: 'conference-nav-item' %>
 
-            <ul>
-              <% conference.conference_editions.each do |e| %>
-                <li>
-                  <%= link_to pretty_year(e), admin_conference_conference_edition_path(conference, e), class: 'conference-edition-nav-item' %>
-                  <ul>
-                    <li><%= link_to 'Talks', admin_conference_edition_talks_path(e) %></li>
-                    <li><%= link_to 'Speakers', admin_conference_edition_speakers_path(e) %></li>
-                    <li><%= link_to 'Sponsors', admin_conference_edition_sponsors_path(e) %></li>
-                    <li><%= link_to 'Posts', admin_conference_edition_posts_path(e) %></li>
-                    <li><%= link_to 'Subscribers', admin_conference_edition_subscribers_path(e) %></li>
-                    <li><%= link_to 'Appearance', appearance_admin_conference_conference_edition_path(conference, e) %></li>
-                  </ul>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
-    </nav>
+              <ul>
+                <% conference.conference_editions.each do |e| %>
+                  <li>
+                    <%= link_to pretty_year(e), admin_conference_conference_edition_path(conference, e), class: 'conference-edition-nav-item' %>
+                    <ul>
+                      <li><%= link_to 'Talks', admin_conference_edition_talks_path(e) %></li>
+                      <li><%= link_to 'Speakers', admin_conference_edition_speakers_path(e) %></li>
+                      <li><%= link_to 'Sponsors', admin_conference_edition_sponsors_path(e) %></li>
+                      <li><%= link_to 'Posts', admin_conference_edition_posts_path(e) %></li>
+                      <li><%= link_to 'Subscribers', admin_conference_edition_subscribers_path(e) %></li>
+                      <li><%= link_to 'Appearance', appearance_admin_conference_conference_edition_path(conference, e) %></li>
+                      <li><%= link_to 'Organizers', organizers_admin_conference_conference_edition_path(conference, e) %></li>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    <% end %>
 
-    <main class="main-admin-content-area span10">
+    <main class="main-admin-content-area <%= current_user ? 'span10' : 'span12' %>">
       <% flash.each do |name, msg| %>
         <p class="alert alert-<%= name %>"><%= msg %></p>
       <% end %>

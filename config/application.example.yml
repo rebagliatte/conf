@@ -1,10 +1,24 @@
 # Rails secret token
 secret_token: ''
 
+# AWS
+aws_access_key_id: ''
+aws_secret_access_key: ''
+
+# HTTP Authentication
+http_authentication_user: ''
+http_authentication_password: ''
+
+# Mailer
+sendgrid_username: ''
+sendgrid_password: ''
+
 # Environment dependant settings
 development:
   # Mailer
-  host: 'localhost:3000'
+  host: ''
+  # AWS
+  aws_s3_bucket: ''
   # Omniauth
   twitter_key: ''
   twitter_secret: ''
@@ -13,7 +27,9 @@ development:
 
 production:
   # Mailer
-  host: 'conf.nu'
+  host: ''
+  # AWS
+  aws_s3_bucket: ''
   # Omniauth
   twitter_key: ''
   twitter_secret: ''
@@ -21,4 +37,4 @@ production:
   github_secret: ''
 
 test:
-  host: 'test.local'
+  host: ''

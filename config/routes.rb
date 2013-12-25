@@ -5,9 +5,13 @@ Conf::Application.routes.draw do
     resources :conferences, only: %w(show index new create edit update) do
       resources :conference_editions, only: %w(show new create edit update) do
         member do
+          # Appearance
           get :appearance
           get :edit_appearance
           put :update_appearance
+
+          # Organizers
+          get :organizers
         end
       end
     end
@@ -18,6 +22,7 @@ Conf::Application.routes.draw do
           put :destroy
         end
       end
+      resource :organizer_invitations, only: %w(new create)
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)
@@ -49,6 +54,8 @@ Conf::Application.routes.draw do
   end
 
   # Authentication
+  match '/signup' => 'sessions#new', as: :signup
+  match '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: redirect('/')
   match '/logout', to: 'sessions#destroy', as: 'logout'

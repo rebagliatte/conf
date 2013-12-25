@@ -1,20 +1,19 @@
 class AdminController < ApplicationController
   layout 'admin'
-
-  before_filter :authenticate_admin_user
+  before_filter :authenticate_user
 
   def conferences
     Conference.accessible_by(current_ability)
   end
 
+  helper_method :conferences
+
   private
 
-  def authenticate_admin_user
-    unless current_user.try(:admin?) || current_user.try(:superadmin?)
-      redirect_to root_url, alert: "You are not authorized to access this page. Please log in as an admin and try again."
+  def authenticate_user
+    unless current_user
+      redirect_to signup_url, alert: "Please sign in"
     end
   end
-
-  helper_method :conferences
 
 end

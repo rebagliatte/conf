@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131222211039) do
+ActiveRecord::Schema.define(:version => 20131223220008) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(:version => 20131222211039) do
     t.text     "custom_styles",                 :default => ""
   end
 
+  create_table "conference_editions_users", :force => true do |t|
+    t.integer "conference_edition_id"
+    t.integer "user_id"
+  end
+
+  add_index "conference_editions_users", ["conference_edition_id"], :name => "index_conference_editions_users_on_conference_edition_id"
+  add_index "conference_editions_users", ["user_id"], :name => "index_conference_editions_users_on_user_id"
+
   create_table "conferences", :force => true do |t|
     t.string   "subdomain",              :default => "", :null => false
     t.string   "name",                   :default => "", :null => false
@@ -70,14 +78,6 @@ ActiveRecord::Schema.define(:version => 20131222211039) do
   add_index "conferences_languages", ["conference_id"], :name => "index_conferences_languages_on_conference_id"
   add_index "conferences_languages", ["language_id"], :name => "index_conferences_languages_on_language_id"
 
-  create_table "conferences_users", :force => true do |t|
-    t.integer "conference_id"
-    t.integer "user_id"
-  end
-
-  add_index "conferences_users", ["conference_id"], :name => "index_conferences_users_on_conference_id"
-  add_index "conferences_users", ["user_id"], :name => "index_conferences_users_on_user_id"
-
   create_table "identities", :force => true do |t|
     t.string   "provider",   :default => "", :null => false
     t.string   "uid",        :default => "", :null => false
@@ -95,21 +95,21 @@ ActiveRecord::Schema.define(:version => 20131222211039) do
     t.datetime "updated_at",            :null => false
   end
 
-  create_table "invitations", :force => true do |t|
-    t.integer  "sender_id",                       :null => false
-    t.integer  "conference_id",                   :null => false
-    t.string   "recipient_email", :default => "", :null => false
-    t.string   "token",           :default => "", :null => false
-    t.datetime "sent_at"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-  end
-
   create_table "languages", :force => true do |t|
     t.string   "name"
     t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "organizer_invitations", :force => true do |t|
+    t.integer  "inviter_id",            :null => false
+    t.integer  "invitee_id"
+    t.string   "invitee_email",         :null => false
+    t.string   "token",                 :null => false
+    t.integer  "conference_edition_id", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "post_translations", :force => true do |t|
@@ -243,14 +243,13 @@ ActiveRecord::Schema.define(:version => 20131222211039) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",          :default => "",     :null => false
-    t.string   "nickname",      :default => ""
-    t.string   "email",         :default => ""
-    t.string   "image",         :default => ""
-    t.string   "role",          :default => "user"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.integer  "invitation_id"
+    t.string   "name",       :default => "",     :null => false
+    t.string   "nickname",   :default => ""
+    t.string   "email",      :default => ""
+    t.string   "image",      :default => ""
+    t.string   "role",       :default => "user"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
 end

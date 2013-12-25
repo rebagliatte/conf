@@ -9,7 +9,6 @@
       <th>ID</th>
       <th>Name</th>
       <th>Owner</th>
-      <th>Organizers</th>
       <th>Available Languages</th>
       <th>Conference Editions</th>
       <th>Actions</th>
@@ -21,7 +20,6 @@
         <td><%= conference.id %></td>
         <td><%= conference.name %></td>
         <td><%= link_to conference.owner.name, '#' %></td>
-        <td><%= conference.organizers.map(&:name).to_sentence %></td>
         <td><%= conference.languages.map(&:name).to_sentence %></td>
         <th><%= conference.conference_editions.count %></th>
         <td class="actions">
