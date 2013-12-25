@@ -12,13 +12,11 @@
 
 // Header
 .main-header {
-  height: 31px;
+  overflow: auto;
   padding: 20px 10%;
-  line-height: 30px;
-
   h1 {
     font-weight: bold;
-    margin-right: 30px;
+    margin: 0 3em 0 0;
     float: left;
     a {
       line-height: 0;
@@ -33,6 +31,7 @@
     display: inline-block;
     a {
       padding: 0 0.5em;
+      text-decoration: none;
     }
   }
   .authentication {
@@ -53,18 +52,17 @@
     }
   }
   .lang {
-    clear: both;
     float: right;
     font-size: 10px;
     text-transform: uppercase;
     color: #333;
+    li:hover {
+      cursor: default;
+    }
     a {
       color: #777;
       padding: 0;
       text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }
@@ -126,3 +124,4 @@
     }
   }
 }
+

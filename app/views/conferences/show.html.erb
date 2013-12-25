@@ -2,8 +2,8 @@
 
 <section class="intro">
   <h1 class="primary-heading"><%= current_conference.name %></h1>
-  <p><%= current_edition.tagline %></p>
-  <p><%= pretty_date_and_location(current_edition) %></p>
+  <p class="tagline"><%= current_edition.tagline %></p>
+  <p class="date-and-location"><%= pretty_date_and_location(current_edition) %></p>
 
   <% if display_registration_link?(current_edition) %>
     <%= link_to 'Register', current_edition.registration_url, class: 'btn btn-primary' %>
@@ -80,7 +80,8 @@
       function initialize() {
         geocoder = new google.maps.Geocoder();
         var mapOptions = {
-          zoom: 13
+          zoom: 13,
+          scrollwheel: false
         }
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         codeAddress('<%= current_edition.location %>');
