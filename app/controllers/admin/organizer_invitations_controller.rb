@@ -10,6 +10,9 @@ class Admin::OrganizerInvitationsController < AdminController
     @organizer_invitation.inviter = current_user
 
     if @organizer_invitation.save
+      signup_url = new_organizer_signup_url(@organizer_invitation.token)
+      UserMailer.organizer_invitation_email(@organizer_invitation, signup_url).deliver
+
       path = organizers_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition)
       redirect_to path, flash: { success: 'The invitation has been sent successfully!' }
     else

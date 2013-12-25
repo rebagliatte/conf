@@ -3,12 +3,15 @@ class SessionsController < ApplicationController
   def new
     if current_user
       redirect_to root_url, notice: 'You are already signed in'
-    else
-      if params[:organizer_invitation_token]
-        @organizer_invitation = OrganizerInvitation.find_by_token(params[:organizer_invitation_token])
+    elsif params[:organizer_invitation_token]
+      @organizer_invitation = OrganizerInvitation.find_by_token(params[:organizer_invitation_token])
+      if @organizer_invitation && @organizer_invitation.invitee_id.nil?
         session[:organizer_invitation_token] = @organizer_invitation.token
+        render layout: 'admin'
+      else
+        session[:organizer_invitation_token] = nil
+        redirect_to root_url, flash: { error: 'Invalid invitation' }
       end
-      render layout: 'admin'
     end
   end
 
@@ -43,14 +46,21 @@ class SessionsController < ApplicationController
         user = User.create_with_omniauth(auth['info'])
         @identity.update_attributes(user: user)
         self.current_user = user
-        flash[:notice] = 'Welcome #{current_user.name}!'
+        flash[:notice] = "Welcome #{current_user.name}!"
       end
 
       # If a organizer invitations token is present, use it and destroy it
       if session[:organizer_invitation_token]
-        organizer_invitation = OrganizerInvitation.find_by_token(session[:organizer_invitation_token])
-        organizer_invitation.conference_edition.organizers << current_user
-        current_user.update_attributes(email: organizer_invitation.invitee_email)
+        invitation = OrganizerInvitation.find_by_token(session[:organizer_invitation_token])
+
+        organizers = invitation.conference_edition.organizers
+
+        unless organizers.include?(current_user)
+          organizers << current_user
+          invitation.update_attributes!(invitee_id: current_user.id)
+          current_user.update_attributes!(email: invitation.invitee_email)
+        end
+
         session[:organizer_invitation_token] = nil
       end
 

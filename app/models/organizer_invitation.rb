@@ -12,7 +12,7 @@ class OrganizerInvitation < ActiveRecord::Base
   validates :inviter_id, presence: true
   validates :invitee_email, presence: true, format: EMAIL_REGEX
   validates :conference_edition_id, presence: true
-  validate :invitee_is_new
+  validate :invitee_is_new, on: :create
 
   # Callbacks
   before_create :generate_token
@@ -25,7 +25,7 @@ class OrganizerInvitation < ActiveRecord::Base
 
   def invitee_is_new
     if conference_edition.organizers.find_by_email(invitee_email)
-      errors.add :invitee_email, 'is invalid. There already an organizer with this email address'
+      errors.add :invitee_email, "is invalid. There's already an organizer with this email address"
     elsif conference_edition.organizer_invitations.find_by_invitee_email(invitee_email)
       errors.add :invitee_email, 'is invalid. He/she has already been invited'
     end
