@@ -1,5 +1,7 @@
+<%# @param conference [Conf::Models::Conference] %>
+
 <ul class="lang">
-  <li><%= link_to_unless_current( t('en'), locale: "en") %></li>
-  <li><%= link_to_unless_current( t('es'), locale: "es") %></li>
-  <li><%= link_to_unless_current( t('pt'), locale: "pt") %></li>
+  <% conference.languages.each do |l| %>
+    <li><%= link_to_unless_current( t(l.code), locale: l.code) %></li>
+  <% end %>
 </ul>

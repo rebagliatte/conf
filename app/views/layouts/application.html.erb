@@ -18,13 +18,13 @@
     <nav>
       <h1>
         <%= link_to root_url do %>
-          <%= image_tag current_edition.logo_url(:inline_x_30), alt: current_conference.name %>
+          <%= image_tag current_edition.logo_url, alt: current_conference.name %>
         <% end %>
       </h1>
       <%= render(partial: 'shared/navigation', locals: { conference_edition: current_edition }) %>
     </nav>
     <%= render(partial: 'shared/authentication') %>
-    <%= render(partial: 'shared/language_selector') %>
+    <%= render(partial: 'shared/language_selector', locals: { conference: current_conference }) %>
   </header>
 
   <main class="main-content">
