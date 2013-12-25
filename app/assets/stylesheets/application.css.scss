@@ -200,46 +200,6 @@ table {
   }
 }
 
-/* Posts */
-.summarized-posts {
-  margin: 0;
-  text-align: left;
-  .post {
-    a {
-      display: block;
-      width: 100%;
-      color: #555;
-      &:hover {
-        text-decoration: none;
-        color: #333;
-      }
-    }
-    .date,
-    .title,
-    .summary {
-      display: inline-block;
-      height: 30px;
-      line-height: 30px;
-      margin: 0;
-      overflow: hidden;
-    }
-    .date {
-      width: 10%;
-      font-size: 1em;
-    }
-    .title {
-      width: 30%;
-      font-size: 1.5em;
-      overflow-x: ellipsis;
-    }
-    .summary {
-      width: 59%;
-      font-size: 1em;
-      overflow-x: ellipsis;
-    }
-  }
-}
-
 /* Map */
 #map-canvas {
   width: 100%;
