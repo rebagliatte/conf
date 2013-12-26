@@ -16,16 +16,16 @@ ActiveRecord::Schema.define(:version => 20131225231945) do
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
     t.string   "locale"
-    t.string   "tagline",                      :default => ""
-    t.string   "country",                      :default => ""
-    t.string   "city",                         :default => ""
-    t.string   "venue",                        :default => ""
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.text     "notes_to_speakers",            :default => ""
-    t.text     "notes_to_subscribers",         :default => ""
-    t.text     "speakers_call_to_action_text", :default => ""
-    t.text     "sponsors_call_to_action_text", :default => ""
+    t.string   "tagline",                 :default => ""
+    t.string   "country",                 :default => ""
+    t.string   "city",                    :default => ""
+    t.string   "venue",                   :default => ""
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.text     "notes_to_speakers",       :default => ""
+    t.text     "notes_to_subscribers",    :default => ""
+    t.text     "speakers_call_to_action", :default => ""
+    t.text     "sponsors_call_to_action", :default => ""
   end
 
   add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"

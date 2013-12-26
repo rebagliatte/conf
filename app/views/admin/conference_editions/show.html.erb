@@ -69,11 +69,19 @@
     <td><%= link_to @conference_edition.sponsorship_packages_pdf %></td>
   </tr>
   <tr>
+    <th>Sponsor call to action notes</th>
+    <td><%= markdown(@conference_edition.sponsors_call_to_action) %></td>
+  </tr>
+  <tr>
     <th>Is call for proposals open?</th>
     <td><%= @conference_edition.is_call_for_proposals_open %></td>
   </tr>
   <tr>
-    <th>Notes to speakers</th>
+    <th>Speaker call to action notes</th>
+    <td><%= markdown(@conference_edition.speakers_call_to_action) %></td>
+  </tr>
+  <tr>
+    <th>Proposal form introduction</th>
     <td><%= markdown(@conference_edition.notes_to_speakers) %></td>
   </tr>
   <tr>
@@ -81,7 +89,7 @@
     <td><%= @conference_edition.is_email_subscription_enabled %></td>
   </tr>
   <tr>
-    <th>Notes to subscribers</th>
+    <th>Subscriber call to action notes</th>
     <td><%= markdown(@conference_edition.notes_to_subscribers) %></td>
   </tr>
 </table>

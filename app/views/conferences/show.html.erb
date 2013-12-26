@@ -28,7 +28,7 @@
 <% if display_call_for_proposals?(current_edition) %>
   <section id="call-for-proposals">
     <h1 class="primary-heading"><%= t('call_for_proposals') %></h1>
-    <p><%= t('do_not_miss_out') %></p>
+    <%= markdown(current_edition.speakers_call_to_action) %>
     <%= link_to t('submit_your_proposal'), new_conference_edition_talk_path(current_edition), class:'btn btn-primary' %>
   </section>
 <% end %>
@@ -36,7 +36,7 @@
 <% if display_call_for_sponsorships?(current_edition) %>
   <section id="sponsorship-packages">
     <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
-    <p><%= t('show_your_support_to') %> <%= current_conference.name %></p>
+    <%= markdown(current_edition.sponsors_call_to_action) %>
     <%= link_to t('download_sponsorship_packages'), current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank %>
   </section>
 <% end %>
