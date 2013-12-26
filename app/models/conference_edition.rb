@@ -6,7 +6,7 @@ class ConferenceEdition < ActiveRecord::Base
   :is_call_for_proposals_open, :is_call_for_sponsorships_open, \
   :is_schedule_available, :is_location_available, :notes_to_speakers, \
   :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles, \
-  :speakers_call_to_action, :sponsors_call_to_action
+  :speakers_call_to_action, :sponsors_call_to_action, :custom_css_file
 
   belongs_to :conference
   has_many :organizer_invitations
@@ -33,6 +33,7 @@ class ConferenceEdition < ActiveRecord::Base
   validate :valid_date_range
   validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
   validates :sponsorship_packages_pdf, file_size: { maximum: 1.megabytes.to_i }, if: :sponsorship_packages_pdf?
+  validates :custom_css_file, file_size: { maximum: 0.5.megabytes.to_i }, if: :custom_css_file?
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
 
@@ -52,6 +53,7 @@ class ConferenceEdition < ActiveRecord::Base
   # Uploaders
   mount_uploader :logo, ImageUploader
   mount_uploader :sponsorship_packages_pdf, AttachmentUploader
+  mount_uploader :custom_css_file, StylesheetUploader
 
   # Scopes
   default_scope order('from_date DESC')

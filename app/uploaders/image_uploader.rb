@@ -21,7 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     model_class = model_class(model)
 
-    store_dir = if is_model_class?(model, 'conference_edition')
+    if is_model_class?(model, 'conference_edition')
       "conference_editions/#{model.id}/#{mounted_as}"
     elsif model.conference_edition_id
       "conference_editions/#{model.conference_edition_id}/#{model_class.pluralize}/#{model.id}/#{mounted_as}"
