@@ -5,8 +5,8 @@
 <% conference_edition.posts.each do |post| %>
   <article class="post">
     <h1 class="secondary-heading"><%= post.title %></h1>
-    <p class="created-at"><%= t 'posted' %> <%= time_ago_in_words(post.created_at) %> ago</p>
+    <p class="created-at"><%= time_ago_in_words(post.created_at) %> ago</p>
     <%= markdown(post.summary) %>
-    <p><%= link_to t('read_more'), conference_edition_post_path(conference_edition, post) %></p>
+    <p><%= link_to t('read_more'), conference_edition_post_path(conference_edition, post), class: 'read-more' %></p>
   </article>
 <% end %>

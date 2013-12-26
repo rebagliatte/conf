@@ -1,7 +1,9 @@
 <%# @param conference_edition [Conf::Models::ConferenceEdition] %>
 
 <ul>
-  <li><%= anchor_nav_link_to t('location'), "#location" %></li>
+  <% if conference_edition.is_location_available %>
+    <li><%= anchor_nav_link_to t('location'), "#location" %></li>
+  <% end %>
 
   <% if display_call_for_proposals?(conference_edition) %>
     <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>

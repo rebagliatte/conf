@@ -109,6 +109,10 @@ a:hover {
   border: 1px solid #fbeed5;
   li {
     list-style: disc inside;
+    line-height: 2em;
+  }
+  p {
+    color: inherit;
   }
   &.alert-error {
     color: #b94a48;
@@ -131,7 +135,7 @@ a:hover {
 .simple_form {
   text-align: left;
   fieldset {
-    margin-bottom: 4em;
+    margin: 4em 0;
   }
   legend {
     text-transform: uppercase;
@@ -141,6 +145,14 @@ a:hover {
   }
   .control-group {
     margin-bottom: 2em;
+    &.error input,
+    &.error textarea {
+      border: 1px solid #b94a48;
+    }
+  }
+  label {
+    display: block;
+    padding-bottom: 5px;
   }
   input[type="text"],
   input[type="email"],
@@ -152,17 +164,38 @@ a:hover {
     box-sizing: border-box;
     width: 100%;
     min-height: 35px;
+    font-size: 1em;
+    line-height: 1em;
+    padding: 0 8px;
+    border: 1px solid #cecece;
   }
   textarea {
     height: 8em;
+    padding: 6px 8px;
+    line-height: 1.3em;
   }
   input[type="submit"] {
     min-height: 35px;
+    border: 0;
+    cursor: pointer;
+    &:hover {
+      background: #333;
+      color: #fcfcfc;
+    }
   }
-  .help-block {
+  select {
+    height: 35px;
+  }
+  .help-block,
+  .help-inline {
+    margin-top: 5px;
     font-size: 0.8em;
+    line-height: 1.3em;
     color: #888;
     font-style: italic;
+  }
+  .help-inline {
+    color: #b94a48;
   }
   &.form-inline {
     input {
@@ -179,9 +212,10 @@ a:hover {
     input[type="text"] {
       width: 50%;
     }
-    input[type="submit"] {
-      width: 10%;
-    }
+  }
+
+  .alert {
+    margin-bottom: 40px;
   }
 }
 

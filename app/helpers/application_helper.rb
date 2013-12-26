@@ -5,6 +5,10 @@ module ApplicationHelper
     "<h1 class='primary-heading'>#{text}</h1>".html_safe
   end
 
+  def body_class
+    "#{params[:controller].parameterize}-#{params[:action].parameterize}"
+  end
+
   def error_messages_for(object)
     render(partial: 'shared/error_messages', locals: { object: object })
   end

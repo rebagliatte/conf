@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
         session[:organizer_invitation_token] = nil
         redirect_to root_url, flash: { error: 'Invalid invitation' }
       end
+    else
+      render layout: 'admin'
     end
   end
 

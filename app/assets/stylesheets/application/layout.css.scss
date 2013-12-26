@@ -109,7 +109,6 @@
 // Footer
 .main-footer {
   margin-top: 60px;
-  border-top: 1px solid #d0d0d0;
   text-align: center;
   .primary-heading {
     font-size: 24px;
@@ -120,9 +119,9 @@
   .sponsor,
   .networks li {
     display: inline-block;
-    a {
-      padding: 10px;
-    }
+  }
+  a {
+    padding: 10px;
   }
 }
 

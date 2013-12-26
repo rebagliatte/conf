@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title><%= yield(:title) %> - <%= current_conference.name %></title>
+  <title><%= yield(:title).present? ? "#{yield(:title)} - #{ current_conference.name }" : "#{ current_conference.name }"  %></title>
   <meta name="description" content="<%= current_edition.tagline %>">
   <meta name="viewport" content="width=device-width">
   <meta charset="utf-8">
@@ -13,27 +13,29 @@
   <%= yield(:head_js) %>
 </head>
 
-<body>
-  <header class="main-header">
-    <nav>
-      <h1>
-        <%= link_to root_url do %>
-          <%= image_tag current_edition.logo_url, alt: current_conference.name %>
-        <% end %>
-      </h1>
-      <%= render(partial: 'shared/navigation', locals: { conference_edition: current_edition }) %>
-    </nav>
-    <%= render(partial: 'shared/authentication') %>
-    <%= render(partial: 'shared/language_selector', locals: { conference: current_conference }) %>
-  </header>
+<body class="<%= body_class %>">
+  <div class="main-wrapper">
+    <header class="main-header">
+      <nav>
+        <h1>
+          <%= link_to root_url do %>
+            <%= image_tag current_edition.logo_url, alt: current_conference.name %>
+          <% end %>
+        </h1>
+        <%= render(partial: 'shared/navigation', locals: { conference_edition: current_edition }) %>
+      </nav>
+      <%= render(partial: 'shared/authentication') %>
+      <%= render(partial: 'shared/language_selector', locals: { conference: current_conference }) %>
+    </header>
 
-  <main class="main-content">
-    <% flash.each do |name, msg| %>
-      <p class="alert alert-<%= name %>"><%= msg %></p>
-    <% end %>
+    <main class="main-content">
+      <% flash.each do |name, msg| %>
+        <p class="alert alert-<%= name %>"><%= msg %></p>
+      <% end %>
 
-    <%= content_for?(:content) ? yield(:content) : yield %>
-  </main>
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+  </div>
 
   <footer class="main-footer">
     <% if current_edition.sponsors.any? %>
@@ -46,12 +48,17 @@
       <h1 class="hidden"><%= t 'networks' %></h1>
       <ul>
         <% if current_conference.twitter_username.present? %>
-          <li><%= link_to t('follow_us_on_twitter'), "http://twitter.com/#{current_conference.twitter_username}", target: 'blank' %></li>
+          <li>
+            <%= link_to t('follow_us_on_twitter'), "http://twitter.com/#{current_conference.twitter_username}", target: 'blank', class: 'twitter' %>
+          </li>
         <% end %>
         <% if current_conference.facebook_page_username.present? %>
-          <li><%= link_to t('friend_us_on_facebook'), "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank' %></li>
+          <li>
+            <%= link_to t('friend_us_on_facebook'), "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank', class: 'facebook' %>
+          </li>
         <% end %>
-        <li><%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank' %></li>
+        <li>
+          <%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank', class: 'email' %></li>
       </ul>
     </section>
   </footer>
