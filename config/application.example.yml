@@ -5,10 +5,6 @@ secret_token: ''
 aws_access_key_id: ''
 aws_secret_access_key: ''
 
-# HTTP Authentication
-http_authentication_user: ''
-http_authentication_password: ''
-
 # Mailer
 gmail_username: ''
 gmail_password: ''
