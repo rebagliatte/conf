@@ -3,34 +3,34 @@ es:
   call_for_proposals: Llamado a charlas
   confirmed_speakers: Oradores confirmados
   do_not_miss_out: No te lo pierdas!
-  download_sponsorship_packages: Descarga los planes para sponsors
-  drop_us_a_line: Escríbenos
-  follow_us_on_twitter: Síguenos en twitter
-  friend_us_on_facebook: Hazte amigo en facebook
+  download_sponsorship_packages: Descargá los planes para sponsors
+  drop_us_a_line: Escribinos
+  follow_us_on_twitter: Seguinos en twitter
+  friend_us_on_facebook: Seguinos en facebook
   location: Ubicación
   networks: Redes
   news: Noticias
   oh_snap: Oh!
-  please_resubmit: Por favor revisa los campos con errores e intenta de nuevo
+  please_resubmit: Por favor revisá los campos con errores e intentá de nuevo
   posted: Publicado
   powered_by: Corriendo en
   previous_edition: Edición previa
   previous_editions: Ediciones previas
   read_more: Leer más
-  register: Regístrate
+  register: Registrate
   schedule: Agenda
-  show_your_support_to: Únete a nuestros sponsors y apoya
+  show_your_support_to: Unite a nuestros sponsors y apoyá
   sign_in_github: Entrar con Github
   sign_in_twitter: Entrar con Twitter
   sign_out: Salir
   speakers: Oradores
-  sponsors: Patrocinadores
-  sponsorship_packages: Planes de Patrocinio
-  submit_your_proposal: Propón tu charla
+  sponsors: Sponsors
+  sponsorship_packages: Planes de Sponsoreo
+  submit_your_proposal: Proponé una charla
   the_talks: Charlas
   submit: Enviar
-  stay_up_to_date: Mantente al día
-  subscribe: Subscribete
+  stay_up_to_date: Mantenete al día
+  subscribe: Suscribite
 
   en: Inglés
   pt: Portugués
@@ -41,7 +41,7 @@ es:
       about_your_proposal: Sobre tu charla
       abstract_hint: Breve descripción de tu charla. Será pública si la aceptamos.
       language_hint: ¿En qué idioma darías la charla?
-      notes_to_organizers_hint: "¿Quieres agregar algo para los organizadores? ¿Ya diste esta charla? ¿Hay videos/slides en algún lado? ¿Hay algo en especial que necesites durante la charla? ¿Es tu primera vez presentando en una conferencia? No te preocupes, cualquier cosa que nos cuentes aquí va a ser privada :)"
+      notes_to_organizers_hint: "¿Querés agregar algo para los organizadores? ¿Ya diste esta charla? ¿Hay videos/slides en algún lado? ¿Hay algo en especial que necesites durante la charla? ¿Es tu primera vez presentando en una conferencia? No te preocupes, cualquier cosa que nos cuentes aquí va a ser privada :)"
       about_you: Sobre ti
       bio_hint: Un párrafo breve sobre ti. Se hará público si aceptamos la charla.
 
