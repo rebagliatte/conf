@@ -13,7 +13,10 @@
 <% if current_edition.is_location_available %>
   <section id="location">
     <h1 class="primary-heading"><%= t('location') %></h1>
-    <p><%= current_edition.location %></p>
+    <div class="location-details">
+      <h2><%= current_edition.venue %></h2>
+      <p><%= current_edition.venue_address %>, <%= current_edition.city %> - <%= current_edition.country %></p>
+    </div>
     <div id="map-canvas"></div>
   </section>
 <% end %>
