@@ -72,7 +72,7 @@ module Conf
     config.assets.version = '1.0'
 
     # Assets to precompile
-    config.assets.precompile += ['admin.css']
+    config.assets.precompile += ['admin.css', 'map.js']
 
     # ActionMailer
     config.action_mailer.raise_delivery_errors = true
