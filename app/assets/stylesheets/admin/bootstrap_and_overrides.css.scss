@@ -68,6 +68,9 @@ $linkColor:           $green;
     padding-top: 5px;
     width: 100%;
   }
+  .coordinates input {
+    width: 40%;
+  }
   .help-block,
   select + .help-block,
   input + .help-block {

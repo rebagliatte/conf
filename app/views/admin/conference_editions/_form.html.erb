@@ -25,7 +25,16 @@
     <%= form.input :is_location_available, label: 'Is location available?', inline_label: 'Yes' %>
     <%= form.input :country %>
     <%= form.input :city %>
-    <%= form.input :venue %>
+    <%= form.input :venue, label: 'Venue name' %>
+    <%= form.input :venue_address %>
+    <div class="control-group coordinates">
+      <label class="control-label" for="conference_edition_venue_latitude">Venue geographical coordinates</label>
+      <div class="controls">
+        <%= form.input_field :venue_latitude %>
+        <%= form.input_field :venue_longitude %>
+        <p class="help-block">Specify the venue's geographical coordinates (latitude and longitude) for maximum accuracy on the conference's homepage map. Example: '-34.892192,-56.19424'</p>
+      </div>
+    </div>
   </fieldset>
 
   <fieldset>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226045130) do
+ActiveRecord::Schema.define(:version => 20131228143323) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20131226045130) do
     t.boolean  "is_email_subscription_enabled", :default => true,           :null => false
     t.text     "custom_styles",                 :default => ""
     t.string   "custom_css_file",               :default => ""
+    t.string   "venue_address",                 :default => ""
+    t.float    "venue_latitude"
+    t.float    "venue_longitude"
   end
 
   create_table "conference_editions_users", :force => true do |t|
