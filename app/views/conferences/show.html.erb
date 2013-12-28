@@ -67,14 +67,15 @@
   <section id="sponsorship-packages">
     <h1 class="primary-heading"><%= t('confirmed_speakers') %></h1>
     <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>
-  </section>s
+  </section>
 <% end %>
 
 <% if current_edition.is_location_available %>
   <% content_for :head_js do %>
     <%= javascript_tag do %>
-      window.venue_location = '<%= current_edition.location %>';
-      window.venue_coordinates = '<%= current_edition.venue_latitude %>,<%= current_edition.venue_longitude %>';
+      window.venue_address = '<%= full_venue_address(current_edition) %>';
+      window.venue_latitude = <%= current_edition.venue_latitude || 'null' %>;
+      window.venue_longitude = <%= current_edition.venue_longitude || 'null' %>;
     <% end %>
     <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false' %>
     <%= javascript_include_tag 'map' %>

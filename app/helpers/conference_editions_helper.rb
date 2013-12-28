@@ -19,6 +19,12 @@ module ConferenceEditionsHelper
     ce.from_date.year
   end
 
+  def full_venue_address(ce)
+    if ce.venue_address.present? && ce.city.present? && ce.country.present?
+      "#{ce.venue}. #{ce.venue_address}, #{ce.city} - #{ce.country}"
+    end
+  end
+
   def is_coming_soon?(ce)
     ce.from_date > Date.today
   end

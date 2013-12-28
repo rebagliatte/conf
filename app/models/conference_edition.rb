@@ -37,8 +37,8 @@ class ConferenceEdition < ActiveRecord::Base
   validates :custom_css_file, file_size: { maximum: 0.5.megabytes.to_i }, if: :custom_css_file?
   validates :kind, presence: true, inclusion: { in: KINDS }
   validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
-  validates :venue_latitude, numericality: true
-  validates :venue_longitude, numericality: true
+  validates :venue_latitude, numericality: true, if: :venue_latitude?
+  validates :venue_longitude, numericality: true, if: :venue_longitude?
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
