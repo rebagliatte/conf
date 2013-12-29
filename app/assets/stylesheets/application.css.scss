@@ -175,6 +175,7 @@ a:hover {
     line-height: 1.3em;
   }
   input[type="submit"] {
+    -webkit-appearance: none;
     min-height: 35px;
     border: 0;
     cursor: pointer;
