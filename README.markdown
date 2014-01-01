@@ -1,7 +1,5 @@
-Conf
-====
-
-Work in progress for a conference site template.
+Confnu
+=======
 
 To install:
 
@@ -9,5 +7,6 @@ To install:
 bundle
 cp config/application.example.yml config/application.yml
 rake db:setup
+rake db:seed
 rails s
 ```
