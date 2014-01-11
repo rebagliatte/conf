@@ -35,12 +35,20 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def is_request_internal
+    CONFIG[:confnu_server_names].split(' ').include?(request.domain)
+  end
+
   def current_conference
-    request.subdomain.present? ? Conference.find_by_subdomain!(request.subdomain) : nil
+    @current_conference ||= if !is_request_internal
+      Conference.find_by_custom_domain(request.domain)
+    elsif request.subdomain.present?
+      Conference.find_by_subdomain(request.subdomain)
+    end
   end
 
   def current_edition
-    ConferenceEdition.where(conference_id: current_conference).last
+    @current_edition ||= ConferenceEdition.where(conference_id: current_conference).last
   end
 
   def current_user

@@ -1,7 +1,3 @@
-<h1 class="primary-heading">Conferences</h1>
+<%= title t 'all_conferences' %>
 
-<ul>
-  <% @conferences.each do |conference| %>
-    <li><%= link_to conference.name, root_url(:subdomain => conference.subdomain) %></li>
-  <% end %>
-</ul>
+<%= render(partial: 'conferences/list', locals: { conferences: @conferences }) %>

@@ -1,0 +1,7 @@
+<%# @param conferences [Array<Conf::Models::Conference>] %>
+
+<ul>
+  <% conferences.each do |conference| %>
+    <li><%= link_to conference.name, root_url(:subdomain => conference.subdomain) %></li>
+  <% end %>
+</ul>

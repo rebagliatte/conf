@@ -11,6 +11,8 @@ gmail_password: ''
 
 # Environment dependant settings
 development:
+  # Server names
+  confnu_server_names: ''
   # Mailer
   host: ''
   # AWS
@@ -22,6 +24,8 @@ development:
   github_secret: ''
 
 production:
+  # Server names
+  confnu_server_names: ''
   # Mailer
   host: ''
   # AWS

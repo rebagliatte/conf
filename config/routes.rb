@@ -1,16 +1,12 @@
 Conf::Application.routes.draw do
-
   # Admin
   namespace :admin do
     resources :conferences, only: %w(show index new create edit update) do
       resources :conference_editions, only: %w(show new create edit update) do
         member do
-          # Appearance
           get :appearance
           get :edit_appearance
           put :update_appearance
-
-          # Organizers
           get :organizers
         end
       end
@@ -30,16 +26,12 @@ Conf::Application.routes.draw do
       resources :subscribers, only: %w(index)
     end
 
-    match '/' => 'conferences#index'
+    root to: 'conferences#index'
   end
 
   # Public site
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
-    resources :conferences, only: %w(index)
-
-    constraints(Subdomain) do
-      match '/' => 'conferences#show'
-    end
+    resources :conferences, only: %w(index show)
 
     resources :conference_editions, only: %w(index) do
       resources :posts, only: %w(index show)
@@ -50,7 +42,9 @@ Conf::Application.routes.draw do
       resources :subscribers, only: %w(create)
     end
 
-    root to: 'marketing#home'
+    # Conditional root
+    root to: 'marketing#home', constraints: RootConstraint.new
+    root to: 'conferences#show'
   end
 
   # Authentication

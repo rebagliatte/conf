@@ -4,5 +4,4 @@ class MarketingController < ApplicationController
   def home
     @conferences = Conference.all
   end
-
 end
