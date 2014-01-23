@@ -4,6 +4,7 @@ class Admin::TalksController < AdminController
   load_and_authorize_resource :talk, through: :conference_edition
 
   def index
+    @talks = Talk.all.group_by { |s| s.status }
   end
 
   def show
@@ -24,6 +25,10 @@ class Admin::TalksController < AdminController
   end
 
   def edit
+    missing_translations = @conference_edition.languages.pluck(:code) - @talk.translations.pluck(:locale)
+    missing_translations.each do |locale|
+      @talk.translations.build locale: locale
+    end
   end
 
   def update
