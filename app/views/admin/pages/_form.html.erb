@@ -1,0 +1,16 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param page [Models::Page] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, page], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(page) %>
+
+  <%= translatable_fields_for(form) do |t| %>
+    <%= t.input :title %>
+    <%= t.input :content %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Page", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

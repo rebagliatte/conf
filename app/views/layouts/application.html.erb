@@ -60,6 +60,17 @@
           <%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank', class: 'email' %></li>
       </ul>
     </section>
+
+    <% if current_edition.pages.any? %>
+      <section class="pages">
+        <h1 class="hidden">Pages</h1>
+        <ul class="pages">
+          <% current_edition.pages.each do |page| %>
+            <li><%= link_to page.title, conference_edition_page_path(current_edition, page) %></li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
   </footer>
 </body>
 </html>

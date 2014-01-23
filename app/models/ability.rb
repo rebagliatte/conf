@@ -12,6 +12,7 @@ class Ability
     can :manage, ConferenceEdition, conference: { owner_id: user.id }
     can :manage, Image, conference: { owner_id: user.id }
     can :manage, OrganizerInvitation, conference: { owner_id: user.id }
+    can :manage, Page, conference: { owner_id: user.id }
     can :manage, Post, conference: { owner_id: user.id }
     can :manage, Slot, conference: { owner_id: user.id }
     can :manage, Speaker, conference: { owner_id: user.id }
@@ -28,6 +29,7 @@ class Ability
 
     can :manage, OrganizerInvitation, conference_edition_id: user.manageable_edition_ids
     can :manage, Image, conference_edition_id: user.manageable_edition_ids
+    can :manage, Page, conference_edition_id: user.manageable_edition_ids
     can :manage, Post, conference_edition_id: user.manageable_edition_ids
     can :manage, Slot, conference_edition_id: user.manageable_edition_ids
     can :manage, Speaker, conference_edition_id: user.manageable_edition_ids

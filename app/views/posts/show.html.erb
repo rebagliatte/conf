@@ -4,6 +4,6 @@
   <%= image_tag @post.image, alt: @post.title, class: 'primary-img' %>
 <% end %>
 
-<%= markdown(@post.body) %>
+<div class="markdown"><%= markdown(@post.body) %></div>
 
 <p class="created-at"><%= t 'posted' %> <%= time_ago_in_words(@post.created_at) %> ago</p>

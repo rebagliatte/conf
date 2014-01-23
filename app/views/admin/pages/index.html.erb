@@ -1,0 +1,43 @@
+<header class="admin-header">
+  <%= title 'Pages' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'New page', new_admin_conference_edition_page_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+  <% end %>
+
+</header>
+
+<% if @pages.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pages.each do |page| %>
+        <tr>
+          <td><%= page.id %></td>
+          <td><%= page.title %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_page_path(@conference_edition, page), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+
+            <% if can? :manage, @conference_edition %>
+              <%= link_to edit_admin_conference_edition_page_path(@conference_edition, page), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no pages for this conference edition.
+
+    <% if can? :manage, @conference_edition %>
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_page_path(@conference_edition) %>?
+    <% end %>
+  </p>
+<% end %>

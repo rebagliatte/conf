@@ -22,6 +22,7 @@ Conf::Application.routes.draw do
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)
+      resources :pages, only: %w(show index new create edit update)
       resources :posts, only: %w(show index new create edit update)
       resources :subscribers, only: %w(index)
     end
@@ -34,6 +35,7 @@ Conf::Application.routes.draw do
     resources :conferences, only: %w(index show)
 
     resources :conference_editions, only: %w(index) do
+      resources :pages, only: %w(show)
       resources :posts, only: %w(index show)
       resources :speakers, only: %w(index)
       resources :slots, only: %w(index)

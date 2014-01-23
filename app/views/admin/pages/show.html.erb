@@ -1,0 +1,28 @@
+<header class="admin-header">
+  <%= title @page.title %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_edition_page_path(@conference_edition, @page), class: 'btn btn-primary main-cta' %>
+  <% end %>
+</header>
+
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @page.translations, resource: @page }) %>
+
+<table class="table translated-table">
+  <tr>
+    <th>ID</th>
+    <td><%= @page.id %></td>
+  </tr>
+  <tr>
+    <th>Title</th>
+    <td><%= @page.title %></td>
+  </tr>
+  <tr>
+    <th>Content</th>
+    <td><%= @page.content %></td>
+  </tr>
+  <tr>
+    <th>Created at</th>
+    <td><%= @page.created_at %></td>
+  </tr>
+</table>

@@ -6,7 +6,7 @@
   <article class="post">
     <h1 class="secondary-heading"><%= post.title %></h1>
     <p class="created-at"><%= time_ago_in_words(post.created_at) %> ago</p>
-    <%= markdown(post.summary) %>
+    <div class="markdown"><%= markdown(post.summary) %></div>
     <p><%= link_to t('read_more'), conference_edition_post_path(conference_edition, post), class: 'read-more' %></p>
   </article>
 <% end %>
