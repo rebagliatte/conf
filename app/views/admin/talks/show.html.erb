@@ -44,6 +44,6 @@
   </tr>
   <tr>
     <th>Speaker</th>
-    <td></td>
+    <td><%= link_to @talk.speakers.first.name, admin_conference_edition_speaker_path(@conference_edition, @talk.speakers.first) %></td>
   </tr>
 </table>

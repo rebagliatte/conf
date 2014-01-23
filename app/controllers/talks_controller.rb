@@ -8,8 +8,7 @@ class TalksController < ApplicationController
     @talk = current_edition.talks.new(params[:talk])
     @talk.status = 'pending'
     if @talk.save
-      redirect_to conference_edition_talk_path(current_edition, @talk), flash: { success: "Thanks! Your talk proposal has been submitted successfully." }
-      # Todo: Send a confirmation email to the speaker
+      redirect_to root_path, flash: { success: 'Thanks! Your talk proposal has been submitted successfully.' }
     else
       render :new
     end
