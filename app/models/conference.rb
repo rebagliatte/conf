@@ -13,7 +13,7 @@ class Conference < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates :subdomain, presence: true, uniqueness: true, length: { maximum: 60 }
-  validates :custom_domain, uniqueness: true, length: { maximum: 60 }, format: DOMAIN_REGEX
+  validates :custom_domain, uniqueness: true, length: { maximum: 60 }, format: DOMAIN_REGEX, if: :custom_domain?
   validates :owner, presence: true
   validates :email, presence: true, format: EMAIL_REGEX
   validates :languages, presence: true
