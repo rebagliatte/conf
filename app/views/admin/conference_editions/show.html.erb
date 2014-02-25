@@ -17,10 +17,6 @@
     <td><%= image_tag @conference_edition.logo %></td>
   </tr>
   <tr>
-    <th>Tagline</th>
-    <td><%= @conference_edition.tagline %></td>
-  </tr>
-  <tr>
     <th>Organizers</th>
     <td><%= @conference_edition.organizers.pluck(:name).to_sentence %></td>
   </tr>
@@ -53,10 +49,6 @@
     <td><%= @conference_edition.city %></td>
   </tr>
   <tr>
-    <th>Venue</th>
-    <td><%= @conference_edition.venue %></td>
-  </tr>
-  <tr>
     <th>Venue Address</th>
     <td><%= @conference_edition.venue_address %></td>
   </tr>
@@ -69,10 +61,6 @@
     <td><%= @conference_edition.is_registration_open %></td>
   </tr>
   <tr>
-    <th>Registration call to action notes</th>
-    <td><%= @conference_edition.registration_call_to_action %></td>
-  </tr>
-  <tr>
     <th>Is call for sponsorships open?</th>
     <td><%= @conference_edition.is_call_for_sponsorships_open %></td>
   </tr>
@@ -81,27 +69,48 @@
     <td><%= link_to @conference_edition.sponsorship_packages_pdf %></td>
   </tr>
   <tr>
-    <th>Sponsor call to action notes</th>
-    <td><%= markdown(@conference_edition.sponsors_call_to_action) %></td>
-  </tr>
-  <tr>
     <th>Is call for proposals open?</th>
     <td><%= @conference_edition.is_call_for_proposals_open %></td>
+  </tr>
+  <tr>
+    <th>Collect subscriber emails?</th>
+    <td><%= @conference_edition.is_email_subscription_enabled %></td>
+  </tr>
+
+  <tr>
+    <th>Registration call to action notes</th>
+    <td><%= @conference_edition.registration_call_to_action %></td>
   </tr>
   <tr>
     <th>Speaker call to action notes</th>
     <td><%= markdown(@conference_edition.speakers_call_to_action) %></td>
   </tr>
   <tr>
+    <th>Sponsor call to action notes</th>
+    <td><%= markdown(@conference_edition.sponsors_call_to_action) %></td>
+  </tr>s
+  <tr>
+    <th>Subscriber call to action notes</th>
+    <td><%= markdown(@conference_edition.notes_to_subscribers) %></td>
+  </tr>
+  <tr>
+    <th>About the conference</th>
+    <td><%= markdown(@conference_edition.about) %></td>
+  </tr>
+  <tr>
+    <th>News Introduction</th>
+    <td><%= markdown(@conference_edition.news_intro) %></td>
+  </tr>
+  <tr>
     <th>Proposal form introduction</th>
     <td><%= markdown(@conference_edition.notes_to_speakers) %></td>
   </tr>
   <tr>
-    <th>Collect subscriber emails?</th>
-    <td><%= @conference_edition.is_email_subscription_enabled %></td>
+    <th>Venue</th>
+    <td><%= @conference_edition.venue %></td>
   </tr>
   <tr>
-    <th>Subscriber call to action notes</th>
-    <td><%= markdown(@conference_edition.notes_to_subscribers) %></td>
+    <th>SEO Description</th>
+    <td><%= @conference_edition.tagline %></td>
   </tr>
 </table>

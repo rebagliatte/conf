@@ -41,30 +41,48 @@
     </main>
   </div>
 
-  <footer class="main-footer">
+  <footer class="main-footer box box-primary">
     <% if current_edition.sponsors.any? %>
       <section class="sponsors">
         <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
       </section>
     <% end %>
 
+    <% if current_edition.about %>
+      <section class="about">
+        <h1 class="primary-heading"><%= t('about') %> <%= current_conference.name %></h1>
+        <%= markdown(current_edition.about) %>
+      </section>
+    <% end %>
+
     <section class="networks">
-      <h1 class="hidden"><%= t 'networks' %></h1>
+      <h1><%= t 'networks' %></h1>
       <ul>
         <% if current_conference.twitter_username.present? %>
           <li>
-            <%= link_to t('follow_us_on_twitter'), "http://twitter.com/#{current_conference.twitter_username}", target: 'blank', class: 'twitter' %>
+            <%= link_to "http://twitter.com/#{current_conference.twitter_username}", target: 'blank', class: 'twitter' do %>
+              <%= content_tag(:span, t('follow_us_on_twitter')) %>
+            <% end %>
           </li>
         <% end %>
         <% if current_conference.facebook_page_username.present? %>
           <li>
-            <%= link_to t('friend_us_on_facebook'), "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank', class: 'facebook' %>
+            <%= link_to "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank', class: 'facebook' do %>
+              <%= content_tag(:span, t('friend_us_on_facebook')) %>
+            <% end %>
           </li>
         <% end %>
         <li>
-          <%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank', class: 'email' %></li>
+          <%= link_to "mailto:#{current_conference.email}", target: 'blank', class: 'email' do %>
+           <%= content_tag(:span, t('drop_us_a_line')) %>
+          <% end %>
+        </li>
       </ul>
     </section>
   </footer>
+  <a class="back-to-top box" href="#top"><span>Back to top</span></a>
+  <div class="scripts">
+    <%= javascript_include_tag :public %>
+  </div>
 </body>
 </html>

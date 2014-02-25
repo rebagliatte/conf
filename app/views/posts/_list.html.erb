@@ -1,12 +1,19 @@
 <%# @param conference_edition [Conf::Model::ConferenceEdition] %>
 
-<h1 class="primary-heading"><%= t 'news' %></h1>
+<header>
+  <h1 class="primary-heading"><%= t 'news' %></h1>
+  <%= markdown(conference_edition.news_intro) %>
+</header>
 
-<% conference_edition.posts.each do |post| %>
-  <article class="post">
-    <h1 class="secondary-heading"><%= post.title %></h1>
-    <p class="created-at"><%= time_ago_in_words(post.created_at) %> ago</p>
-    <div class="markdown"><%= markdown(post.summary) %></div>
-    <p><%= link_to t('read_more'), conference_edition_post_path(conference_edition, post), class: 'read-more' %></p>
-  </article>
-<% end %>
+<div class="posts">
+  <% conference_edition.posts.each do |post| %>
+    <article class="post <%= post == last_post(conference_edition) ? 'last' : '' %>">
+      <h1 class="secondary-heading">
+        <%= link_to post.title, conference_edition_post_path(conference_edition, post) %>
+      </h1>
+      <p class="created-at"><%= time_ago_in_words(post.created_at) %> <%= t 'ago' %></p>
+      <div class="markdown"><%= markdown(post.summary) %></div>
+      <%= link_to t('read_more'), conference_edition_post_path(conference_edition, post), class: 'read-more' %>
+    </article>
+  <% end %>
+</div>

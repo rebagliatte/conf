@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140223235253) do
+ActiveRecord::Schema.define(:version => 20140224143305) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20140223235253) do
     t.text     "speakers_call_to_action",     :default => ""
     t.text     "sponsors_call_to_action",     :default => ""
     t.text     "registration_call_to_action", :default => ""
+    t.text     "news_intro",                  :default => ""
+    t.text     "about",                       :default => ""
   end
 
   add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"

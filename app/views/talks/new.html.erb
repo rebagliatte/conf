@@ -5,16 +5,16 @@
 
   <%= markdown(current_edition.notes_to_speakers) %>
 
-  <fieldset>
-    <legend><%= t('.about_your_proposal') %></legend>
+  <fieldset class="box">
+    <legend class="primary-heading"><%= t('.about_your_proposal') %></legend>
     <%= form.input :title %>
     <%= form.input :abstract, hint: t('.abstract_hint') %>
     <%= form.input :language, hint: t('.language_hint'), collection: current_edition.languages, include_blank: false %>
     <%= form.input :notes_to_organizers, hint: t('.notes_to_organizers_hint') %>
   </fieldset>
 
-  <fieldset>
-    <legend><%= t('.about_you') %></legend>
+  <fieldset class="box box-primary">
+    <legend class="primary-heading"><%= t('.about_you') %></legend>
     <%= form.simple_fields_for :speakers do |speaker| %>
       <%= speaker.input :name %>
       <%= speaker.input :email %>
@@ -38,5 +38,7 @@
     <% end %>
   </fieldset>
 
-  <%= form.submit t('submit'), class: 'btn btn-primary' %>
+  <button type="submit" class="btn btn-primary">
+    <span><%= t('submit') %></span>
+  </button>
 <% end %>

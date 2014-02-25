@@ -8,7 +8,7 @@ pt:
   follow_us_on_twitter: Siga-nos no twitter
   friend_us_on_facebook: Seja nosso amigo no Facebook
   location: Locação
-  networks: Networks
+  networks: Redes sociais
   news: Notícias
   oh_snap: Oh!
   please_resubmit: Por favor, altere algumas coisas e tente enviar novamente
@@ -31,6 +31,8 @@ pt:
   submit: Enviar
   stay_up_to_date: Mantenha-se atualizado
   subscribe: Inscrever-me
+  ago: atrás
+  about: Sobre la conferencia
 
   en: Inglês
   pt: Português

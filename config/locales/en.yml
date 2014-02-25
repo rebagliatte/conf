@@ -8,7 +8,7 @@ en:
   follow_us_on_twitter: Follow us on twitter
   friend_us_on_facebook: Friend us on facebook
   location: Location
-  networks: Networks
+  networks: Social Networks
   news: News
   oh_snap: Oh snap!
   please_resubmit: Please review the following fields and try submitting again
@@ -31,6 +31,8 @@ en:
   the_talks: Talks
   stay_up_to_date: Stay up to date
   subscribe: Subscribe
+  ago: Ago
+  about_us: About the conference
 
   en: English
   pt: Portuguese

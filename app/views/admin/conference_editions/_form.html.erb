@@ -64,7 +64,9 @@
       <%= t.input :speakers_call_to_action, as: :text, label: 'Become a speaker call to action', hint: 'Visible on the homepage.' %>
       <%= t.input :sponsors_call_to_action, as: :text, label: 'Become a sponsor call to action', hint: 'Visible on the homepage.' %>
       <%= t.input :notes_to_subscribers, as: :text, label: 'Subscribe call to action', hint: 'Visible on the homepage.' %>
-      <%= t.input :notes_to_speakers, as: :text, label: 'CFP instructions', hint: 'Visible on the proposal form page' %>
+      <%= t.input :about, as: :text, label: 'About the conference', hint: 'Visible on the homepage. You may want to include the objective of the conference, the organizers and a link to the code of conduct in this space.' %>
+      <%= t.input :news_intro, as: :text, label: 'News introduction', hint: 'Visible on the homepage and the news listing page.' %>
+      <%= t.input :notes_to_speakers, as: :text, label: 'CFP introduction', hint: 'Visible on the proposal form page' %>
       <%= t.input :venue, label: 'Venue name', hint: 'Visible on the homepage.' %>
       <%= t.input :tagline, label: 'SEO description' %>
     <% end %>
