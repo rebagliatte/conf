@@ -15,9 +15,14 @@
 
 <body class="<%= body_class %>">
   <div class="main-wrapper">
+
+    <% if current_page?(root_url) %>
+      <%= render(partial: 'shared/hero', locals: { conference_edition: current_edition, conference: current_conference }) %>
+    <% end %>
+
     <header class="main-header">
-      <nav>
-        <h1>
+      <nav class="main-navigation">
+        <h1 class="logo">
           <%= link_to root_url do %>
             <%= image_tag current_edition.logo_url, alt: current_conference.name %>
           <% end %>
@@ -60,17 +65,6 @@
           <%= link_to t('drop_us_a_line'), "mailto:#{current_conference.email}", target: 'blank', class: 'email' %></li>
       </ul>
     </section>
-
-    <% if current_edition.pages.any? %>
-      <section class="pages">
-        <h1 class="hidden">Pages</h1>
-        <ul class="pages">
-          <% current_edition.pages.each do |page| %>
-            <li><%= link_to page.title, conference_edition_page_path(current_edition, page) %></li>
-          <% end %>
-        </ul>
-      </section>
-    <% end %>
   </footer>
 </body>
 </html>

@@ -8,7 +8,6 @@
     <legend>Marketing Info</legend>
     <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false, label: 'Tracks' %>
     <%= form.input :logo %>
-    <%= form.input :tagline %>
     <%= form.input :promo_video_provider, as: :select, collection: ConferenceEdition::VIDEO_PROVIDERS, include_blank: false %>
     <%= form.input :promo_video_uid %>
   </fieldset>
@@ -25,7 +24,6 @@
     <%= form.input :is_location_available, label: 'Is location available?', inline_label: 'Yes' %>
     <%= form.input :country %>
     <%= form.input :city %>
-    <%= form.input :venue, label: 'Venue name' %>
     <%= form.input :venue_address %>
     <div class="control-group coordinates">
       <label class="control-label" for="conference_edition_venue_latitude">Venue geographical coordinates</label>
@@ -47,20 +45,29 @@
     <legend>Call for Sponsorships</legend>
     <%= form.input :is_call_for_sponsorships_open, label: 'Is call for sponsorships open?', inline_label: 'Yes' %>
     <%= form.input :sponsorship_packages_pdf %>
-    <%= form.input :sponsors_call_to_action, hint: "Visible on the conference's homepage. Markdown available", as: :text, label: 'Sponsor call to action notes' %>
   </fieldset>
 
   <fieldset>
     <legend>Call for Proposals</legend>
     <%= form.input :is_call_for_proposals_open, label: 'Is call for proposals open?', inline_label: 'Yes' %>
-    <%= form.input :speakers_call_to_action, hint: "Visible on the conference's homepage. Markdown available", as: :text, label: 'Speaker call to action notes' %>
-    <%= form.input :notes_to_speakers, as: :text, hint: "Visible on the conference's call for proposals form. Markdown available", label: 'Proposal form introduction' %>
   </fieldset>
 
   <fieldset>
     <legend>Subscribers</legend>
     <%= form.input :is_email_subscription_enabled, label: 'Collect subscriber emails?', inline_label: 'Yes' %>
-    <%= form.input :notes_to_subscribers, as: :text, hint: "Visible on the conference's homepage. Markdown available", label: 'Subscriber call to action notes' %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Copy* <span class="note">*markdown available on all fields</span></legend>
+    <%= translatable_fields_for(form) do |t| %>
+      <%= t.input :registration_call_to_action, as: :text, label: 'Register call to action', hint: 'Visible on the homepage.' %>
+      <%= t.input :speakers_call_to_action, as: :text, label: 'Become a speaker call to action', hint: 'Visible on the homepage.' %>
+      <%= t.input :sponsors_call_to_action, as: :text, label: 'Become a sponsor call to action', hint: 'Visible on the homepage.' %>
+      <%= t.input :notes_to_subscribers, as: :text, label: 'Subscribe call to action', hint: 'Visible on the homepage.' %>
+      <%= t.input :notes_to_speakers, as: :text, label: 'CFP instructions', hint: 'Visible on the proposal form page' %>
+      <%= t.input :venue, label: 'Venue name', hint: 'Visible on the homepage.' %>
+      <%= t.input :tagline, label: 'SEO description' %>
+    <% end %>
   </fieldset>
 
   <div class="form-actions">

@@ -7,7 +7,8 @@ class ConferenceEdition < ActiveRecord::Base
   :is_schedule_available, :is_location_available, :notes_to_speakers, \
   :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles, \
   :speakers_call_to_action, :sponsors_call_to_action, :custom_css_file, \
-  :venue_address, :venue_latitude, :venue_longitude
+  :venue_address, :venue_latitude, :venue_longitude, \
+  :registration_call_to_action
 
   belongs_to :conference
   has_many :organizer_invitations
@@ -52,7 +53,8 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :translations
   accepts_nested_attributes_for :translations
   translates :tagline, :country, :city, :venue, :notes_to_speakers, \
-    :notes_to_subscribers, :sponsors_call_to_action, :speakers_call_to_action
+    :notes_to_subscribers, :sponsors_call_to_action, :speakers_call_to_action, \
+    :registration_call_to_action
 
   # Uploaders
   mount_uploader :logo, ImageUploader

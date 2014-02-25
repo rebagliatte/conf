@@ -1,0 +1,12 @@
+<%# @param conference [Conf::Models::Conference] %>
+<%# @param conference_edition [Conf::Models::ConferenceEdition] %>
+
+<section class="intro">
+  <h1>
+    <%= link_to root_url do %>
+      <%= image_tag conference_edition.logo_url, alt: conference.name %>
+    <% end %>
+  </h1>
+  <p class="tagline"><%= conference_edition.tagline %></p>
+  <p class="date-and-location"><%= pretty_date_and_location(conference_edition) %></p>
+</section>
