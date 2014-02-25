@@ -2,18 +2,8 @@
  * Layout
  */
 
-.main-header,
-.main-content,
-.main-footer {
-  width: 80%;
-  padding: 0 10%;
-  text-align: center;
-}
-
 // Header
 .main-header {
-  overflow: auto;
-  padding: 20px 10%;
   h1 {
     font-weight: bold;
     margin: 0 3em 0 0;
@@ -119,9 +109,6 @@
   .sponsor,
   .networks li {
     display: inline-block;
-  }
-  a {
-    padding: 10px;
   }
 }
 

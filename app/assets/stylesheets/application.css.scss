@@ -23,7 +23,6 @@ body {
 }
 .secondary-heading {
   font-size: 24px;
-  text-transform: uppercase;
   color: #444;
 }
 .tertiary-heading {
@@ -74,7 +73,6 @@ a:hover {
   background: #dedede;
   color: #333;
   display: inline-block;
-  padding: 10px 20px;
   text-decoration: none;
   font-size: 1em;
   &:hover {
@@ -147,7 +145,7 @@ a:hover {
     margin-bottom: 2em;
     &.error input,
     &.error textarea {
-      border: 1px solid #b94a48;
+      border: 1px solid #8c0028;
     }
   }
   label {
@@ -174,11 +172,13 @@ a:hover {
     padding: 6px 8px;
     line-height: 1.3em;
   }
+  button,
   input[type="submit"] {
     -webkit-appearance: none;
     min-height: 35px;
     border: 0;
     cursor: pointer;
+    padding: 0;
     &:hover {
       background: #333;
       color: #fcfcfc;
@@ -196,7 +196,7 @@ a:hover {
     font-style: italic;
   }
   .help-inline {
-    color: #b94a48;
+    color: #8c0028;
   }
   &.form-inline {
     input {
@@ -217,6 +217,9 @@ a:hover {
 
   .alert {
     margin-bottom: 40px;
+  }
+  .alert p {
+    margin-bottom: 1em;
   }
 }
 
@@ -242,10 +245,8 @@ table {
 }
 
 /* Markdown */
-.markdown p {
-  width: 80%;
-  padding: 0 10%;
-  text-align: left;
+.markdown {
+  line-height: 1.5em;
 }
 .markdown h2 {
   font-size: 2em;
@@ -255,7 +256,6 @@ table {
 .markdown ul {
   padding-bottom: 1em;
   text-align: left;
-  width: 80%;
   list-style: disc;
   margin: 0 auto;
   list-style-position: inside;
