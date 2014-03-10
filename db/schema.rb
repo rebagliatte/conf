@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224143305) do
+ActiveRecord::Schema.define(:version => 20140310033648) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20140224143305) do
     t.datetime "updated_at",                             :null => false
     t.integer  "owner_id",                               :null => false
     t.string   "custom_domain",          :default => ""
+    t.string   "disqus_shortname",       :default => "", :null => false
   end
 
   create_table "conferences_languages", :force => true do |t|
