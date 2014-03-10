@@ -16,6 +16,7 @@
           <th>ID</th>
           <th>Title</th>
           <th>Speaker</th>
+          <th>Created at</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@
             <td><%= talk.id %></td>
             <td><%= talk.title %></td>
             <td><%= talk.speakers.first.name %></td>
+            <td><%= talk.created_at.to_s(:short) %></td>
             <td class="actions">
               <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>
               <% if can? :manage, @conference_edition %>
