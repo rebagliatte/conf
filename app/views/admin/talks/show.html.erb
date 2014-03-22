@@ -15,7 +15,7 @@
   <%= markdown(@talk.abstract) %>
 
   <section class="speaker-details">
-    <h1><%= avatar_for(@speaker) %> <%= @speaker.name %></h1>
+    <h1><%= avatar_for(@speaker, 'avatar') %> <%= @speaker.name %></h1>
 
     <ul class="social-media unstyled">
       <% if @speaker.job_title.present? && @speaker.company.present? %>
@@ -101,7 +101,7 @@
     </tr>
     <tr>
       <th>By</th>
-      <td><%= avatar_for(@speaker) %><%= @speaker.name %></td>
+      <td><%= avatar_for(@speaker, 'avatar') %><%= @speaker.name %></td>
     </tr>
     <tr>
       <th>Abstract</th>

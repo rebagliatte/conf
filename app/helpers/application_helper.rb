@@ -42,4 +42,15 @@ module ApplicationHelper
     translations = form.object.translations
     render(partial: 'admin/shared/translatable_fields', locals: { form: form, translations: translations, block: block })
   end
+
+  def avatar_for(user, image_attribute)
+    image_src = if user.send(image_attribute).present?
+      user.send(image_attribute)
+    elsif user.email
+      email_hash = Digest::MD5.hexdigest(user.email).to_s
+      "http://www.gravatar.com/avatar/#{email_hash}?s=45"
+    end
+
+    image_tag(image_src)
+  end
  end
