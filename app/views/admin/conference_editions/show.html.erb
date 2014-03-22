@@ -73,10 +73,13 @@
     <td><%= @conference_edition.is_call_for_proposals_open %></td>
   </tr>
   <tr>
+    <th>Is talk voting open?</th>
+    <td><%= @conference_edition.is_talk_voting_open %></td>
+  </tr>
+  <tr>
     <th>Collect subscriber emails?</th>
     <td><%= @conference_edition.is_email_subscription_enabled %></td>
   </tr>
-
   <tr>
     <th>Registration call to action notes</th>
     <td><%= @conference_edition.registration_call_to_action %></td>

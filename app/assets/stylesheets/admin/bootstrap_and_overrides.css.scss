@@ -112,3 +112,9 @@ $linkColor:           $green;
   color: inherit;
   font-weight: bold;
 }
+
+/* Override bootstrap icons with font awesome icons */
+[class^="icon-"],
+[class*="icon-"] {
+  background-image: none;
+}

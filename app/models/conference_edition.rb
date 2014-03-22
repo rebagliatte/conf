@@ -8,7 +8,7 @@ class ConferenceEdition < ActiveRecord::Base
   :is_email_subscription_enabled, :notes_to_subscribers, :custom_styles, \
   :speakers_call_to_action, :sponsors_call_to_action, :custom_css_file, \
   :venue_address, :venue_latitude, :venue_longitude, :news_intro, :about, \
-  :registration_call_to_action
+  :registration_call_to_action, :is_talk_voting_open
 
   belongs_to :conference
   has_many :organizer_invitations

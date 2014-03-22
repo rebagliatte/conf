@@ -1,49 +1,117 @@
 <header class="admin-header">
-  <%= title @talk.title %>
+  <%= title @talk.title(:en) || @talk.title(:es) %>
 
-  <% if can? :manage, @conference_edition %>
+  <% if can? :manage, @conference_edition && !@conference_edition.is_talk_voting_open %>
     <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition, @talk), class: 'btn btn-primary main-cta' %>
   <% end %>
 
 </header>
 
-<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
+<% if !@conference_edition.is_talk_voting_open %>
+  <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
+<% end %>
 
-<table class="table translated-table">
-  <tr>
-    <th>ID</th>
-    <td><%= @talk.id %></td>
-  </tr>
-  <tr>
-    <th>Status</th>
-    <td><%= @talk.status %></td>
-  </tr>
-  <tr>
-    <th>Title</th>
-    <td><%= @talk.title %></td>
-  </tr>
-  <tr>
-    <th>Abstract</th>
-    <td><%= @talk.abstract %></td>
-  </tr>
-  <tr>
-    <th>Slides URL</th>
-    <td><%= @talk.slides_url %></td>
-  </tr>
-  <tr>
-    <th>Video URL</th>
-    <td><%= @talk.video_url %></td>
-  </tr>
-  <tr>
-    <th>Slot ID</th>
-    <td><%= @talk.slot_id %></td>
-  </tr>
-  <tr>
-    <th>Room ID</th>
-    <td><%= @talk.room_id %></td>
-  </tr>
-  <tr>
-    <th>Speaker</th>
-    <td><%= link_to @talk.speakers.first.name, admin_conference_edition_speaker_path(@conference_edition, @talk.speakers.first) %></td>
-  </tr>
-</table>
+<% if @conference_edition.is_talk_voting_open %>
+  <%= markdown(@talk.abstract) %>
+
+  <h2><%= avatar_for(@speaker) %> <%= @speaker.name %></h2>
+
+  <ul class="social-media unstyled">
+    <% if @speaker.job_title.present? && @speaker.company.present? %>
+      <li>
+        <i class="icon-briefcase"></i>
+        <%= @speaker.job_title %> at <%= @speaker.company %>
+      </li>
+    <% end %>
+    <% if @speaker.city.present? && @speaker.country.present? %>
+      <li>
+        <i class="icon-map-marker"></i>
+        <%= @speaker.city %>, <%= @speaker.country %>
+      </li>
+    <% end %>
+    <% if @speaker.github_username.present? %>
+      <li>
+        <%= link_to "http://github.com/#{@speaker.github_username}", target: '_blank' do %>
+          <i class="icon-github"></i>
+          <%= @speaker.github_username %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.twitter_username.present? %>
+      <li>
+        <%= link_to "http://twitter.com/#{@speaker.twitter_username}", target: '_blank' do %>
+          <i class="icon-twitter"></i>
+          <%= @speaker.twitter_username %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.lanyrd_username.present? %>
+      <li>
+        <%= link_to "http://lanyrd.com/#{@speaker.lanyrd_username}", target: '_blank' do %>
+          <i>L</i>
+          <%= @speaker.lanyrd_username %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.website.present? %>
+      <li>
+        <%= link_to @speaker.website, target: '_blank' do %>
+          <i class="icon-link"></i>
+          <%= @speaker.website %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.email.present? %>
+      <li>
+        <%= mail_to "#{@speaker.email}" do %>
+          <i class="icon-envelope"></i>
+          <%= @speaker.email %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.phone.present? %>
+      <li>
+        <%= link_to "tel:#{@speaker.phone}" do %>
+          <i class="icon-phone"></i>
+          <%= @speaker.phone %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <table class="table translated-table">
+    <tr>
+      <th>Title</th>
+      <td><%= @talk.title %></td>
+    </tr>
+    <tr>
+      <th>By</th>
+      <td><%= avatar_for(@speaker) %><%= @speaker.name %></td>
+    </tr>
+    <tr>
+      <th>Abstract</th>
+      <td><%= markdown(@talk.abstract) %></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td><%= @talk.status %></td>
+    </tr>
+    <tr>
+      <th>Slides URL</th>
+      <td><%= @talk.slides_url %></td>
+    </tr>
+    <tr>
+      <th>Video URL</th>
+      <td><%= @talk.video_url %></td>
+    </tr>
+    <tr>
+      <th>Slot ID</th>
+      <td><%= @talk.slot_id %></td>
+    </tr>
+    <tr>
+      <th>Room ID</th>
+      <td><%= @talk.room_id %></td>
+    </tr>
+  </table>
+<% end %>

@@ -4,6 +4,7 @@ class Admin::SpeakersController < AdminController
   load_and_authorize_resource :speaker, through: :conference_edition
 
   def index
+    @speakers = @conference_edition.speakers.confirmed
   end
 
   def show

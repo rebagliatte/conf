@@ -8,6 +8,7 @@ class Admin::TalksController < AdminController
   end
 
   def show
+    @speaker = @talk.speakers.first
   end
 
   def new
