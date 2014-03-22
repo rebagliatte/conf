@@ -18,7 +18,12 @@ Conf::Application.routes.draw do
         end
       end
       resources :organizers, only: %w(show index new create edit update)
-      resources :talks, only: %w(show index new create edit update)
+      resources :talks, only: %w(show index new create edit update) do
+        member do
+          post :vote
+          put :vote
+        end
+      end
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)
       resources :pages, only: %w(show index new create edit update)

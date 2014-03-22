@@ -10,6 +10,7 @@ class Talk < ActiveRecord::Base
   belongs_to :room
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
+  has_many :talk_votes, dependent: :destroy
 
   STATUSES = %w( pending approved rejected )
 
@@ -26,4 +27,13 @@ class Talk < ActiveRecord::Base
   translates :title, :abstract
 
   accepts_nested_attributes_for :speakers
+
+  # Scopes
+  scope :pending, -> { where(status: 'pending') }
+
+  # Methods
+
+  def talk_vote_for_user(user)
+    talk_votes.where(organizer_id: user.id).first.try(:vote)
+  end
 end

@@ -8,7 +8,7 @@ module SpeakersHelper
       "http://www.gravatar.com/avatar/#{email_hash}?s=45"
     end
 
-    image_tag(image_src)
+    image_tag(image_src, class: 'speaker-avatar')
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140322045634) do
+ActiveRecord::Schema.define(:version => 20140322065958) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -256,6 +256,19 @@ ActiveRecord::Schema.define(:version => 20140322045634) do
 
   add_index "talk_translations", ["locale"], :name => "index_talk_translations_on_locale"
   add_index "talk_translations", ["talk_id"], :name => "index_talk_translations_on_talk_id"
+
+  create_table "talk_votes", :force => true do |t|
+    t.integer  "talk_id",                      :null => false
+    t.integer  "organizer_id",                 :null => false
+    t.integer  "vote",                         :null => false
+    t.string   "comment",      :default => "", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "talk_votes", ["organizer_id"], :name => "index_talk_votes_on_organizer_id"
+  add_index "talk_votes", ["talk_id", "organizer_id"], :name => "index_talk_votes_on_talk_id_and_organizer_id", :unique => true
+  add_index "talk_votes", ["talk_id"], :name => "index_talk_votes_on_talk_id"
 
   create_table "talks", :force => true do |t|
     t.string   "title",                 :default => "",        :null => false

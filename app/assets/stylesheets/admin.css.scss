@@ -141,14 +141,39 @@
 }
 
 // talks#show
-.social-media li {
-  display: inline-block;
-  margin-right: 1em;
-  a {
-    text-decoration: none;
-    color: #01a4a4;
+.speaker-details {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  .speaker-avatar {
+    height: 45px;
+    margin-right: 10px;
+  }
+  h1 {
+    line-height: 45px;
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 2em 0;
+  }
+  ul {
+    margin-left: 5px;
+  }
+  .social-media li {
+    display: inline-block;
+    width: 32%;
+    i {
+      color: #ccc;
+      margin-right: 1em;
+    }
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
+
 
 // utilities
 
