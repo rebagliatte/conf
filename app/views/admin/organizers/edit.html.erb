@@ -1,0 +1,15 @@
+<%= title "Edit Organizer ##{@organizer.id}" %>
+
+<%= simple_form_for [:admin, @conference_edition, @organizer], html: { class: 'form-horizontal' }, url: admin_conference_edition_organizer_url(@conference_edition, @organizer) do |form| %>
+
+  <%= error_messages_for(@organizer) %>
+
+  <%= form.input :name %>
+  <%= form.input :nickname %>
+  <%= form.input :email %>
+  <%= form.input :image %>
+
+  <div class="form-actions">
+    <%= form.submit "Update Organizer", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

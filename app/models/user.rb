@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates :role, inclusion: { in: ROLES }
+  validates :image, file_size: { maximum: 0.5.megabytes.to_i }, if: :image_changed?
+
+  # Uploaders
+  mount_uploader :image, ImageUploader
 
   def admin?
     self.role == 'admin'

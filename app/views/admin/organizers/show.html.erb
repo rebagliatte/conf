@@ -1,0 +1,30 @@
+<header class="admin-header">
+  <%= title @organizer.name %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_edition_organizer_path(@conference_edition, @organizer), class: 'btn btn-primary main-cta' %>
+  <% end %>
+</header>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <td><%= @organizer.name %></td>
+  </tr>
+  <tr>
+    <th>Nickname</th>
+    <td><%= @organizer.nickname %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= @organizer.email %></td>
+  </tr>
+  <tr>
+    <th>Image</th>
+    <td><%= image_tag(@organizer.image, alt: @organizer.name) %></td>
+  </tr>
+  <tr>
+    <th>Joined at</th>
+    <td><%= @organizer.created_at %></td>
+  </tr>
+</table>

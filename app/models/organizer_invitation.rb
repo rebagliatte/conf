@@ -17,6 +17,9 @@ class OrganizerInvitation < ActiveRecord::Base
   # Callbacks
   before_create :generate_token
 
+  # Scopes
+  scope :pending, -> { where(invitee_id: nil) }
+
   private
 
   def generate_token

@@ -7,7 +7,6 @@ Conf::Application.routes.draw do
           get :appearance
           get :edit_appearance
           put :update_appearance
-          get :organizers
         end
       end
     end
@@ -18,7 +17,7 @@ Conf::Application.routes.draw do
           put :destroy
         end
       end
-      resource :organizer_invitations, only: %w(new create)
+      resources :organizers, only: %w(show index new create edit update)
       resources :talks, only: %w(show index new create edit update)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)

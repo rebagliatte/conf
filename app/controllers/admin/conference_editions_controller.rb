@@ -46,10 +46,4 @@ class Admin::ConferenceEditionsController < AdminController
     end
   end
 
-  # Organizers
-
-  def organizers
-    @organizers = @conference_edition.organizers
-  end
-
 end

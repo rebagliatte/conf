@@ -23,7 +23,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
     if is_model_class?(model, 'conference_edition')
       "conference_editions/#{model.id}/#{mounted_as}"
-    elsif model.conference_edition_id
+    elsif model.has_attribute?(:conference_edition_id)
       "conference_editions/#{model.conference_edition_id}/#{model_class.pluralize}/#{model.id}/#{mounted_as}"
     else
       "#{model_class.pluralize}/#{model.id}/#{mounted_as}"
@@ -68,7 +68,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def is_thumbnable? picture
-    is_model_class?(model, 'speaker') || is_model_class?(model, 'sponsor')
+    is_model_class?(model, 'speaker') || is_model_class?(model, 'sponsor') || is_model_class?(model, 'user')
   end
 
   def model_class(model)

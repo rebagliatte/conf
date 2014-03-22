@@ -1,0 +1,54 @@
+<header class="admin-header">
+  <%= title 'Organizers' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Invite a new organizer', new_admin_conference_edition_organizer_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+  <% end %>
+</header>
+
+<h2>Organizers</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Joined at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @organizers.each do |organizer| %>
+      <tr>
+        <td><%= organizer.name %></td>
+        <td><%= organizer.email %></td>
+        <td><%= organizer.created_at.to_s(:short) %></td>
+        <td class="actions">
+          <%= link_to admin_conference_edition_organizer_path(@conference_edition, organizer), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+          <%= link_to edit_admin_conference_edition_organizer_path(@conference_edition, organizer), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pending_invitations.any? %>
+  <h2>Pending invitations</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Sent at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pending_invitations.each do |invitation| %>
+        <tr>
+          <td><%= invitation.invitee_email %></td>
+          <td><%= invitation.created_at.to_s(:short) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+

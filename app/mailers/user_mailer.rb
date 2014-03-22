@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     @conference_name = @organizer_invitation.conference.name
     @signup_url = signup_url
 
-    from_email = @organizer_invitation.inviter.try(:email) || @organizer_invitation.conference.email
+    from_email = @organizer_invitation.conference.email
 
     subject = "Join #{ @conference_name } organizing team"
     mail(from: from_email, to: @organizer_invitation.invitee_email, subject: subject)
