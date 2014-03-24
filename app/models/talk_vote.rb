@@ -4,7 +4,7 @@ class TalkVote < ActiveRecord::Base
   belongs_to :talk
   belongs_to :organizer, class_name: 'User'
 
-  VOTING_OPTIONS = 1..5
+  VOTING_OPTIONS = [-1, 0, 1]
 
   # Validations
   validates :vote, presence: true, inclusion: { in: VOTING_OPTIONS }

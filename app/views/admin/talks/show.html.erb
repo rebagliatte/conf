@@ -85,11 +85,11 @@
   <%= simple_form_for [:admin, @conference_edition, @talk_vote], url: vote_admin_conference_edition_talk_url(@conference_edition, @talk), method: @talk_vote.id ? 'PUT' : 'POST', html: { class: 'form-horizontal' } do |form| %>
     <%= error_messages_for(@talk_vote) %>
 
-    <%= form.input :vote, input_html: { tabindex: 1, autofocus: true }, hint: 'Number from 1 to 5' %>
+    <%= form.input :vote, input_html: { tabindex: 1, autofocus: true }, hint: 'Valid values: -1, 0, 1' %>
     <%= form.input :comment, input_html: { tabindex: 2 }, hint: 'Optional', as: :text %>
 
     <div class="form-actions">
-      <%= form.submit "Vote", class: 'btn btn-large btn-primary' %>
+      <%= form.submit "Vote", class: 'btn btn-large btn-primary', input_html: { tabindex: 3 } %>
     </div>
   <% end %>
 
