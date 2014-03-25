@@ -59,7 +59,7 @@ class Admin::TalksController < AdminController
   end
 
   def success_and_redirect_to_next_talk
-    next_talk = @conference_edition.talks.pending.order('id ASC').where("id > ?", @talk.id).first
+    next_talk = @conference_edition.talks.pending.order('id DESC').where("id < ?", @talk.id).first
 
     if next_talk
       url = admin_conference_edition_talk_path(@conference_edition, next_talk)
