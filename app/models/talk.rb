@@ -32,6 +32,9 @@ class Talk < ActiveRecord::Base
   scope :pending, -> { where(status: 'pending') }
 
   # Methods
+  def language_name
+    Language.find(language).name
+  end
 
   def talk_vote_for_user(user)
     talk_votes.where(organizer_id: user.id).first.try(:vote)

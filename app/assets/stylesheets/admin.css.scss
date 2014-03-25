@@ -86,7 +86,7 @@
   }
   h2 {
     font-weight: normal;
-    margin-bottom: 20px;
+    margin: 20px 0;
     font-size: 21px;
     text-transform: capitalize;
   }
@@ -141,20 +141,23 @@
 }
 
 // talks#show
+.talk-header {
+  .primary-heading {
+    margin-bottom: 0;
+  }
+  h2 {
+    text-transform: none;
+    margin-bottom: 2em;
+  }
+  img {
+    max-height: 45px;
+    margin-right: 12px;
+  }
+}
 .speaker-details {
   border-bottom: 1px solid #eee;
   padding-bottom: 1em;
   margin-bottom: 1em;
-  img {
-    height: 45px;
-    margin-right: 10px;
-  }
-  h1 {
-    line-height: 45px;
-    font-size: 1.5em;
-    font-weight: normal;
-    margin: 2em 0;
-  }
   ul {
     margin-left: 5px;
   }
@@ -173,7 +176,6 @@
     }
   }
 }
-
 
 // utilities
 
