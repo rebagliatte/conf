@@ -4,7 +4,7 @@ class Admin::TalksController < AdminController
   load_and_authorize_resource :talk, through: :conference_edition
 
   def index
-    @talks = @talks.order('created_at DESC').group_by { |s| s.status }
+    @talks = @talks.order('ranking DESC, created_at DESC').group_by { |s| s.status }
   end
 
   def show

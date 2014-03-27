@@ -10,13 +10,19 @@
 <% if @talks.any? %>
   <% @talks.each do |status, talks| %>
     <h2><%= status %></h2>
-    <table class="table">
+    <table class="table talks-ranking">
       <thead>
         <tr>
           <th>ID</th>
           <th>Title</th>
-          <th>Speaker</th>
-          <th>My votes</th>
+          <% if @conference_edition.is_talk_voting_open %>
+            <th>My votes</th>
+          <% else %>
+            <% @conference_edition.organizers.each do |o| %>
+              <th><%= avatar_for(o, 'image') %></th>
+            <% end %>
+            <th>Total</th>
+          <% end %>
           <th>Created at</th>
           <th>Actions</th>
         </tr>
@@ -25,9 +31,19 @@
         <% for talk in talks %>
           <tr>
             <td><%= talk.id %></td>
-            <td><%= talk.title %></td>
-            <td><%= talk.speakers.first.name %></td>
-            <td><%= talk.talk_vote_for_user(current_user) %></td>
+            <td>
+              <%= talk.title %>
+              <br>
+              <span class="speaker"><%= talk.speakers.first.name %></span>
+            </td>
+            <% if @conference_edition.is_talk_voting_open %>
+              <td><%= talk.talk_vote_for_user(current_user) %></td>
+            <% else %>
+              <% @conference_edition.organizers.each do |o| %>
+                <td><%= talk.talk_vote_for_user(o) %></td>
+              <% end %>
+              <td><%= talk.ranking %></td>
+            <% end %>
             <td><%= talk.created_at.to_s(:short) %></td>
             <td class="actions">
               <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>

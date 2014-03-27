@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140322065958) do
+ActiveRecord::Schema.define(:version => 20140327220412) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -283,6 +283,7 @@ ActiveRecord::Schema.define(:version => 20140322065958) do
     t.integer  "conference_edition_id",                        :null => false
     t.text     "notes_to_organizers",   :default => ""
     t.string   "language",                                     :null => false
+    t.integer  "ranking"
   end
 
   create_table "users", :force => true do |t|

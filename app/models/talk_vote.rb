@@ -9,4 +9,13 @@ class TalkVote < ActiveRecord::Base
   # Validations
   validates :vote, presence: true, inclusion: { in: VOTING_OPTIONS }
   validates :talk_id, uniqueness: { scope: :organizer_id }
+
+  # Callbacks
+  after_update :update_talk_ranking
+
+  def update_talk_ranking
+    talk = Talk.find(talk_id)
+    talk.update_attribute(:ranking, talk.talk_votes.sum(:vote))
+  end
+
 end
