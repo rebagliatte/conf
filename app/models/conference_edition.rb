@@ -86,6 +86,10 @@ class ConferenceEdition < ActiveRecord::Base
     self.sponsors.group_by { |s| s.kind }
   end
 
+  def voting_organizers
+    @voting_organizers ||= organizers.where(id: TalkVote.where(conference_edition_id: id).pluck(:organizer_id).uniq!)
+  end
+
   def max_simultaneous_talks_count
     max_simultaneous_talks_count = 0
 

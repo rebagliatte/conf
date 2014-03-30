@@ -7,131 +7,93 @@
   <% end %>
 </header>
 
-<% if !@conference_edition.is_talk_voting_open %>
+<% if @talk.translations.count > 1 %>
   <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
 <% end %>
 
-<% if @conference_edition.is_talk_voting_open %>
-  <%= markdown(@talk.abstract) %>
+<%= markdown(@talk.abstract) %>
 
-  <h2>Language</h2>
-  <p><%= @talk.language_name %></p>
+<h2>Language</h2>
+<p><%= @talk.language_name %></p>
 
-  <h2>Notes to organizers</h2>
-  <%= markdown(@talk.notes_to_organizers) %>
+<h2>Notes to organizers</h2>
+<%= markdown(@talk.notes_to_organizers) %>
 
-  <section class="speaker-details">
-    <h2>About the speaker</h2>
+<section class="speaker-details">
+  <h2>About the speaker</h2>
 
-    <ul class="social-media unstyled">
-      <% if @speaker.job_title.present? && @speaker.company.present? %>
-        <li>
-          <i class="icon-briefcase"></i>
-          <%= @speaker.job_title %> at <%= @speaker.company %>
-        </li>
-      <% end %>
-      <% if @speaker.city.present? && @speaker.country.present? %>
-        <li>
-          <i class="icon-map-marker"></i>
-          <%= @speaker.city %>, <%= @speaker.country %>
-        </li>
-      <% end %>
-      <% if @speaker.github_username.present? %>
-        <li>
-          <i class="icon-github"></i>
-          <%= link_to "http://github.com/#{@speaker.github_username}", target: '_blank' do %>
-            <%= @speaker.github_username %>
-          <% end %>
-        </li>
-      <% end %>
-      <% if @speaker.twitter_username.present? %>
-        <li>
-          <i class="icon-twitter"></i>
-          <%= link_to "http://twitter.com/#{@speaker.twitter_username}", target: '_blank' do %>
-            <%= @speaker.twitter_username %>
-          <% end %>
-        </li>
-      <% end %>
-      <% if @speaker.lanyrd_username.present? %>
-        <li>
-          <i class="icon-calendar-empty"></i>
-          <%= link_to "http://lanyrd.com/#{@speaker.lanyrd_username}", target: '_blank' do %>
-            <%= @speaker.lanyrd_username %>
-          <% end %>
-        </li>
-      <% end %>
-      <% if @speaker.website.present? %>
-        <li>
-          <i class="icon-link"></i>
-          <%= link_to @speaker.website, target: '_blank' do %>
-            <%= @speaker.website %>
-          <% end %>
-        </li>
-      <% end %>
-      <% if @speaker.email.present? %>
-        <li>
-          <i class="icon-envelope"></i>
-          <%= mail_to "#{@speaker.email}" do %>
-            <%= @speaker.email %>
-          <% end %>
-        </li>
-      <% end %>
-      <% if @speaker.phone.present? %>
-        <li>
-          <i class="icon-phone"></i>
-          <%= link_to "tel:#{@speaker.phone}" do %>
-            <%= @speaker.phone %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </section>
+  <ul class="social-media unstyled">
+    <% if @speaker.job_title.present? && @speaker.company.present? %>
+      <li>
+        <i class="icon-briefcase"></i>
+        <%= @speaker.job_title %> at <%= @speaker.company %>
+      </li>
+    <% end %>
+    <% if @speaker.city.present? && @speaker.country.present? %>
+      <li>
+        <i class="icon-map-marker"></i>
+        <%= @speaker.city %>, <%= @speaker.country %>
+      </li>
+    <% end %>
+    <% if @speaker.github_username.present? %>
+      <li>
+        <i class="icon-github"></i>
+        <%= link_to "http://github.com/#{@speaker.github_username}", target: '_blank' do %>
+          <%= @speaker.github_username %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.twitter_username.present? %>
+      <li>
+        <i class="icon-twitter"></i>
+        <%= link_to "http://twitter.com/#{@speaker.twitter_username}", target: '_blank' do %>
+          <%= @speaker.twitter_username %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.lanyrd_username.present? %>
+      <li>
+        <i class="icon-calendar-empty"></i>
+        <%= link_to "http://lanyrd.com/#{@speaker.lanyrd_username}", target: '_blank' do %>
+          <%= @speaker.lanyrd_username %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.website.present? %>
+      <li>
+        <i class="icon-link"></i>
+        <%= link_to @speaker.website, target: '_blank' do %>
+          <%= @speaker.website %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.email.present? %>
+      <li>
+        <i class="icon-envelope"></i>
+        <%= mail_to "#{@speaker.email}" do %>
+          <%= @speaker.email %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @speaker.phone.present? %>
+      <li>
+        <i class="icon-phone"></i>
+        <%= link_to "tel:#{@speaker.phone}" do %>
+          <%= @speaker.phone %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</section>
 
-  <h2>Your Vote</h2>
-  <%= simple_form_for [:admin, @conference_edition, @talk_vote], url: vote_admin_conference_edition_talk_url(@conference_edition, @talk), method: @talk_vote.id ? 'PUT' : 'POST', html: { class: 'form-horizontal' } do |form| %>
-    <%= error_messages_for(@talk_vote) %>
+<h2>Your Vote</h2>
+<%= simple_form_for [:admin, @conference_edition, @talk_vote], url: vote_admin_conference_edition_talk_url(@conference_edition, @talk), method: @talk_vote.id ? 'PUT' : 'POST', html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(@talk_vote) %>
 
-    <%= form.input :vote, input_html: { tabindex: 1, autofocus: true }, hint: 'Valid values: -1, 0, 1' %>
-    <%= form.input :comment, input_html: { tabindex: 2 }, hint: 'Optional', as: :text %>
+  <%= form.input :vote, input_html: { tabindex: 1, autofocus: true }, hint: 'Valid values: -1, 0, 1' %>
+  <%= form.input :comment, input_html: { tabindex: 2 }, hint: 'Optional', as: :text %>
 
-    <div class="form-actions">
-      <%= form.submit "Vote", class: 'btn btn-large btn-primary', input_html: { tabindex: 3 } %>
-    </div>
-  <% end %>
-
-<% else %>
-  <table class="table translated-table">
-    <tr>
-      <th>Title</th>
-      <td><%= @talk.title %></td>
-    </tr>
-    <tr>
-      <th>By</th>
-      <td><%= avatar_for(@speaker, 'avatar') %><%= @speaker.name %></td>
-    </tr>
-    <tr>
-      <th>Abstract</th>
-      <td><%= markdown(@talk.abstract) %></td>
-    </tr>
-    <tr>
-      <th>Status</th>
-      <td><%= @talk.status %></td>
-    </tr>
-    <tr>
-      <th>Slides URL</th>
-      <td><%= @talk.slides_url %></td>
-    </tr>
-    <tr>
-      <th>Video URL</th>
-      <td><%= @talk.video_url %></td>
-    </tr>
-    <tr>
-      <th>Slot ID</th>
-      <td><%= @talk.slot_id %></td>
-    </tr>
-    <tr>
-      <th>Room ID</th>
-      <td><%= @talk.room_id %></td>
-    </tr>
-  </table>
+  <div class="form-actions">
+    <%= form.submit "Vote", class: 'btn btn-large btn-primary', input_html: { tabindex: 3 } %>
+  </div>
 <% end %>

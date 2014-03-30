@@ -18,7 +18,7 @@
           <% if @conference_edition.is_talk_voting_open %>
             <th>My votes</th>
           <% else %>
-            <% @conference_edition.organizers.each do |o| %>
+            <% @conference_edition.voting_organizers.each do |o| %>
               <th><%= avatar_for(o, 'image') %></th>
             <% end %>
             <th>Total</th>
@@ -39,7 +39,7 @@
             <% if @conference_edition.is_talk_voting_open %>
               <td><%= talk.talk_vote_for_user(current_user) %></td>
             <% else %>
-              <% @conference_edition.organizers.each do |o| %>
+              <% @conference_edition.voting_organizers.each do |o| %>
                 <td><%= talk.talk_vote_for_user(o) %></td>
               <% end %>
               <td><%= talk.ranking %></td>
