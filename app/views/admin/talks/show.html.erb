@@ -7,9 +7,9 @@
   <% end %>
 </header>
 
-<% if @talk.translations.count > 1 %>
-  <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
-<% end %>
+<%# if @talk.translations.count > 1 %>
+  <%#= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
+<%# end %>
 
 <%= markdown(@talk.abstract) %>
 
@@ -86,14 +86,49 @@
   </ul>
 </section>
 
-<h2>Your Vote</h2>
-<%= simple_form_for [:admin, @conference_edition, @talk_vote], url: vote_admin_conference_edition_talk_url(@conference_edition, @talk), method: @talk_vote.id ? 'PUT' : 'POST', html: { class: 'form-horizontal' } do |form| %>
-  <%= error_messages_for(@talk_vote) %>
+<% if @conference_edition.is_talk_voting_open? || params[:update_vote] %>
+  <h2 id="my-vote">Your Vote</h2>
+  <%= simple_form_for [:admin, @conference_edition, @talk_vote], url: vote_admin_conference_edition_talk_url(@conference_edition, @talk), method: @talk_vote.id ? 'PUT' : 'POST', html: { class: 'form-horizontal' } do |form| %>
+    <%= error_messages_for(@talk_vote) %>
 
-  <%= form.input :vote, input_html: { tabindex: 1, autofocus: true }, hint: 'Valid values: -1, 0, 1' %>
-  <%= form.input :comment, input_html: { tabindex: 2 }, hint: 'Optional', as: :text %>
+    <%= form.input :vote, input_html: { tabindex: 1, autofocus: true }, hint: 'Valid values: -1, 0, 1' %>
+    <%= form.input :comment, input_html: { tabindex: 2 }, hint: 'Optional', as: :text %>
 
-  <div class="form-actions">
-    <%= form.submit "Vote", class: 'btn btn-large btn-primary', input_html: { tabindex: 3 } %>
-  </div>
+    <div class="form-actions">
+      <%= form.submit "Vote", class: 'btn btn-large btn-primary' %>
+    </div>
+  <% end %>
+<% else %>
+  <h2>Votes</h2>
+  <table class="table talks-ranking">
+    <thead>
+      <tr>
+        <th>Vote</th>
+        <th>Comment</th>
+        <th>Organizer</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @talk.talk_votes.each do |v| %>
+        <tr>
+          <td><%= v.vote %></td>
+          <td><%= v.comment %></td>
+          <td><%= avatar_for(v.organizer, 'image') %></td>
+          <td class="actions">
+            <% if v.organizer == current_user %>
+              <%= link_to(admin_conference_edition_talk_path(@conference_edition, @talk, update_vote: true)) do %>
+                <i class="icon-pencil"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4"><strong><%= @talk.ranking %></strong></td>
+      </tr>
+    </tfoot>
+  </table>
 <% end %>

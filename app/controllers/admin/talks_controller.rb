@@ -45,10 +45,11 @@ class Admin::TalksController < AdminController
     @talk_vote = existing_talk_vote || @talk.talk_votes.new(params[:talk_vote].merge(organizer_id: current_user.id))
 
     if (@talk_vote.id && @talk_vote.update_attributes(params[:talk_vote])) || @talk_vote.save
-      success_and_redirect_to_next_talk
+      success_and_redirect
     else
       @speaker = @talk.speakers.first
-      render :show
+      params[:update_vote] = true
+      render(:show)
     end
   end
 
@@ -58,15 +59,20 @@ class Admin::TalksController < AdminController
     @talk.talk_votes.where(organizer_id: current_user.id).first
   end
 
-  def success_and_redirect_to_next_talk
+  def success_and_redirect
     next_talk = @conference_edition.talks.pending.order('id DESC').where("id < ?", @talk.id).first
 
-    if next_talk
+    if !@conference_edition.is_talk_voting_open?
+      url = admin_conference_edition_talk_path(@conference_edition, @talk)
+      message = 'Vote updated successfully'
+    elsif next_talk
       url = admin_conference_edition_talk_path(@conference_edition, next_talk)
-      redirect_to(url, flash: { success: 'Vote saved successfully! Keep on going' })
+      message = 'Vote saved successfully! Keep on going'
     else
       url = admin_conference_edition_talks_path(@conference_edition)
-      redirect_to(url, flash: { success: 'All set! Nicely done!' })
+      message = 'All set! Nicely done!'
     end
+
+    redirect_to(url, flash: { success: message })
   end
 end
