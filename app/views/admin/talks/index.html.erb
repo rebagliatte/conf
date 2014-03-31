@@ -9,7 +9,7 @@
 
 <% if @talks.any? %>
   <% @talks.each do |status, talks| %>
-    <h2><%= status %></h2>
+    <h2><%= status %> (<%= talks.count %>)</h2>
     <table class="table talks-ranking">
       <thead>
         <tr>
