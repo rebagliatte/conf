@@ -70,7 +70,7 @@
   </section>
 <% end %>
 
-<% if display_confirmed_speakers?(current_edition) %>
+<% if current_edition.is_speaker_listing_available? %>
   <section id="confirmed-speakers">
     <h1 class="primary-heading"><%= t('confirmed_speakers') %></h1>
     <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>

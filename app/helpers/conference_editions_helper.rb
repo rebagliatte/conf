@@ -45,10 +45,6 @@ module ConferenceEditionsHelper
     is_coming_soon?(ce) && ce.is_call_for_sponsorships_open
   end
 
-  def display_confirmed_speakers?(ce)
-    ce.speakers.confirmed.any?
-  end
-
   def available_image_uploads(ce)
     maximum = Image::MAX_IMAGES_PER_EDITION
     uploaded_images = ce.images.count

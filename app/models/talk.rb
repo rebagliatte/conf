@@ -34,7 +34,7 @@ class Talk < ActiveRecord::Base
   scope :by_ranking, -> { order('ranking DESC') }
 
   # Callbacks
-  after_update :update_speaker_statuses, if :status_changed?
+  after_update :update_speaker_statuses if :status_changed?
 
   def update_speaker_statuses
     talk.speakers.update_all(status: status)
