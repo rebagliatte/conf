@@ -12,13 +12,13 @@ class UserMailer < ActionMailer::Base
     )
   end
 
-  def notification_email(notification)
-    @body = notification.body
+  def notification_email(subject, body, recipient_email, sender_email)
+    @body = body
 
     mail(
-      from: notification.organizer.email,
-      to: notification.recipient_emails,
-      subject: notification.subject
+      from: sender_email,
+      to: recipient_email,
+      subject: subject
     )
   end
 end

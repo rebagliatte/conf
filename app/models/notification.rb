@@ -19,16 +19,14 @@ class Notification < ActiveRecord::Base
   accepts_nested_attributes_for :translations
   translates :subject, :body
 
-  def recipient_emails
-    recipients = case recipients.to_sym
-            when :subscribers
-              conference_edition.subscribers
-            when :approved_speakers
-              conference_edition.speakers.approved
-            when :rejected_speakers
-              conference_edition.speakers.rejected
-            end
-
-    recipients.pluck(:email).join(',')
+  def recipient_users
+    case recipients.to_sym
+    when :subscribers
+      conference_edition.subscribers
+    when :approved_speakers
+      conference_edition.speakers.approved
+    when :rejected_speakers
+      conference_edition.speakers.rejected
+    end
   end
 end

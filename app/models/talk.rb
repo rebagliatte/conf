@@ -45,6 +45,10 @@ class Talk < ActiveRecord::Base
     Language.find(language).name
   end
 
+  def language_code
+    Language.find(language).code
+  end
+
   def talk_vote_for_user(user)
     talk_votes.where(organizer_id: user.id).first.try(:vote)
   end

@@ -4,6 +4,7 @@ class Admin::NotificationsController < AdminController
   load_and_authorize_resource :notification, through: :conference_edition
 
   def index
+    @notifications = @conference_edition.notifications.order('created_at DESC')
   end
 
   def show
@@ -23,11 +24,25 @@ class Admin::NotificationsController < AdminController
 
     @notification = Notification.new(notification_attributes)
 
-    if @notification.save
-      UserMailer.notification_email(@notification).deliver
+    if trigger_emails && @notification.save
       redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
     else
       render :new
+    end
+  end
+
+  private
+
+  def trigger_emails
+    sender_email = @notification.organizer.email
+
+    @notification.recipient_users.each do |recipient|
+      language_code = recipient.talks.first.language_code.to_sym
+
+      subject = @notification.subject(language_code)
+      body = @notification.body(language_code)
+
+      UserMailer.notification_email(subject, body, recipient.email, sender_email).deliver
     end
   end
 end

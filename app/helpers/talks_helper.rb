@@ -11,7 +11,7 @@ module TalksHelper
   end
 
   def status_class(talk)
-    bla = case talk.status
+    case talk.status
     when 'approved' then 'success'
     when 'rejected' then 'warning'
     when 'pending' then 'info'
