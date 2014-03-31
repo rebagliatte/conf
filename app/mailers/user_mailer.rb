@@ -5,9 +5,20 @@ class UserMailer < ActionMailer::Base
     @conference_name = @organizer_invitation.conference.name
     @signup_url = signup_url
 
-    from_email = @organizer_invitation.conference.email
+    mail(
+      from: @organizer_invitation.conference.email,
+      to: @organizer_invitation.invitee_email,
+      subject: "Join #{ @conference_name } organizing team"
+    )
+  end
 
-    subject = "Join #{ @conference_name } organizing team"
-    mail(from: from_email, to: @organizer_invitation.invitee_email, subject: subject)
+  def notification_email(notification)
+    @body = notification.body
+
+    mail(
+      from: notification.organizer.email,
+      to: notification.recipient_emails,
+      subject: notification.subject
+    )
   end
 end

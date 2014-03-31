@@ -24,6 +24,7 @@ class Admin::NotificationsController < AdminController
     @notification = Notification.new(notification_attributes)
 
     if @notification.save
+      UserMailer.notification_email(@notification).deliver
       redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
     else
       render :new

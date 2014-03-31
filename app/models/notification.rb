@@ -6,7 +6,7 @@ class Notification < ActiveRecord::Base
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
-  belongs_to :organizer, class_name: 'User'#, foreign_key: :organizer_id
+  belongs_to :organizer, class_name: 'User'
 
   # Validations
   validates :conference_edition_id, presence: true
@@ -18,4 +18,17 @@ class Notification < ActiveRecord::Base
   has_many :translations
   accepts_nested_attributes_for :translations
   translates :subject, :body
+
+  def recipient_emails
+    recipients = case recipients.to_sym
+            when :subscribers
+              conference_edition.subscribers
+            when :approved_speakers
+              conference_edition.speakers.approved
+            when :rejected_speakers
+              conference_edition.speakers.rejected
+            end
+
+    recipients.pluck(:email).join(',')
+  end
 end
