@@ -22,6 +22,7 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :speakers, dependent: :destroy
   has_many :sponsors, dependent: :destroy
   has_many :talks, dependent: :destroy
+  has_many :talk_votes, dependent: :destroy
   has_many :languages, through: :conference
 
   KINDS = %w( single_track multiple_track )

@@ -30,6 +30,8 @@ class Talk < ActiveRecord::Base
 
   # Scopes
   scope :pending, -> { where(status: 'pending') }
+  scope :by_creation_date, -> { order('created_at DESC') }
+  scope :by_ranking, -> { order('ranking DESC') }
 
   # Methods
   def language_name

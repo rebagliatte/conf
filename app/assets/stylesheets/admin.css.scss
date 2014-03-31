@@ -153,11 +153,15 @@
     max-height: 45px;
     margin-right: 12px;
   }
+  .label {
+    float: right;
+    margin: 12px 0;
+  }
 }
 .speaker-details {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
+  border-bottom: 5px solid #efefef;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
   ul {
     margin-left: 5px;
   }
@@ -176,6 +180,29 @@
     }
   }
 }
+.talk-actions {
+  border-top: 5px solid #efefef;
+  margin-top: 2em;
+  padding: 2em 0;
+  h2 {
+    margin-top: 0;
+  }
+  form {
+    display: inline-block;
+  }
+  .skip {
+    float: right;
+  }
+}
+.talks-ranking {
+  margin-bottom: 0;
+  img {
+    max-width: 35px;
+  }
+  .speaker {
+    color: #888;
+  }
+}
 
 // utilities
 
@@ -184,13 +211,4 @@
   float: right;
   font-size: 0.7em;
   font-style: italic;
-}
-
-.talks-ranking {
-  img {
-    max-width: 35px;
-  }
-  .speaker {
-    color: #888;
-  }
 }

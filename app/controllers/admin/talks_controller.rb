@@ -4,7 +4,8 @@ class Admin::TalksController < AdminController
   load_and_authorize_resource :talk, through: :conference_edition
 
   def index
-    @talks = @talks.order('ranking DESC, created_at DESC').group_by { |s| s.status }
+    @talks = @talks.by_ranking unless @conference_edition.is_talk_voting_open?
+    @talks = @talks.by_creation_date.group_by { |s| s.status }
   end
 
   def show
@@ -35,14 +36,21 @@ class Admin::TalksController < AdminController
 
   def update
     if @talk.update_attributes(params[:talk])
-      redirect_to admin_conference_edition_talk_path(@conference_edition, @talk), flash: { success: 'Talk updated successfully!' }
+      action = params[:talk][:status] ? @talk.status : 'updated'
+      message = "Talk #{action} successfully. #{link_to_next_pending_talk}".html_safe
+      redirect_to admin_conference_edition_talk_path(@conference_edition, @talk), flash: { success: message }
     else
       render :edit
     end
   end
 
   def vote
-    @talk_vote = existing_talk_vote || @talk.talk_votes.new(params[:talk_vote].merge(organizer_id: current_user.id))
+    vote_params = params[:talk_vote].merge(
+      organizer_id: current_user.id,
+      conference_edition_id: @conference_edition.id
+    )
+
+    @talk_vote = existing_talk_vote || @talk.talk_votes.new(vote_params)
 
     if (@talk_vote.id && @talk_vote.update_attributes(params[:talk_vote])) || @talk_vote.save
       success_and_redirect
@@ -60,19 +68,33 @@ class Admin::TalksController < AdminController
   end
 
   def success_and_redirect
-    next_talk = @conference_edition.talks.pending.order('id DESC').where("id < ?", @talk.id).first
-
     if !@conference_edition.is_talk_voting_open?
       url = admin_conference_edition_talk_path(@conference_edition, @talk)
       message = 'Vote updated successfully'
-    elsif next_talk
-      url = admin_conference_edition_talk_path(@conference_edition, next_talk)
+    elsif next_non_voted_talk
+      url = admin_conference_edition_talk_path(@conference_edition, next_non_voted_talk)
       message = 'Vote saved successfully! Keep on going'
     else
       url = admin_conference_edition_talks_path(@conference_edition)
-      message = 'All set! Nicely done!'
+      message = 'All set!'
     end
 
     redirect_to(url, flash: { success: message })
+  end
+
+  def next_non_voted_talk
+    voted_talk_ids = @conference_edition.talk_votes.where(organizer_id: current_user.id).pluck(:talk_id)
+    all_talk_ids = @conference_edition.talks.pending.pluck(:id)
+    non_voted_ids = all_talk_ids - voted_talk_ids
+    Talk.where(id: non_voted_ids).by_creation_date.first
+  end
+
+  def link_to_next_pending_talk
+    next_talk = @conference_edition.talks.pending.by_ranking.by_creation_date.first
+    if next_talk
+      view_context.link_to('Review next talk', admin_conference_edition_talk_path(@conference_edition, next_talk), tabindex: 1)
+    else
+      view_context.link_to('Back to all talks listing', admin_conference_edition_talks_path(@conference_edition), tabindex: 1)
+    end
   end
 end
