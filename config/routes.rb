@@ -24,6 +24,7 @@ Conf::Application.routes.draw do
           put :vote
         end
       end
+      resources :notifications, only: %w(show index new create)
       resources :speakers, only: %w(show index new create edit update)
       resources :sponsors, only: %w(show index new create edit update)
       resources :pages, only: %w(show index new create edit update)

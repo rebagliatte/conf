@@ -1,0 +1,44 @@
+<header class="admin-header">
+  <%= title 'Notifications' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'New notification', new_admin_conference_edition_notification_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+  <% end %>
+
+</header>
+
+<% if @notifications.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Subject</th>
+        <th>Recipients</th>
+        <th>Sent at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notifications.each do |notification| %>
+        <tr>
+          <td><%= notification.id %></td>
+          <td><%= notification.subject %></td>
+          <td><%= notification.recipients %></td>
+          <td><%= notification.created_at.to_s(:short) %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_notification_path(@conference_edition, notification), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no notifications for this conference edition.
+
+    <% if can? :manage, @conference_edition %>
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_notification_path(@conference_edition) %>?
+    <% end %>
+
+  </p>
+<% end %>

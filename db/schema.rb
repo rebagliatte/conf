@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140330201045) do
+ActiveRecord::Schema.define(:version => 20140331023536) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -112,6 +112,27 @@ ActiveRecord::Schema.define(:version => 20140330201045) do
     t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "notification_translations", :force => true do |t|
+    t.integer  "notification_id"
+    t.string   "locale"
+    t.string   "subject",         :default => "", :null => false
+    t.text     "body",            :default => "", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "notification_translations", ["locale"], :name => "index_notification_translations_on_locale"
+  add_index "notification_translations", ["notification_id"], :name => "index_notification_translations_on_notification_id"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "conference_edition_id",                 :null => false
+    t.integer  "organizer_id",                          :null => false
+    t.string   "recipients",            :default => "", :null => false
+    t.string   "recipient_emails",      :default => "", :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "organizer_invitations", :force => true do |t|

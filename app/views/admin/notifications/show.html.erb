@@ -1,0 +1,32 @@
+<header class="admin-header">
+  <%= title @notification.subject %>
+</header>
+
+<%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @notification.translations, resource: @notification }) %>
+
+<table class="table translated-table">
+  <tr>
+    <th>ID</th>
+    <td><%= @notification.id %></td>
+  </tr>
+  <tr>
+    <th>Recipients</th>
+    <td><%= @notification.recipients %></td>
+  </tr>
+  <tr>
+    <th>Sender</th>
+    <td><%= @notification.organizer.name %></td>
+  </tr>
+  <tr>
+    <th>Subject</th>
+    <td><%= @notification.subject %></td>
+  </tr>
+  <tr>
+    <th>Body</th>
+    <td><%= markdown(@notification.subject) %></td>
+  </tr>
+  <tr>
+    <th>Created at</th>
+    <td><%= @notification.created_at.to_s(:short) %></td>
+  </tr>
+</table>
