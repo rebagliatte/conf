@@ -89,7 +89,7 @@
   </ul>
 </section>
 
-<% if @conference_edition.is_talk_voting_open? || params[:update_vote] %>
+<% if @conference_edition.is_talk_voting_open? || params[:update_vote] || !@talk.talk_vote_for_user(current_user) %>
   <h2>Your Vote</h2>
   <%= simple_form_for [:admin, @conference_edition, @talk_vote], url: vote_admin_conference_edition_talk_url(@conference_edition, @talk), method: @talk_vote.id ? 'PUT' : 'POST', html: { class: 'form-horizontal' } do |form| %>
     <%= error_messages_for(@talk_vote) %>
@@ -117,7 +117,7 @@
         <% @talk.talk_votes.stored.each do |v| %>
           <tr>
             <td><%= v.vote %></td>
-            <td><%= v.comment %></td>
+            <td><%= markdown(v.comment) %></td>
             <td><%= avatar_for(v.organizer, 'image') %></td>
             <td class="actions">
               <% if v.organizer == current_user %>
