@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140331040715) do
+ActiveRecord::Schema.define(:version => 20140412194859) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -212,23 +212,24 @@ ActiveRecord::Schema.define(:version => 20140331040715) do
   add_index "speaker_translations", ["speaker_id"], :name => "index_speaker_translations_on_speaker_id"
 
   create_table "speakers", :force => true do |t|
-    t.string   "name",                  :default => "", :null => false
+    t.string   "name",                  :default => "",            :null => false
     t.string   "company",               :default => ""
     t.string   "avatar",                :default => ""
     t.string   "city",                  :default => ""
     t.string   "country",               :default => ""
     t.string   "twitter_username",      :default => ""
     t.string   "github_username",       :default => ""
-    t.string   "email",                 :default => "", :null => false
+    t.string   "email",                 :default => "",            :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "conference_edition_id",                 :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.integer  "conference_edition_id",                            :null => false
     t.string   "lanyrd_username",       :default => ""
     t.string   "job_title",             :default => ""
     t.string   "phone",                 :default => ""
     t.string   "website",               :default => ""
-    t.string   "status",                :default => "", :null => false
+    t.string   "status",                :default => "",            :null => false
+    t.string   "confirmation_status",   :default => "unconfirmed", :null => false
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|

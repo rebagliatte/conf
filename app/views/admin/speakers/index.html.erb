@@ -8,33 +8,51 @@
 </header>
 
 <% if @speakers.any? %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @speakers.each do |speaker| %>
+  <% @speakers.each do |status, speakers| %>
+    <h2><%= status %> Speakers (<%= speakers.count %>)</h2>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= speaker.id %></td>
-          <td><%= speaker.name %></td>
-          <td><%= speaker.email %></td>
-          <td class="actions">
-            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
-
-            <% if can? :manage, @conference_edition %>
-              <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
-            <% end %>
-
-          </td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% speakers.each do |speaker| %>
+          <tr>
+            <td><%= speaker.id %></td>
+            <td><%= speaker.name %></td>
+            <td><%= speaker.email %></td>
+            <td class="actions">
+              <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+
+              <% if can? :manage, @conference_edition %>
+                <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+              <% end %>
+
+              <% if can? :manage, @conference_edition %>
+                <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
+                  <%= form.hidden_field :confirmation_status, value: 'confirmed' %>
+                  <button type="submit" title="confirm">
+                    <i class="icon-thumbs-up-alt"></i>
+                  </button>
+                <% end %>
+
+                <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
+                  <%= form.hidden_field :confirmation_status, value: 'cancelled' %>
+                  <button type="submit" title="cancel">
+                    <i class="icon-thumbs-down-alt"></i>
+                  </button>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <% else %>
   <p class="alert alert-info">
     It seems there are no approved speakers for this conference edition yet.

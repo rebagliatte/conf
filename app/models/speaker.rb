@@ -2,7 +2,7 @@ class Speaker < ActiveRecord::Base
   attr_accessible :bio, :city, :company, :country, :email, :github_username, \
   :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
   :avatar_cache, :translations_attributes, :conference_edition_id, \
-  :status, :job_title, :phone, :website, :lanyrd_username
+  :status, :job_title, :phone, :website, :lanyrd_username, :confirmation_status
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
@@ -11,12 +11,16 @@ class Speaker < ActiveRecord::Base
 
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   URL_REGEX = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+  APPROVAL_STATUSES = %w( pending approved rejected )
+  CONFIRMATION_STATUSES = %w( unconfirmed confirmed cancelled )
 
   # Validations
   validates :name, presence: true
   validates :email, presence: true, format: EMAIL_REGEX
   validates :website, format: URL_REGEX, if: :website?
   validates :avatar, file_size: { maximum: 0.5.megabytes.to_i }, if: :avatar?
+  validates :status, inclusion: { in: APPROVAL_STATUSES }
+  validates :confirmation_status, inclusion: { in: CONFIRMATION_STATUSES }
 
   # Translations
   has_many :translations
@@ -30,4 +34,6 @@ class Speaker < ActiveRecord::Base
   default_scope order('name ASC')
   scope :approved, -> { where(status: 'approved') }
   scope :rejected, -> { where(status: 'rejected') }
+  scope :confirmed, -> { where(status: 'approved', confirmation_status: 'confirmed') }
+  scope :confirmed, -> { where(status: 'approved', confirmation_status: 'unconfirmed') }
 end

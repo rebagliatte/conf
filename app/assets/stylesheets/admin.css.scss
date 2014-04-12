@@ -80,9 +80,24 @@
   .primary-heading {
     margin-bottom: 40px;
   }
-  .table .actions a {
-    margin-right: 10px;
-    text-decoration: none;
+  .table .actions {
+    a {
+      margin-right: 10px;
+      text-decoration: none;
+    }
+    form {
+      display: inline;
+      button {
+        background: none;
+        border: 0;
+        margin-right: 10px;
+        padding: 0;
+        color: $green;
+        &:hover {
+          color: $darkGreen;
+        }
+      }
+    }
   }
   h2 {
     font-weight: normal;
