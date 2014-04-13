@@ -5,7 +5,7 @@
   <%= markdown(conference_edition.news_intro) %>
 </header>
 
-<div class="posts">
+<div class="posts-list">
   <% conference_edition.posts.each do |post| %>
     <article class="post <%= post == last_post(conference_edition) ? 'last' : '' %>">
       <h1 class="secondary-heading">

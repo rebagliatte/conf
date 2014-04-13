@@ -14,6 +14,12 @@
   </section>
 <% end %>
 
+<% if current_edition.posts.any? %>
+  <section id="news">
+    <%= render(partial: 'posts/list', locals: { posts: current_edition.posts, conference_edition: current_edition }) %>
+  </section>
+<% end %>
+
 <section id="previous-edition" class="box">
   <h1 class="primary-heading"><%= t('previous_edition') %></h1>
   <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
@@ -36,19 +42,9 @@
   </section>
 <% end %>
 
-<% if display_call_for_sponsorships?(current_edition) %>
-  <section id="sponsorship-packages" class="box box-tertiary">
-    <h1 class="primary-heading"><%= t('sponsorship_packages') %></h1>
-    <%= markdown(current_edition.sponsors_call_to_action) %>
-    <%= link_to current_edition.sponsorship_packages_pdf.url, class:'btn btn-primary', target: :blank do %>
-      <%= content_tag(:span, t('download_sponsorship_packages')) %>
-    <% end %>
-  </section>
-<% end %>
-
-<% if current_edition.posts.any? %>
-  <section id="news">
-    <%= render(partial: 'posts/list', locals: { posts: current_edition.posts, conference_edition: current_edition }) %>
+<% if display_call_for_sponsorships?(current_edition) || current_edition.sponsors.any? %>
+  <section id="sponsors">
+    <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
   </section>
 <% end %>
 

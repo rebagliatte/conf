@@ -8,7 +8,7 @@
 
   <%= form.hidden_field :conference_edition_id %>
   <%= form.input :name %>
-  <%= form.input :kind, as: :select, collection: Sponsor::KINDS, include_blank: false %>
+  <%= form.input :kind, as: :select, collection: Sponsor::KINDS.keys, include_blank: false %>
   <%= form.input :logo %>
   <%= form.input :website_url %>
   <%= form.input :description %>

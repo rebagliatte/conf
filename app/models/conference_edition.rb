@@ -86,7 +86,8 @@ class ConferenceEdition < ActiveRecord::Base
 
   def grouped_sponsors
     # Sponsors grouped by kind
-    self.sponsors.group_by { |s| s.kind }
+    sponsors = self.sponsors.sort {|a,b| a.contribution_level <=> b.contribution_level}
+    sponsors.group_by { |s| s.kind }
   end
 
   def voting_organizers
