@@ -9,7 +9,7 @@ class ConferenceEdition < ActiveRecord::Base
   :speakers_call_to_action, :sponsors_call_to_action, :custom_css_file, \
   :venue_address, :venue_latitude, :venue_longitude, :news_intro, :about, \
   :registration_call_to_action, :is_talk_voting_open, \
-  :is_speaker_listing_available
+  :is_speaker_listing_available, :intro
 
   belongs_to :conference
   has_many :organizer_invitations
@@ -57,7 +57,7 @@ class ConferenceEdition < ActiveRecord::Base
   accepts_nested_attributes_for :translations
   translates :tagline, :country, :city, :venue, :notes_to_speakers, \
     :notes_to_subscribers, :sponsors_call_to_action, :speakers_call_to_action, \
-    :registration_call_to_action, :news_intro, :about
+    :registration_call_to_action, :news_intro, :about, :intro
 
   # Uploaders
   mount_uploader :logo, ImageUploader

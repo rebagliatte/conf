@@ -85,19 +85,23 @@
     <td><%= @conference_edition.is_email_subscription_enabled %></td>
   </tr>
   <tr>
-    <th>Registration call to action notes</th>
+    <th>Intro</th>
+    <td><%= @conference_edition.intro %></td>
+  </tr>
+  <tr>
+    <th>Registration call to action</th>
     <td><%= @conference_edition.registration_call_to_action %></td>
   </tr>
   <tr>
-    <th>Speaker call to action notes</th>
+    <th>Speaker call to action</th>
     <td><%= markdown(@conference_edition.speakers_call_to_action) %></td>
   </tr>
   <tr>
-    <th>Sponsor call to action notes</th>
+    <th>Sponsor call to action</th>
     <td><%= markdown(@conference_edition.sponsors_call_to_action) %></td>
   </tr>
   <tr>
-    <th>Subscriber call to action notes</th>
+    <th>Subscriber call to action</th>
     <td><%= markdown(@conference_edition.notes_to_subscribers) %></td>
   </tr>
   <tr>

@@ -8,7 +8,7 @@
 
     <article class="speaker <%= display_speakers_meta_data ? 'block' : '' %>" id="speaker-<%= speaker.twitter_username %>">
       <%= avatar_for(speaker, :avatar, :square_230_230) %>
-      <h1 class="secondary-heading"><%= speaker.name %></h1>
+      <h1><%= speaker.name %></h1>
 
       <% if display_speakers_meta_data %>
         <div class="info">

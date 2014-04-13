@@ -23,7 +23,7 @@
 
   <% if display_registration_link?(conference_edition) %>
     <li class="register">
-      <%= link_to current_edition.registration_url, class: 'btn btn-primary' do %>
+      <%= link_to current_edition.registration_url, class: 'btn btn-tertiary' do %>
         <%= content_tag(:span, t('register')) %>
       <% end %>
     </li>

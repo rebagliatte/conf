@@ -62,6 +62,7 @@
   <fieldset>
     <legend>Copy* <span class="note">*markdown available on all fields</span></legend>
     <%= translatable_fields_for(form) do |t| %>
+      <%= t.input :intro, as: :text, label: 'Intro', hint: 'Visible on the homepage.' %>
       <%= t.input :registration_call_to_action, as: :text, label: 'Register call to action', hint: 'Visible on the homepage.' %>
       <%= t.input :speakers_call_to_action, as: :text, label: 'Become a speaker call to action', hint: 'Visible on the homepage.' %>
       <%= t.input :sponsors_call_to_action, as: :text, label: 'Become a sponsor call to action', hint: 'Visible on the homepage.' %>

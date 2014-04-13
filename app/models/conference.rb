@@ -1,7 +1,8 @@
 class Conference < ActiveRecord::Base
   attr_accessible :email, :facebook_page_username, :name, :twitter_hashtag, \
   :twitter_username, :subdomain, :owner_id, :conference_editions_attributes, \
-  :language_ids, :custom_domain, :disqus_shortname
+  :language_ids, :custom_domain, :disqus_shortname, :lanyrd_series_name, \
+  :youtube_channel_id
 
   belongs_to :owner, class_name: 'User'
   has_and_belongs_to_many :languages

@@ -5,8 +5,10 @@ en:
   do_not_miss_out: Don't miss out
   download_sponsorship_packages: Download packages
   drop_us_a_line: Drop us a line
-  follow_us_on_twitter: Follow us on twitter
-  friend_us_on_facebook: Friend us on facebook
+  follow_us_on_twitter: Follow us on Twitter
+  friend_us_on_facebook: Friend us on Facebook
+  track_us_on_lanyrd: Track us on Lanyrd
+  subscribe_to_our_youtube_channel: Subscribe to our YouTube channel
   location: Location
   networks: Social Networks
   news: News
@@ -17,6 +19,7 @@ en:
   previous_edition: Previous Edition
   previous_editions: Previous Editions
   read_more: Read more
+  read_all_posts: Read all posts
   register: Register
   schedule: Schedule
   show_your_support_to: Become a sponsor and support

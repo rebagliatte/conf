@@ -41,13 +41,7 @@
     </main>
   </div>
 
-  <footer class="main-footer box box-primary">
-    <% if current_edition.sponsors.any? %>
-      <section class="sponsors">
-        <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
-      </section>
-    <% end %>
-
+  <footer class="main-footer">
     <% if current_edition.about %>
       <section class="about">
         <h1 class="primary-heading"><%= t('about') %> <%= current_conference.name %></h1>
@@ -69,6 +63,20 @@
           <li>
             <%= link_to "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank', class: 'facebook' do %>
               <%= content_tag(:span, t('friend_us_on_facebook')) %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if current_conference.lanyrd_series_name.present? %>
+          <li>
+            <%= link_to "http://lanyrd.com/series/#{current_conference.lanyrd_series_name}", target: 'blank', class: 'lanyrd' do %>
+              <%= content_tag(:span, t('track_us_on_lanyrd')) %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if current_conference.youtube_channel_id.present? %>
+          <li>
+            <%= link_to "http://youtube.com/channel/#{current_conference.youtube_channel_id}", target: 'blank', class: 'youtube' do %>
+              <%= content_tag(:span, t('subscribe_to_our_youtube_channel')) %>
             <% end %>
           </li>
         <% end %>

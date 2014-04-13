@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140412194859) do
+ActiveRecord::Schema.define(:version => 20140413224817) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20140412194859) do
     t.text     "registration_call_to_action", :default => ""
     t.text     "news_intro",                  :default => ""
     t.text     "about",                       :default => ""
+    t.string   "intro",                       :default => "", :null => false
   end
 
   add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"
@@ -81,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20140412194859) do
     t.integer  "owner_id",                               :null => false
     t.string   "custom_domain",          :default => ""
     t.string   "disqus_shortname",       :default => "", :null => false
+    t.string   "lanyrd_series_name",     :default => "", :null => false
+    t.string   "youtube_channel_id",     :default => "", :null => false
   end
 
   create_table "conferences_languages", :force => true do |t|
