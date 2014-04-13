@@ -57,17 +57,26 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [230, nil]
   end
 
+  # Make them 230px x 230px, keeping ratio
+  version :square_230_230, if: :is_speaker? do
+    process resize_to_fill: [230, 230]
+  end
+
   protected
 
-  def is_conference_edition? picture
+  def is_conference_edition?(picture)
     is_model_class?(model, 'conference_edition')
   end
 
-  def is_sponsor? picture
+  def is_sponsor?(picture)
     is_model_class?(model, 'sponsor')
   end
 
-  def is_thumbnable? picture
+  def is_speaker?(picture)
+    is_model_class?(model, 'speaker')
+  end
+
+  def is_thumbnable?(picture)
     is_model_class?(model, 'speaker') || is_model_class?(model, 'sponsor') || is_model_class?(model, 'user')
   end
 

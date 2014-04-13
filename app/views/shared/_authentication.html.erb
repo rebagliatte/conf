@@ -1,7 +1,7 @@
 <% if current_user %>
   <div class="nav pull-right dropdown authentication">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <%= avatar_for(current_user, 'image') %>
+      <%= avatar_for(current_user, :image, :inline_y_230) %>
       <%= current_user.name %>
       <span class="caret"></span>
     </a>

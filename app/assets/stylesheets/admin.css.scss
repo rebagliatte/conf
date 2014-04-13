@@ -219,6 +219,17 @@
   }
 }
 
+// speakers#index
+
+.speakers {
+  img {
+    max-width: 60px;
+  }
+  td {
+    line-height: 60px;
+  }
+}
+
 // utilities
 
 .note {

@@ -7,6 +7,13 @@
   </section>
 <% end %>
 
+<% if current_edition.is_speaker_listing_available? %>
+  <section id="confirmed-speakers">
+    <h1 class="box primary-heading"><%= t('confirmed_speakers') %></h1>
+    <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>
+  </section>
+<% end %>
+
 <section id="previous-edition" class="box">
   <h1 class="primary-heading"><%= t('previous_edition') %></h1>
   <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
@@ -67,13 +74,6 @@
         <span><%= t('submit') %></span>
       </button>
     <% end %>
-  </section>
-<% end %>
-
-<% if current_edition.is_speaker_listing_available? %>
-  <section id="confirmed-speakers">
-    <h1 class="primary-heading"><%= t('confirmed_speakers') %></h1>
-    <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>
   </section>
 <% end %>
 

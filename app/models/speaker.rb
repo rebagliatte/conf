@@ -35,5 +35,4 @@ class Speaker < ActiveRecord::Base
   scope :approved, -> { where(status: 'approved') }
   scope :rejected, -> { where(status: 'rejected') }
   scope :confirmed, -> { where(status: 'approved', confirmation_status: 'confirmed') }
-  scope :confirmed, -> { where(status: 'approved', confirmation_status: 'unconfirmed') }
 end

@@ -10,10 +10,11 @@
 <% if @speakers.any? %>
   <% @speakers.each do |status, speakers| %>
     <h2><%= status %> Speakers (<%= speakers.count %>)</h2>
-    <table class="table">
+    <table class="table speakers">
       <thead>
         <tr>
           <th>ID</th>
+          <th>Avatar</th>
           <th>Name</th>
           <th>Email</th>
           <th>Actions</th>
@@ -23,6 +24,7 @@
         <% speakers.each do |speaker| %>
           <tr>
             <td><%= speaker.id %></td>
+            <td><%= avatar_for(speaker, :avatar, :square_230_230) %></td>
             <td><%= speaker.name %></td>
             <td><%= speaker.email %></td>
             <td class="actions">

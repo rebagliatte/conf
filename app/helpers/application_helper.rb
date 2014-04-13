@@ -43,9 +43,10 @@ module ApplicationHelper
     render(partial: 'admin/shared/translatable_fields', locals: { form: form, translations: translations, block: block })
   end
 
-  def avatar_for(user, image_attribute)
+  def avatar_for(user, image_attribute, version = nil)
     image_src = if user.send(image_attribute).present?
-      user.send(image_attribute)
+      src = user.send(image_attribute)
+      version ? src.send(version) : src
     elsif user.email
       email_hash = Digest::MD5.hexdigest(user.email).to_s
       "http://www.gravatar.com/avatar/#{email_hash}?s=45"
