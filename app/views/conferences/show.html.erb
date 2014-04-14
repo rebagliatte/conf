@@ -7,7 +7,7 @@
   </section>
 <% end %>
 
-<% if current_edition.is_speaker_listing_available? %>
+<% if current_edition.is_speaker_listing_available? && current_edition.speakers.confirmed.any? %>
   <section id="confirmed-speakers">
     <h1 class="box primary-heading"><%= t('confirmed_speakers') %></h1>
     <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.confirmed, display_speakers_meta_data: false }) %>
@@ -42,7 +42,7 @@
   </section>
 <% end %>
 
-<% if display_call_for_sponsorships?(current_edition) || current_edition.sponsors.any? %>
+<% if display_call_for_sponsorships?(current_edition) || current_edition.sponsors.any? #TODO: fix %>
   <section id="sponsors">
     <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
   </section>
