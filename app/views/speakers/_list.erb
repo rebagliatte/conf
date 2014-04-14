@@ -2,8 +2,8 @@
 <%# @param display_speakers_meta_data boolean %>
 
 <% speakers.each do |speaker| %>
-  <% unless display_speakers_meta_data %>
-    <a href="<%= conference_edition_speakers_path(current_edition) %>#speaker-<%= speaker.twitter_username %>" class="box box-inner">
+  <% unless display_speakers_meta_data #TODO: Fix, redirect to speaker listing %>
+    <a href="http://twitter.com/<%= speaker.twitter_username %>" class="box box-inner">
   <% end %>
 
     <article class="speaker <%= display_speakers_meta_data ? 'block' : '' %>" id="speaker-<%= speaker.twitter_username %>">
