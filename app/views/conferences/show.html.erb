@@ -16,7 +16,7 @@
 
 <% if current_edition.posts.any? %>
   <section id="news">
-    <%= render(partial: 'posts/list', locals: { posts: current_edition.posts, conference_edition: current_edition }) %>
+    <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
   </section>
 <% end %>
 

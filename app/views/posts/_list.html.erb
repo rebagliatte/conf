@@ -1,4 +1,5 @@
 <%# @param conference_edition [Conf::Model::ConferenceEdition] %>
+<%# @param posts [Conf::Model::Post] %>
 
 <header>
   <h1 class="primary-heading"><%= t 'news' %></h1>
@@ -11,7 +12,7 @@
 </header>
 
 <div class="posts-list">
-  <% conference_edition.posts.each do |post| %>
+  <% posts.each do |post| %>
     <article class="post <%= post == last_post(conference_edition) ? 'last' : '' %>">
       <h1 class="secondary-heading">
         <%= link_to post.title, conference_edition_post_path(conference_edition, post) %>
