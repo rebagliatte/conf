@@ -37,7 +37,7 @@ class Admin::TalksController < AdminController
   def update
     if @talk.update_attributes(params[:talk])
       action = params[:talk][:status] ? @talk.status : 'updated'
-      message = "Talk #{action} successfully. #{link_to_next_pending_talk}".html_safe
+      message = "Talk #{action} successfully. #{link_to_next_talk(@talk)}".html_safe
       redirect_to admin_conference_edition_talk_path(@conference_edition, @talk), flash: { success: message }
     else
       render :edit
@@ -70,7 +70,7 @@ class Admin::TalksController < AdminController
   def success_and_redirect
     if !@conference_edition.is_talk_voting_open?
       url = admin_conference_edition_talk_path(@conference_edition, @talk)
-      message = 'Vote updated successfully'
+      message = "Vote updated successfully. #{link_to_next_talk(@talk)}".html_safe
     elsif next_non_voted_talk
       url = admin_conference_edition_talk_path(@conference_edition, next_non_voted_talk)
       message = 'Vote saved successfully! Keep on going'
@@ -89,12 +89,12 @@ class Admin::TalksController < AdminController
     Talk.where(id: non_voted_ids).by_creation_date.first
   end
 
-  def link_to_next_pending_talk
-    next_talk = @conference_edition.talks.pending.by_ranking.by_creation_date.first
+  def link_to_next_talk(talk)
+    next_talk = talk.conference_edition.talks.where(status: talk.status).where("created_at < ?", talk.created_at).by_creation_date.first
     if next_talk
-      view_context.link_to('Review next talk', admin_conference_edition_talk_path(@conference_edition, next_talk), tabindex: 1)
+      view_context.link_to('Review next talk', admin_conference_edition_talk_path(@conference_edition, next_talk, update_vote: true), tabindex: 1)
     else
-      view_context.link_to('Back to all talks listing', admin_conference_edition_talks_path(@conference_edition), tabindex: 1)
+      view_context.link_to('Back to talks listing', admin_conference_edition_talks_path(@conference_edition), tabindex: 1)
     end
   end
 end

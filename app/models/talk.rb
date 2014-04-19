@@ -29,7 +29,6 @@ class Talk < ActiveRecord::Base
   accepts_nested_attributes_for :speakers
 
   # Scopes
-  scope :pending, -> { where(status: 'pending') }
   scope :by_creation_date, -> { order('created_at DESC') }
   scope :by_ranking, -> { order('ranking DESC') }
 
