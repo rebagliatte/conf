@@ -1,6 +1,204 @@
-h1 {
+@import 'marketing/normalize';
+
+// Pallete
+$orange: #f15a24;
+$light_orange: #f8622c;
+$dark_orange: #da4a16;
+$darker_orange: #c33401;
+$light_gray: #f4f4f5;
+$dark_gray: #7f8081;
+$dark_blue: #1c1737;
+
+// Mixins
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+// Global Styles
+body {
   text-align: center;
-  padding-top: 10%;
-  font-family: Helvetica, Arial, sans-serif;
-  color: #555;
+}
+h1 {
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1em 2em;
+  border-radius: 8px;
+  color: #fff;
+  text-shadow: $darker_orange 0 -1px 0;
+  border: 1px solid $dark_orange;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  background-color: $orange;
+  -webkit-box-shadow: $dark_orange 0 0.4em 0px, $light_orange 0 1px 0 inset;
+  box-shadow: $dark_orange 0 0.4em 0px, $light_orange 0 1px 0 inset;
+  position: relative;
+}
+.btn:hover {
+  background-color: $dark_orange;
+  -webkit-box-shadow: $darker_orange 0 0.4em 0px, $dark_orange 0 1px 0 inset;
+  box-shadow: $darker_orange 0 0.4em 0px, $dark_orange 0 1px 0 inset;
+}
+.btn:active {
+  top: 0.3em;
+  -webkit-box-shadow: $darker_orange 0 0.2em 0px;
+  box-shadow: $darker_orange 0 0.2em 0px;
+}
+
+// Header
+.main-header {
+  background-color: $orange;
+  h1 {
+    margin: 0;
+  }
+}
+
+// Sprite usage
+.intro:after,
+.intro li:before,
+.stages section:before,
+.stages section h1:before,
+.main-features:before,
+.main-features:after {
+  content: '';
+  background: transparent url(marketing/sprite.png) top left no-repeat;
+  display: inline-block;
+}
+
+// Intro
+.intro {
+  padding-top: 4em;
+  color: $dark_gray;
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: bold;
+      &:before {
+        width: 8px;
+        height: 1em;
+        background-position: -728px 4px;
+        margin: 0 10px;
+      }
+      &.first:before {
+        display: none;
+      }
+    }
+  }
+  &:after {
+    background-position: center -664px;
+    height: 185px;
+    width: 100%;
+  }
+}
+
+// Stages
+.stage-wrapper {
+  @include flexbox();
+}
+.stages {
+  margin-top: 3em;
+  background: $light_gray;
+  padding: 3em 10%;
+  overflow: auto;
+  >h1 {
+    display: none;
+  }
+  section {
+    background-color: #fff;
+    color: $dark_gray;
+    border: 2px solid $dark_blue;
+    @include flex(1 auto);
+    width: 33.33%;
+    padding: 2.5em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 300px;
+    h1 {
+      color: $dark_blue;
+      font-size: 1.2em;
+      position: relative;
+      margin-bottom: 2em;
+    }
+    h1:before {
+      background-position: -743px 4px;
+      width: 24px;
+      height: 18px;
+      position: absolute;
+      top: 1.5em;
+      left: 50%;
+      margin-left: -12px;
+    }
+    &.pre-conference {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border-right: 0;
+    }
+    &.after-conference {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-left: 0;
+    }
+    &:before {
+      width: 178px;
+      height: 170px;
+      margin-bottom: 1.5em;
+    }
+    &.pre-conference:before {
+      background-position: -456px -494px;
+    }
+    &.during-conference:before {
+      background-position: -630px -494px;
+    }
+    &.after-conference:before {
+      background-position: -807px -494px;
+    }
+  }
+}
+
+// Main features
+.main-features {
+  clear: both;
+  width: 100%;
+  position: relative;
+  min-height: 663px;
+  &:before,
+  &:after {
+    width: 228px;
+    height: 663px;
+    position: absolute;
+    top: -64px;
+  }
+  &:before {
+    background-position: 0 0;
+    left: 20%;
+  }
+  &:after {
+    background-position: -229px 0;
+    right: 20%;
+  }
+}
+
+// Footer
+.main-footer{
+  clear: both;
+  width: 100%;
 }

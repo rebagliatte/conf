@@ -14,7 +14,6 @@
 <body>
   <header class="main-header">
     <h1><%= image_tag('marketing/confnu.jpg', alt: 'Confnu') %></h1>
-    <p>Event organization made easy</p>
   </header>
 
   <main class="main-content">
@@ -25,13 +24,13 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </main>
 
-  <footer class="main-footer">
+  <!--<footer class="main-footer">
     <%= link_to('Create an event', '#', class: 'create-an-event') %>
     <ul>
       <li><%= link_to('About', '#', class: 'about') %></li>
       <li><%= link_to('Contact', '#', class: 'contact') %></li>
     </ul>
-  </footer>
+  </footer> -->
   <%= javascript_include_tag 'application' %>
 </body>
 </html>
