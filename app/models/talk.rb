@@ -14,12 +14,30 @@ class Talk < ActiveRecord::Base
 
   STATUSES = %w( pending approved rejected )
 
+  VALID_STATUS_TRANSITIONS = {
+    'pending' => ['approved', 'rejected'],
+    'rejected' => ['approved', 'pending'],
+    'approved' => ['pending', 'rejected', 'cancelled', 'confirmed'],
+    'confirmed' => ['cancelled'],
+    'cancelled' => ['confirmed']
+  }
+  STATUSES = VALID_STATUS_TRANSITIONS.keys
+
   # Validations
   validates :title, presence: true, uniqueness: { scope: :conference_edition_id }
   validates :abstract, presence: true
   validates :conference_edition_id, presence: true
-  validates :status, inclusion: { in: STATUSES }
   validates :language, presence: true
+  validates :status, presence: true, inclusion: { in: STATUSES }
+  validate :status_transition_is_valid?, if: :status_changed?
+
+  def status_transition_is_valid?
+    if !new_record? && !VALID_STATUS_TRANSITIONS.fetch(status_was).include?(status)
+      errors.add(:status, "can't transition from `#{status_was}` to `#{status}`")
+      return false
+    end
+    true
+  end
 
   # Translations
   has_many :translations

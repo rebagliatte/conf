@@ -142,14 +142,11 @@
   <section class="talk-actions">
     <h2>Actions</h2>
 
-    <%= simple_form_for [:admin, @conference_edition, @talk], html: { class: 'form-horizontal' } do |form| %>
-      <%= form.hidden_field :status, value: 'approved' %>
-      <%= form.submit 'Approve', class: "btn btn-primary btn-large #{ @talk.status == 'approved' ? 'active' : '' }", tabindex: 1 %>
-    <% end %>
-
-    <%= simple_form_for [:admin, @conference_edition, @talk], html: { class: 'form-horizontal' } do |form| %>
-      <%= form.hidden_field :status, value: 'rejected' %>
-      <%= form.submit 'Reject', class: "btn btn-danger btn-large #{ @talk.status == 'rejected' ? 'active' : '' }", tabindex: 2 %>
+    <% available_statuses(@talk.status).each_with_index do |status, index| %>
+      <%= simple_form_for [:admin, @conference_edition, @talk], html: { class: status_form_class(status) } do |form| %>
+        <%= form.hidden_field :status, value: status %>
+        <%= form.submit(status_cta_copy(status), class: status_cta_class(status), tabindex: index + 1) %>
+      <% end %>
     <% end %>
   </section>
 <% end %>

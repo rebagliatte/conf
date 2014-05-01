@@ -204,6 +204,12 @@
   }
   form {
     display: inline-block;
+    &.pull-left {
+      margin-right: 0.5em;
+    }
+    &.pull-right {
+      margin-left: 0.5em;
+    }
   }
   .skip {
     float: right;
