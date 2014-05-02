@@ -1,0 +1,34 @@
+<header class="admin-header">
+  <%= title @slot.id %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Edit', edit_admin_conference_edition_slot_path(@conference_edition, @slot), class: 'btn btn-primary main-cta' %>
+  <% end %>
+</header>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <td><%= @slot.day.to_s(:long) %></td>
+  </tr>
+  <tr>
+    <th>Time</th>
+    <td><%= timespan(@slot) %></td>
+  </tr>
+  <tr>
+    <th>Kind</th>
+    <td><%= @slot.kind %></td>
+  </tr>
+  <% if @slot.is_talk_slot? %>
+    <tr>
+      <th>Talk</th>
+      <td><%= @slot.talk.to_s %></td>
+    </tr>
+  <% end %>
+  <% if @conference_edition.multiple_track? %>
+    <tr>
+      <th>Room</th>
+      <td><%= @slot.room_id %></td>
+    </tr>
+  <% end %>
+</table>

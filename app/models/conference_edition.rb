@@ -81,7 +81,7 @@ class ConferenceEdition < ActiveRecord::Base
 
   def grouped_slots
     # Slots grouped by date
-    self.slots.order('from_datetime').group_by { |s| s.from_datetime.beginning_of_day }
+    self.slots.order('start_date').group_by { |s| s.start_date.beginning_of_day }
   end
 
   def grouped_sponsors
@@ -109,6 +109,10 @@ class ConferenceEdition < ActiveRecord::Base
 
   def location
     "#{venue}, #{city} - #{country}" if venue.present? && city.present? && country.present?
+  end
+
+  def event_dates
+    from_date..to_date
   end
 
   private

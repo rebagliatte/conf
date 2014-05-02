@@ -225,15 +225,10 @@
   }
 }
 
-// speakers#index
-
-.speakers {
-  img {
-    max-width: 60px;
-  }
-  td {
-    line-height: 60px;
-  }
+// slots#form
+.slot_start_time select,
+.slot_end_time select {
+  width: 4em;
 }
 
 // utilities
@@ -243,4 +238,13 @@
   float: right;
   font-size: 0.7em;
   font-style: italic;
+}
+.table-with-avatars {
+  img {
+    max-width: 60px;
+    margin-right: 1em;
+  }
+  td {
+    line-height: 60px;
+  }
 }

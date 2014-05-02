@@ -1,16 +1,13 @@
 class Talk < ActiveRecord::Base
-  attr_accessible :abstract, :room, :room_id, :slides_url, :slot, :slot_id, \
+  attr_accessible :abstract, :slides_url, :notes_to_organizers, :language, \
   :status, :title, :video_url, :speaker_ids, :speakers_attributes, \
-  :conference_edition, :conference_edition_id, :translations_attributes, \
-  :notes_to_organizers, :language
+  :conference_edition, :conference_edition_id, :translations_attributes
 
-  belongs_to :slot
-  belongs_to :room
   has_and_belongs_to_many :speakers
-  belongs_to :room
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   has_many :talk_votes, dependent: :destroy
+  has_one :slot
 
   VALID_STATUS_TRANSITIONS = {
     'confirmed' => ['cancelled'],
@@ -47,6 +44,7 @@ class Talk < ActiveRecord::Base
   # Scopes
   scope :by_creation_date, -> { order('created_at DESC') }
   scope :by_ranking, -> { order('ranking DESC') }
+  scope :confirmed, -> { where(status: 'confirmed') }
 
   # Callbacks
   after_save :update_speaker_statuses, if: :status_changed?
@@ -72,6 +70,10 @@ class Talk < ActiveRecord::Base
   end
 
   # Methods
+  def to_s
+    "'#{title}' by #{speakers.pluck(:name).to_sentence}"
+  end
+
   def language_name
     Language.find(language).name
   end

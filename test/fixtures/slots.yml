@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  from_datetime: 2013-04-27 14:22:39
-  to_datetime: 2013-04-27 14:22:39
+  start_time: 14:22:39
+  end_time: 14:22:39
   kind: MyString
   day_id: 1
 
 two:
-  from_datetime: 2013-04-27 14:22:39
-  to_datetime: 2013-04-27 14:22:39
+  start_time: 14:22:39
+  end_time: 14:22:39
   kind: MyString
   day_id: 1

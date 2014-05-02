@@ -30,6 +30,7 @@ Conf::Application.routes.draw do
       resources :pages, only: %w(show index new create edit update)
       resources :posts, only: %w(show index new create edit update)
       resources :subscribers, only: %w(index)
+      resources :slots, only: %w(show index new create edit update)
     end
 
     root to: 'conferences#index'

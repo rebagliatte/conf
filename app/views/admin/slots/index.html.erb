@@ -1,0 +1,53 @@
+<header class="admin-header">
+  <%= title 'Slots' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'New slot', new_admin_conference_edition_slot_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+  <% end %>
+
+</header>
+
+<% if @slots.any? %>
+  <% @slots.each do |day, slots| %>
+    <h2><%= day %></h2>
+    <table class="table table-with-avatars">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Kind</th>
+          <th>Talk</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% slots.each do |slot| %>
+          <tr>
+            <td><%= timespan(slot) %></td>
+            <td><%= slot.kind %></td>
+            <td>
+              <% if slot.is_talk_slot? %>
+                <%= avatar_for(slot.talk.speakers.first, :avatar, :square_230_230) %><%= slot.talk %>
+              <% end %>
+            </td>
+            <td class="actions">
+              <%= link_to admin_conference_edition_slot_path(@conference_edition, slot), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+
+              <% if can? :manage, @conference_edition %>
+                <%= link_to edit_admin_conference_edition_slot_path(@conference_edition, slot), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no slots for this conference edition yet.
+
+    <% if can? :manage, @conference_edition %>
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_slot_path(@conference_edition) %>?
+    <% end %>
+
+  </p>
+<% end %>

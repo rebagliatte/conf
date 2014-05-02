@@ -10,7 +10,7 @@
 <% if @speakers.any? %>
   <% @speakers.each do |status, speakers| %>
     <h2><%= status %> Speakers (<%= speakers.count %>)</h2>
-    <table class="table speakers">
+    <table class="table table-with-avatars">
       <thead>
         <tr>
           <th>Id</th>

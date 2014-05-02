@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140501220528) do
+ActiveRecord::Schema.define(:version => 20140502032314) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -195,12 +195,15 @@ ActiveRecord::Schema.define(:version => 20140501220528) do
   end
 
   create_table "slots", :force => true do |t|
-    t.datetime "from_datetime",                             :null => false
-    t.datetime "to_datetime",                               :null => false
     t.string   "kind",                  :default => "talk", :null => false
     t.integer  "conference_edition_id",                     :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.integer  "room_id"
+    t.integer  "talk_id"
+    t.date     "day",                                       :null => false
+    t.time     "start_time",                                :null => false
+    t.time     "end_time",                                  :null => false
   end
 
   create_table "speaker_translations", :force => true do |t|
@@ -303,8 +306,6 @@ ActiveRecord::Schema.define(:version => 20140501220528) do
     t.string   "status",                :default => "pending", :null => false
     t.string   "slides_url",            :default => ""
     t.string   "video_url",             :default => ""
-    t.integer  "slot_id"
-    t.integer  "room_id"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.integer  "conference_edition_id",                        :null => false

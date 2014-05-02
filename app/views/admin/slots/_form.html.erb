@@ -1,0 +1,21 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param slot [Models::Slot] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, slot], html: { class: 'form-horizontal' } do |form| %>
+
+  <%= error_messages_for(slot) %>
+
+  <%= form.input :day, collection: available_dates(conference_edition), include_blank: false %>
+  <%= form.input :start_time, minute_step: 5 %>
+  <%= form.input :end_time, minute_step: 5 %>
+  <%= form.input :kind, collection: Slot::KINDS, include_blank: false %>
+  <%= form.input :talk_id, as: :select, collection: available_talks(conference_edition), include_blank: true %>
+  <% if conference_edition.multiple_track? %>
+    <%= form.input :room_id %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Slot", class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>
