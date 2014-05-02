@@ -2,7 +2,7 @@ class Notification < ActiveRecord::Base
   attr_accessible :conference_edition_id, :organizer_id, :recipients, \
   :recipient_emails, :subject, :body, :translations_attributes
 
-  RECIPIENTS = %w(subscribers approved_speakers rejected_speakers)
+  RECIPIENTS = %w(subscribers approved_speakers rejected_speakers confirmed_speakers)
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
@@ -27,6 +27,8 @@ class Notification < ActiveRecord::Base
       conference_edition.speakers.approved
     when :rejected_speakers
       conference_edition.speakers.rejected
+    when :confirmed_speakers
+      conference_edition.speakers.confirmed
     end
   end
 end
