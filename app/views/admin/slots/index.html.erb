@@ -1,5 +1,5 @@
 <header class="admin-header">
-  <%= title 'Slots' %>
+  <%= title 'Schedule' %>
 
   <% if can? :manage, @conference_edition %>
     <%= link_to 'New slot', new_admin_conference_edition_slot_path(@conference_edition), class: 'btn primary-btn main-cta' %>
@@ -9,7 +9,7 @@
 
 <% if @slots.any? %>
   <% @slots.each do |day, slots| %>
-    <h2><%= day %></h2>
+    <h2><%= day.to_s(:short) %></h2>
     <table class="table table-with-avatars">
       <thead>
         <tr>

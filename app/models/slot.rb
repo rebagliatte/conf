@@ -30,6 +30,10 @@ class Slot < ActiveRecord::Base
     conference_edition.multiple_track?
   end
 
+  def taken_talks_ids
+    @taken_talks_ids ||= conference_edition.slots.pluck(:talk_id)
+  end
+
   private
 
   def valid_datetime_range
@@ -44,10 +48,13 @@ class Slot < ActiveRecord::Base
   end
 
   def valid_talk
-    if !talk_id && is_talk_slot?
-      errors.add(:talk, 'must be present on talk slots')
-    end
-    if talk_id && !is_talk_slot?
+    if is_talk_slot?
+      if !talk_id
+        errors.add(:talk, 'must be present on talk slots')
+      elsif taken_talks_ids.include?(talk_id)
+        errors.add(:talk, 'is already taken')
+      end
+    elsif talk_id
       errors.add(:talk, "must be blank for #{kind} slots")
     end
   end

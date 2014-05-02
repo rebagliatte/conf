@@ -1,5 +1,5 @@
 <header class="admin-header">
-  <%= title @slot.id %>
+  <%= title('Slot') %>
 
   <% if can? :manage, @conference_edition %>
     <%= link_to 'Edit', edit_admin_conference_edition_slot_path(@conference_edition, @slot), class: 'btn btn-primary main-cta' %>

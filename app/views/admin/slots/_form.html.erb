@@ -10,7 +10,7 @@
   <%= form.input :start_time, minute_step: 5 %>
   <%= form.input :end_time, minute_step: 5 %>
   <%= form.input :kind, collection: Slot::KINDS, include_blank: false %>
-  <%= form.input :talk_id, as: :select, collection: available_talks(conference_edition), include_blank: true %>
+  <%= form.input :talk_id, as: :select, collection: available_talks(slot), include_blank: true %>
   <% if conference_edition.multiple_track? %>
     <%= form.input :room_id %>
   <% end %>

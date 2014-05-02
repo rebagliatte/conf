@@ -11,9 +11,12 @@ class Admin::SlotsController < AdminController
 
   def new
     last_slot = @conference_edition.slots.where('id IS NOT NULL').last
-    @slot.day = last_slot.day
-    @slot.start_time = last_slot.end_time
-    @slot.end_time = last_slot.end_time + 30.minutes
+
+    if last_slot
+      @slot.day = last_slot.day
+      @slot.start_time = last_slot.end_time
+      @slot.end_time = last_slot.end_time + 30.minutes
+    end
   end
 
   def create
