@@ -12,14 +12,12 @@ class Talk < ActiveRecord::Base
   has_one :conference, through: :conference_edition
   has_many :talk_votes, dependent: :destroy
 
-  STATUSES = %w( pending approved rejected )
-
   VALID_STATUS_TRANSITIONS = {
-    'pending' => ['approved', 'rejected'],
-    'rejected' => ['approved', 'pending'],
-    'approved' => ['pending', 'rejected', 'cancelled', 'confirmed'],
     'confirmed' => ['cancelled'],
-    'cancelled' => ['confirmed']
+    'cancelled' => ['confirmed'],
+    'approved' => ['pending', 'rejected', 'cancelled', 'confirmed'],
+    'rejected' => ['approved', 'pending'],
+    'pending' => ['approved', 'rejected']
   }
   STATUSES = VALID_STATUS_TRANSITIONS.keys
 
@@ -51,10 +49,26 @@ class Talk < ActiveRecord::Base
   scope :by_ranking, -> { order('ranking DESC') }
 
   # Callbacks
-  after_update :update_speaker_statuses, if: :status_changed?
+  after_save :update_speaker_statuses, if: :status_changed?
 
   def update_speaker_statuses
-    speakers.update_all(status: status)
+    speakers.each do |speaker|
+      statuses = speaker.talks.pluck(:status)
+
+      speaker_status = if statuses.include?('confirmed')
+        'confirmed'
+      elsif statuses.include?('cancelled')
+        'cancelled'
+      elsif statuses.include?('approved')
+        'approved'
+      elsif statuses.include?('rejected')
+        'rejected'
+      else
+        'pending'
+      end
+
+      speaker.update_attribute(:status, speaker_status)
+    end
   end
 
   # Methods

@@ -13,7 +13,7 @@
   <% end %>
 
   <%= form.association :speakers, collection: @conference_edition.speakers %>
-  <%#= form.input :status, as: :select, collection: Talk::STATUSES, include_blank: false %>
+  <%= form.input :language, as: :select, collection: @conference_edition.languages, include_blank: false %>
   <%= form.association :room, collection: @conference_edition.rooms %>
   <%= form.association :slot, collection: @conference_edition.slots %>
   <%= form.input :slides_url %>

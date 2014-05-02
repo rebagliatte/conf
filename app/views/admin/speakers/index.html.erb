@@ -13,11 +13,14 @@
     <table class="table speakers">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Id</th>
           <th>Avatar</th>
           <th>Name</th>
           <th>Email</th>
           <th>Actions</th>
+          <% if can?(:manage, @conference_edition) && status == 'confirmed' %>
+            <th>Promote on homepage?</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -33,23 +36,17 @@
               <% if can? :manage, @conference_edition %>
                 <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
               <% end %>
-
-              <% if can? :manage, @conference_edition %>
-                <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
-                  <%= form.hidden_field :confirmation_status, value: 'confirmed' %>
-                  <button type="submit" title="confirm">
-                    <i class="icon-thumbs-up-alt"></i>
-                  </button>
-                <% end %>
-
-                <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
-                  <%= form.hidden_field :confirmation_status, value: 'cancelled' %>
-                  <button type="submit" title="cancel">
-                    <i class="icon-thumbs-down-alt"></i>
-                  </button>
-                <% end %>
-              <% end %>
             </td>
+            <% if can?(:manage, @conference_edition) && status == 'confirmed' %>
+              <td>
+                <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
+                  <%= form.hidden_field :is_promoted, value: !speaker.is_promoted %>
+                  <button type="submit" title="cancel" class="btn">
+                    <%= speaker.is_promoted ? 'Demote' : 'Promote' %>
+                  </button>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
