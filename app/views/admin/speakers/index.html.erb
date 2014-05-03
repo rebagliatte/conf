@@ -1,57 +1,59 @@
 <header class="admin-header">
-  <%= title 'Speakers' %>
+  <%= title "Speakers" %>
 
   <% if can? :manage, @conference_edition %>
     <%= link_to 'New speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn primary-btn main-cta' %>
   <% end %>
-
 </header>
 
 <% if @speakers.any? %>
-  <% @speakers.each do |status, speakers| %>
-    <h2><%= status %> Speakers (<%= speakers.count %>)</h2>
-    <table class="table table-with-avatars">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Avatar</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Actions</th>
-          <% if can?(:manage, @conference_edition) && status == 'confirmed' %>
-            <th>Promote on homepage?</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% speakers.each do |speaker| %>
-          <tr>
-            <td><%= speaker.id %></td>
-            <td><%= avatar_for(speaker, :avatar, :square_230_230) %></td>
-            <td><%= speaker.name %></td>
-            <td><%= speaker.email %></td>
-            <td class="actions">
-              <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+  <ul class="nav nav-tabs on-table">
+    <% @statuses.each do |status| %>
+      <li class="<%= status == @current_status ? 'active' : '' %>">
+        <%= link_to("#{status.humanize} (#{record_count(@speakers, status)})", admin_conference_edition_speakers_path(@conference_edition, status: status)) %>
+      </li>
+    <% end %>
+  </ul>
 
-              <% if can? :manage, @conference_edition %>
-                <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+  <table class="table table-with-avatars">
+    <thead>
+      <tr>
+        <th>Avatar</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+        <% if can?(:manage, @conference_edition) && @current_status == 'confirmed' %>
+          <th>Promote on homepage?</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @speakers_in_current_status.each do |speaker| %>
+        <tr>
+          <td><%= avatar_for(speaker, :avatar, :square_230_230) %></td>
+          <td><%= speaker.name %></td>
+          <td><%= speaker.email %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+
+            <% if can? :manage, @conference_edition %>
+              <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+            <% end %>
+          </td>
+          <% if can?(:manage, @conference_edition) && @current_status == 'confirmed' %>
+            <td>
+              <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
+                <%= form.hidden_field :is_promoted, value: !speaker.is_promoted %>
+                <button type="submit" title="cancel" class="btn">
+                  <%= speaker.is_promoted ? 'Demote' : 'Promote' %>
+                </button>
               <% end %>
             </td>
-            <% if can?(:manage, @conference_edition) && status == 'confirmed' %>
-              <td>
-                <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
-                  <%= form.hidden_field :is_promoted, value: !speaker.is_promoted %>
-                  <button type="submit" title="cancel" class="btn">
-                    <%= speaker.is_promoted ? 'Demote' : 'Promote' %>
-                  </button>
-                <% end %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <p class="alert alert-info">
     It seems there are no approved speakers for this conference edition yet.

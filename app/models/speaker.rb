@@ -2,7 +2,8 @@ class Speaker < ActiveRecord::Base
   attr_accessible :bio, :city, :company, :country, :email, :github_username, \
   :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
   :avatar_cache, :translations_attributes, :conference_edition_id, \
-  :status, :job_title, :phone, :website, :lanyrd_username, :is_promoted
+  :status, :job_title, :phone, :website, :lanyrd_username, :is_promoted, \
+  :arrival_date, :accomodation_details
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
@@ -34,4 +35,10 @@ class Speaker < ActiveRecord::Base
   scope :confirmed, -> { where(status: 'confirmed') }
   scope :approved, -> { where(status: 'approved') }
   scope :rejected, -> { where(status: 'rejected') }
+
+  # Instance Methods
+  def is_travelling?
+    status == 'confirmed' && country != conference_edition.country
+  end
+
 end

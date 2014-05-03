@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140502032314) do
+ActiveRecord::Schema.define(:version => 20140503210127) do
 
   create_table "conference_edition_translations", :force => true do |t|
     t.integer  "conference_edition_id"
@@ -236,6 +236,8 @@ ActiveRecord::Schema.define(:version => 20140502032314) do
     t.string   "website",               :default => ""
     t.string   "status",                :default => "pending", :null => false
     t.boolean  "is_promoted",           :default => false
+    t.datetime "arrival_date"
+    t.text     "accomodation_details",  :default => "",        :null => false
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|

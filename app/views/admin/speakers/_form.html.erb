@@ -7,8 +7,12 @@
   <%= error_messages_for(speaker) %>
 
   <%= form.hidden_field :conference_edition_id %>
-  <%= form.input :name %>
-  <%= form.input :bio %>
+
+  <%= translatable_fields_for(form) do |t| %>
+    <%= form.input :name %>
+    <%= t.input :bio, as: :text %>
+  <% end %>
+
   <%= form.input :company %>
   <%= form.input :avatar %>
   <%= form.input :city %>
@@ -16,6 +20,12 @@
   <%= form.input :twitter_username %>
   <%= form.input :github_username %>
   <%= form.input :email %>
+
+  <% if speaker.is_travelling? %>
+    <h2>Accommodation Details</h2>
+    <%= form.input :arrival_date %>
+    <%= form.input :accomodation_details, hint: "Flight number, local hotel address, local phone number." %>
+  <% end %>
 
   <div class="form-actions">
     <%= form.submit "#{action.titleize} Speaker", class: 'btn btn-large btn-primary' %>

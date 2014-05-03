@@ -4,8 +4,9 @@ class Admin::TalksController < AdminController
   load_and_authorize_resource :talk, through: :conference_edition
 
   def index
-    @talks = @talks.by_ranking unless @conference_edition.is_talk_voting_open?
-    @talks = @talks.by_creation_date.group_by { |s| s.status }
+    @statuses = Talk::STATUSES
+    @current_status = params[:status] || 'confirmed'
+    @talks_in_current_status = @talks.where(status: @current_status)
   end
 
   def show
@@ -28,16 +29,19 @@ class Admin::TalksController < AdminController
   end
 
   def edit
-    missing_translations = @conference_edition.languages.pluck(:code) - @talk.translations.pluck(:locale)
-    missing_translations.each do |locale|
-      @talk.translations.build locale: locale
-    end
+    build_missing_translations_for(@conference_edition, @talk)
   end
 
   def update
     if @talk.update_attributes(params[:talk])
       action = params[:talk][:status] ? @talk.status : 'updated'
-      message = "Talk #{action} successfully. #{link_to_next_talk(@talk)}".html_safe
+      message = if action == 'confirmed'
+        speakers = []
+        @talk.speakers.each {|speaker| speakers << "#{view_context.link_to(speaker.name, edit_admin_conference_edition_speaker_path(@conference_edition, speaker) )}" }
+        "Talk confirmed! Would you like to edit arrival date and accomodation details for #{speakers.to_sentence}?".html_safe
+      else
+        "Talk #{action} successfully. #{link_to_next_talk(@talk)}".html_safe
+      end
       redirect_to admin_conference_edition_talk_path(@conference_edition, @talk), flash: { success: message }
     else
       render :edit

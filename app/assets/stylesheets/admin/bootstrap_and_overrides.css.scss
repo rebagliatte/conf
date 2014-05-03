@@ -55,7 +55,8 @@ $linkColor:           $green;
     min-height: 35px;
     margin: 0;
   }
-  select.date {
+  select.date,
+  select.datetime {
     width: auto;
   }
   textarea {

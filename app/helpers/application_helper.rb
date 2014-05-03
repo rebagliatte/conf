@@ -54,4 +54,9 @@ module ApplicationHelper
 
     image_tag(image_src)
   end
+
+  def record_count(records, status)
+    records.where(status: status).size
+  end
+
  end

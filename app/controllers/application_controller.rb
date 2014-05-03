@@ -11,6 +11,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
 
+  def build_missing_translations_for(conference_edition, record)
+    missing_translations = conference_edition.languages.pluck(:code) - record.translations.pluck(:locale)
+    missing_translations.each do |locale|
+      record.translations.build(locale: locale)
+    end
+  end
+
   private
 
   def conditional_layout

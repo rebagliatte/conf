@@ -8,54 +8,59 @@
 </header>
 
 <% if @talks.any? %>
-  <% @talks.each do |status, talks| %>
-    <h2><%= status %> (<%= talks.count %>)</h2>
-    <table class="table talks-ranking">
-      <thead>
+  <ul class="nav nav-tabs on-table">
+    <% @statuses.each do |status| %>
+      <li class="<%= status == @current_status ? 'active' : '' %>">
+        <%= link_to("#{status.humanize} (#{record_count(@talks, status)})", admin_conference_edition_talks_path(@conference_edition, status: status)) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <table class="table talks-ranking">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <% if @conference_edition.is_talk_voting_open %>
+          <th>My votes</th>
+        <% else %>
+          <% @conference_edition.voting_organizers.each do |o| %>
+            <th><%= avatar_for(o, 'image') %></th>
+          <% end %>
+          <th>Total</th>
+        <% end %>
+        <th>Created at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @talks_in_current_status.each do |talk| %>
         <tr>
-          <th>ID</th>
-          <th>Title</th>
+          <td><%= talk.id %></td>
+          <td>
+            <%= talk.title %>
+            <br>
+            <span class="speaker"><%= talk.speakers.first.name %></span>
+          </td>
           <% if @conference_edition.is_talk_voting_open %>
-            <th>My votes</th>
+            <td><%= talk.talk_vote_for_user(current_user) %></td>
           <% else %>
             <% @conference_edition.voting_organizers.each do |o| %>
-              <th><%= avatar_for(o, 'image') %></th>
+              <td><%= talk.talk_vote_for_user(o) %></td>
             <% end %>
-            <th>Total</th>
+            <td><%= talk.ranking %></td>
           <% end %>
-          <th>Created at</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for talk in talks %>
-          <tr>
-            <td><%= talk.id %></td>
-            <td>
-              <%= talk.title %>
-              <br>
-              <span class="speaker"><%= talk.speakers.first.name %></span>
-            </td>
-            <% if @conference_edition.is_talk_voting_open %>
-              <td><%= talk.talk_vote_for_user(current_user) %></td>
-            <% else %>
-              <% @conference_edition.voting_organizers.each do |o| %>
-                <td><%= talk.talk_vote_for_user(o) %></td>
-              <% end %>
-              <td><%= talk.ranking %></td>
+          <td><%= talk.created_at.to_s(:short) %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <% if can? :manage, @conference_edition %>
+              <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
             <% end %>
-            <td><%= talk.created_at.to_s(:short) %></td>
-            <td class="actions">
-              <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>
-              <% if can? :manage, @conference_edition %>
-                <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <p class="alert alert-info">
     It seems there are no talks for this conference edition.

@@ -3,7 +3,9 @@ class Admin::SlotsController < AdminController
   load_and_authorize_resource :slot, through: :conference_edition
 
   def index
-    @slots = @slots.group_by { |s| s.day }
+    @days = @conference_edition.event_dates
+    @current_day = params[:day] || @days.first.to_s
+    @current_day_slots = @slots.where(day: @current_day)
   end
 
   def show

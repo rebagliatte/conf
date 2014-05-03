@@ -77,27 +77,15 @@
       right: 0;
     }
   }
+  .nav-tabs.on-table {
+    margin-bottom: 0;
+    & > .active > a {
+      border-bottom-color: #fafafa;
+      background: #fafafa;
+    }
+  }
   .primary-heading {
     margin-bottom: 40px;
-  }
-  .table .actions {
-    a {
-      margin-right: 10px;
-      text-decoration: none;
-    }
-    form {
-      display: inline;
-      button {
-        background: none;
-        border: 0;
-        margin-right: 10px;
-        padding: 0;
-        color: $green;
-        &:hover {
-          color: $darkGreen;
-        }
-      }
-    }
   }
   h2 {
     font-weight: normal;
@@ -105,8 +93,50 @@
     font-size: 21px;
     text-transform: capitalize;
   }
-  table {
+  .alert {
+    margin: 20px 0;
+  }
+  td .alert {
+    margin-top: 0;
+  }
+  .table {
     margin-bottom: 40px;
+    tr:first-of-type td,
+    tr:first-of-type th {
+      border: 0;
+    }
+    th {
+      text-transform: uppercase;
+      font-size: 0.7em;
+      font-weight: normal;
+      color: #888;
+    }
+    thead th {
+      background: #fafafa;
+    }
+    td:first-of-type,
+    th:first-of-type {
+      padding-left: 12px;
+    }
+    .actions {
+      a {
+        margin-right: 10px;
+        text-decoration: none;
+      }
+      form {
+        display: inline;
+        button {
+          background: none;
+          border: 0;
+          margin-right: 10px;
+          padding: 0;
+          color: $green;
+          &:hover {
+            color: $darkGreen;
+          }
+        }
+      }
+    }
   }
 }
 

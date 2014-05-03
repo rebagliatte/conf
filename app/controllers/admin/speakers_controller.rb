@@ -4,7 +4,9 @@ class Admin::SpeakersController < AdminController
   load_and_authorize_resource :speaker, through: :conference_edition
 
   def index
-    @speakers = @speakers.group_by { |s| s.status }
+    @statuses = Speaker::STATUSES
+    @current_status = params[:status] || 'confirmed'
+    @speakers_in_current_status = @speakers.where(status: @current_status)
   end
 
   def show
@@ -22,6 +24,7 @@ class Admin::SpeakersController < AdminController
   end
 
   def edit
+    build_missing_translations_for(@conference_edition, @speaker)
   end
 
   def update
