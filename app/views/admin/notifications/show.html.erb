@@ -1,7 +1,9 @@
 <header class="admin-header">
   <%= title @notification.subject %>
 
-  <%= link_to 'Preview', preview_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary main-cta' %>
+  <% if @notification.sent_at.blank? %>
+    <%#= link_to 'Preview', preview_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary main-cta' %>
+  <% end %>
 </header>
 
 <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @notification.translations, resource: @notification }) %>
@@ -14,6 +16,10 @@
   <tr>
     <th>Recipients</th>
     <td><%= @notification.recipients %></td>
+  </tr>
+  <tr>
+    <th>Recipient Emails</th>
+    <td><%= @notification.recipient_emails.split(',').to_sentence %></td>
   </tr>
   <tr>
     <th>Sender</th>

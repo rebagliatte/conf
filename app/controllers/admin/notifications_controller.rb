@@ -1,5 +1,4 @@
 class Admin::NotificationsController < AdminController
-
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :notification, through: :conference_edition
 
@@ -71,27 +70,57 @@ class Admin::NotificationsController < AdminController
   def composed_emails(notification)
     composed_emails = []
 
-    notification.recipient_users.each do |recipient|
-      language_code = if recipient.is_a?(Speaker)
-        recipient.talks.first.language_code.to_sym
-      else
-        notification.conference_edition.languages.first.code.to_sym
+    # For sponsors send one notification per sponsor per language
+    if notification.recipients == 'sponsors'
+      grouped_recipients = notification.recipient_users.group_by { |r| [r.sponsor, r.language] }
+
+      grouped_recipients.each do |sponsor_and_language, recipients|
+        language_code = sponsor_and_language[1].code.to_sym
+        interpolable_variables = {
+          'emails' => recipients.map(&:email).join(', '),
+          'names' => recipients.map(&:name).join('/'),
+          'company' => sponsor_and_language[0].name
+        }
+
+        composed_emails << composed_email(notification, interpolable_variables['emails'], language_code, interpolable_variables)
       end
 
-      interpolable_variables = {
-        'email' => recipient.email,
-        'name' => (recipient.name if recipient.is_a?(Speaker)),
-        'company' => (recipient.try(:company) if recipient.is_a?(Speaker)),
-        'selected_talk_title' => (recipient.selected_talk_title if recipient.is_a?(Speaker))
-      }
+    # For speakers and subscribers, send one notification per recipient
+    else
+      notification.recipient_users.each do |recipient|
+        case recipient.class.to_s
+        when 'Subscriber'
+          language_code = notification.conference_edition.languages.first.code.to_sym
+          interpolable_variables = {
+            'email' => recipient.email
+          }
+        when 'Speaker'
+          language_code = recipient.talks.first.language_code.to_sym
+          interpolable_variables = {
+            'email' => recipient.email,
+            'name' => recipient.name,
+            'company' => recipient.company,
+            'selected_talk_title' => recipient.selected_talk_title
+          }
+        end
 
-      composed_emails << {
-        recipient_email: recipient.email,
-        subject: view_context.liquify(notification, notification.subject(language_code), interpolable_variables),
-        body: view_context.markdown(view_context.liquify(notification, notification.body(language_code), interpolable_variables))
-      }
+        composed_emails << composed_email(notification, recipient.email, language_code, interpolable_variables)
+      end
     end
 
+    # Return an array with all the composed emails
     composed_emails
+  end
+
+  def composed_email(notification, recipient_email, language_code, interpolable_variables)
+    {
+      recipient_email: recipient_email,
+      subject: liquify(notification, notification.subject(language_code), interpolable_variables),
+      body: view_context.markdown(liquify(notification, notification.body(language_code), interpolable_variables))
+    }
+  end
+
+  def liquify(record, text, available_variables)
+    ::Liquid::Template.parse(text).render(available_variables)
   end
 end

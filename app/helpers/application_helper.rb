@@ -38,10 +38,6 @@ module ApplicationHelper
     Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true).render(text).html_safe
   end
 
-  def liquify(record, text, available_variables)
-    text = Liquid::Template.parse(text).render(available_variables)
-  end
-
   def translatable_fields_for(form, &block)
     translations = form.object.translations
     render(partial: 'admin/shared/translatable_fields', locals: { form: form, translations: translations, block: block })

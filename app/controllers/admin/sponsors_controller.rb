@@ -7,6 +7,8 @@ class Admin::SponsorsController < AdminController
   end
 
   def show
+    @sponsor_contacts = @sponsor.sponsor_contacts.where('id IS NOT NULL')
+    @sponsor_contact = @sponsor.sponsor_contacts.build()
   end
 
   def new

@@ -33,4 +33,20 @@
     <th>Logo</th>
     <td><%= image_tag @sponsor.logo %></td>
   </tr>
+  <tr>
+    <th>Contacts</th>
+    <td>
+      <% if @sponsor_contacts.any? %>
+        <ul class="unstyled sponsor-contacts">
+          <% @sponsor_contacts.each do |contact| %>
+            <li><%= "#{contact.name} <#{contact.email}>" %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="alert alert-info">No sponsor contacts at this time. Create one using the form below.</p>
+      <% end %>
+
+      <%= render(partial:'admin/sponsor_contacts/form', locals: { sponsor_contact: @sponsor_contact, conference_edition: @conference_edition, action: 'create' }) %>
+    </td>
+  </tr>
 </table>

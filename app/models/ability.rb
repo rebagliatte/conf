@@ -18,6 +18,7 @@ class Ability
     can :manage, Slot, conference: { owner_id: user.id }
     can :manage, Speaker, conference: { owner_id: user.id }
     can :manage, Sponsor, conference: { owner_id: user.id }
+    can :manage, SponsorContact, conference: { owner_id: user.id }
     can :manage, Subscriber, conference: { owner_id: user.id }
     can :manage, Talk, conference: { owner_id: user.id }
 
@@ -35,6 +36,7 @@ class Ability
     can :manage, Slot, conference_edition_id: user.manageable_edition_ids
     can :manage, Speaker, conference_edition_id: user.manageable_edition_ids
     can :manage, Sponsor, conference_edition_id: user.manageable_edition_ids
+    can :manage, SponsorContact, conference_edition_id: user.manageable_edition_ids
     can :manage, Subscriber, conference_edition_id: user.manageable_edition_ids
     can :manage, Talk, conference_edition_id: user.manageable_edition_ids
 

@@ -3,6 +3,7 @@ class Sponsor < ActiveRecord::Base
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
+  has_many :sponsor_contacts, dependent: :destroy
 
   KINDS = {
     platinum: 1,

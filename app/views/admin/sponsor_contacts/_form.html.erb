@@ -1,0 +1,17 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param sponsor_contact [Models::SponsorContact] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, sponsor_contact], html: { class: 'form-inline' } do |form| %>
+
+  <%= error_messages_for(sponsor_contact) %>
+
+  <%= form.hidden_field :sponsor_id %>
+  <%= form.input_field :name, placeholder: 'Name' %>
+  <%= form.input_field :email, placeholder: 'Email' %>
+  <%= form.input_field :language_id, collection: conference_edition.languages, include_blank: false %>
+
+  <button type="submit" class="btn">
+    <%= action.titleize %>
+  </button>
+<% end %>

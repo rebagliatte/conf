@@ -32,6 +32,7 @@ Conf::Application.routes.draw do
       end
       resources :speakers
       resources :sponsors
+      resources :sponsor_contacts, only: %w(create edit update)
       resources :pages
       resources :posts
       resources :subscribers, only: %w(index)

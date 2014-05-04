@@ -6,7 +6,8 @@ class Notification < ActiveRecord::Base
     subscribers: %w(email),
     approved_speakers: %w(email name company selected_talk_title),
     confirmed_speakers: %w(email name company selected_talk_title),
-    rejected_speakers: %w(email name company)
+    rejected_speakers: %w(email name company),
+    sponsors: %w(emails, names, company)
   }
   RECIPIENTS = INTERPOLABLE_VARIABLES.keys
   INTERPOLABLE_VARS_REGEX = /{{\s?([\w\W]+?)\s?}}/
@@ -40,6 +41,8 @@ class Notification < ActiveRecord::Base
       conference_edition.speakers.rejected
     when :confirmed_speakers
       conference_edition.speakers.confirmed
+    when :sponsors
+      conference_edition.sponsor_contacts
     end
   end
 
@@ -69,7 +72,7 @@ class Notification < ActiveRecord::Base
 
     matches.each do |match|
       if !INTERPOLABLE_VARIABLES[recipients.to_sym].include?(match)
-        errors.add(:body, "'#{match}' is not an available variable for this kind of recipient")
+        errors.add(:base, "'#{match}' is not an available variable for this kind of recipient")
       end
     end
   end
