@@ -36,15 +36,17 @@
           <td><%= avatar_for(speaker, :avatar, :square_230_230) %></td>
           <td><%= speaker.name %></td>
           <td><%= speaker.email %></td>
-          <td>
-            <% if speaker.is_travelling? %>
-              <%= speaker.arrival_date.to_s(:short) if speaker.arrival_date %>
-              <br>
-              <%= speaker.accomodation_details %>
-            <% else %>
-              Already here
-            <% end %>
-          </td>
+          <% if @current_status == 'confirmed' %>
+            <td>
+              <% if speaker.is_travelling? %>
+                <%= speaker.arrival_date.to_s(:short) if speaker.arrival_date %>
+                <br>
+                <%= speaker.accomodation_details %>
+              <% else %>
+                Already here
+              <% end %>
+            </td>
+          <% end %>
           <td class="actions">
             <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
 
