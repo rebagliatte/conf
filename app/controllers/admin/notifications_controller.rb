@@ -50,6 +50,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def trigger
+    @notification.update_attributes(sent_at: Time.now, recipient_emails: @notification.recipient_users.pluck(:email).join(','))
     if trigger_emails
       redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
     else
@@ -71,19 +72,23 @@ class Admin::NotificationsController < AdminController
     composed_emails = []
 
     notification.recipient_users.each do |recipient|
-      language_code = recipient.talks.first.language_code.to_sym
+      language_code = if recipient.is_a?(Speaker)
+        recipient.talks.first.language_code.to_sym
+      else
+        notification.conference_edition.languages.first.code.to_sym
+      end
 
       interpolable_variables = {
         'email' => recipient.email,
-        'name' => recipient.try(:name),
-        'company' => recipient.try(:company),
+        'name' => (recipient.name if recipient.is_a?(Speaker)),
+        'company' => (recipient.try(:company) if recipient.is_a?(Speaker)),
         'selected_talk_title' => (recipient.selected_talk_title if recipient.is_a?(Speaker))
       }
 
       composed_emails << {
         recipient_email: recipient.email,
         subject: view_context.liquify(notification, notification.subject(language_code), interpolable_variables),
-        body: view_context.liquify(notification, notification.body(language_code), interpolable_variables),
+        body: view_context.markdown(view_context.liquify(notification, notification.body(language_code), interpolable_variables))
       }
     end
 

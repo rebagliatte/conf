@@ -40,7 +40,6 @@ module ApplicationHelper
 
   def liquify(record, text, available_variables)
     text = Liquid::Template.parse(text).render(available_variables)
-    markdown(text)
   end
 
   def translatable_fields_for(form, &block)

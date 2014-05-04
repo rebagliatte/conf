@@ -1,10 +1,12 @@
 <header class="admin-header">
   <%= title 'Preview' %>
 
-  <div class="btn-wrapper">
-    <%= link_to 'Edit', edit_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn' %>
-    <%= link_to 'Send', trigger_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary', confirm: 'Are you sure?' %>
-  </div>
+  <% if @notification.sent_at.blank? %>
+    <div class="btn-wrapper">
+      <%= link_to 'Edit', edit_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn' %>
+      <%= link_to 'Send', trigger_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary', confirm: 'Are you sure?' %>
+    </div>
+  <% end %>
 </header>
 
 <ul class="unstyled">
