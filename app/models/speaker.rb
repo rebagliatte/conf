@@ -41,4 +41,8 @@ class Speaker < ActiveRecord::Base
     status == 'confirmed' && country != conference_edition.country
   end
 
+  def selected_talk_title
+    (talks.approved.first || talks.confirmed.first).try(:title)
+  end
+
 end

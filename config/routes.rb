@@ -1,7 +1,7 @@
 Conf::Application.routes.draw do
   # Admin
   namespace :admin do
-    resources :conferences, only: %w(show index new create edit update) do
+    resources :conferences do
       resources :conference_editions, only: %w(show new create edit update) do
         member do
           get :appearance
@@ -17,20 +17,25 @@ Conf::Application.routes.draw do
           put :destroy
         end
       end
-      resources :organizers, only: %w(show index new create edit update)
-      resources :talks, only: %w(show index new create edit update) do
+      resources :organizers
+      resources :talks do
         member do
           post :vote
           put :vote
         end
       end
-      resources :notifications, only: %w(show index new create)
-      resources :speakers, only: %w(show index new create edit update)
-      resources :sponsors, only: %w(show index new create edit update)
-      resources :pages, only: %w(show index new create edit update)
-      resources :posts, only: %w(show index new create edit update)
+      resources :notifications do
+        member do
+          get :preview
+          get :trigger
+        end
+      end
+      resources :speakers
+      resources :sponsors
+      resources :pages
+      resources :posts
       resources :subscribers, only: %w(index)
-      resources :slots, only: %w(show index new create edit update)
+      resources :slots
     end
 
     root to: 'conferences#index'
@@ -46,7 +51,7 @@ Conf::Application.routes.draw do
       resources :speakers, only: %w(index)
       resources :slots, only: %w(index)
       resources :sponsors, only: %w(index)
-      resources :talks, only: %w(index show new create edit update)
+      resources :talks
       resources :subscribers, only: %w(create)
     end
 

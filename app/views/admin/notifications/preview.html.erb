@@ -1,0 +1,22 @@
+<header class="admin-header">
+  <%= title 'Preview' %>
+
+  <div class="btn-wrapper">
+    <%= link_to 'Edit', edit_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn' %>
+    <%= link_to 'Send', trigger_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary', confirm: 'Are you sure?' %>
+  </div>
+</header>
+
+<ul class="unstyled">
+  <li class="notification">
+    <% @composed_emails.each do |email| %>
+      <dl>
+        <dt>Subject:</dt>
+        <dd><%= email[:subject] %></dd>
+        <dt>To:</dt>
+        <dd><%= email[:recipient_email] %></dd>
+      </dl>
+      <div class="preview-area"><%= email[:body] %></div>
+    <% end %>
+  </li>
+</ul>

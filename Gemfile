@@ -23,6 +23,7 @@ gem 'unf'
 
 # Utilities
 gem 'redcarpet'
+gem 'liquid'
 gem 'simple_form'
 gem 'country_select'
 gem 'globalize3'

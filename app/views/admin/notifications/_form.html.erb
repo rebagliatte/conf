@@ -1,0 +1,18 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param notification [Models::Page] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, notification], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(notification) %>
+
+  <%= translatable_fields_for(form) do |t| %>
+    <%= t.input :subject %>
+    <%= t.input :body, as: :text, hint: interpolable_variables_hint(notification), input_html: { class: 'notification-text-field' } %>
+  <% end %>
+
+  <%= form.input :recipients, as: :select, collection: humanized_collection(Notification::RECIPIENTS), include_blank: false  %>
+
+  <div class="form-actions">
+    <%= form.submit 'Save & Preview', class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

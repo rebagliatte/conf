@@ -11,9 +11,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def new
-    @conference_edition.languages.map(&:code).each do |locale|
-      @notification.translations.build locale: locale
-    end
+    build_missing_translations_for(@conference_edition, @notification)
   end
 
   def create
@@ -24,10 +22,38 @@ class Admin::NotificationsController < AdminController
 
     @notification = Notification.new(notification_attributes)
 
-    if trigger_emails && @notification.save
-      redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
+    if @notification.save
+      redirect_to preview_admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification saved successfully!' }
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @notification.assign_attributes(params[:notification])
+
+    if composed_emails(@notification) && @notification.save
+      redirect_to preview_admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification updated successfully!' }
+    else
+      render :edit
+    end
+  rescue => ex
+    flash.now[:error] = ex.message
+    render :edit
+  end
+
+  def preview
+    @composed_emails = composed_emails(@notification)
+  end
+
+  def trigger
+    if trigger_emails
+      redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
+    else
+      render :preview
     end
   end
 
@@ -36,13 +62,31 @@ class Admin::NotificationsController < AdminController
   def trigger_emails
     sender_email = @notification.organizer.email
 
-    @notification.recipient_users.each do |recipient|
+    composed_emails(@notification).each do |email|
+      UserMailer.notification_email(email[:subject], email[:body], email[:recipient_email], sender_email).deliver
+    end
+  end
+
+  def composed_emails(notification)
+    composed_emails = []
+
+    notification.recipient_users.each do |recipient|
       language_code = recipient.talks.first.language_code.to_sym
 
-      subject = @notification.subject(language_code)
-      body = @notification.body(language_code)
+      interpolable_variables = {
+        'email' => recipient.email,
+        'name' => recipient.try(:name),
+        'company' => recipient.try(:company),
+        'selected_talk_title' => (recipient.selected_talk_title if recipient.is_a?(Speaker))
+      }
 
-      UserMailer.notification_email(subject, body, recipient.email, sender_email).deliver
+      composed_emails << {
+        recipient_email: recipient.email,
+        subject: view_context.liquify(notification, notification.subject(language_code), interpolable_variables),
+        body: view_context.liquify(notification, notification.body(language_code), interpolable_variables),
+      }
     end
+
+    composed_emails
   end
 end
