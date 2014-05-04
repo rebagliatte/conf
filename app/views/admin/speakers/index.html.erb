@@ -21,6 +21,9 @@
         <th>Avatar</th>
         <th>Name</th>
         <th>Email</th>
+        <% if @current_status == 'confirmed' %>
+          <th>Arrival</th>
+        <% end %>
         <th>Actions</th>
         <% if can?(:manage, @conference_edition) && @current_status == 'confirmed' %>
           <th>Promote on homepage?</th>
@@ -33,6 +36,15 @@
           <td><%= avatar_for(speaker, :avatar, :square_230_230) %></td>
           <td><%= speaker.name %></td>
           <td><%= speaker.email %></td>
+          <td>
+            <% if speaker.is_travelling? %>
+              <%= speaker.arrival_date.to_s(:short) if speaker.arrival_date %>
+              <br>
+              <%= speaker.accomodation_details %>
+            <% else %>
+              Already here
+            <% end %>
+          </td>
           <td class="actions">
             <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
 

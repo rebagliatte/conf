@@ -19,7 +19,6 @@
   <table class="table talks-ranking">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Title</th>
         <% if @conference_edition.is_talk_voting_open %>
           <th>My votes</th>
@@ -29,14 +28,12 @@
           <% end %>
           <th>Total</th>
         <% end %>
-        <th>Created at</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @talks_in_current_status.each do |talk| %>
         <tr>
-          <td><%= talk.id %></td>
           <td>
             <%= talk.title %>
             <br>
@@ -50,7 +47,6 @@
             <% end %>
             <td><%= talk.ranking %></td>
           <% end %>
-          <td><%= talk.created_at.to_s(:short) %></td>
           <td class="actions">
             <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>
             <% if can? :manage, @conference_edition %>

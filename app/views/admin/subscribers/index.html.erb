@@ -7,15 +7,15 @@
   <table class="table">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Email</th>
+        <th>Created at</th>
       </tr>
     </thead>
     <tbody>
       <% @subscribers.each do |subscriber| %>
         <tr>
-          <td><%= subscriber.id %></td>
           <td><%= subscriber.email %></td>
+          <td><%= subscriber.created_at.to_s(:short) %></td>
         </tr>
       <% end %>
     </tbody>

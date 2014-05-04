@@ -23,7 +23,7 @@
 
   <% if speaker.is_travelling? %>
     <h2>Accommodation Details</h2>
-    <%= form.input :arrival_date %>
+    <%= form.input :arrival_date, include_blank: true %>
     <%= form.input :accomodation_details, hint: "Flight number, local hotel address, local phone number." %>
   <% end %>
 

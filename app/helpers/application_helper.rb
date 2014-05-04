@@ -52,7 +52,7 @@ module ApplicationHelper
       "http://www.gravatar.com/avatar/#{email_hash}?s=45"
     end
 
-    image_tag(image_src)
+    image_tag(image_src, alt: user.name, class: 'avatar')
   end
 
   def record_count(records, status)

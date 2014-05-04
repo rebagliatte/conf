@@ -8,21 +8,23 @@
 </header>
 
 <% if @sponsors.any? %>
-  <table class="table">
+  <table class="table table-with-avatars">
     <thead>
       <tr>
-        <th>ID</th>
+        <th>Logo</th>
         <th>Name</th>
         <th>Kind</th>
+        <th>Created at</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @sponsors.each do |sponsor| %>
         <tr>
-          <td><%= sponsor.id %></td>
+          <td><%= image_tag(sponsor.logo_url(:inline_x_60)) %></td>
           <td><%= sponsor.name %></td>
           <td><%= sponsor.kind %></td>
+          <td><%= sponsor.created_at.to_s(:short) %></td>
           <td class="actions">
             <%= link_to admin_conference_edition_sponsor_path(@conference_edition, sponsor), title: 'View' do %><i class="icon-eye-open"></i><% end %>
 

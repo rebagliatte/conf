@@ -19,8 +19,7 @@
     <thead>
       <tr>
         <th>Time</th>
-        <th>Kind</th>
-        <th>Talk</th>
+        <th>Activity</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -28,10 +27,11 @@
       <% @current_day_slots.each do |slot| %>
         <tr>
           <td><%= timespan(slot) %></td>
-          <td><%= slot.kind %></td>
           <td>
             <% if slot.is_talk_slot? %>
               <%= avatar_for(slot.talk.speakers.first, :avatar, :square_230_230) %><%= slot.talk %>
+            <% else %>
+              <%= slot.kind %>
             <% end %>
           </td>
           <td class="actions">

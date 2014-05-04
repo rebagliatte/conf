@@ -60,7 +60,7 @@
   <% if @speaker.is_travelling? %>
     <tr>
       <th>Arrival Date</th>
-      <td><%= @speaker.arrival_date %></td>
+      <td><%= @speaker.arrival_date.to_s(:short) if @speaker.arrival_date %></td>
     </tr>
     <tr>
       <th>Accomodation Details</th>
@@ -69,6 +69,6 @@
   <% end %>
   <tr>
     <th>Created at</th>
-    <td><%= @speaker.created_at %></td>
+    <td><%= @speaker.created_at.to_s(:short) %></td>
   </tr>
 </table>
