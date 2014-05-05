@@ -13,6 +13,9 @@ class Admin::SpeakersController < AdminController
   end
 
   def new
+    @conference_edition.languages.map(&:code).each do |locale|
+      @speaker.translations.build locale: locale
+    end
   end
 
   def create

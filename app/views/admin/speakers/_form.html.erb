@@ -9,10 +9,10 @@
   <%= form.hidden_field :conference_edition_id %>
 
   <%= translatable_fields_for(form) do |t| %>
-    <%= form.input :name %>
     <%= t.input :bio, as: :text %>
   <% end %>
 
+  <%= form.input :name %>
   <%= form.input :company %>
   <%= form.input :avatar %>
   <%= form.input :city %>
