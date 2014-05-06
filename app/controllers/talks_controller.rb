@@ -32,7 +32,7 @@ class TalksController < ApplicationController
 
   def index
     @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
-    @talks = @conference_edition.talks
+    @talks = @conference_edition.talks.confirmed
   end
 
   def show
