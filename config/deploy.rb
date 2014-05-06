@@ -12,6 +12,10 @@ set :scm, "git"
 set :repository, "git@github.com:rebagliatte/#{application}.git"
 set :branch, "master"
 
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
+
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 

@@ -14,7 +14,13 @@ set -e
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/home/deployer/apps/conf/current
 PID=$APP_ROOT/tmp/pids/unicorn.pid
-CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
+
+#CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
+
+PATH="/home/$USER/.rbenv/shims:/home/$USER/.rbenv/bin:$PATH"
+CMD="cd $APP_ROOT; bundle exec unicorn -c config/unicorn.rb -E $ENV -D"
+GEM_PATH="/home/$USER/apps/conf/shared/bundle/ruby/2.0.0/gems"
+
 AS_USER=deployer
 set -u
 
