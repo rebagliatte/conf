@@ -1,7 +1,11 @@
 class TalksController < ApplicationController
   def new
-    @talk = current_edition.talks.new
-    @talk.speakers.build
+    if current_edition.is_call_for_proposals_open
+      @talk = current_edition.talks.new
+      @talk.speakers.build
+    else
+      redirect_to root_path, flash: { success: 'Call for proposals is now closed' }
+    end
   end
 
   def create
