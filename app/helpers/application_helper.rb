@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true).render(text).html_safe
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, no_intra_emphasis: true).render(text).html_safe
   end
 
   def translatable_fields_for(form, &block)

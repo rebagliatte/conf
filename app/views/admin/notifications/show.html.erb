@@ -2,7 +2,7 @@
   <%= title @notification.subject %>
 
   <% if @notification.sent_at.blank? %>
-    <%#= link_to 'Preview', preview_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary main-cta' %>
+    <%= link_to 'Preview', preview_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary main-cta' %>
   <% end %>
 </header>
 

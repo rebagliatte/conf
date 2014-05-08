@@ -121,6 +121,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def liquify(record, text, available_variables)
-    ::Liquid::Template.parse(text).render(available_variables)
+    # ::Liquid::Template.parse(text).render(available_variables)
+    text
   end
 end
