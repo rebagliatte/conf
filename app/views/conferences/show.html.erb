@@ -20,6 +20,10 @@
   </section>
 <% end %>
 
+<% if current_edition.is_schedule_available %>
+  <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
+<% end %>
+
 <section id="previous-edition" class="box">
   <h1 class="primary-heading"><%= t('previous_edition') %></h1>
   <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
@@ -48,15 +52,6 @@
   </section>
 <% end %>
 
-<% if display_registration_link?(current_edition) %>
-  <section class="register-secondary-cta box box-primary">
-    <%= markdown(current_edition.registration_call_to_action) %>
-    <%= link_to current_edition.registration_url, class: 'btn btn-secondary' do %>
-      <%= content_tag(:span, t('register')) %>
-    <% end %>
-  </section>
-<% end %>
-
 <% if current_edition.is_location_available %>
   <section id="location" class="box">
     <h1 class="primary-heading"><%= t('location') %></h1>
@@ -68,8 +63,13 @@
   </section>
 <% end %>
 
-<% if current_edition.is_schedule_available %>
-  <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
+<% if display_registration_link?(current_edition) %>
+  <section class="register-secondary-cta box box-primary">
+    <%= markdown(current_edition.registration_call_to_action) %>
+    <%= link_to current_edition.registration_url, class: 'btn btn-secondary' do %>
+      <%= content_tag(:span, t('register')) %>
+    <% end %>
+  </section>
 <% end %>
 
 <% if current_edition.is_location_available %>

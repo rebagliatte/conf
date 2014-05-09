@@ -81,31 +81,16 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def grouped_slots
-    # Slots grouped by date
-    self.slots.order('start_date').group_by { |s| s.start_date.beginning_of_day }
+    self.slots.order('day').group_by { |s| s.day }
   end
 
   def grouped_sponsors
-    # Sponsors grouped by kind
     sponsors = self.sponsors.sort {|a,b| a.contribution_level <=> b.contribution_level}
     sponsors.group_by { |s| s.kind }
   end
 
   def voting_organizers
     @voting_organizers ||= organizers.where(id: TalkVote.where(conference_edition_id: id).pluck(:organizer_id).uniq!)
-  end
-
-  def max_simultaneous_talks_count
-    max_simultaneous_talks_count = 0
-
-    self.slots.each do |s|
-      slot_talks_count = s.talks.count
-      if slot_talks_count > max_simultaneous_talks_count
-        max_simultaneous_talks_count = slot_talks_count
-      end
-    end
-
-    max_simultaneous_talks_count
   end
 
   def location

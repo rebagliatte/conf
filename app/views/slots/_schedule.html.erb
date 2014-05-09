@@ -1,39 +1,29 @@
 <%# @param conference_edition [Array<Conf::Models::ConferenceEdition>] %>
 
 <section id="schedule">
-  <h1 class="primary-heading"><%= t 'schedule'%></h1>
+  <h1 class="primary-heading box box-tertiary"><%= t 'schedule'%></h1>
 
-  <% max_simultaneous_talks_count = conference_edition.max_simultaneous_talks_count if conference_edition.multiple_track? %>
-
-  <% conference_edition.grouped_slots.sort.each do |day, slots| %>
-    <section class="schedule">
-      <h1 class="secondary-heading"><%= day.to_date.to_s(:short) %></h1>
-      <table>
-        <% for slot in slots %>
-          <tr class="<%= slot.kind %>">
-            <td><%= slot.time_to_s %></td>
-            <% if slot.kind == 'talk' %>
-              <% if slot.talks.count == 1 %>
-                <td <% if max_simultaneous_talks_count %>colspan="<%= max_simultaneous_talks_count %>"<% end %>>
-                  <% talk = slot.talks.first %>
-                  <%= talk.title %> by <%= speaker_names(talk, conference_edition) %>
+  <div class="schedule-wrapper">
+    <div class="schedule-inner-wrapper">
+      <% conference_edition.grouped_slots.sort.each do |day, slots| %>
+        <section class="schedule box box-tertiary day-<%= day %>">
+          <h1 class="secondary-heading"><%= day.strftime("%A") %></h1>
+          <table>
+            <% slots.each do |slot| %>
+              <tr class="<%= slot.kind %>">
+                <td class="time"><%= timespan(slot) %></td>
+                <td class="description">
+                  <% if slot.is_talk_slot? %>
+                    <%= slot.talk %>
+                  <% else %>
+                    <%= slot.kind %>
+                  <% end %>
                 </td>
-              <% elsif slot.talks.count > 1 %>
-                <% slot.talks.each do |talk| %>
-                  <td>
-                    <p><%= talk.title %> by <%= talk.speaker_names %></p>
-                    <p><span class="room"><%= talk.room.name %></span></p>
-                  </td>
-                <% end %>
-              <% end %>
-            <% else %>
-              <td <% if max_simultaneous_talks_count %>colspan="<%= max_simultaneous_talks_count %>"<% end %>>
-                <%= slot.kind %>
-              </td>
+              </tr>
             <% end %>
-          </tr>
-        <% end %>
-      </table>
-    </section>
-  <% end %>
+          </table>
+        </section>
+      <% end %>
+    </div>
+  </div>
 </section>
