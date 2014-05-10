@@ -10,10 +10,11 @@
   <% end %>
 </header>
 
-<%# if @talk.translations.count > 1 %>
-  <%#= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
-<%# end %>
+<% if @talk.translations.count > 1 %>
+  <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @talk.translations, resource: @talk }) %>
+<% end %>
 
+<h2>Abstract</h2>
 <%= markdown(@talk.abstract) %>
 
 <h2>Language</h2>
