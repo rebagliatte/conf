@@ -16,7 +16,7 @@
                   <% if slot.is_talk_slot? %>
                     <%= slot.talk %>
                   <% else %>
-                    <%= slot.kind %>
+                    <%= slot.kind.humanize %>
                   <% end %>
                 </td>
               </tr>
