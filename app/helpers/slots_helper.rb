@@ -5,9 +5,7 @@ module SlotsHelper
   end
 
   def available_talks(slot)
-    talk_hash = slot.conference_edition.talks.confirmed.map{ |talk| [talk.to_s, talk.id] }
-    talk_hash.reject! {| key, value | slot.taken_talks_ids.include?(value) }
-    talk_hash
+    slot.conference_edition.talks.confirmed.map{ |talk| [talk.to_s, talk.id] }
   end
 
   def timespan(slot)

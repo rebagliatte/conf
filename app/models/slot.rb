@@ -7,7 +7,7 @@ class Slot < ActiveRecord::Base
   belongs_to :room
   belongs_to :talk
 
-  KINDS = %w( talk registration break lunch after_party )
+  KINDS = %w( talk registration break lunch after_party lightning_talks )
 
   # Validations
   validates :day, presence: true
@@ -31,7 +31,7 @@ class Slot < ActiveRecord::Base
   end
 
   def taken_talks_ids
-    @taken_talks_ids ||= conference_edition.slots.pluck(:talk_id)
+    @taken_talks_ids ||= (conference_edition.slots - [self]).map(&:talk_id)
   end
 
   private
