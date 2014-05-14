@@ -9,6 +9,10 @@
     <li><%= anchor_nav_link_to t('news'), "#news" %></li>
   <% end %>
 
+  <% if conference_edition.is_schedule_available %>
+    <li><%= anchor_nav_link_to t('schedule'), "#schedule" %></li>
+  <% end %>
+
   <% if display_call_for_proposals?(conference_edition) %>
     <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
   <% end %>
