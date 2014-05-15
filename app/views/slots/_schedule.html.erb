@@ -14,7 +14,13 @@
                 <td class="time"><%= timespan(slot) %></td>
                 <td class="description">
                   <% if slot.is_talk_slot? %>
-                    <%= slot.talk %>
+                    <% talk = slot.talk %>
+                    <%= link_to conference_edition_talk_path(conference_edition, talk) do %>
+                      <span class="title"><%= talk.title %></span>
+                      <span class="speaker"><%= talk.speakers.first.name %></span>
+                    <% end %>
+                  <% elsif slot.is_custom_slot? %>
+                    <%= markdown(slot.label) %>
                   <% else %>
                     <%= slot.kind.humanize %>
                   <% end %>

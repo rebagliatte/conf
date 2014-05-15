@@ -1,13 +1,13 @@
 class Slot < ActiveRecord::Base
   attr_accessible :day, :start_time, :end_time, :kind, :conference_edition, \
-  :conference_edition_id, :talk, :talk_id, :room_id
+  :conference_edition_id, :talk, :talk_id, :room_id, :label
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   belongs_to :room
   belongs_to :talk
 
-  KINDS = %w( talk registration break lunch after_party lightning_talks )
+  KINDS = %w( talk registration break lunch after_party lightning_talks custom )
 
   # Validations
   validates :day, presence: true
@@ -17,6 +17,7 @@ class Slot < ActiveRecord::Base
   validates :room_id, presence: true, if: :belongs_to_multi_track_conference?
   validate :valid_datetime_range
   validate :valid_talk
+  validates :label, presence: true, if: :is_custom_slot?
 
   # Scopes
   default_scope order('start_time ASC')
@@ -24,6 +25,10 @@ class Slot < ActiveRecord::Base
   # Instance methods
   def is_talk_slot?
     kind == 'talk'
+  end
+
+  def is_custom_slot?
+    kind == 'custom'
   end
 
   def belongs_to_multi_track_conference?

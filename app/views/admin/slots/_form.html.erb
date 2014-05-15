@@ -11,6 +11,7 @@
   <%= form.input :end_time, minute_step: 5 %>
   <%= form.input :kind, collection: Slot::KINDS, include_blank: false %>
   <%= form.input :talk_id, as: :select, collection: conference_edition.talks.confirmed, include_blank: true, selected: slot.talk.try(:id) || nil %>
+  <%= form.input :label, hint: 'Markdown available' %>
   <% if conference_edition.multiple_track? %>
     <%= form.input :room_id %>
   <% end %>

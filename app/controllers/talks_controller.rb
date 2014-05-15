@@ -37,6 +37,7 @@ class TalksController < ApplicationController
 
   def show
     @talk = Talk.find(params[:id])
+    @speaker = @talk.speakers.first
     @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
   end
 end
