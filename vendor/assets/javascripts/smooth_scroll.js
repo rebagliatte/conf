@@ -10,6 +10,8 @@ $(function() {
         $('html,body').animate({
           scrollTop: target.offset().top
         }, 1000);
+
+        history.pushState({}, "", this.href);
         return false;
       }
     }
