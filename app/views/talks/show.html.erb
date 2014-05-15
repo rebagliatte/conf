@@ -9,9 +9,11 @@
     <%= @speaker.name %>
   </h1>
 
-  <div class="speaker-description markdown">
-    <%= markdown(@speaker.bio) %>
-  </div>
+  <% if @speaker.bio.present? %>
+    <div class="speaker-description markdown">
+      <%= markdown(@speaker.bio) %>
+    </div>
+  <% end %>
 
   <ul class="social-media unstyled">
     <% if @speaker.job_title.present? && @speaker.company.present? %>
