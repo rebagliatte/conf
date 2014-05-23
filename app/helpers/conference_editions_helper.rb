@@ -34,7 +34,7 @@ module ConferenceEditionsHelper
   end
 
   def display_registration_link?(ce)
-    is_coming_soon?(ce) && ce.is_registration_open && ce.registration_url.present?
+    !is_over?(ce) && ce.is_registration_open && ce.registration_url.present?
   end
 
   def display_call_for_proposals?(ce)
