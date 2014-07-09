@@ -16,6 +16,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 
 # Images
+gem 'aws-sdk'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
