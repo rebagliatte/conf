@@ -34,10 +34,9 @@ gem 'cancan'
 gem 'capistrano'
 
 # App Server
-gem 'unicorn'
+gem 'puma'
 
 # Development goodies
 group :development do
-  gem 'unicorn-rails'
   gem 'quiet_assets'
 end
