@@ -23,18 +23,5 @@ development:
   github_key: ''
   github_secret: ''
 
-production:
-  # Server names
-  confnu_server_names: ''
-  # Mailer
-  host: ''
-  # AWS
-  aws_s3_bucket: ''
-  # Omniauth
-  twitter_key: ''
-  twitter_secret: ''
-  github_key: ''
-  github_secret: ''
-
 test:
   host: ''
