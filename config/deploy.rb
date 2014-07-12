@@ -28,6 +28,12 @@ set :deploy_to, '~/apps/conf'
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
+# Set ssh user
+set :user, 'deploy'
+set :ssh_options, {
+  user: fetch(:user)
+}
+
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
