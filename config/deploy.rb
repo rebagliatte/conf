@@ -39,3 +39,6 @@ set :ssh_options, {
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+# For capistrano-puma
+set :puma_init_active_record, true
