@@ -42,3 +42,7 @@ set :ssh_options, {
 
 # For capistrano-puma
 set :puma_init_active_record, true
+
+# For capistrano-bundler
+set :bundle_path, -> { shared_path.join('vendor','bundle') }
+set :bundle_flags, '--deployment'
