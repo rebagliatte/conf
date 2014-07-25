@@ -6,5 +6,5 @@
 /tmp
 
 # App configs
-/config/application.yml
+/config/secrets.yml
 /config/database.yml

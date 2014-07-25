@@ -1,57 +1,23 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
 en:
-  all_conferences: All conferences
-  call_for_proposals: Call for proposals
-  confirmed_speakers: Confirmed Speakers
-  do_not_miss_out: Don't miss out
-  download_sponsorship_packages: Download packages
-  drop_us_a_line: Drop us a line
-  follow_us_on_twitter: Follow us on Twitter
-  friend_us_on_facebook: Friend us on Facebook
-  track_us_on_lanyrd: Track us on Lanyrd
-  subscribe_to_our_youtube_channel: Subscribe to our YouTube channel
-  location: Location
-  networks: Social Networks
-  news: News
-  oh_snap: Oh snap!
-  please_resubmit: Please review the following fields and try submitting again
-  posted: Posted
-  powered_by: Powered by
-  previous_edition: Previous Edition
-  previous_editions: Previous Editions
-  read_more: Read more
-  read_all_posts: Read all posts
-  register: Register
-  schedule: Schedule
-  show_your_support_to: Become a sponsor and support
-  sign_in_github: Sign in with Github
-  sign_in_twitter: Sign in with Twitter
-  sign_out: Sign out
-  speakers: Speakers
-  sponsors: Sponsors
-  sponsorship_packages: Sponsorship Packages
-  submit: Submit
-  submit_your_proposal: Submit your proposal
-  the_talks: Talks
-  stay_up_to_date: Stay up to date
-  subscribe: Subscribe
-  ago: Ago
-  about_us: About the conference
-
-  en: English
-  pt: Portuguese
-  es: Spanish
-
-  talks:
-    new:
-      about_your_proposal: About your proposal
-      abstract_hint: Short description of your talk. This will be public if this proposal gets accepted. You may use markdown in this field.
-      language_hint: In which language would you deliver this talk?
-      notes_to_organizers_hint: "Anything you want to tell us about this proposal? Already gave this talk somewhere? Are there any videos/slides about it out there? Do you have any special needs for the talk? Is this your first time speaking? Don't worry, anything you tell us here is private. Pinky swear."
-      about_you: About you
-      bio_hint: A short paragraph about yourself. This will be public if this proposal gets accepted. You may use markdown in this field.
-
-  errors:
-    messages:
-      wrong_size: "is the wrong size (should be %{file_size})"
-      size_too_small: "is too small (should be at least %{file_size})"
-      size_too_big: "is too big (should be at most %{file_size})"
+  hello: "Hello world"
