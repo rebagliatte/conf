@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
       else
         # No user is associated with the identity, let's create a new one
         user = User.create_with_omniauth(auth['info'])
-        @identity.update_attributes(user: user)
+        @identity.update(user: user)
         self.current_user = user
         flash[:notice] = "Welcome #{current_user.name}!"
       end

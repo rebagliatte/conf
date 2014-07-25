@@ -20,7 +20,7 @@ class Admin::OrganizersController < AdminController
   def update
     @organizer = @conference_edition.organizers.find(params[:id])
 
-    if @organizer.update_attributes(params[:user])
+    if @organizer.update(params[:user])
       flash[:success] = 'Organizer updated successfully'
       redirect_to(admin_conference_edition_organizer_path(@conference_edition, @organizer))
     else

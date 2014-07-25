@@ -31,7 +31,7 @@ class Admin::SpeakersController < AdminController
   end
 
   def update
-    if @speaker.update_attributes(params[:speaker])
+    if @speaker.update(params[:speaker])
       visibility_only = params[:speaker].keys == ["is_promoted"]
 
       if visibility_only

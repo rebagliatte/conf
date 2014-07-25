@@ -30,7 +30,7 @@ class Admin::ConferencesController < AdminController
   end
 
   def update
-    if @conference.update_attributes(params[:conference])
+    if @conference.update(params[:conference])
       redirect_to admin_conference_path(@conference), flash: { success: 'Conference updated successfully!' }
     else
       render :edit

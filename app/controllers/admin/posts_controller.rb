@@ -27,7 +27,7 @@ class Admin::PostsController < AdminController
   end
 
   def update
-    if @post.update_attributes(params[:post])
+    if @post.update(params[:post])
       redirect_to admin_conference_edition_post_path(@conference_edition, @post), flash: { success: 'Post updated successfully!' }
     else
       render :edit

@@ -27,7 +27,7 @@ class Admin::PagesController < AdminController
   end
 
   def update
-    if @page.update_attributes(params[:page])
+    if @page.update(params[:page])
       redirect_to admin_conference_edition_page_path(@conference_edition, @page), flash: { success: 'Page updated successfully!' }
     else
       render :edit

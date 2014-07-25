@@ -15,7 +15,7 @@ class Admin::SponsorContactsController < AdminController
   end
 
   def update
-    if @sponsor_contact.update_attributes(params[:sponsor_contact])
+    if @sponsor_contact.update(params[:sponsor_contact])
       redirect_to admin_conference_edition_sponsor_path(@conference_edition.id, @sponsor_contact.sponsor), flash: { success: 'Contact updated successfully!' }
     else
       render :edit

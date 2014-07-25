@@ -23,7 +23,7 @@ class TalksController < ApplicationController
   end
 
   def update
-    if @talk.update_attributes(params[:talk])
+    if @talk.update(params[:talk])
       redirect_to talk_path(@talk), flash: { success: 'Talk updated successfully!' }
     else
       render :edit

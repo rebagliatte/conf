@@ -33,7 +33,7 @@ class Admin::SlotsController < AdminController
   end
 
   def update
-    if @slot.update_attributes(params[:slot])
+    if @slot.update(params[:slot])
       redirect_to admin_conference_edition_slots_path(@conference_edition), flash: { success: 'Slot updated successfully!' }
     else
       render :edit

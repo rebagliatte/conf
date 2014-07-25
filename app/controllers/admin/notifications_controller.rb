@@ -49,7 +49,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def trigger
-    @notification.update_attributes(sent_at: Time.now, recipient_emails: @notification.recipient_users.pluck(:email).join(','))
+    @notification.update(sent_at: Time.now, recipient_emails: @notification.recipient_users.pluck(:email).join(','))
     if trigger_emails
       redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
     else

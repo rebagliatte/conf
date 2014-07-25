@@ -33,7 +33,7 @@ class Admin::TalksController < AdminController
   end
 
   def update
-    if @talk.update_attributes(params[:talk])
+    if @talk.update(params[:talk])
       action = params[:talk][:status] ? @talk.status : 'updated'
       message = if action == 'confirmed'
         speakers = []
@@ -56,7 +56,7 @@ class Admin::TalksController < AdminController
 
     @talk_vote = existing_talk_vote || @talk.talk_votes.new(vote_params)
 
-    if (@talk_vote.id && @talk_vote.update_attributes(params[:talk_vote])) || @talk_vote.save
+    if (@talk_vote.id && @talk_vote.update(params[:talk_vote])) || @talk_vote.save
       success_and_redirect
     else
       @speaker = @talk.speakers.first

@@ -23,7 +23,7 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update
-    if @conference_edition.update_attributes(params[:conference_edition])
+    if @conference_edition.update(params[:conference_edition])
       redirect_to admin_conference_conference_edition_path(@conference, @conference_edition), flash: { success: 'Conference Edition updated successfully!' }
     else
       render :edit
@@ -39,7 +39,7 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_appearance
-    if @conference_edition.update_attributes(params[:conference_edition])
+    if @conference_edition.update(params[:conference_edition])
       redirect_to appearance_admin_conference_conference_edition_path(@conference, @conference_edition), flash: { success: 'Conference Edition updated successfully!' }
     else
       render :edit_appearance
