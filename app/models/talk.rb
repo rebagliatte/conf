@@ -66,7 +66,7 @@ class Talk < ActiveRecord::Base
         'pending'
       end
 
-      speaker.update_attribute(:status, speaker_status)
+      speaker.update_columns(status: speaker_status)
     end
   end
 

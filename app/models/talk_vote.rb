@@ -15,7 +15,7 @@ class TalkVote < ActiveRecord::Base
 
   def update_talk_ranking
     talk = Talk.find(talk_id)
-    talk.update_attribute(:ranking, talk.talk_votes.sum(:vote))
+    talk.update_columns(ranking: talk.talk_votes.sum(:vote))
   end
 
   # Scopes
