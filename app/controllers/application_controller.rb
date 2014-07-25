@@ -48,9 +48,9 @@ class ApplicationController < ActionController::Base
 
   def current_conference
     @current_conference ||= if !is_request_internal
-      Conference.find_by_custom_domain(request.domain)
+      Conference.find_by(custom_domain: request.domain)
     elsif request.subdomain.present?
-      Conference.find_by_subdomain(request.subdomain)
+      Conference.find_by(subdomain: request.subdomain)
     end
   end
 
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.find(session[:user_id])
   end
 
   def signed_in?

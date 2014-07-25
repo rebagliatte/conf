@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if current_user
       redirect_to root_url, notice: 'You are already signed in'
     elsif params[:organizer_invitation_token]
-      @organizer_invitation = OrganizerInvitation.find_by_token(params[:organizer_invitation_token])
+      @organizer_invitation = OrganizerInvitation.find_by(token: params[:organizer_invitation_token])
       if @organizer_invitation && @organizer_invitation.invitee_id.nil?
         session[:organizer_invitation_token] = @organizer_invitation.token
         render layout: 'admin'
@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
 
       # If a organizer invitations token is present, use it and destroy it
       if session[:organizer_invitation_token]
-        invitation = OrganizerInvitation.find_by_token(session[:organizer_invitation_token])
+        invitation = OrganizerInvitation.find_by(token: session[:organizer_invitation_token])
 
         organizers = invitation.conference_edition.organizers
 

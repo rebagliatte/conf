@@ -27,9 +27,9 @@ class OrganizerInvitation < ActiveRecord::Base
   end
 
   def invitee_is_new
-    if conference_edition.organizers.find_by_email(invitee_email)
+    if conference_edition.organizers.find_by(email: invitee_email)
       errors.add :invitee_email, "is invalid. There's already an organizer with this email address"
-    elsif conference_edition.organizer_invitations.find_by_invitee_email(invitee_email)
+    elsif conference_edition.organizer_invitations.find_by(invitee_email: invitee_email)
       errors.add :invitee_email, 'is invalid. He/she has already been invited'
     end
   end
