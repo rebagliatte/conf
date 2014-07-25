@@ -14,7 +14,7 @@ class Sponsor < ActiveRecord::Base
   }
 
   # Validations
-  validates :name, presence: true, uniqueness: {scope: :conference_edition_id}
+  validates :name, presence: true, uniqueness: { scope: :conference_edition_id }
   validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }, if: :logo?
   validates :website_url, presence: true
   validates :kind, presence: true, inclusion: { in: KINDS.keys.map(&:to_s) }
@@ -28,7 +28,7 @@ class Sponsor < ActiveRecord::Base
   mount_uploader :logo, ImageUploader
 
   # Scopes
-  default_scope order('name ASC')
+  default_scope { order(name: :asc) }
 
   # Instance methods
   def contribution_level

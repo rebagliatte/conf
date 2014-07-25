@@ -20,7 +20,7 @@ class Slot < ActiveRecord::Base
   validates :label, presence: true, if: :is_custom_slot?
 
   # Scopes
-  default_scope order('start_time ASC')
+  default_scope { order(start_time: :asc) }
 
   # Instance methods
   def is_talk_slot?

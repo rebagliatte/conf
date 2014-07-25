@@ -66,7 +66,7 @@ class ConferenceEdition < ActiveRecord::Base
   mount_uploader :custom_css_file, StylesheetUploader
 
   # Scopes
-  default_scope order('from_date DESC')
+  default_scope { order(from_date: :desc) }
 
   def previous_editions
     self.conference.conference_editions - [self]

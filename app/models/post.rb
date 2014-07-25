@@ -18,5 +18,5 @@ class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   # Scopes
-  default_scope order('created_at DESC')
+  default_scope { order(created_at: :desc) }
 end
