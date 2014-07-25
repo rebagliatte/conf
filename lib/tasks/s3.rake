@@ -1,12 +1,12 @@
 namespace :s3 do
   STAGING_BUCKET = 'confnu-staging'
   PRODUCTION_BUCKET = 'confnu-production'
-  my_bucket  = CONFIG[:aws_s3_bucket]
+  my_bucket  = Rails.application.secrets.aws_s3_bucket
 
   yml_file   = File.read(File.join(Rails.root, 'config', 'application.yml'))
   s3_options = {
-    access_key_id: CONFIG[:aws_access_key_id],
-    secret_access_key: CONFIG[:aws_secret_access_key]
+    access_key_id: Rails.application.secrets.aws_access_key_id,
+    secret_access_key: Rails.application.secrets.aws_secret_access_key
   }
 
   s3 = AWS::S3.new(s3_options)

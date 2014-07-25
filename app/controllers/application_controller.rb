@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def is_request_internal
-    CONFIG[:confnu_server_names].split(' ').include?(request.domain)
+    Rails.application.secrets.confnu_server_names.split(' ').include?(request.domain)
   end
 
   def current_conference

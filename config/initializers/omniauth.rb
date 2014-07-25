@@ -1,6 +1,6 @@
 OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, CONFIG[:twitter_key], CONFIG[:twitter_secret]
-  provider :github, CONFIG[:github_key], CONFIG[:github_secret]
+  provider :twitter, Rails.application.secrets.twitter_key, Rails.application.secrets.twitter_secret
+  provider :github, Rails.application.secrets.github_key, Rails.application.secrets.github_secret
 end
