@@ -30,13 +30,16 @@ gem 'country_select'
 gem 'globalize3'
 gem 'cancan'
 
-# Deployer
-gem 'capistrano'
-
 # App Server
 gem 'puma'
 
 # Development goodies
 group :development do
   gem 'quiet_assets'
+
+  # Deployment
+  gem 'capistrano', '~> 3.1', require: false
+  gem 'capistrano-bundler', '1.1.1', require: false
+  gem 'capistrano-rails', '1.1', require: false
+  gem 'capistrano3-puma', require: false
 end

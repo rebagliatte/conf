@@ -1,11 +1,24 @@
 development: &default
   adapter: postgresql
-  database: conf_development
   pool: 5
   timeout: 5000
   host: localhost
+  encoding: unicode
+  database: confnu_development
 
 test:
   <<: *default
-  database: conf_test
+  database: confnu_test
   min_messages: warning
+
+production:
+  <<: *default
+  database:
+  username:
+  password:
+
+staging:
+  <<: *default
+  database:
+  username:
+  password:
