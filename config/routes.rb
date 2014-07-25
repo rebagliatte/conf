@@ -1,56 +1,73 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # Admin
+  namespace :admin do
+    resources :conferences do
+      resources :conference_editions, only: %w(show new create edit update) do
+        member do
+          get :appearance
+          get :edit_appearance
+          put :update_appearance
+        end
+      end
+    end
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+    resources :conference_editions do
+      resources :images, only: %w(new create) do
+        member do
+          put :destroy
+        end
+      end
+      resources :organizers
+      resources :talks do
+        member do
+          post :vote
+          put :vote
+        end
+      end
+      resources :notifications do
+        member do
+          get :preview
+          get :trigger
+        end
+      end
+      resources :speakers
+      resources :sponsors
+      resources :sponsor_contacts, only: %w(create edit update)
+      resources :pages
+      resources :posts
+      resources :subscribers, only: %w(index)
+      resources :slots
+    end
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    root 'conferences#index'
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # Public site
+  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
+    resources :conferences, only: %w(index show)
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    resources :conference_editions, only: %w(index) do
+      resources :pages, only: %w(show)
+      resources :posts, only: %w(index show)
+      resources :speakers, only: %w(index)
+      resources :slots, only: %w(index)
+      resources :sponsors, only: %w(index)
+      resources :talks
+      resources :subscribers, only: %w(create)
+    end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+    # Conditional root
+    root 'marketing#home', constraints: RootConstraint.new
+    root 'conferences#show'
+  end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  # Authentication
+  get '/signup' => 'sessions#new', as: :signup
+  get '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: redirect('/')
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # I18N
+  get '', to: redirect("/#{I18n.default_locale}")
 end
