@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   layout 'admin'
-  before_filter :authenticate_user
+  before_action :authenticate_user
 
   def conferences
     Conference.accessible_by(current_ability)

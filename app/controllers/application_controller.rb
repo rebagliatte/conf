@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   layout :conditional_layout
 
-  before_filter :set_locale
+  before_action :set_locale
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
