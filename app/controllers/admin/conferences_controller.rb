@@ -1,5 +1,6 @@
 class Admin::ConferencesController < AdminController
 
+  before_action :set_conference_params, only: [ :create, :update ]
   load_and_authorize_resource
 
   def show
@@ -35,5 +36,16 @@ class Admin::ConferencesController < AdminController
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_conference_params
+    params[:conference] = params.require(:conference).permit(
+      :email, :facebook_page_username, :name,
+      :twitter_hashtag, :twitter_username, :subdomain, :owner_id, \
+      :conference_editions_attributes, :language_ids, :custom_domain, \
+      :disqus_shortname, :lanyrd_series_name, :youtube_channel_id
+    )
   end
 end

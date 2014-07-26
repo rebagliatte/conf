@@ -1,6 +1,4 @@
 class SponsorContact < ActiveRecord::Base
-  attr_accessible :conference_edition_id, :sponsor_id, :language, \
-  :language_id, :name, :email
 
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition

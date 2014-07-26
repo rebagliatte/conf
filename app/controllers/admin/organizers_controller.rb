@@ -1,5 +1,6 @@
 class Admin::OrganizersController < AdminController
 
+  before_action :set_organizer_invitation_params, only: [ :create ]
   load_and_authorize_resource :conference_edition
 
   # Organizers
@@ -49,4 +50,11 @@ class Admin::OrganizersController < AdminController
     end
   end
 
+  private
+
+  def set_organizer_invitation_params
+    params[:organizer_invitation] = params.require(:organizer_invitation).permit(
+      :conference_edition_id, :invitee_email, :invitee_id, :inviter_id, :token
+    )
+  end
 end

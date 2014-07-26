@@ -1,4 +1,7 @@
 class Admin::SlotsController < AdminController
+
+  before_action :set_slot_params, only: [ :create, :update ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :slot, through: :conference_edition
 
@@ -38,5 +41,14 @@ class Admin::SlotsController < AdminController
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_slot_params
+    params[:slot] = params.require(:slot).permit(
+      :day, :start_time, :end_time, :kind, :conference_edition, \
+      :conference_edition_id, :talk, :talk_id, :room_id, :label
+    )
   end
 end

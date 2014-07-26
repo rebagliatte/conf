@@ -1,6 +1,4 @@
 class TalkVote < ActiveRecord::Base
-  attr_accessible :talk_id, :organizer_id, :vote, :comment, :conference_edition_id
-
   belongs_to :talk
   belongs_to :organizer, class_name: 'User'
 
@@ -20,5 +18,4 @@ class TalkVote < ActiveRecord::Base
 
   # Scopes
   scope :stored, { where('id IS NOT NULL') }
-
 end

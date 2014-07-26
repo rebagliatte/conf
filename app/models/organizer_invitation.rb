@@ -1,6 +1,4 @@
 class OrganizerInvitation < ActiveRecord::Base
-  attr_accessible :conference_edition_id, :invitee_email, :invitee_id, :inviter_id, :token
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   belongs_to :inviter, class_name: 'User'
@@ -33,5 +31,4 @@ class OrganizerInvitation < ActiveRecord::Base
       errors.add :invitee_email, 'is invalid. He/she has already been invited'
     end
   end
-
 end

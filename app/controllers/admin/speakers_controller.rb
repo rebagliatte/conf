@@ -1,5 +1,7 @@
 class Admin::SpeakersController < AdminController
 
+  before_action :set_speaker_params, only: [ :create, :update ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :speaker, through: :conference_edition
 
@@ -47,5 +49,17 @@ class Admin::SpeakersController < AdminController
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_speaker_params
+    params[:speaker] = params.require(:speaker).permit(
+      :bio, :city, :company, :country, :email, :github_username, :name, \
+      :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
+      :avatar_cache, :translations_attributes, :conference_edition_id, \
+      :status, :job_title, :phone, :website, :lanyrd_username, :is_promoted, \
+      :arrival_date, :accomodation_details
+    )
   end
 end

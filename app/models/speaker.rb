@@ -1,10 +1,4 @@
 class Speaker < ActiveRecord::Base
-  attr_accessible :bio, :city, :company, :country, :email, :github_username, \
-  :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
-  :avatar_cache, :translations_attributes, :conference_edition_id, \
-  :status, :job_title, :phone, :website, :lanyrd_username, :is_promoted, \
-  :arrival_date, :accomodation_details
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   belongs_to :user
@@ -44,5 +38,4 @@ class Speaker < ActiveRecord::Base
   def selected_talk_title
     (talks.approved.first || talks.confirmed.first).try(:title)
   end
-
 end

@@ -1,7 +1,4 @@
 class Slot < ActiveRecord::Base
-  attr_accessible :day, :start_time, :end_time, :kind, :conference_edition, \
-  :conference_edition_id, :talk, :talk_id, :room_id, :label
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   belongs_to :room

@@ -1,4 +1,7 @@
 class Admin::NotificationsController < AdminController
+
+  before_action :set_notification_params, only: [ :create, :update, :trigger ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :notification, through: :conference_edition
 
@@ -58,6 +61,14 @@ class Admin::NotificationsController < AdminController
   end
 
   private
+
+  def set_notification_params
+    params[:notification] = params.require(:notification).permit(
+      :conference_edition_id, :organizer_id, \
+      :recipients, :recipient_emails, :subject, :body, \
+      :translations_attributes, :sent_at
+    )
+  end
 
   def trigger_emails
     sender_email = @notification.organizer.email

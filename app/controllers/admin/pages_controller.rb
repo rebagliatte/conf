@@ -1,5 +1,7 @@
 class Admin::PagesController < AdminController
 
+  before_action :set_page_params, only: [ :create, :update ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :page, through: :conference_edition
 
@@ -32,5 +34,11 @@ class Admin::PagesController < AdminController
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_page_params
+    params[:page] = params.require(:page).permit(:conference_edition_id, :translations_attributes)
   end
 end

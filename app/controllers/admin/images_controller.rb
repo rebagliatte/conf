@@ -1,5 +1,7 @@
 class Admin::ImagesController < AdminController
 
+  before_action :set_image_params, only: [ :create ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :image, through: :conference_edition
 
@@ -17,5 +19,11 @@ class Admin::ImagesController < AdminController
   def destroy
     @image.destroy
     redirect_to appearance_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition), flash: { success: 'Image removed' }
+  end
+
+  private
+
+  def set_image_params
+    params[:image] = params.require(:image).permit(:conference_edition_id, :image)
   end
 end

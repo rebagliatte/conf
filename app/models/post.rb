@@ -1,6 +1,4 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :conference_edition, :conference_edition_id, :image, :summary, :title, :translations_attributes
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
 

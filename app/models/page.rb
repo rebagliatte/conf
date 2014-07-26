@@ -1,6 +1,4 @@
 class Page < ActiveRecord::Base
-  attr_accessible :conference_edition_id, :translations_attributes
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
 

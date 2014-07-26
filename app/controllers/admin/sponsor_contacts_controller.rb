@@ -1,5 +1,7 @@
 class Admin::SponsorContactsController < AdminController
 
+  before_action :set_sponsor_contact_params, only: [:create, :update]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :sponsor_contact, :through => :conference_edition
 
@@ -20,5 +22,13 @@ class Admin::SponsorContactsController < AdminController
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_sponsor_contact_params
+    params[:sponsor_contact] = params.require(:sponsor_contact).permit(
+      :conference_edition_id, :sponsor_id, :language, :language_id, :name, :email
+    )
   end
 end

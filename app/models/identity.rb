@@ -1,6 +1,4 @@
 class Identity < ActiveRecord::Base
-  attr_accessible :provider, :uid, :user
-
   belongs_to :user
 
   def self.find_with_omniauth(auth)
