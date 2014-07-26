@@ -4,7 +4,7 @@ class OrganizerInvitation < ActiveRecord::Base
   belongs_to :inviter, class_name: 'User'
   belongs_to :invitee, class_name: 'User'
 
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
 
   # Validations
   validates :inviter_id, presence: true

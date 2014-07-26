@@ -19,7 +19,7 @@ class ConferenceEdition < ActiveRecord::Base
   KINDS = %w( single_track multiple_track )
   VIDEO_PROVIDERS = %w( youtube vimeo )
   MAX_CONFERENCE_DURATION_IN_DAYS = 30
-  URL_REGEX = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+  URL_REGEX = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
 
   # Validations
   validates :from_date, presence: true
