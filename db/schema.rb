@@ -9,333 +9,336 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140515012041) do
+ActiveRecord::Schema.define(version: 20140515012041) do
 
-  create_table "conference_edition_translations", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "conference_edition_translations", force: true do |t|
     t.integer  "conference_edition_id"
     t.string   "locale"
-    t.string   "tagline",                     :default => ""
-    t.string   "country",                     :default => ""
-    t.string   "city",                        :default => ""
-    t.string   "venue",                       :default => ""
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.text     "notes_to_speakers",           :default => ""
-    t.text     "notes_to_subscribers",        :default => ""
-    t.text     "speakers_call_to_action",     :default => ""
-    t.text     "sponsors_call_to_action",     :default => ""
-    t.text     "registration_call_to_action", :default => ""
-    t.text     "news_intro",                  :default => ""
-    t.text     "about",                       :default => ""
-    t.string   "intro",                       :default => "", :null => false
+    t.string   "tagline",                     default: ""
+    t.string   "country",                     default: ""
+    t.string   "city",                        default: ""
+    t.string   "venue",                       default: ""
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.text     "notes_to_speakers",           default: ""
+    t.text     "notes_to_subscribers",        default: ""
+    t.text     "speakers_call_to_action",     default: ""
+    t.text     "sponsors_call_to_action",     default: ""
+    t.text     "registration_call_to_action", default: ""
+    t.text     "news_intro",                  default: ""
+    t.text     "about",                       default: ""
+    t.string   "intro",                       default: "", null: false
   end
 
-  add_index "conference_edition_translations", ["conference_edition_id"], :name => "index_conference_edition_translations_on_conference_edition_id"
-  add_index "conference_edition_translations", ["locale"], :name => "index_conference_edition_translations_on_locale"
+  add_index "conference_edition_translations", ["conference_edition_id"], name: "index_conference_edition_translations_on_conference_edition_id", using: :btree
+  add_index "conference_edition_translations", ["locale"], name: "index_conference_edition_translations_on_locale", using: :btree
 
-  create_table "conference_editions", :force => true do |t|
-    t.integer  "conference_id",                                             :null => false
-    t.date     "from_date",                                                 :null => false
-    t.date     "to_date",                                                   :null => false
-    t.string   "kind",                          :default => "single_track", :null => false
-    t.string   "promo_video_provider",          :default => ""
-    t.string   "promo_video_uid",               :default => ""
-    t.string   "logo",                          :default => ""
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
-    t.string   "sponsorship_packages_pdf",      :default => ""
-    t.string   "registration_url",              :default => ""
-    t.boolean  "is_registration_open",          :default => false
-    t.boolean  "is_call_for_proposals_open",    :default => true
-    t.boolean  "is_call_for_sponsorships_open", :default => true
-    t.boolean  "is_schedule_available",         :default => false
-    t.boolean  "is_location_available",         :default => false
-    t.boolean  "is_email_subscription_enabled", :default => true,           :null => false
-    t.text     "custom_styles",                 :default => ""
-    t.string   "custom_css_file",               :default => ""
-    t.string   "venue_address",                 :default => ""
+  create_table "conference_editions", force: true do |t|
+    t.integer  "conference_id",                                          null: false
+    t.date     "from_date",                                              null: false
+    t.date     "to_date",                                                null: false
+    t.string   "kind",                          default: "single_track", null: false
+    t.string   "promo_video_provider",          default: ""
+    t.string   "promo_video_uid",               default: ""
+    t.string   "logo",                          default: ""
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.string   "sponsorship_packages_pdf",      default: ""
+    t.string   "registration_url",              default: ""
+    t.boolean  "is_registration_open",          default: false
+    t.boolean  "is_call_for_proposals_open",    default: true
+    t.boolean  "is_call_for_sponsorships_open", default: true
+    t.boolean  "is_schedule_available",         default: false
+    t.boolean  "is_location_available",         default: false
+    t.boolean  "is_email_subscription_enabled", default: true,           null: false
+    t.text     "custom_styles",                 default: ""
+    t.string   "custom_css_file",               default: ""
+    t.string   "venue_address",                 default: ""
     t.float    "venue_latitude"
     t.float    "venue_longitude"
-    t.boolean  "is_talk_voting_open",           :default => false
-    t.boolean  "is_speaker_listing_available",  :default => false,          :null => false
+    t.boolean  "is_talk_voting_open",           default: false
+    t.boolean  "is_speaker_listing_available",  default: false,          null: false
   end
 
-  create_table "conference_editions_users", :force => true do |t|
+  create_table "conference_editions_users", force: true do |t|
     t.integer "conference_edition_id"
     t.integer "user_id"
   end
 
-  add_index "conference_editions_users", ["conference_edition_id"], :name => "index_conference_editions_users_on_conference_edition_id"
-  add_index "conference_editions_users", ["user_id"], :name => "index_conference_editions_users_on_user_id"
+  add_index "conference_editions_users", ["conference_edition_id"], name: "index_conference_editions_users_on_conference_edition_id", using: :btree
+  add_index "conference_editions_users", ["user_id"], name: "index_conference_editions_users_on_user_id", using: :btree
 
-  create_table "conferences", :force => true do |t|
-    t.string   "subdomain",              :default => "", :null => false
-    t.string   "name",                   :default => "", :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "twitter_username",       :default => ""
-    t.string   "twitter_hashtag",        :default => ""
-    t.string   "facebook_page_username", :default => ""
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.integer  "owner_id",                               :null => false
-    t.string   "custom_domain",          :default => ""
-    t.string   "disqus_shortname",       :default => "", :null => false
-    t.string   "lanyrd_series_name",     :default => "", :null => false
-    t.string   "youtube_channel_id",     :default => "", :null => false
+  create_table "conferences", force: true do |t|
+    t.string   "subdomain",              default: "", null: false
+    t.string   "name",                   default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "twitter_username",       default: ""
+    t.string   "twitter_hashtag",        default: ""
+    t.string   "facebook_page_username", default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "owner_id",                            null: false
+    t.string   "custom_domain",          default: ""
+    t.string   "disqus_shortname",       default: "", null: false
+    t.string   "lanyrd_series_name",     default: "", null: false
+    t.string   "youtube_channel_id",     default: "", null: false
   end
 
-  create_table "conferences_languages", :force => true do |t|
+  create_table "conferences_languages", force: true do |t|
     t.integer "conference_id"
     t.integer "language_id"
   end
 
-  add_index "conferences_languages", ["conference_id"], :name => "index_conferences_languages_on_conference_id"
-  add_index "conferences_languages", ["language_id"], :name => "index_conferences_languages_on_language_id"
+  add_index "conferences_languages", ["conference_id"], name: "index_conferences_languages_on_conference_id", using: :btree
+  add_index "conferences_languages", ["language_id"], name: "index_conferences_languages_on_language_id", using: :btree
 
-  create_table "identities", :force => true do |t|
-    t.string   "provider",   :default => "", :null => false
-    t.string   "uid",        :default => "", :null => false
+  create_table "identities", force: true do |t|
+    t.string   "provider",   default: "", null: false
+    t.string   "uid",        default: "", null: false
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "images", :force => true do |t|
-    t.integer  "conference_edition_id", :null => false
-    t.string   "image",                 :null => false
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+  create_table "images", force: true do |t|
+    t.integer  "conference_edition_id", null: false
+    t.string   "image",                 null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "languages", :force => true do |t|
+  create_table "languages", force: true do |t|
     t.string   "name"
     t.string   "code"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "notification_translations", :force => true do |t|
+  create_table "notification_translations", force: true do |t|
     t.integer  "notification_id"
     t.string   "locale"
-    t.string   "subject",         :default => "", :null => false
-    t.text     "body",            :default => "", :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.string   "subject",         default: "", null: false
+    t.text     "body",            default: "", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
-  add_index "notification_translations", ["locale"], :name => "index_notification_translations_on_locale"
-  add_index "notification_translations", ["notification_id"], :name => "index_notification_translations_on_notification_id"
+  add_index "notification_translations", ["locale"], name: "index_notification_translations_on_locale", using: :btree
+  add_index "notification_translations", ["notification_id"], name: "index_notification_translations_on_notification_id", using: :btree
 
-  create_table "notifications", :force => true do |t|
-    t.integer  "conference_edition_id",                 :null => false
-    t.integer  "organizer_id",                          :null => false
-    t.string   "recipients",            :default => "", :null => false
-    t.text     "recipient_emails",      :default => "", :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+  create_table "notifications", force: true do |t|
+    t.integer  "conference_edition_id",              null: false
+    t.integer  "organizer_id",                       null: false
+    t.string   "recipients",            default: "", null: false
+    t.text     "recipient_emails",      default: "", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.datetime "sent_at"
   end
 
-  create_table "organizer_invitations", :force => true do |t|
-    t.integer  "inviter_id",            :null => false
+  create_table "organizer_invitations", force: true do |t|
+    t.integer  "inviter_id",            null: false
     t.integer  "invitee_id"
-    t.string   "invitee_email",         :null => false
-    t.string   "token",                 :null => false
-    t.integer  "conference_edition_id", :null => false
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.string   "invitee_email",         null: false
+    t.string   "token",                 null: false
+    t.integer  "conference_edition_id", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "page_translations", :force => true do |t|
+  create_table "page_translations", force: true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "title",      :default => "", :null => false
-    t.text     "content",    :default => "", :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "title",      default: "", null: false
+    t.text     "content",    default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
-  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
+  add_index "page_translations", ["locale"], name: "index_page_translations_on_locale", using: :btree
+  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id", using: :btree
 
-  create_table "pages", :force => true do |t|
-    t.integer  "conference_edition_id", :null => false
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+  create_table "pages", force: true do |t|
+    t.integer  "conference_edition_id", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "post_translations", :force => true do |t|
+  create_table "post_translations", force: true do |t|
     t.integer  "post_id"
     t.string   "locale"
-    t.string   "title",      :default => "", :null => false
-    t.text     "summary",    :default => "", :null => false
-    t.text     "body",       :default => "", :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "title",      default: "", null: false
+    t.text     "summary",    default: "", null: false
+    t.text     "body",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "post_translations", ["locale"], :name => "index_post_translations_on_locale"
-  add_index "post_translations", ["post_id"], :name => "index_post_translations_on_post_id"
+  add_index "post_translations", ["locale"], name: "index_post_translations_on_locale", using: :btree
+  add_index "post_translations", ["post_id"], name: "index_post_translations_on_post_id", using: :btree
 
-  create_table "posts", :force => true do |t|
-    t.string   "image",                 :default => ""
-    t.integer  "conference_edition_id",                 :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+  create_table "posts", force: true do |t|
+    t.string   "image",                 default: ""
+    t.integer  "conference_edition_id",              null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  create_table "rooms", :force => true do |t|
-    t.string   "name",                  :default => "", :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "conference_edition_id",                 :null => false
+  create_table "rooms", force: true do |t|
+    t.string   "name",                  default: "", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "conference_edition_id",              null: false
   end
 
-  create_table "slots", :force => true do |t|
-    t.string   "kind",                  :default => "talk", :null => false
-    t.integer  "conference_edition_id",                     :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+  create_table "slots", force: true do |t|
+    t.string   "kind",                  default: "talk", null: false
+    t.integer  "conference_edition_id",                  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "room_id"
     t.integer  "talk_id"
-    t.date     "day",                                       :null => false
-    t.time     "start_time",                                :null => false
-    t.time     "end_time",                                  :null => false
-    t.string   "label",                 :default => "",     :null => false
+    t.date     "day",                                    null: false
+    t.time     "start_time",                             null: false
+    t.time     "end_time",                               null: false
+    t.string   "label",                 default: "",     null: false
   end
 
-  create_table "speaker_translations", :force => true do |t|
+  create_table "speaker_translations", force: true do |t|
     t.integer  "speaker_id"
     t.string   "locale"
-    t.text     "bio",        :default => ""
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.text     "bio",        default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "speaker_translations", ["locale"], :name => "index_speaker_translations_on_locale"
-  add_index "speaker_translations", ["speaker_id"], :name => "index_speaker_translations_on_speaker_id"
+  add_index "speaker_translations", ["locale"], name: "index_speaker_translations_on_locale", using: :btree
+  add_index "speaker_translations", ["speaker_id"], name: "index_speaker_translations_on_speaker_id", using: :btree
 
-  create_table "speakers", :force => true do |t|
-    t.string   "name",                  :default => "",        :null => false
-    t.string   "company",               :default => ""
-    t.string   "avatar",                :default => ""
-    t.string   "city",                  :default => ""
-    t.string   "country",               :default => ""
-    t.string   "twitter_username",      :default => ""
-    t.string   "github_username",       :default => ""
-    t.string   "email",                 :default => "",        :null => false
+  create_table "speakers", force: true do |t|
+    t.string   "name",                  default: "",        null: false
+    t.string   "company",               default: ""
+    t.string   "avatar",                default: ""
+    t.string   "city",                  default: ""
+    t.string   "country",               default: ""
+    t.string   "twitter_username",      default: ""
+    t.string   "github_username",       default: ""
+    t.string   "email",                 default: "",        null: false
     t.integer  "user_id"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.integer  "conference_edition_id",                        :null => false
-    t.string   "lanyrd_username",       :default => ""
-    t.string   "job_title",             :default => ""
-    t.string   "phone",                 :default => ""
-    t.string   "website",               :default => ""
-    t.string   "status",                :default => "pending", :null => false
-    t.boolean  "is_promoted",           :default => false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "conference_edition_id",                     null: false
+    t.string   "lanyrd_username",       default: ""
+    t.string   "job_title",             default: ""
+    t.string   "phone",                 default: ""
+    t.string   "website",               default: ""
+    t.string   "status",                default: "pending", null: false
+    t.boolean  "is_promoted",           default: false
     t.datetime "arrival_date"
-    t.text     "accomodation_details",  :default => "",        :null => false
+    t.text     "accomodation_details",  default: "",        null: false
   end
 
-  create_table "speakers_talks", :id => false, :force => true do |t|
+  create_table "speakers_talks", id: false, force: true do |t|
     t.integer "speaker_id"
     t.integer "talk_id"
   end
 
-  add_index "speakers_talks", ["speaker_id", "talk_id"], :name => "index_speakers_talks_on_speaker_id_and_talk_id"
-  add_index "speakers_talks", ["talk_id", "speaker_id"], :name => "index_speakers_talks_on_talk_id_and_speaker_id"
+  add_index "speakers_talks", ["speaker_id", "talk_id"], name: "index_speakers_talks_on_speaker_id_and_talk_id", using: :btree
+  add_index "speakers_talks", ["talk_id", "speaker_id"], name: "index_speakers_talks_on_talk_id_and_speaker_id", using: :btree
 
-  create_table "sponsor_contacts", :force => true do |t|
-    t.integer  "conference_edition_id",                 :null => false
-    t.integer  "sponsor_id",                            :null => false
-    t.integer  "language_id",                           :null => false
-    t.string   "name",                  :default => "", :null => false
-    t.string   "email",                 :default => "", :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+  create_table "sponsor_contacts", force: true do |t|
+    t.integer  "conference_edition_id",              null: false
+    t.integer  "sponsor_id",                         null: false
+    t.integer  "language_id",                        null: false
+    t.string   "name",                  default: "", null: false
+    t.string   "email",                 default: "", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  create_table "sponsor_translations", :force => true do |t|
+  create_table "sponsor_translations", force: true do |t|
     t.integer  "sponsor_id"
     t.string   "locale"
-    t.text     "description", :default => ""
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.text     "description", default: ""
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "sponsor_translations", ["locale"], :name => "index_sponsor_translations_on_locale"
-  add_index "sponsor_translations", ["sponsor_id"], :name => "index_sponsor_translations_on_sponsor_id"
+  add_index "sponsor_translations", ["locale"], name: "index_sponsor_translations_on_locale", using: :btree
+  add_index "sponsor_translations", ["sponsor_id"], name: "index_sponsor_translations_on_sponsor_id", using: :btree
 
-  create_table "sponsors", :force => true do |t|
-    t.string   "name",                  :default => "", :null => false
-    t.string   "kind",                  :default => ""
-    t.string   "logo",                  :default => ""
-    t.string   "website_url",           :default => ""
-    t.integer  "conference_edition_id",                 :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+  create_table "sponsors", force: true do |t|
+    t.string   "name",                  default: "", null: false
+    t.string   "kind",                  default: ""
+    t.string   "logo",                  default: ""
+    t.string   "website_url",           default: ""
+    t.integer  "conference_edition_id",              null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  create_table "subscribers", :force => true do |t|
+  create_table "subscribers", force: true do |t|
     t.integer  "conference_edition_id"
     t.string   "email"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "talk_translations", :force => true do |t|
+  create_table "talk_translations", force: true do |t|
     t.integer  "talk_id"
     t.string   "locale"
-    t.string   "title",      :default => "", :null => false
-    t.text     "abstract",   :default => ""
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "title",      default: "", null: false
+    t.text     "abstract",   default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "talk_translations", ["locale"], :name => "index_talk_translations_on_locale"
-  add_index "talk_translations", ["talk_id"], :name => "index_talk_translations_on_talk_id"
+  add_index "talk_translations", ["locale"], name: "index_talk_translations_on_locale", using: :btree
+  add_index "talk_translations", ["talk_id"], name: "index_talk_translations_on_talk_id", using: :btree
 
-  create_table "talk_votes", :force => true do |t|
-    t.integer  "talk_id",                               :null => false
-    t.integer  "organizer_id",                          :null => false
-    t.integer  "vote",                                  :null => false
-    t.string   "comment",               :default => "", :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+  create_table "talk_votes", force: true do |t|
+    t.integer  "talk_id",                            null: false
+    t.integer  "organizer_id",                       null: false
+    t.integer  "vote",                               null: false
+    t.string   "comment",               default: "", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "conference_edition_id"
   end
 
-  add_index "talk_votes", ["organizer_id"], :name => "index_talk_votes_on_organizer_id"
-  add_index "talk_votes", ["talk_id", "organizer_id"], :name => "index_talk_votes_on_talk_id_and_organizer_id", :unique => true
-  add_index "talk_votes", ["talk_id"], :name => "index_talk_votes_on_talk_id"
+  add_index "talk_votes", ["organizer_id"], name: "index_talk_votes_on_organizer_id", using: :btree
+  add_index "talk_votes", ["talk_id", "organizer_id"], name: "index_talk_votes_on_talk_id_and_organizer_id", unique: true, using: :btree
+  add_index "talk_votes", ["talk_id"], name: "index_talk_votes_on_talk_id", using: :btree
 
-  create_table "talks", :force => true do |t|
-    t.string   "title",                 :default => "",        :null => false
-    t.text     "abstract",              :default => ""
-    t.string   "status",                :default => "pending", :null => false
-    t.string   "slides_url",            :default => ""
-    t.string   "video_url",             :default => ""
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.integer  "conference_edition_id",                        :null => false
-    t.text     "notes_to_organizers",   :default => ""
-    t.string   "language",                                     :null => false
+  create_table "talks", force: true do |t|
+    t.string   "title",                 default: "",        null: false
+    t.text     "abstract",              default: ""
+    t.string   "status",                default: "pending", null: false
+    t.string   "slides_url",            default: ""
+    t.string   "video_url",             default: ""
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "conference_edition_id",                     null: false
+    t.text     "notes_to_organizers",   default: ""
+    t.string   "language",                                  null: false
     t.integer  "ranking"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "name",       :default => "",     :null => false
-    t.string   "nickname",   :default => ""
-    t.string   "email",      :default => ""
-    t.string   "image",      :default => ""
-    t.string   "role",       :default => "user"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+  create_table "users", force: true do |t|
+    t.string   "name",       default: "",     null: false
+    t.string   "nickname",   default: ""
+    t.string   "email",      default: ""
+    t.string   "image",      default: ""
+    t.string   "role",       default: "user"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
