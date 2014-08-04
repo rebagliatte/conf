@@ -57,8 +57,8 @@ Rails.application.routes.draw do
     end
 
     # Conditional root
-    root 'marketing#home', constraints: RootConstraint.new
-    root 'conferences#show'
+    get '/', to: 'marketing#home', constraints: RootConstraint.new
+    get '/', to: 'conferences#show'
   end
 
   # Authentication
