@@ -17,5 +17,5 @@ class TalkVote < ActiveRecord::Base
   end
 
   # Scopes
-  scope :stored, { where('id IS NOT NULL') }
+  scope :stored, -> { where('id IS NOT NULL') }
 end

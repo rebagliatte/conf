@@ -38,10 +38,10 @@ class Talk < ActiveRecord::Base
   accepts_nested_attributes_for :speakers
 
   # Scopes
-  scope :by_creation_date, { order(created_at: :desc) }
-  scope :by_ranking, { order('ranking DESC') }
-  scope :confirmed, { where(status: 'confirmed') }
-  scope :approved, { where(status: 'approved') }
+  scope :by_creation_date, -> { order(created_at: :desc) }
+  scope :by_ranking, -> { order('ranking DESC') }
+  scope :confirmed, -> { where(status: 'confirmed') }
+  scope :approved, -> { where(status: 'approved') }
 
   # Callbacks
   after_save :update_speaker_statuses, if: :status_changed?

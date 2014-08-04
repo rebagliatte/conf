@@ -25,10 +25,10 @@ class Speaker < ActiveRecord::Base
 
   # Scopes
   default_scope { order(name: :asc) }
-  scope :promoted, { where(is_promoted: true) }
-  scope :confirmed, { where(status: 'confirmed') }
-  scope :approved, { where(status: 'approved') }
-  scope :rejected, { where(status: 'rejected') }
+  scope :promoted, -> { where(is_promoted: true) }
+  scope :confirmed, -> { where(status: 'confirmed') }
+  scope :approved, -> { where(status: 'approved') }
+  scope :rejected, -> { where(status: 'rejected') }
 
   # Instance Methods
   def is_travelling?
