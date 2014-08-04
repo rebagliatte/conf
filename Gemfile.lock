@@ -95,9 +95,9 @@ GEM
       fog-core
       fog-json
     formatador (0.2.5)
-    globalize3 (0.1.0)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
+    globalize (4.0.2)
+      activemodel (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
     hashie (3.2.0)
     hike (1.2.3)
     i18n (0.6.11)
@@ -228,7 +228,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   country_select
   fog
-  globalize3
+  globalize (~> 4.0.2)
   jquery-rails
   liquid
   mini_magick

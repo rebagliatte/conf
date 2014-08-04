@@ -26,7 +26,7 @@ gem 'redcarpet'
 gem 'liquid'
 gem 'simple_form'
 gem 'country_select'
-gem 'globalize3'
+gem 'globalize', '~> 4.0.2'
 gem 'cancan'
 
 # App Server
