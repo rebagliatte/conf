@@ -3,7 +3,7 @@ namespace :s3 do
   PRODUCTION_BUCKET = 'confnu-production'
   my_bucket  = Rails.application.secrets.aws_s3_bucket
 
-  yml_file   = File.read(File.join(Rails.root, 'config', 'application.yml'))
+  yml_file   = File.read(File.join(Rails.root, 'config', 'secrets.yml'))
   s3_options = {
     access_key_id: Rails.application.secrets.aws_access_key_id,
     secret_access_key: Rails.application.secrets.aws_secret_access_key
