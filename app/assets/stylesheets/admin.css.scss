@@ -4,6 +4,10 @@
 
 @import 'admin/bootstrap_and_overrides';
 
+.container-fluid {
+  padding-left: 0;
+}
+
 .main-admin-header {
   line-height: 30px;
   padding: 3px 10px;
@@ -17,6 +21,9 @@
   .authentication img {
     height: 30px;
     margin-right: 1em;
+  }
+  a:hover {
+    text-decoration: none;
   }
 }
 
@@ -37,7 +44,7 @@
       padding: 3px 10px;
     }
     &.conference-edition-nav-item {
-      color: $darkGreen;
+      color: $dark-green;
     }
     &.conference-nav-item {
       color: $green;
@@ -116,7 +123,7 @@
           padding: 0;
           color: $green;
           &:hover {
-            color: $darkGreen;
+            color: $dark-green;
           }
         }
       }

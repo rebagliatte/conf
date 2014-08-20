@@ -5,27 +5,27 @@
 // VARIABLES
 
 // Colors
-$textColor:           #555555;
+$text-color:           #555555;
 
 $blue:                #113F8C;
 $turquoise:           #01A4A4;
-$skyBlue:             #00A1CB;
+$sky-blue:             #00A1CB;
 $green:               #61AE24;
 $yellow:              #D0D102;
-$darkGreen:           #32742C;
+$dark-green:           #32742C;
 $fucsia:              #D70060;
 $orange:              #E54028;
-$lightOrange:         #F18D05;
+$light-orange:         #F18D05;
 $black:               #000;
-$grayDarker:          #222;
-$grayDark:            #333;
+$gray-darker:          #222;
+$gray-dark:            #333;
 $gray:                #616161;
-$grayLight:           #dedede;
-$grayLighter:         #fafafa;
+$gray-light:           #dedede;
+$gray-lighter:         #fafafa;
 $white:               #fff;
 
 // Typography
-$linkColor:           $green;
+$link-color:          $green;
 
 // IMPORTS
 @import "bootstrap";
