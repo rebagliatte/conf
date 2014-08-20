@@ -38,11 +38,11 @@ class Admin::SpeakersController < AdminController
 
       if visibility_only
         promtion_status = if params[:speaker]["is_promoted"] == 'true'
-          'promoted. The speaker will now be displayed on the homepage.'
+          'will now be displayed on the homepage!'
         else
-          'demoted.  The speaker will no longer be displayed on the homepage.'
+          'will no longer be displayed on the homepage.'
         end
-        redirect_to admin_conference_edition_speakers_path(@conference_edition), flash: { success: "Speaker #{ promtion_status }." }
+        redirect_to admin_conference_edition_speakers_path(@conference_edition), flash: { success: "#{ @speaker.name } #{ promtion_status }" }
       else
         redirect_to admin_conference_edition_speaker_path(@conference_edition, @speaker), flash: { success: 'Speaker updated successfully!' }
       end

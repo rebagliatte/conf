@@ -58,8 +58,8 @@
             <td>
               <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
                 <%= form.hidden_field :is_promoted, value: !speaker.is_promoted %>
-                <button type="submit" title="cancel" class="btn">
-                  <%= speaker.is_promoted ? 'Demote' : 'Promote' %>
+                <button type="submit" title="cancel" class="unstyled">
+                  <i class="fa fa-<%= speaker.is_promoted ? 'check-' : '' %>square-o"></i>
                 </button>
               <% end %>
             </td>
