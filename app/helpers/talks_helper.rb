@@ -33,7 +33,7 @@ module TalksHelper
   end
 
   def status_cta_class(status)
-    string = 'btn btn-large '
+    string = 'btn btn-lg '
     string += status == 'pending' ? '' : 'btn-primary '
     string += ['rejected', 'cancelled'].include?(status) ? 'btn-danger' : ''
   end
