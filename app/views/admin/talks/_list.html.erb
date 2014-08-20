@@ -5,9 +5,9 @@
   <td><%= talk.title %></td>
   <td><%= talk.speakers.first.name %></td>
   <td class="actions">
-    <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+    <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
     <% if can? :manage, @conference_edition %>
-      <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+      <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
     <% end %>
   </td>
 </tr>

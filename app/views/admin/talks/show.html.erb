@@ -29,19 +29,19 @@
   <ul class="social-media unstyled">
     <% if @speaker.job_title.present? && @speaker.company.present? %>
       <li>
-        <i class="icon-briefcase"></i>
+        <i class="fa fa-briefcase"></i>
         <%= @speaker.job_title %> at <%= @speaker.company %>
       </li>
     <% end %>
     <% if @speaker.city.present? && @speaker.country.present? %>
       <li>
-        <i class="icon-map-marker"></i>
+        <i class="fa fa-map-marker"></i>
         <%= @speaker.city %>, <%= @speaker.country %>
       </li>
     <% end %>
     <% if @speaker.github_username.present? %>
       <li>
-        <i class="icon-github"></i>
+        <i class="fa fa-github"></i>
         <%= link_to "http://github.com/#{@speaker.github_username}", target: '_blank' do %>
           <%= @speaker.github_username %>
         <% end %>
@@ -49,7 +49,7 @@
     <% end %>
     <% if @speaker.twitter_username.present? %>
       <li>
-        <i class="icon-twitter"></i>
+        <i class="fa fa-twitter"></i>
         <%= link_to "http://twitter.com/#{@speaker.twitter_username}", target: '_blank' do %>
           <%= @speaker.twitter_username %>
         <% end %>
@@ -57,7 +57,7 @@
     <% end %>
     <% if @speaker.lanyrd_username.present? %>
       <li>
-        <i class="icon-calendar-empty"></i>
+        <i class="fa fa-calendar-empty"></i>
         <%= link_to "http://lanyrd.com/#{@speaker.lanyrd_username}", target: '_blank' do %>
           <%= @speaker.lanyrd_username %>
         <% end %>
@@ -65,7 +65,7 @@
     <% end %>
     <% if @speaker.website.present? %>
       <li>
-        <i class="icon-link"></i>
+        <i class="fa fa-link"></i>
         <%= link_to @speaker.website, target: '_blank' do %>
           <%= @speaker.website %>
         <% end %>
@@ -73,7 +73,7 @@
     <% end %>
     <% if @speaker.email.present? %>
       <li>
-        <i class="icon-envelope"></i>
+        <i class="fa fa-envelope"></i>
         <%= mail_to "#{@speaker.email}" do %>
           <%= @speaker.email %>
         <% end %>
@@ -81,7 +81,7 @@
     <% end %>
     <% if @speaker.phone.present? %>
       <li>
-        <i class="icon-phone"></i>
+        <i class="fa fa-phone"></i>
         <%= link_to "tel:#{@speaker.phone}" do %>
           <%= @speaker.phone %>
         <% end %>
@@ -123,7 +123,7 @@
             <td class="actions">
               <% if v.organizer == current_user %>
                 <%= link_to(admin_conference_edition_talk_path(@conference_edition, @talk, update_vote: true)) do %>
-                  <i class="icon-pencil"></i>
+                  <i class="fa fa-pencil"></i>
                 <% end %>
               <% end %>
             </td>
