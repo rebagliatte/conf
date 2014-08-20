@@ -42,10 +42,10 @@ class Admin::ConferencesController < AdminController
 
   def set_conference_params
     params[:conference] = params.require(:conference).permit(
-      :email, :facebook_page_username, :name,
-      :twitter_hashtag, :twitter_username, :subdomain, :owner_id, \
-      :conference_editions_attributes, :language_ids, :custom_domain, \
-      :disqus_shortname, :lanyrd_series_name, :youtube_channel_id
+      :email, :facebook_page_username, :name, :twitter_hashtag,
+      :twitter_username, :subdomain, :owner_id, \
+      :conference_editions_attributes, :custom_domain, :disqus_shortname, \
+      :lanyrd_series_name, :youtube_channel_id, :language_ids => []
     )
   end
 end
