@@ -2,7 +2,7 @@
   <%= title 'Posts' %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'New post', new_admin_conference_edition_post_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+    <%= link_to 'New post', new_admin_conference_edition_post_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 
 </header>
@@ -22,10 +22,10 @@
           <td><%= post.title %></td>
           <td><%= post.created_at.to_s(:short) %></td>
           <td class="actions">
-            <%= link_to admin_conference_edition_post_path(@conference_edition, post), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_post_path(@conference_edition, post), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
 
             <% if can? :manage, @conference_edition %>
-              <%= link_to edit_admin_conference_edition_post_path(@conference_edition, post), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+              <%= link_to edit_admin_conference_edition_post_path(@conference_edition, post), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
             <% end %>
           </td>
         </tr>

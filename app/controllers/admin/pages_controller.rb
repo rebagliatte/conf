@@ -1,5 +1,7 @@
 class Admin::PagesController < AdminController
 
+  before_action :set_page_params, only: [ :create, :update ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :page, through: :conference_edition
 
@@ -27,10 +29,16 @@ class Admin::PagesController < AdminController
   end
 
   def update
-    if @page.update_attributes(params[:page])
+    if @page.update(params[:page])
       redirect_to admin_conference_edition_page_path(@conference_edition, @page), flash: { success: 'Page updated successfully!' }
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_page_params
+    params[:page] = params.require(:page).permit(:conference_edition_id, :translations_attributes)
   end
 end

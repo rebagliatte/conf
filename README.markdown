@@ -16,7 +16,7 @@ Confnu
 
 3. Copy over the config file from the example file and fill it in with the required credentials
   ```
-  cp config/application.example.yml config/application.yml
+  cp config/secrets.example.yml config/secrets.yml
   ```
 
 4. Create your development's database

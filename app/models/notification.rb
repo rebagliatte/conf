@@ -1,7 +1,4 @@
 class Notification < ActiveRecord::Base
-  attr_accessible :conference_edition_id, :organizer_id, :recipients, \
-  :recipient_emails, :subject, :body, :translations_attributes, :sent_at
-
   INTERPOLABLE_VARIABLES = {
     subscribers: %w(email),
     approved_speakers: %w(email name company selected_talk_title),

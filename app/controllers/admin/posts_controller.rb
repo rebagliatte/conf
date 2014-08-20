@@ -1,5 +1,7 @@
 class Admin::PostsController < AdminController
 
+  before_action :set_post_params, only: [ :create, :update ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :post, through: :conference_edition
 
@@ -27,10 +29,18 @@ class Admin::PostsController < AdminController
   end
 
   def update
-    if @post.update_attributes(params[:post])
+    if @post.update(params[:post])
       redirect_to admin_conference_edition_post_path(@conference_edition, @post), flash: { success: 'Post updated successfully!' }
     else
       render :edit
     end
+  end
+
+  private
+
+  def set_post_params
+    params[:post] = params.require(:post).permit(:body, :conference_edition, \
+      :conference_edition_id, :image, :summary, :title, :translations_attributes
+    )
   end
 end

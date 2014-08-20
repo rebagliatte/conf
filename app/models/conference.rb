@@ -1,15 +1,10 @@
 class Conference < ActiveRecord::Base
-  attr_accessible :email, :facebook_page_username, :name, :twitter_hashtag, \
-  :twitter_username, :subdomain, :owner_id, :conference_editions_attributes, \
-  :language_ids, :custom_domain, :disqus_shortname, :lanyrd_series_name, \
-  :youtube_channel_id
-
   belongs_to :owner, class_name: 'User'
   has_and_belongs_to_many :languages
   has_many :conference_editions, dependent: :destroy
 
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-  DOMAIN_REGEX = /^[A-Z0-9.-]+\.[A-Z]+$/i
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
+  DOMAIN_REGEX = /\A[A-Z0-9.-]+\.[A-Z]+\z/i
 
   # Validations
   validates :name, presence: true

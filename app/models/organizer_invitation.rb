@@ -1,12 +1,10 @@
 class OrganizerInvitation < ActiveRecord::Base
-  attr_accessible :conference_edition_id, :invitee_email, :invitee_id, :inviter_id, :token
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   belongs_to :inviter, class_name: 'User'
   belongs_to :invitee, class_name: 'User'
 
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
 
   # Validations
   validates :inviter_id, presence: true
@@ -27,11 +25,10 @@ class OrganizerInvitation < ActiveRecord::Base
   end
 
   def invitee_is_new
-    if conference_edition.organizers.find_by_email(invitee_email)
+    if conference_edition.organizers.find_by(email: invitee_email)
       errors.add :invitee_email, "is invalid. There's already an organizer with this email address"
-    elsif conference_edition.organizer_invitations.find_by_invitee_email(invitee_email)
+    elsif conference_edition.organizer_invitations.find_by(invitee_email: invitee_email)
       errors.add :invitee_email, 'is invalid. He/she has already been invited'
     end
   end
-
 end

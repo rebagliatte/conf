@@ -2,7 +2,7 @@
   <%= title 'Organizers' %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'Invite a new organizer', new_admin_conference_edition_organizer_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+    <%= link_to 'Invite a new organizer', new_admin_conference_edition_organizer_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 </header>
 
@@ -24,8 +24,8 @@
         <td><%= organizer.email %></td>
         <td><%= organizer.created_at.to_s(:short) %></td>
         <td class="actions">
-          <%= link_to admin_conference_edition_organizer_path(@conference_edition, organizer), title: 'View' do %><i class="icon-eye-open"></i><% end %>
-          <%= link_to edit_admin_conference_edition_organizer_path(@conference_edition, organizer), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+          <%= link_to admin_conference_edition_organizer_path(@conference_edition, organizer), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
+          <%= link_to edit_admin_conference_edition_organizer_path(@conference_edition, organizer), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
         </td>
       </tr>
     <% end %>

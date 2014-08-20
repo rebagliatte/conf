@@ -2,9 +2,8 @@
 
 class StylesheetUploader < CarrierWave::Uploader::Base
 
-  # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
+  # Include the Sprockets helpers for Rails asset pipeline compatibility:
+  include Sprockets::Rails::Helper
 
   # Include MimeTypes module, to set the content type of the file in case it's incorrect
   include CarrierWave::MimeTypes

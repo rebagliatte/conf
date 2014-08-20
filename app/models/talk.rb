@@ -1,8 +1,4 @@
 class Talk < ActiveRecord::Base
-  attr_accessible :abstract, :slides_url, :notes_to_organizers, :language, \
-  :status, :title, :video_url, :speaker_ids, :speakers_attributes, \
-  :conference_edition, :conference_edition_id, :translations_attributes
-
   has_and_belongs_to_many :speakers
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
@@ -42,7 +38,7 @@ class Talk < ActiveRecord::Base
   accepts_nested_attributes_for :speakers
 
   # Scopes
-  scope :by_creation_date, -> { order('created_at DESC') }
+  scope :by_creation_date, -> { order(created_at: :desc) }
   scope :by_ranking, -> { order('ranking DESC') }
   scope :confirmed, -> { where(status: 'confirmed') }
   scope :approved, -> { where(status: 'approved') }
@@ -66,7 +62,7 @@ class Talk < ActiveRecord::Base
         'pending'
       end
 
-      speaker.update_attribute(:status, speaker_status)
+      speaker.update_columns(status: speaker_status)
     end
   end
 

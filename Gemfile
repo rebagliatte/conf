@@ -1,15 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
-gem 'jquery-rails'
+gem 'rails', '4.1.4'
 gem 'pg'
 
-group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.3.2.1'
-end
+# Assets
+gem 'sass-rails', '~> 4.0.3'
+gem 'bootstrap-sass'
+gem 'uglifier', '>= 1.3.0'
 
 # Omniauth
 gem 'omniauth-twitter'
@@ -25,9 +22,9 @@ gem 'unf'
 # Utilities
 gem 'redcarpet'
 gem 'liquid'
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0.rc1'
 gem 'country_select'
-gem 'globalize3'
+gem 'globalize', '~> 4.0.2'
 gem 'cancan'
 
 # App Server

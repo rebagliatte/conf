@@ -2,7 +2,7 @@
   <%= title 'Notifications' %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'New notification', new_admin_conference_edition_notification_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+    <%= link_to 'New notification', new_admin_conference_edition_notification_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 
 </header>
@@ -24,7 +24,7 @@
           <td><%= notification.recipients %></td>
           <td><%= notification.created_at.to_s(:short) %></td>
           <td class="actions">
-            <%= link_to admin_conference_edition_notification_path(@conference_edition, notification), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_notification_path(@conference_edition, notification), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
           </td>
         </tr>
       <% end %>

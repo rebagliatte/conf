@@ -1,4 +1,4 @@
-Conf::Application.routes.draw do
+Rails.application.routes.draw do
   # Admin
   namespace :admin do
     resources :conferences do
@@ -14,7 +14,7 @@ Conf::Application.routes.draw do
     resources :conference_editions do
       resources :images, only: %w(new create) do
         member do
-          put :destroy
+          patch :destroy
         end
       end
       resources :organizers
@@ -39,7 +39,7 @@ Conf::Application.routes.draw do
       resources :slots
     end
 
-    root to: 'conferences#index'
+    root 'conferences#index'
   end
 
   # Public site
@@ -57,17 +57,17 @@ Conf::Application.routes.draw do
     end
 
     # Conditional root
-    root to: 'marketing#home', constraints: RootConstraint.new
+    get '/', to: 'marketing#home', constraints: RootConstraint.new
     root to: 'conferences#show'
   end
 
   # Authentication
-  match '/signup' => 'sessions#new', as: :signup
-  match '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
-  match '/auth/:provider/callback', to: 'sessions#create'
-  match '/auth/failure', to: redirect('/')
-  match '/logout', to: 'sessions#destroy', as: 'logout'
+  get '/signup' => 'sessions#new', as: :signup
+  get '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: redirect('/')
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 
   # I18N
-  match '', to: redirect("/#{I18n.default_locale}")
+  get '', to: redirect("/#{I18n.default_locale}")
 end

@@ -1,4 +1,7 @@
 class Admin::NotificationsController < AdminController
+
+  before_action :set_notification_params, only: [ :create, :update, :trigger ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :notification, through: :conference_edition
 
@@ -49,7 +52,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def trigger
-    @notification.update_attributes(sent_at: Time.now, recipient_emails: @notification.recipient_users.pluck(:email).join(','))
+    @notification.update(sent_at: Time.now, recipient_emails: @notification.recipient_users.pluck(:email).join(','))
     if trigger_emails
       redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
     else
@@ -58,6 +61,14 @@ class Admin::NotificationsController < AdminController
   end
 
   private
+
+  def set_notification_params
+    params[:notification] = params.require(:notification).permit(
+      :conference_edition_id, :organizer_id, \
+      :recipients, :recipient_emails, :subject, :body, \
+      :translations_attributes, :sent_at
+    )
+  end
 
   def trigger_emails
     sender_email = @notification.organizer.email

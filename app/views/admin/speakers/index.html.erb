@@ -2,7 +2,7 @@
   <%= title "Speakers" %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'New speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+    <%= link_to 'New speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 </header>
 
@@ -48,18 +48,18 @@
             </td>
           <% end %>
           <td class="actions">
-            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="icon-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
 
             <% if can? :manage, @conference_edition %>
-              <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="icon-pencil"></i><% end %>
+              <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
             <% end %>
           </td>
           <% if can?(:manage, @conference_edition) && @current_status == 'confirmed' %>
             <td>
               <%= simple_form_for [:admin, @conference_edition, speaker] do |form| %>
                 <%= form.hidden_field :is_promoted, value: !speaker.is_promoted %>
-                <button type="submit" title="cancel" class="btn">
-                  <%= speaker.is_promoted ? 'Demote' : 'Promote' %>
+                <button type="submit" class="unstyled">
+                  <i class="fa fa-<%= speaker.is_promoted ? 'check-' : '' %>square-o"></i>
                 </button>
               <% end %>
             </td>

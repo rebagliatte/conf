@@ -1,5 +1,8 @@
 class Admin::TalksController < AdminController
 
+  before_action :set_talk_params, only: [ :create, :update ]
+  before_action :set_talk_vote_params, only: [ :vote ]
+
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :talk, through: :conference_edition
 
@@ -33,7 +36,7 @@ class Admin::TalksController < AdminController
   end
 
   def update
-    if @talk.update_attributes(params[:talk])
+    if @talk.update(params[:talk])
       action = params[:talk][:status] ? @talk.status : 'updated'
       message = if action == 'confirmed'
         speakers = []
@@ -56,7 +59,7 @@ class Admin::TalksController < AdminController
 
     @talk_vote = existing_talk_vote || @talk.talk_votes.new(vote_params)
 
-    if (@talk_vote.id && @talk_vote.update_attributes(params[:talk_vote])) || @talk_vote.save
+    if (@talk_vote.id && @talk_vote.update(params[:talk_vote])) || @talk_vote.save
       success_and_redirect
     else
       @speaker = @talk.speakers.first
@@ -66,6 +69,21 @@ class Admin::TalksController < AdminController
   end
 
   private
+
+  def set_talk_params
+    params[:talk] = params.require(:talk).permit(
+      :abstract, :slides_url, :notes_to_organizers, :language, \
+      :status, :title, :video_url, :speakers_attributes, \
+      :conference_edition, :conference_edition_id, :translations_attributes, \
+      :speaker_ids => []
+    )
+  end
+
+  def set_talk_vote_params
+    params[:talk_vote] = params.require(:talk_vote).permit(
+      :talk_id, :organizer_id, :vote, :comment, :conference_edition_id
+    )
+  end
 
   def existing_talk_vote
     @talk.talk_votes.where(organizer_id: current_user.id).first

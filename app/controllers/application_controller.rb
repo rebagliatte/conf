@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   layout :conditional_layout
 
-  before_filter :set_locale
+  before_action :set_locale
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -43,14 +43,14 @@ class ApplicationController < ActionController::Base
   protected
 
   def is_request_internal
-    CONFIG[:confnu_server_names].split(' ').include?(request.domain)
+    Rails.application.secrets.confnu_server_names.split(' ').include?(request.domain)
   end
 
   def current_conference
     @current_conference ||= if !is_request_internal
-      Conference.find_by_custom_domain(request.domain)
+      Conference.find_by(custom_domain: request.domain)
     elsif request.subdomain.present?
-      Conference.find_by_subdomain(request.subdomain)
+      Conference.find_by(subdomain: request.subdomain)
     end
   end
 
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def signed_in?

@@ -1,17 +1,11 @@
 class Speaker < ActiveRecord::Base
-  attr_accessible :bio, :city, :company, :country, :email, :github_username, \
-  :name, :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
-  :avatar_cache, :translations_attributes, :conference_edition_id, \
-  :status, :job_title, :phone, :website, :lanyrd_username, :is_promoted, \
-  :arrival_date, :accomodation_details
-
   belongs_to :conference_edition
   has_one :conference, through: :conference_edition
   belongs_to :user
   has_and_belongs_to_many :talks
 
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-  URL_REGEX = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
+  URL_REGEX = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
   STATUSES = Talk::STATUSES
 
   # Validations
@@ -30,7 +24,7 @@ class Speaker < ActiveRecord::Base
   mount_uploader :avatar, ImageUploader
 
   # Scopes
-  default_scope order('name ASC')
+  default_scope { order(name: :asc) }
   scope :promoted, -> { where(is_promoted: true) }
   scope :confirmed, -> { where(status: 'confirmed') }
   scope :approved, -> { where(status: 'approved') }
@@ -44,5 +38,4 @@ class Speaker < ActiveRecord::Base
   def selected_talk_title
     (talks.approved.first || talks.confirmed.first).try(:title)
   end
-
 end

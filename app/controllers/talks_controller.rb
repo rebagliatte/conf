@@ -9,7 +9,7 @@ class TalksController < ApplicationController
   end
 
   def create
-    @talk = current_edition.talks.new(params[:talk])
+    @talk = current_edition.talks.new(talk_params)
     @talk.status = 'pending'
     if @talk.save
       redirect_to root_path, flash: { success: 'Thanks! Your talk proposal has been submitted successfully.' }
@@ -23,7 +23,7 @@ class TalksController < ApplicationController
   end
 
   def update
-    if @talk.update_attributes(params[:talk])
+    if @talk.update(talk_params)
       redirect_to talk_path(@talk), flash: { success: 'Talk updated successfully!' }
     else
       render :edit
@@ -39,5 +39,15 @@ class TalksController < ApplicationController
     @talk = Talk.confirmed.find(params[:id])
     @speaker = @talk.speakers.first
     @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
+  end
+
+  private
+
+  def talk_params
+    params.require(:talk).permit(
+      :abstract, :notes_to_organizers, :language, :title, :speaker_ids, \
+      :speakers_attributes, :conference_edition, :conference_edition_id, \
+      :translations_attributes
+    )
   end
 end

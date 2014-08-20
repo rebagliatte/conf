@@ -4,7 +4,7 @@
     <%= link_to 'New conference edition', new_admin_conference_conference_edition_path(@conference), class: 'btn btn-primary' %>
 
     <% if can? :manage, @conference %>
-      <%= link_to 'Edit preferences', edit_admin_conference_path(@conference), class: 'btn' %>
+      <%= link_to 'Edit preferences', edit_admin_conference_path(@conference), class: 'btn btn-default' %>
     <% end %>
 
   </div>

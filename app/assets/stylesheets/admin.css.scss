@@ -4,41 +4,32 @@
 
 @import 'admin/bootstrap_and_overrides';
 
+.container-fluid {
+  padding-left: 0;
+}
+
 .main-admin-header {
-  padding: 0 10px;
+  line-height: 30px;
+  padding: 3px 10px;
   border-bottom: 5px solid $turquoise;
-  position: relative;
+  min-height: 0;
   .brand {
     color: $gray;
+    font-size: 20px;
+    font-weight: 200;
   }
-  .authentication {
-    height: 20px;
-    padding: 10px 0;
-    display: block;
-    a {
-      color: #777;
-      &:hover {
-        text-decoration: none;
-      }
-      .caret {
-        border-top-color: #777;
-        border-bottom-color: #777;
-      }
-    }
-    img {
-      height: 30px;
-      float: left;
-      margin: -5px 5px;
-    }
+  .authentication img {
+    height: 30px;
+    margin-right: 1em;
+  }
+  a:hover {
+    text-decoration: none;
   }
 }
 
 .main-admin-sidebar {
   padding-top: 8px;
   background: #fff;
-  ul {
-    margin: 0;
-  }
   a {
     display: block;
     text-decoration: none;
@@ -53,7 +44,7 @@
       padding: 3px 10px;
     }
     &.conference-edition-nav-item {
-      color: $darkGreen;
+      color: $dark-green;
     }
     &.conference-nav-item {
       color: $green;
@@ -132,7 +123,7 @@
           padding: 0;
           color: $green;
           &:hover {
-            color: $darkGreen;
+            color: $dark-green;
           }
         }
       }
@@ -168,8 +159,11 @@
     }
   }
   .alert {
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
+}
+.appearance .btn {
+  margin: 1em 0;
 }
 
 // sessions#new
@@ -186,6 +180,7 @@
 }
 
 // talks#show
+
 .talk-header {
   .primary-heading {
     margin-bottom: 0;
@@ -256,12 +251,14 @@
 }
 
 // slots#form
+
 .slot_start_time select,
 .slot_end_time select {
   width: 4em;
 }
 
 // notifications#preview
+
 .notification {
   dl {
     margin-bottom: 10px;
@@ -275,7 +272,7 @@
     margin-bottom: 40px;
     background-color: #f5f5f5;
     border: 1px solid #ccc;
-    @include border-radius(4px);
+    border-radius: 4px;
     ul {
       margin-bottom: 1em;
     }
@@ -286,6 +283,7 @@
 }
 
 // sponsors#index
+
 .sponsor-contacts {
   padding-bottom: 20px;
 }
