@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :conference_editions do
       resources :images, only: %w(new create) do
         member do
-          put :destroy
+          patch :destroy
         end
       end
       resources :organizers
