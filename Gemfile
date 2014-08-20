@@ -22,7 +22,7 @@ gem 'unf'
 # Utilities
 gem 'redcarpet'
 gem 'liquid'
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0.rc1'
 gem 'country_select'
 gem 'globalize', '~> 4.0.2'
 gem 'cancan'
