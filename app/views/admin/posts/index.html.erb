@@ -2,7 +2,7 @@
   <%= title 'Posts' %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'New post', new_admin_conference_edition_post_path(@conference_edition), class: 'btn primary-btn main-cta' %>
+    <%= link_to 'New post', new_admin_conference_edition_post_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 
 </header>
