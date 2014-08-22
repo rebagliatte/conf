@@ -68,6 +68,9 @@
       right: 0;
     }
   }
+  .nav-tabs {
+    margin-bottom: 2em;
+  }
   .nav-tabs.on-table {
     margin-bottom: 0;
     & > .active > a {

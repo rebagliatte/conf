@@ -42,6 +42,12 @@ $link-color:          $green;
     line-height: 12px;
     font-size: 12px;
   }
+  .control-label {
+    text-align: left;
+    &.optional {
+      padding-left: 24.5px;
+    }
+  }
   .form-group.boolean div {
     padding-top: 7px;
     label {

@@ -1,0 +1,21 @@
+<header class="admin-header">
+  <%= title 'Call for Proposals' %>
+</header>
+
+<% if can? :manage, @conference_edition %>
+  <%= simple_form_for [:admin, @conference, @conference_edition],
+    url: update_call_for_proposals_admin_conference_conference_edition_path,
+    html: { class: 'form-horizontal' } do |form| %>
+
+    <%= error_messages_for(@conference_edition) %>
+
+    <%= translatable_fields_for(form) do |t| %>
+      <%= form.input :is_call_for_proposals_open, label: 'Open call for proposals?', inline_label: 'Yes' %>
+      <%= t.input :notes_to_speakers, input_html: { rows: 15 }, label: 'Call to action for potential speakers', hint: "You might want to include details about the topics you'd like to see covered and the selection criteria. Markdown is supported in this field." %>
+    <% end %>
+
+    <div class="form-actions">
+      <%= form.submit 'Update', class: 'btn btn-lg btn-primary' %>
+    </div>
+  <% end %>
+<% end %>

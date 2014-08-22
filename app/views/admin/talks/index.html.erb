@@ -59,10 +59,10 @@
   </table>
 <% else %>
   <p class="alert alert-info">
-    It seems there are no talks for this conference edition.
+    It seems there are no talks for this conference edition yet.
 
     <% if can? :manage, @conference_edition %>
-      Would you like to <%= link_to 'create one', new_admin_conference_edition_talk_path(@conference_edition) %>?
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_talk_path(@conference_edition) %> or <%= link_to 'open a call for proposals', call_for_proposals_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) %>?
     <% end %>
 
   </p>

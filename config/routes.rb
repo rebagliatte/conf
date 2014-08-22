@@ -6,7 +6,13 @@ Rails.application.routes.draw do
         member do
           get :appearance
           get :edit_appearance
-          put :update_appearance
+          patch :update_appearance
+
+          get :call_for_proposals
+          patch :update_call_for_proposals
+
+          get :call_for_sponsors
+          patch :update_call_for_sponsors
         end
       end
     end

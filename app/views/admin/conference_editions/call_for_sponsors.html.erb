@@ -1,0 +1,22 @@
+<header class="admin-header">
+  <%= title 'Call for Sponsors' %>
+</header>
+
+<% if can? :manage, @conference_edition %>
+  <%= simple_form_for [:admin, @conference, @conference_edition],
+    url: update_call_for_sponsors_admin_conference_conference_edition_path,
+    html: { class: 'form-horizontal' } do |form| %>
+
+    <%= error_messages_for(@conference_edition) %>
+
+    <%= translatable_fields_for(form) do |t| %>
+      <%= form.input :is_call_for_sponsorships_open, label: 'Open call for sponsors?', inline_label: 'Yes' %>
+      <%= form.input :sponsorship_packages_pdf %>
+      <%= t.input :sponsors_call_to_action, input_html: { rows: 15 }, label: 'Call to action for potential sponsors', hint: "Markdown is supported in this field." %>
+    <% end %>
+
+    <div class="form-actions">
+      <%= form.submit 'Update', class: 'btn btn-lg btn-primary' %>
+    </div>
+  <% end %>
+<% end %>
