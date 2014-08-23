@@ -13,6 +13,14 @@ Rails.application.routes.draw do
 
           get :call_for_sponsors
           patch :update_call_for_sponsors
+
+          get :registration_settings
+          patch :update_registration_settings
+
+          get :subscriber_settings
+          patch :update_subscriber_settings
+
+          patch :update_schedule_settings
         end
       end
     end

@@ -67,6 +67,9 @@
       top: 5px;
       right: 0;
     }
+    .btn-wrapper form {
+      display: inline-block;
+    }
   }
   .nav-tabs {
     margin-bottom: 2em;
@@ -107,6 +110,9 @@
     }
     thead th {
       background: #fafafa;
+    }
+    tbody th {
+      width: 20%;
     }
     td:first-of-type,
     th:first-of-type {

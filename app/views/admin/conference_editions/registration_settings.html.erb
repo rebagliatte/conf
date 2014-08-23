@@ -1,0 +1,24 @@
+<header class="admin-header">
+  <%= title 'Registration' %>
+</header>
+
+<% if can? :manage, @conference_edition %>
+  <%= simple_form_for [:admin, @conference, @conference_edition],
+    url: update_registration_settings_admin_conference_conference_edition_path,
+    html: { class: 'form-horizontal' } do |form| %>
+
+    <%= error_messages_for(@conference_edition) %>
+
+    <%= translatable_fields_for(form) do |t| %>
+      <%= t.input :registration_call_to_action, input_html: { rows: 15 }, hint: 'Markdown available.' %>
+    <% end %>
+
+    <%= form.input :registration_url %>
+    <%= form.input :is_registration_open, label: 'Open registration?', inline_label: 'Yes' %>
+
+    <div class="form-actions">
+      <%= form.submit 'Update', class: 'btn btn-lg btn-primary' %>
+    </div>
+  <% end %>
+<% end %>
+

@@ -1,14 +1,14 @@
 <header class="admin-header">
   <%= title @conference.name %>
   <div class="btn-wrapper">
-    <%= link_to 'New conference edition', new_admin_conference_conference_edition_path(@conference), class: 'btn btn-primary' %>
-
     <% if can? :manage, @conference %>
-      <%= link_to 'Edit preferences', edit_admin_conference_path(@conference), class: 'btn btn-default' %>
+      <%= link_to 'Edit', edit_admin_conference_path(@conference), class: 'btn btn-default' %>
+      <%= link_to 'Create a new conference edition', new_admin_conference_conference_edition_path(@conference), class: 'btn btn-primary' %>
     <% end %>
-
   </div>
 </header>
+
+<h2>Basics</h2>
 
 <table class="table">
   <tr>
@@ -16,26 +16,25 @@
     <td><%= @conference.name %></td>
   </tr>
   <tr>
-    <th>Editions</th>
-    <td>
-      <ul class="unstyled">
-        <% @conference.conference_editions.each do |ce| %>
-          <li><%= link_to pretty_year(ce), admin_conference_edition_path(ce) %></li>
-        <% end %>
-      </ul>
-    </td>
+    <th>Languages</th>
+    <td><%= @conference.languages.map(&:name).to_sentence %></td>
   </tr>
   <tr>
-    <th>Owner</th>
-    <td><%= link_to @conference.owner.name, '#' %></td>
+    <th>Confnu Subdomain</th>
+    <td><%= @conference.subdomain %></td>
   </tr>
+  <tr>
+    <th>Custom Domain</th>
+    <td><%= @conference.custom_domain %></td>
+  </tr>
+</table>
+
+<h2>Social Media</h2>
+
+<table class="table">
   <tr>
     <th>Email</th>
     <td><%= @conference.email %></td>
-  </tr>
-  <tr>
-    <th>Available languages</th>
-    <td><%= @conference.languages.map(&:name).to_sentence %></td>
   </tr>
   <tr>
     <th>Twitter username</th>
@@ -58,15 +57,26 @@
     <td><%= @conference.lanyrd_series_name %></td>
   </tr>
   <tr>
-    <th>Youtube Channel ID</th>
+    <th>Youtube Channel</th>
     <td><%= @conference.youtube_channel_id %></td>
   </tr>
+</table>
+
+<h2>Owner and Editions</h2>
+
+<table class="table">
   <tr>
-    <th>Custom Domain</th>
-    <td><%= @conference.custom_domain %></td>
+    <th>Owner</th>
+    <td><%= @conference.owner.name %></td>
   </tr>
   <tr>
-    <th>Subdomain</th>
-    <td><%= @conference.subdomain %></td>
+    <th>Editions</th>
+    <td>
+      <ul class="unstyled">
+        <% @conference.conference_editions.each do |ce| %>
+          <li><%= link_to pretty_year(ce), admin_conference_conference_edition_path(@conference, ce) %></li>
+        <% end %>
+      </ul>
+    </td>
   </tr>
 </table>
