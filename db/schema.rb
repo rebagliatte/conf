@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515012041) do
+ActiveRecord::Schema.define(version: 20140823163032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140515012041) do
     t.float    "venue_longitude"
     t.boolean  "is_talk_voting_open",           default: false
     t.boolean  "is_speaker_listing_available",  default: false,          null: false
+    t.date     "cfp_deadline"
   end
 
   create_table "conference_editions_users", force: true do |t|

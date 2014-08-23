@@ -56,6 +56,7 @@ class Admin::ConferenceEditionsController < AdminController
 
   def update_call_for_proposals
     permitted_params = [
+      :cfp_deadline,
       :is_call_for_proposals_open,
       translations_attributes: [
         :id,
