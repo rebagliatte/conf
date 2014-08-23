@@ -9,4 +9,7 @@ class Subscriber < ActiveRecord::Base
   def self.to_csv(options = {})
     all.pluck(:email).join("\n")
   end
+
+  # Scopes
+  default_scope { order(created_at: :desc) }
 end
