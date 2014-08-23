@@ -10,10 +10,10 @@
     <%= error_messages_for(@conference_edition) %>
 
     <%= translatable_fields_for(form) do |t| %>
-      <%= form.input :is_email_subscription_enabled, label: 'Collect subscriber emails?', inline_label: 'Yes' %>
-
       <%= t.input :notes_to_subscribers, input_html: { rows: 15 }, hint: 'Markdown available.' %>
     <% end %>
+
+    <%= form.input :is_email_subscription_enabled, label: 'Collect subscriber emails?', inline_label: 'Yes' %>
 
     <div class="form-actions">
       <%= form.submit 'Update', class: 'btn btn-lg btn-primary' %>
