@@ -72,10 +72,18 @@ class Admin::TalksController < AdminController
 
   def set_talk_params
     params[:talk] = params.require(:talk).permit(
-      :abstract, :slides_url, :notes_to_organizers, :language, \
-      :status, :title, :video_url, :speakers_attributes, \
-      :conference_edition, :conference_edition_id, :translations_attributes, \
-      :speaker_ids => []
+      :conference_edition,
+      :conference_edition_id,
+      :language,
+      :slides_url,
+      :video_url,
+      speaker_ids: [],
+      translations_attributes: [
+        :abstract,
+        :id,
+        :locale,
+        :title
+      ]
     )
   end
 

@@ -16,7 +16,7 @@ class Admin::SpeakersController < AdminController
 
   def new
     @conference_edition.languages.map(&:code).each do |locale|
-      @speaker.translations.build locale: locale
+      @speaker.translations.build(locale: locale)
     end
   end
 
@@ -55,11 +55,34 @@ class Admin::SpeakersController < AdminController
 
   def set_speaker_params
     params[:speaker] = params.require(:speaker).permit(
-      :bio, :city, :company, :country, :email, :github_username, :name, \
-      :talk, :talk_id, :twitter_username, :user_id, :talks, :avatar, \
-      :avatar_cache, :translations_attributes, :conference_edition_id, \
-      :status, :job_title, :phone, :website, :lanyrd_username, :is_promoted, \
-      :arrival_date, :accomodation_details
+      :accomodation_details,
+      :arrival_date,
+      :avatar,
+      :avatar_cache,
+      :bio,
+      :city,
+      :company,
+      :conference_edition_id,
+      :country,
+      :email,
+      :github_username,
+      :is_promoted,
+      :job_title,
+      :lanyrd_username,
+      :name,
+      :phone,
+      :status,
+      :talk,
+      :talk_id,
+      :talks,
+      :twitter_username,
+      :user_id,
+      :website,
+      translations_attributes: [
+        :id,
+        :bio,
+        :locale
+      ]
     )
   end
 end
