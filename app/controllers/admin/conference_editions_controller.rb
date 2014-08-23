@@ -43,15 +43,10 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_appearance
-    conference_edition_params = params.require(:conference_edition).permit(
+    permitted_params = [
       :custom_css_file
-    )
-
-    if @conference_edition.update(conference_edition_params)
-      redirect_to appearance_admin_conference_conference_edition_path(@conference, @conference_edition), flash: { success: 'Conference Edition updated successfully!' }
-    else
-      render :edit_appearance
-    end
+    ]
+    update_settings('update_appearance', permitted_params)
   end
 
   # Call for proposals
@@ -60,21 +55,15 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_call_for_proposals
-    conference_edition_params = params.require(:conference_edition).permit(
+    permitted_params = [
       :is_call_for_proposals_open,
       translations_attributes: [
         :id,
         :notes_to_speakers,
         :locale
       ]
-    )
-    url = call_for_proposals_admin_conference_conference_edition_path(@conference, @conference_edition)
-
-    if @conference_edition.update(conference_edition_params)
-      redirect_to url, flash: { success: 'Updated!' }
-    else
-      render :call_for_proposals
-    end
+    ]
+    update_settings('call_for_proposals', permitted_params)
   end
 
   # Call for sponsors
@@ -83,7 +72,7 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_call_for_sponsors
-    conference_edition_params = params.require(:conference_edition).permit(
+    permitted_params = [
       :is_call_for_sponsors_open,
       :sponsorship_packages_pdf,
       translations_attributes: [
@@ -91,14 +80,8 @@ class Admin::ConferenceEditionsController < AdminController
         :sponsors_call_to_action,
         :locale
       ]
-    )
-    url = call_for_sponsors_admin_conference_conference_edition_path(@conference, @conference_edition)
-
-    if @conference_edition.update(conference_edition_params)
-      redirect_to url, flash: { success: 'Updated!' }
-    else
-      render :call_for_sponsors
-    end
+    ]
+    update_settings('call_for_sponsors', permitted_params)
   end
 
   # Registration settings
@@ -107,7 +90,7 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_registration_settings
-    conference_edition_params = params.require(:conference_edition).permit(
+    permitted_params = [
       :is_registration_open,
       :registration_url,
       translations_attributes: [
@@ -115,14 +98,8 @@ class Admin::ConferenceEditionsController < AdminController
         :registration_call_to_action,
         :locale
       ]
-    )
-    url = registration_settings_admin_conference_conference_edition_path(@conference, @conference_edition)
-
-    if @conference_edition.update(conference_edition_params)
-      redirect_to url, flash: { success: 'Updated!' }
-    else
-      render :registration_settings
-    end
+    ]
+    update_settings('registration_settings', permitted_params)
   end
 
   # Subscriber settings
@@ -131,36 +108,24 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_subscriber_settings
-    conference_edition_params = params.require(:conference_edition).permit(
+    permitted_params = [
       :is_email_subscription_enabled,
       translations_attributes: [
         :id,
         :notes_to_subscribers,
         :locale
       ]
-    )
-    url = subscriber_settings_admin_conference_conference_edition_path(@conference, @conference_edition)
-
-    if @conference_edition.update(conference_edition_params)
-      redirect_to url, flash: { success: 'Updated!' }
-    else
-      render :subscriber_settings
-    end
+    ]
+    update_settings('subscriber_settings', permitted_params)
   end
 
   # Schedule settings
 
   def update_schedule_settings
-    conference_edition_params = params.require(:conference_edition).permit(
+    permitted_params = [
       :is_schedule_available
-    )
-    url = admin_conference_edition_slots_path(@conference_edition)
-
-    if @conference_edition.update(conference_edition_params)
-      redirect_to url, flash: { success: 'Done!' }
-    else
-      redirect_to url, flash: { error: @conference_edition.errors.full_messages }
-    end
+    ]
+    update_settings('subscriber_settings', permitted_params, admin_conference_edition_slots_path(@conference_edition))
   end
 
   private
@@ -188,5 +153,19 @@ class Admin::ConferenceEditionsController < AdminController
         :locale
       ]
     )
+  end
+
+  def update_settings(action, permitted_params, success_url = nil)
+    conference_edition_params = params.require(:conference_edition).permit(permitted_params)
+
+    if !success_url
+      success_url = send("#{action}_admin_conference_conference_edition_path", @conference, @conference_edition)
+    end
+
+    if @conference_edition.update(conference_edition_params)
+      redirect_to success_url, flash: { success: 'Updated!' }
+    else
+      render(action.to_sym)
+    end
   end
 end
