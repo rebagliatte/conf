@@ -54,7 +54,10 @@ class Admin::OrganizersController < AdminController
 
   def set_organizer_invitation_params
     params[:organizer_invitation] = params.require(:organizer_invitation).permit(
-      :conference_edition_id, :invitee_email, :invitee_id, :inviter_id, :token
+      :invitee_email,
+      :invitee_id,
+      :inviter_id,
+      :token
     )
   end
 end

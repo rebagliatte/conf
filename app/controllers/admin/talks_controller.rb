@@ -32,7 +32,7 @@ class Admin::TalksController < AdminController
   end
 
   def edit
-    build_missing_translations_for(@conference_edition, @talk)
+    build_translations_for(@conference_edition, @talk)
   end
 
   def update
@@ -72,8 +72,6 @@ class Admin::TalksController < AdminController
 
   def set_talk_params
     params[:talk] = params.require(:talk).permit(
-      :conference_edition,
-      :conference_edition_id,
       :language,
       :slides_url,
       :video_url,

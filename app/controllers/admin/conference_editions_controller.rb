@@ -43,7 +43,11 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_appearance
-    if @conference_edition.update(params[:conference_edition])
+    conference_edition_params = params.require(:conference_edition).permit(
+      :custom_css_file
+    )
+
+    if @conference_edition.update(conference_edition_params)
       redirect_to appearance_admin_conference_conference_edition_path(@conference, @conference_edition), flash: { success: 'Conference Edition updated successfully!' }
     else
       render :edit_appearance
@@ -164,8 +168,6 @@ class Admin::ConferenceEditionsController < AdminController
   def set_conference_edition_params
     params[:conference_edition] = params.require(:conference_edition).permit(
       :city,
-      :conference,
-      :conference_id,
       :country,
       :from_date,
       :is_location_available,

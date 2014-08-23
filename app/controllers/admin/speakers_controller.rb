@@ -29,7 +29,7 @@ class Admin::SpeakersController < AdminController
   end
 
   def edit
-    build_missing_translations_for(@conference_edition, @speaker)
+    build_translations_for(@conference_edition, @speaker)
   end
 
   def update
@@ -62,7 +62,6 @@ class Admin::SpeakersController < AdminController
       :bio,
       :city,
       :company,
-      :conference_edition_id,
       :country,
       :email,
       :github_username,
@@ -72,9 +71,6 @@ class Admin::SpeakersController < AdminController
       :name,
       :phone,
       :status,
-      :talk,
-      :talk_id,
-      :talks,
       :twitter_username,
       :user_id,
       :website,

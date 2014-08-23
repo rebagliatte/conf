@@ -13,7 +13,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def new
-    build_missing_translations_for(@conference_edition, @notification)
+    build_translations_for(@conference_edition, @notification)
   end
 
   def create
@@ -64,7 +64,6 @@ class Admin::NotificationsController < AdminController
 
   def set_notification_params
     params[:notification] = params.require(:notification).permit(
-      :conference_edition_id,
       :organizer_id,
       :recipient_emails,
       :recipients,

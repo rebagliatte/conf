@@ -12,9 +12,7 @@ class Admin::PagesController < AdminController
   end
 
   def new
-    @conference_edition.languages.map(&:code).each do |locale|
-      @page.translations.build locale: locale
-    end
+    build_translations_for(@conference_edition, @page)
   end
 
   def create
@@ -39,6 +37,13 @@ class Admin::PagesController < AdminController
   private
 
   def set_page_params
-    params[:page] = params.require(:page).permit(:conference_edition_id, :translations_attributes)
+    params[:page] = params.require(:page).permit(
+      translations_attributes: [
+        :id,
+        :title,
+        :content,
+        :locale
+      ]
+    )
   end
 end

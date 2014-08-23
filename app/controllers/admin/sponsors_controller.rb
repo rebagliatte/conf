@@ -1,6 +1,7 @@
 class Admin::SponsorsController < AdminController
 
-  before_action :set_sponsor_params, only: [:create, :update]
+  before_action :set_sponsor_params,
+  only: [:create, :update]
 
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :sponsor, :through => :conference_edition
@@ -14,6 +15,7 @@ class Admin::SponsorsController < AdminController
   end
 
   def new
+    build_translations_for(@conference_edition, @sponsor)
   end
 
   def create
@@ -39,8 +41,15 @@ class Admin::SponsorsController < AdminController
 
   def set_sponsor_params
     params[:sponsor] = params.require(:sponsor).permit(
-      :name, :kind, :conference_edition, :conference_edition_id, :logo, \
-      :website_url, :translations_attributes, :description
+      :kind,
+      :logo,
+      :name,
+      :website_url,
+      translations_attributes: [
+        :description,
+        :id,
+        :locale
+      ]
     )
   end
 end

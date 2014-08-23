@@ -28,7 +28,10 @@ class Admin::SponsorContactsController < AdminController
 
   def set_sponsor_contact_params
     params[:sponsor_contact] = params.require(:sponsor_contact).permit(
-      :conference_edition_id, :sponsor_id, :language, :language_id, :name, :email
+      :email,
+      :language_id,
+      :name,
+      :sponsor_id
     )
   end
 end

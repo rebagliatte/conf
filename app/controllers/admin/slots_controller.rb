@@ -47,8 +47,14 @@ class Admin::SlotsController < AdminController
 
   def set_slot_params
     params[:slot] = params.require(:slot).permit(
-      :day, :start_time, :end_time, :kind, :conference_edition, \
-      :conference_edition_id, :talk, :talk_id, :room_id, :label
+      :day,
+      :end_time,
+      :kind,
+      :label,
+      :room_id,
+      :start_time,
+      :talk,
+      :talk_id
     )
   end
 end
