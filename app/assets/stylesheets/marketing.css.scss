@@ -76,7 +76,7 @@ h1 {
 .main-features:before,
 .main-features:after {
   content: '';
-  background: transparent url(marketing/sprite.png) top left no-repeat;
+  background: transparent url(asset_path('marketing/sprite.png')) top left no-repeat;
   display: inline-block;
 }
 
