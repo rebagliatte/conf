@@ -6,7 +6,21 @@ Rails.application.routes.draw do
         member do
           get :appearance
           get :edit_appearance
-          put :update_appearance
+          patch :update_appearance
+
+          get :call_for_proposals
+          patch :update_call_for_proposals
+
+          get :call_for_sponsors
+          patch :update_call_for_sponsors
+
+          get :registration_settings
+          patch :update_registration_settings
+
+          get :subscriber_settings
+          patch :update_subscriber_settings
+
+          patch :update_schedule_settings
         end
       end
     end

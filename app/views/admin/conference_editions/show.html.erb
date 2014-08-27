@@ -7,23 +7,22 @@
 
 </header>
 
+<h2>Basics</h2>
+
 <table class="table">
   <tr>
-    <th>Tracks</th>
+    <th>Kind</th>
     <td><%= @conference_edition.kind %></td>
   </tr>
   <tr>
     <th>Logo</th>
-    <td><%= image_tag @conference_edition.logo %></td>
+    <td><%= @conference_edition.logo.file.filename %></td>
   </tr>
-  <tr>
-    <th>Organizers</th>
-    <td><%= @conference_edition.organizers.pluck(:name).to_sentence %></td>
-  </tr>
-  <tr>
-    <th>Video</th>
-    <td><%= video_embed_code(@conference_edition.promo_video_provider, @conference_edition.promo_video_uid) %></td>
-  </tr>
+</table>
+
+<h2>Date</h2>
+
+<table class="table">
   <tr>
     <th>From Date</th>
     <td><%= @conference_edition.from_date %></td>
@@ -32,12 +31,13 @@
     <th>To Date</th>
     <td><%= @conference_edition.to_date %></td>
   </tr>
+</table>
+
+<h2>Location</h2>
+
+<table class="table">
   <tr>
-    <th>Is schedule available?</th>
-    <td><%= @conference_edition.is_schedule_available %></td>
-  </tr>
-  <tr>
-    <th>Is location available?</th>
+    <th>Display location at the homepage?</th>
     <td><%= @conference_edition.is_location_available %></td>
   </tr>
   <tr>
@@ -56,72 +56,34 @@
     <th>Venue Geographical Coordinates</th>
     <td><%= @conference_edition.venue_latitude %>,<%= @conference_edition.venue_longitude %></td>
   </tr>
+</table>
+
+<h2>Promotional Video</h2>
+
+<table class="table">
   <tr>
-    <th>Is registration open?</th>
-    <td><%= @conference_edition.is_registration_open %></td>
+    <th>Video</th>
+    <td><%= video_embed_code(@conference_edition.promo_video_provider, @conference_edition.promo_video_uid) %></td>
   </tr>
+</table>
+
+<h2>Copy</h2>
+
+<table class="table">
   <tr>
-    <th>Is call for sponsorships open?</th>
-    <td><%= @conference_edition.is_call_for_sponsorships_open %></td>
-  </tr>
-  <tr>
-    <th>Sponsorship packages pdf</th>
-    <td><%= link_to @conference_edition.sponsorship_packages_pdf %></td>
-  </tr>
-  <tr>
-    <th>Is call for proposals open?</th>
-    <td><%= @conference_edition.is_call_for_proposals_open %></td>
-  </tr>
-  <tr>
-    <th>Is talk voting open?</th>
-    <td><%= @conference_edition.is_talk_voting_open %></td>
-  </tr>
-  <tr>
-    <th>Is speaker listing available?</th>
-    <td><%= @conference_edition.is_speaker_listing_available %></td>
-  </tr>
-  <tr>
-    <th>Collect subscriber emails?</th>
-    <td><%= @conference_edition.is_email_subscription_enabled %></td>
-  </tr>
-  <tr>
-    <th>Intro</th>
-    <td><%= @conference_edition.intro %></td>
-  </tr>
-  <tr>
-    <th>Registration call to action</th>
-    <td><%= @conference_edition.registration_call_to_action %></td>
-  </tr>
-  <tr>
-    <th>Speaker call to action</th>
-    <td><%= markdown(@conference_edition.speakers_call_to_action) %></td>
-  </tr>
-  <tr>
-    <th>Sponsor call to action</th>
-    <td><%= markdown(@conference_edition.sponsors_call_to_action) %></td>
-  </tr>
-  <tr>
-    <th>Subscriber call to action</th>
-    <td><%= markdown(@conference_edition.notes_to_subscribers) %></td>
-  </tr>
-  <tr>
-    <th>About the conference</th>
-    <td><%= markdown(@conference_edition.about) %></td>
-  </tr>
-  <tr>
-    <th>News Introduction</th>
-    <td><%= markdown(@conference_edition.news_intro) %></td>
-  </tr>
-  <tr>
-    <th>Proposal form introduction</th>
-    <td><%= markdown(@conference_edition.notes_to_speakers) %></td>
-  </tr>
-  <tr>
-    <th>Venue</th>
-    <td><%= @conference_edition.venue %></td>
-  </tr>
-  <tr>
-    <th>SEO Description</th>
+    <th>Conference Tagline</th>
     <td><%= @conference_edition.tagline %></td>
+  </tr>
+  <tr>
+    <th>Conference description</th>
+    <td><%= @conference_edition.about %></td>
+  </tr>
+  <tr>
+    <th>Blog description</th>
+    <td><%= @conference_edition.news_intro %></td>
+  </tr>
+  <tr>
+    <th>Venue name</th>
+    <td><%= @conference_edition.venue %></td>
   </tr>
 </table>

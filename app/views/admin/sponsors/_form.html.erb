@@ -6,12 +6,14 @@
 
   <%= error_messages_for(sponsor) %>
 
-  <%= form.hidden_field :conference_edition_id %>
-  <%= form.input :name %>
+  <%= translatable_fields_for(form) do |t| %>
+    <%= t.input :description %>
+  <% end %>
+
   <%= form.input :kind, as: :select, collection: Sponsor::KINDS.keys, include_blank: false %>
-  <%= form.input :logo %>
+  <%= form.input :name %>
   <%= form.input :website_url %>
-  <%= form.input :description %>
+  <%= form.input :logo %>
 
   <div class="form-actions">
     <%= form.submit "#{action.titleize} Sponsor", class: 'btn btn-lg btn-primary' %>

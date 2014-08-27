@@ -24,6 +24,8 @@ class Admin::ImagesController < AdminController
   private
 
   def set_image_params
-    params[:image] = params.require(:image).permit(:conference_edition_id, :image)
+    params[:image] = params.require(:image).permit(
+      :image
+    )
   end
 end

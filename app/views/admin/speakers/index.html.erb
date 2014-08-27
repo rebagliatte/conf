@@ -2,7 +2,7 @@
   <%= title "Speakers" %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'New speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn btn-default main-cta' %>
+    <%= link_to 'Create a new speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 </header>
 

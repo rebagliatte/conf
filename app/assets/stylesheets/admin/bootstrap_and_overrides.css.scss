@@ -42,6 +42,12 @@ $link-color:          $green;
     line-height: 12px;
     font-size: 12px;
   }
+  .control-label {
+    text-align: left;
+    &.optional {
+      padding-left: 24.5px;
+    }
+  }
   .form-group.boolean div {
     padding-top: 7px;
     label {
@@ -52,6 +58,13 @@ $link-color:          $green;
     border-top: 1px solid #e5e5e5;
     padding: 2em 0;
     text-align: right;
+  }
+  select.date {
+    display: inline-block;
+    width: auto;
+  }
+  fieldset {
+    margin-bottom: 2em;
   }
 }
 

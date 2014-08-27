@@ -1,6 +1,6 @@
 class Admin::NotificationsController < AdminController
 
-  before_action :set_notification_params, only: [ :create, :update, :trigger ]
+  before_action :set_notification_params, only: [ :create, :update ]
 
   load_and_authorize_resource :conference_edition
   load_and_authorize_resource :notification, through: :conference_edition
@@ -13,7 +13,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def new
-    build_missing_translations_for(@conference_edition, @notification)
+    build_translations_for(@conference_edition, @notification)
   end
 
   def create
@@ -64,9 +64,16 @@ class Admin::NotificationsController < AdminController
 
   def set_notification_params
     params[:notification] = params.require(:notification).permit(
-      :conference_edition_id, :organizer_id, \
-      :recipients, :recipient_emails, :subject, :body, \
-      :translations_attributes, :sent_at
+      :organizer_id,
+      :recipient_emails,
+      :recipients,
+      :sent_at,
+      translations_attributes: [
+        :id,
+        :subject,
+        :body,
+        :locale
+      ]
     )
   end
 
@@ -132,7 +139,6 @@ class Admin::NotificationsController < AdminController
   end
 
   def liquify(record, text, available_variables)
-    # ::Liquid::Template.parse(text).render(available_variables)
-    text
+    ::Liquid::Template.parse(text).render(available_variables)
   end
 end

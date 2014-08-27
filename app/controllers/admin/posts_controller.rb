@@ -12,9 +12,7 @@ class Admin::PostsController < AdminController
   end
 
   def new
-    @conference_edition.languages.map(&:code).each do |locale|
-      @post.translations.build locale: locale
-    end
+    build_translations_for(@conference_edition, @post)
   end
 
   def create
@@ -39,8 +37,15 @@ class Admin::PostsController < AdminController
   private
 
   def set_post_params
-    params[:post] = params.require(:post).permit(:body, :conference_edition, \
-      :conference_edition_id, :image, :summary, :title, :translations_attributes
+    params[:post] = params.require(:post).permit(
+      :image,
+      translations_attributes: [
+        :id,
+        :body,
+        :locale,
+        :summary,
+        :title
+      ]
     )
   end
 end

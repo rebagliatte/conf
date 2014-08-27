@@ -52,8 +52,8 @@ class Admin::ConferencesController < AdminController
       :twitter_hashtag,
       :twitter_username,
       :youtube_channel_id,
-      :language_ids => [],
-      :conference_editions_attributes => [
+      language_ids: [],
+      conference_editions_attributes: [
         :city,
         :country,
         :from_date,

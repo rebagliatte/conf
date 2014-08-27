@@ -1,6 +1,12 @@
 <header class="admin-header">
   <%= title 'Subscribers' %>
-  <%= link_to 'Download as CSV', admin_conference_edition_subscribers_path(@conference_edition, format: :csv), class: 'btn btn-default main-cta' %>
+
+  <% if can? :manage, @conference_edition %>
+    <div class="btn-wrapper">
+      <%= link_to 'Download subscribers in CSV format', admin_conference_edition_subscribers_path(@conference_edition, format: :csv), class: 'btn btn-default' %>
+      <%= link_to 'Manage email subscriber settings', subscriber_settings_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
 </header>
 
 <% if @subscribers.any? %>

@@ -2,7 +2,14 @@
   <%= title 'Schedule' %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'New slot', new_admin_conference_edition_slot_path(@conference_edition), class: 'btn btn-default main-cta' %>
+    <div class="btn-wrapper">
+      <%= link_to 'Create a new slot', new_admin_conference_edition_slot_path(@conference_edition), class: 'btn btn-primary' %>
+
+      <%= simple_form_for @conference_edition, url: update_schedule_settings_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) do |form| %>
+        <%= form.hidden_field :is_schedule_available, value: !@conference_edition.is_schedule_available %>
+        <%= form.submit "#{ @conference_edition.is_schedule_available ? 'Unpublish' : 'Publish' } the schedule", class: "btn btn-#{ @conference_edition.is_schedule_available ? 'danger' : 'success' }" %>
+      <% end %>
+    </div>
   <% end %>
 </header>
 
