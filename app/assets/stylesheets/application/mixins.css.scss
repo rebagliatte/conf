@@ -12,3 +12,20 @@
   -ms-flex:  $values;
   flex:  $values;
 }
+@mixin transition($values) {
+  -webkit-transition: $values;
+  -moz-transition:  $values;
+  -ms-transition:  $values;
+  transition:  $values;
+}
+@mixin transform($values) {
+  -webkit-transform: $values;
+  -moz-transform:  $values;
+  -ms-transform:  $values;
+  transform:  $values;
+}
+@mixin box-sizing($values) {
+  -webkit-box-sizing: $values;
+  -moz-box-sizing:  $values;
+  box-sizing:  $values;
+}
