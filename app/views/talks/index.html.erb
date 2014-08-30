@@ -2,7 +2,7 @@
 
 <% @talks.each do |talk| %>
   <article>
-    <h1 class="secondary-heading"><%= link_to talk.title, conference_edition_talk_path(current_edition, talk) %></h1>
+    <h2 class="secondary-heading"><%= link_to talk.title, conference_edition_talk_path(current_edition, talk) %></h2>
     <p class="author"><%= speaker_names(talk, @conference_edition) %></p>
     <p><%= talk.abstract %></p>
   </article>

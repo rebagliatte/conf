@@ -1,0 +1,98 @@
+/*
+ * Forms
+ */
+
+.simple_form {
+  text-align: left;
+  fieldset {
+    margin: 4em 0;
+  }
+  legend {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 3em;
+  }
+  .control-group {
+    margin-bottom: 2em;
+    &.error input,
+    &.error textarea {
+      border: 1px solid #8c0028;
+    }
+  }
+  label {
+    display: block;
+    padding-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="url"],
+  input[type="tel"],
+  textarea,
+  select {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 35px;
+    font-size: 1em;
+    line-height: 1em;
+    padding: 0 8px;
+    border: 1px solid #cecece;
+  }
+  textarea {
+    height: 8em;
+    padding: 6px 8px;
+    line-height: 1.3em;
+  }
+  button,
+  input[type="submit"] {
+    -webkit-appearance: none;
+    min-height: 35px;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    &:hover {
+      background: #333;
+      color: #fcfcfc;
+    }
+  }
+  select {
+    height: 35px;
+  }
+  .help-block,
+  .help-inline {
+    margin-top: 5px;
+    font-size: 0.8em;
+    line-height: 1.3em;
+    color: #888;
+    font-style: italic;
+  }
+  .help-inline {
+    color: #8c0028;
+  }
+  &.form-inline {
+    input {
+      display: inline-block;
+    }
+  }
+  &.subscription-form {
+    text-align: center;
+    input {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    input[type="text"] {
+      width: 50%;
+    }
+  }
+
+  .alert {
+    margin-bottom: 40px;
+  }
+  .alert p {
+    margin-bottom: 1em;
+  }
+}

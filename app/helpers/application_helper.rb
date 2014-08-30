@@ -26,8 +26,8 @@ module ApplicationHelper
 
     case provider
     when 'youtube'
-      "<iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"385\"
-      src=\"http://www.youtube.com/embed/#{uid}\" allowfullscreen frameborder=\"0\"></iframe>".html_safe
+      "<iframe class=\"youtube-player\" width=\"640\" height=\"385\" allowfullscreen
+      src=\"http://www.youtube.com/embed/#{uid}\"></iframe>".html_safe
     when 'vimeo'
       "<iframe src=\"http://player.vimeo.com/video/#{uid}\" width=\"640\" height=\"385\"
       frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>".html_safe

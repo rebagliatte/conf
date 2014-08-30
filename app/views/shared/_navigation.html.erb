@@ -1,41 +1,40 @@
 <%# @param conference_edition [Conf::Models::ConferenceEdition] %>
 
-<ul>
-  <% if conference_edition.speakers.confirmed.any? %>
-    <li><%= anchor_nav_link_to t('speakers'), "#confirmed-speakers" %></li>
-  <% end %>
+<nav class="main-navigation">
+  <h2 class="hidden">Navigation</h2>
+  <ul>
+    <li class="home"><%= link_to pretty_conference_and_year(current_edition), root_path %></li>
 
-  <% if conference_edition.posts.any? %>
-    <li><%= anchor_nav_link_to t('news'), "#news" %></li>
-  <% end %>
+    <% if conference_edition.speakers.confirmed.any? %>
+      <li><%= anchor_nav_link_to t('speakers'), "#confirmed-speakers" %></li>
+    <% end %>
 
-  <% if conference_edition.is_schedule_available %>
-    <li><%= anchor_nav_link_to t('schedule'), "#schedule" %></li>
-  <% end %>
+    <% if conference_edition.cfp_open? %>
+      <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
+    <% end %>
 
-  <% if display_call_for_proposals?(conference_edition) %>
-    <li><%= anchor_nav_link_to t('call_for_proposals'), "#call-for-proposals" %></li>
-  <% end %>
+    <% if conference_edition.is_schedule_available %>
+      <li><%= anchor_nav_link_to t('schedule'), "#schedule" %></li>
+    <% end %>
 
-  <% if conference_edition.sponsors.any? %>
-    <li><%= anchor_nav_link_to t('sponsors'), "#sponsors" %></li>
-  <% elsif display_call_for_sponsorships?(conference_edition) %>
-    <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
-  <% end %>
+    <% if conference_edition.is_location_available %>
+      <li><%= anchor_nav_link_to t('location'), "#location" %></li>
+    <% end %>
 
-  <% if conference_edition.is_location_available %>
-    <li><%= anchor_nav_link_to t('location'), "#location" %></li>
-  <% end %>
+    <% if conference_edition.posts.any? %>
+      <li><%= anchor_nav_link_to t('news'), "#news" %></li>
+    <% end %>
 
-  <% if conference_edition.previous_editions.any? %>
-    <li><%= anchor_nav_link_to t('previous_editions'), "#previous-editions" %></li>
-  <% end %>
+    <% if conference_edition.sponsors.any? %>
+      <li><%= anchor_nav_link_to t('sponsors'), "#sponsors" %></li>
+    <% elsif display_call_for_sponsorships?(conference_edition) %>
+      <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
+    <% end %>
 
-  <% if display_registration_link?(conference_edition) %>
-    <li class="register">
-      <%= link_to current_edition.registration_url, class: 'btn btn-tertiary' do %>
-        <%= content_tag(:span, t('register')) %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+    <% if display_registration_link?(conference_edition) %>
+      <li class="register">
+        <%= link_to t('register'), current_edition.registration_url %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

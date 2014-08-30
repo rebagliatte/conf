@@ -1,0 +1,57 @@
+<%# @param conference_edition [Conf::Models::ConferenceEdition] %>
+
+<!-- About (includes organizing team and code of conduct) -->
+<% if current_edition.about %>
+  <section class="about">
+    <h2 class="primary-heading"><%= t('about') %> <%= current_conference.name %></h2>
+    <%#= markdown(current_edition.about) %>
+  </section>
+<% end %>
+
+<!-- Social networks -->
+<section class="networks">
+  <h2><%= t 'networks' %></h2>
+  <ul>
+    <% if current_conference.twitter_username.present? %>
+      <li>
+        <%= link_to "http://twitter.com/#{current_conference.twitter_username}", target: 'blank', class: 'twitter' do %>
+          <%= content_tag(:span, t('follow_us_on_twitter')) %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if current_conference.facebook_page_username.present? %>
+      <li>
+        <%= link_to "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank', class: 'facebook' do %>
+          <%= content_tag(:span, t('friend_us_on_facebook')) %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if current_conference.lanyrd_series_name.present? %>
+      <li>
+        <%= link_to "http://lanyrd.com/series/#{current_conference.lanyrd_series_name}", target: 'blank', class: 'lanyrd' do %>
+          <%= content_tag(:span, t('track_us_on_lanyrd')) %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if current_conference.youtube_channel_id.present? %>
+      <li>
+        <%= link_to "http://youtube.com/channel/#{current_conference.youtube_channel_id}", target: 'blank', class: 'youtube' do %>
+          <%= content_tag(:span, t('subscribe_to_our_youtube_channel')) %>
+        <% end %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to "mailto:#{current_conference.email}", target: 'blank', class: 'email' do %>
+       <%= content_tag(:span, t('drop_us_a_line')) %>
+      <% end %>
+    </li>
+  </ul>
+</section>
+
+<!-- Previous editions -->
+<% if current_edition.previous_editions.any? %>
+  <section id="previous-editions">
+    <h2 class="primary-heading"><%= t('previous_editions') %></h2>
+    <%= render(partial: 'conference_editions/list', locals: { conference_editions: current_edition.previous_editions }) %>
+  </section>
+<% end %>

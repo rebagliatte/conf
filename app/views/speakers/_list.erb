@@ -2,36 +2,30 @@
 <%# @param display_speakers_meta_data boolean %>
 
 <div class="speaker-container">
-  <% speakers.each_slice(3) do |slice| %>
-    <div class="speaker-row">
-      <% slice.each do |speaker| %>
-        <% unless display_speakers_meta_data #TODO: Fix, redirect to speaker listing %>
-          <a href="http://twitter.com/<%= speaker.twitter_username %>" class="box box-inner">
+  <% speakers.each do |speaker| %>
+    <% url = display_speakers_meta_data ? conference_edition_speakers_path(current_edition) : "http://twitter.com/#{speaker.twitter_username}" %>
+
+    <%= link_to url, class: 'speaker' do %>
+      <article id="speaker-<%= speaker.twitter_username %>">
+        <%= avatar_for(speaker, :avatar, :square_230_230) %>
+        <h3><%= speaker.name %></h3>
+        <p><%= speaker.job_title %></p>
+        <p><%= speaker.company %></p>
+
+        <% if display_speakers_meta_data %>
+          <div class="info">
+            <p class="tagline company"><%= speaker.company %></p>
+            <p class="tagline last city"><%= speaker.city %>, <%= speaker.country %></p>
+
+            <%= markdown(speaker.bio) %>
+
+            <ul class="networks">
+              <li>Twitter: <%= link_to speaker.twitter_username, "http://twitter.com/#{speaker.twitter_username}", target: 'blank' %></li>
+              <li>Github: <%= link_to speaker.github_username, "http://github.com/#{speaker.github_username}", target: 'blank' %></li>
+            </ul>
+          </div>
         <% end %>
-
-          <article class="speaker <%= display_speakers_meta_data ? 'block' : '' %>" id="speaker-<%= speaker.twitter_username %>">
-            <%= avatar_for(speaker, :avatar, :square_230_230) %>
-            <h1><%= speaker.name %></h1>
-
-            <% if display_speakers_meta_data %>
-              <div class="info">
-                <p class="tagline company"><%= speaker.company %></p>
-                <p class="tagline last city"><%= speaker.city %>, <%= speaker.country %></p>
-
-                <%= markdown(speaker.bio) %>
-
-                <ul class="networks">
-                  <li>Twitter: <%= link_to speaker.twitter_username, "http://twitter.com/#{speaker.twitter_username}", target: 'blank' %></li>
-                  <li>Github: <%= link_to speaker.github_username, "http://github.com/#{speaker.github_username}", target: 'blank' %></li>
-                </ul>
-              </div>
-            <% end %>
-          </article>
-
-        <% unless display_speakers_meta_data %>
-          </a>
-        <% end %>
-      <% end %>
-    </div>
+      </article>
+    <% end %>
   <% end %>
 </div>

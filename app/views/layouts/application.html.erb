@@ -6,8 +6,8 @@
   <meta name="description" content="<%= current_edition.tagline %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta charset="utf-8">
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= stylesheet_link_tag current_edition.custom_css_file, media: 'all' %>
+  <%= stylesheet_link_tag 'default', media: 'all' %>
+  <%#= stylesheet_link_tag current_edition.custom_css_file, media: 'all' %>
   <%= csrf_meta_tags %>
   <%= render partial: 'shared/analytics' %>
   <%= yield(:head_js) %>
@@ -15,26 +15,14 @@
 
 <body class="<%= body_class %>">
   <div class="main-wrapper">
-
-    <% if current_page?(root_url) %>
-      <%= render(partial: 'shared/hero', locals: { conference_edition: current_edition, conference: current_conference }) %>
-    <% end %>
+    <header class="main-header">
+      <%= render(partial: 'shared/navigation', locals: { conference_edition: current_edition }) %>
+      <%= render(partial: 'shared/language_selector', locals: { conference: current_conference }) %>
+    </header>
 
     <% flash.each do |name, msg| %>
       <p class="alert-global alert alert-<%= name %>"><%= msg %></p>
     <% end %>
-
-    <header class="main-header">
-      <nav class="main-navigation">
-        <h1 class="logo">
-          <%= link_to root_url do %>
-            <%= image_tag current_edition.logo_url, alt: current_conference.name %>
-          <% end %>
-        </h1>
-        <%= render(partial: 'shared/navigation', locals: { conference_edition: current_edition }) %>
-      </nav>
-      <%= render(partial: 'shared/language_selector', locals: { conference: current_conference }) %>
-    </header>
 
     <main class="main-content">
       <%= content_for?(:content) ? yield(:content) : yield %>
@@ -42,56 +30,16 @@
   </div>
 
   <footer class="main-footer">
-    <% if current_edition.about %>
-      <section class="about">
-        <h1 class="primary-heading"><%= t('about') %> <%= current_conference.name %></h1>
-        <%= markdown(current_edition.about) %>
-      </section>
-    <% end %>
-
-    <section class="networks">
-      <h1><%= t 'networks' %></h1>
-      <ul>
-        <% if current_conference.twitter_username.present? %>
-          <li>
-            <%= link_to "http://twitter.com/#{current_conference.twitter_username}", target: 'blank', class: 'twitter' do %>
-              <%= content_tag(:span, t('follow_us_on_twitter')) %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if current_conference.facebook_page_username.present? %>
-          <li>
-            <%= link_to "http://facebook.com/#{current_conference.facebook_page_username}", target: 'blank', class: 'facebook' do %>
-              <%= content_tag(:span, t('friend_us_on_facebook')) %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if current_conference.lanyrd_series_name.present? %>
-          <li>
-            <%= link_to "http://lanyrd.com/series/#{current_conference.lanyrd_series_name}", target: 'blank', class: 'lanyrd' do %>
-              <%= content_tag(:span, t('track_us_on_lanyrd')) %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if current_conference.youtube_channel_id.present? %>
-          <li>
-            <%= link_to "http://youtube.com/channel/#{current_conference.youtube_channel_id}", target: 'blank', class: 'youtube' do %>
-              <%= content_tag(:span, t('subscribe_to_our_youtube_channel')) %>
-            <% end %>
-          </li>
-        <% end %>
-        <li>
-          <%= link_to "mailto:#{current_conference.email}", target: 'blank', class: 'email' do %>
-           <%= content_tag(:span, t('drop_us_a_line')) %>
-          <% end %>
-        </li>
-      </ul>
-    </section>
+    <%= render(partial: 'shared/footer', locals: { conference_edition: current_edition }) %>
   </footer>
+
   <a class="back-to-top box" href="#top"><span>Back to top</span></a>
+
   <div class="scripts">
-    <%= javascript_include_tag :public %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <%= javascript_include_tag :default %>
     <%= yield :javascript %>
   </div>
+
 </body>
 </html>

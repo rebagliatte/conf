@@ -2,7 +2,7 @@
 <%# @param posts [Conf::Model::Post] %>
 
 <header>
-  <h1 class="primary-heading"><%= t 'news' %></h1>
+  <h2 class="primary-heading"><%= t 'news' %></h2>
   <%= markdown(conference_edition.news_intro) %>
   <% unless current_page?(conference_edition_posts_path(conference_edition)) %>
     <%= link_to conference_edition_posts_path(conference_edition), class:'btn btn-tertiary' do %>
@@ -14,15 +14,11 @@
 <div class="posts-list">
   <% posts.each do |post| %>
     <article class="post <%= post == last_post(conference_edition) ? 'last' : '' %>">
-      <h1 class="secondary-heading">
+      <h3 class="secondary-heading">
         <%= link_to post.title, conference_edition_post_path(conference_edition, post) %>
-      </h1>
+      </h3>
       <p class="created-at"><%= time_ago_in_words(post.created_at) %> <%= t 'ago' %></p>
       <div class="markdown"><%= markdown(post.summary) %></div>
-
-      <%= link_to conference_edition_post_path(conference_edition, post), class:'btn btn-tertiary read-more' do %>
-        <%= content_tag(:span, t('read_more')) %>
-      <% end %>
     </article>
   <% end %>
 </div>

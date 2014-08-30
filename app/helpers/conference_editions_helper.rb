@@ -1,14 +1,17 @@
 module ConferenceEditionsHelper
 
-  def pretty_date_and_location(ce)
+  def pretty_date(ce)
     string = if ce.from_date.month == ce.to_date.month
       "#{ce.from_date.strftime('%b')} #{ce.from_date.strftime('%d')}-#{ce.to_date.strftime('%d')}"
     else
       "#{ce.from_date.strftime('%b %d')} - #{ce.to_date.strftime('%b %d')}"
     end
-    string << ", #{ce.from_date.strftime('%Y')}."
-    string << " #{ce.city}, #{ce.country}" if ce.city.present? && ce.country.present?
+    string << ", #{ce.from_date.strftime('%Y')}"
     string
+  end
+
+  def pretty_city(ce)
+    "#{ce.city}, #{ce.country}"
   end
 
   def pretty_conference_and_year(ce)
@@ -35,10 +38,6 @@ module ConferenceEditionsHelper
 
   def display_registration_link?(ce)
     !is_over?(ce) && ce.is_registration_open && ce.registration_url.present?
-  end
-
-  def display_call_for_proposals?(ce)
-    is_coming_soon?(ce) && ce.is_call_for_proposals_open
   end
 
   def display_call_for_sponsorships?(ce)

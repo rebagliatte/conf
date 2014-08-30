@@ -1,6 +1,6 @@
 class TalksController < ApplicationController
   def new
-    if current_edition.is_call_for_proposals_open
+    if current_edition.cfp_open?
       @talk = current_edition.talks.new
       @talk.speakers.build
     else
