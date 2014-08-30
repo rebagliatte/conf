@@ -2,11 +2,11 @@
 
 // Intro
 .intro-holder {
-  background: #1b1f23;
+  background: $dark-gray;
   display: table;
   width: 100vw;
-  margin-left: -10vw;
   height: 100vh;
+  margin-left: -10vw;
 }
 .intro {
   display: table-cell;
@@ -49,7 +49,7 @@
 // Schedule
 #schedule {
   tr.special-slot td {
-    background: #f2f2f1;
+    background: $light-gray;
   }
   .time {
     font-size: 0.9em;
@@ -87,7 +87,7 @@
     a {
       border-bottom: 1px solid #cbcbcb;
       &:hover {
-        color: #268d78;
+        color: $secondary-color;
       }
     }
   }

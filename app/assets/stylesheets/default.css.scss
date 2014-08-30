@@ -1,5 +1,5 @@
 // Pallete
-$text-color: #636F70;
+$text-color: #636f70;
 $link-color: #02779E;
 $primary-color: #D81D26;
 $secondary-color: #268D78;
@@ -16,7 +16,7 @@ $dark-gray: #1b1f23;
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   -webkit-font-smoothing: antialiased;
-  color: #1b1f23;
+  color: $dark-gray;
 }
 h2 {
   padding-top: 3em;
@@ -32,20 +32,20 @@ p {
   font-size: 1.2em;
   line-height: 2.1em;
   margin-bottom: 2.1em;
-  color: #636f70;
+  color: $text-color;
   strong {
     font-weight: bold;
   }
 }
 a {
   text-decoration: none;
-  color: #02779e;
+  color: $link-color;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   -ms-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
   &:hover {
-    color: #268d78;
+    color: $secondary-color;
   }
 }
 img {
@@ -53,7 +53,7 @@ img {
 }
 blockquote {
   margin: 0 60px 0 45px;
-  border-left: 5px solid #ccc;
+  border-left: 5px solid $light-gray;
   padding-left: 10px;
   text-indent: -0.4em;
   b {
@@ -68,30 +68,30 @@ blockquote {
   margin: 1.5em 0;
   display: inline-block;
   font-weight: bold;
-  color: #d81d26;
+  color: $primary-color;
   font-size: 1.5em;
   border-radius: 5px;
-  border: 3px solid #d81d26;
+  border: 3px solid $primary-color;
   outline: none;
   &:hover {
-    background-color: #d81d26;
+    background-color: $primary-color;
     color: #fff;
   }
 }
 .btn-secondary {
-  color: #268d78;
-  border-color: #268d78;
+  color: $secondary-color;
+  border-color: $secondary-color;
   &:hover {
-    background-color: #268d78;
+    background-color: $secondary-color;
   }
 }
 .btn-tertiary {
   font-size: 1.2em;
-  color: #1b1f23;
-  border-color: #f2f2f1;
+  color: $dark-gray;
+  border-color: $light-gray;
   background: #fff;
   &:hover {
-    background-color: #1b1f23;
+    background-color: $dark-gray;
   }
 }
 
@@ -128,11 +128,11 @@ blockquote {
 // Tables
 table {
   width: 100%;
-  color: #636f70;
+  color: $text-color;
   th, td {
     text-align: left;
     padding: 1em;
-    border: 1px solid #f2f2f1;
+    border: 1px solid $light-gray;
   }
   th {
     width: 30%;
@@ -148,22 +148,4 @@ table {
 // Utilities
 .hidden {
   display: none;
-}
-
-.main-footer {
-  background: #1b1f23;
-}
-
-.hidden {
-  display: none;
-}
-
-.current {
-  color: #333;
-  text-decoration: none;
-  cursor: default;
-}
-
-#disqus_thread {
-  padding-top: 1em;
 }
