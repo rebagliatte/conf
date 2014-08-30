@@ -10,5 +10,160 @@ $dark-gray: #1b1f23;
 @import 'application/normalize';
 @import 'application/mixins';
 @import 'default/layout';
+@import 'default/home';
 
-// Main navigation
+// Basic Styles
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+  -webkit-font-smoothing: antialiased;
+  color: #1b1f23;
+}
+h2 {
+  padding-top: 3em;
+  font-size: 2.3em;
+  margin: 0 0 2.3em 0;
+}
+h3 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+}
+p {
+  font-size: 1.2em;
+  line-height: 2.1em;
+  margin-bottom: 2.1em;
+  color: #636f70;
+  strong {
+    font-weight: bold;
+  }
+}
+a {
+  text-decoration: none;
+  color: #02779e;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  &:hover {
+    color: #268d78;
+  }
+}
+img {
+  max-width: 100%;
+}
+blockquote {
+  margin: 0 60px 0 45px;
+  border-left: 5px solid #ccc;
+  padding-left: 10px;
+  text-indent: -0.4em;
+  b {
+    display: block;
+    text-indent: 0;
+  }
+}
+
+// Buttons
+.btn {
+  padding: 1em 2em;
+  margin: 1.5em 0;
+  display: inline-block;
+  font-weight: bold;
+  color: #d81d26;
+  font-size: 1.5em;
+  border-radius: 5px;
+  border: 3px solid #d81d26;
+  outline: none;
+  &:hover {
+    background-color: #d81d26;
+    color: #fff;
+  }
+}
+.btn-secondary {
+  color: #268d78;
+  border-color: #268d78;
+  &:hover {
+    background-color: #268d78;
+  }
+}
+.btn-tertiary {
+  font-size: 1.2em;
+  color: #1b1f23;
+  border-color: #f2f2f1;
+  background: #fff;
+  &:hover {
+    background-color: #1b1f23;
+  }
+}
+
+// Messages
+.alert {
+  padding: 8px 14px;
+  margin-bottom: 20px;
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  li {
+    list-style: disc inside;
+    line-height: 2em;
+  }
+  p {
+    color: inherit;
+  }
+  &.alert-danger {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+  }
+  &.alert-success {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  &.alert-info {
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+}
+
+// Tables
+table {
+  width: 100%;
+  color: #636f70;
+  th, td {
+    text-align: left;
+    padding: 1em;
+    border: 1px solid #f2f2f1;
+  }
+  th {
+    width: 30%;
+    font-weight: bold;
+  }
+  p {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+// Utilities
+.hidden {
+  display: none;
+}
+
+.main-footer {
+  background: #1b1f23;
+}
+
+.hidden {
+  display: none;
+}
+
+.current {
+  color: #333;
+  text-decoration: none;
+  cursor: default;
+}
+
+#disqus_thread {
+  padding-top: 1em;
+}

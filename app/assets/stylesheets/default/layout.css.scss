@@ -1,8 +1,6 @@
-/*
- * Layout
- */
+// Layout
 
-/* header */
+// Header
 .main-header {
   padding: 0 20px;
   position: fixed;
@@ -38,13 +36,14 @@
   }
 }
 
-/* content */
+// Content
 .main-content {
   padding: 0 10%;
 }
 
-/* footer */
+// Footer
 .main-footer {
+  background: #1b1f23;
   margin-top: 60px;
   text-align: center;
   .primary-heading {
@@ -55,4 +54,3 @@
     display: inline-block;
   }
 }
-
