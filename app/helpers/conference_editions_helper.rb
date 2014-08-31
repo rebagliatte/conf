@@ -28,6 +28,11 @@ module ConferenceEditionsHelper
     end
   end
 
+  def cover(ce)
+    return unless ce.cover
+    "style = \"background: transparent url(#{ce.cover_url(:cover)}) top left no-repeat; background-size: cover;\"".html_safe
+  end
+
   def is_coming_soon?(ce)
     ce.from_date > Date.today
   end

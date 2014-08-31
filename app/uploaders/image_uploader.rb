@@ -56,6 +56,11 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [230, nil]
   end
 
+  # Make them 1200px wide, keeping ratio
+  version :cover, if: :is_conference_edition? do
+    process resize_to_fit: [1200, nil]
+  end
+
   # Make them 230px x 230px, keeping ratio
   version :square_230_230, if: :is_speaker? do
     process resize_to_fill: [230, 230]

@@ -53,6 +53,7 @@ class ConferenceEdition < ActiveRecord::Base
 
   # Uploaders
   mount_uploader :logo, ImageUploader
+  mount_uploader :cover, ImageUploader
   mount_uploader :sponsorship_packages_pdf, AttachmentUploader
   mount_uploader :custom_css_file, StylesheetUploader
 
