@@ -12,7 +12,8 @@ class AdminController < ApplicationController
 
   def authenticate_user
     unless current_user
-      redirect_to signup_url, alert: "Please sign in"
+      flash[:info] = 'Please sign in.'
+      redirect_to signup_url
     end
   end
 
