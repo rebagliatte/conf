@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def new
     if current_user
-      redirect_to root_url, notice: 'You are already signed in'
+      redirect_to root_url, info: 'You are already signed in'
     elsif params[:organizer_invitation_token]
       @organizer_invitation = OrganizerInvitation.find_by(token: params[:organizer_invitation_token])
       if @organizer_invitation && @organizer_invitation.invitee_id.nil?
@@ -31,24 +31,24 @@ class SessionsController < ApplicationController
     if signed_in?
       if @identity.user == current_user
         # The identity is already associated with the current user
-        redirect_to root_url, notice: 'That account has already been linked with your user'
+        redirect_to root_url, info: 'That account has already been linked with your user'
       else
         # The identity is not associated with the current_user, let's make that happen
         @identity.user = current_user
         @identity.save()
-        redirect_to root_url, notice: 'Successfully linked that account!'
+        redirect_to root_url, info: 'Successfully linked that account!'
       end
     else
       if @identity.user.present?
         # The identity is associated with a user, let's log it in
         self.current_user = @identity.user
-        flash[:notice] = 'Signed in!'
+        flash[:info] = 'Signed in!'
       else
         # No user is associated with the identity, let's create a new one
         user = User.create_with_omniauth(auth['info'])
         @identity.update(user: user)
         self.current_user = user
-        flash[:notice] = "Welcome #{current_user.name}!"
+        flash[:info] = "Welcome #{current_user.name}!"
       end
 
       # If a organizer invitations token is present, use it and destroy it
@@ -77,7 +77,7 @@ class SessionsController < ApplicationController
 
   def destroy
     self.current_user = nil
-    redirect_to root_url, notice: "Signed out"
+    redirect_to root_url, info: "Signed out"
   end
 
 end
