@@ -49,14 +49,7 @@
   button,
   input[type="submit"] {
     -webkit-appearance: none;
-    min-height: 35px;
-    border: 0;
-    cursor: pointer;
-    padding: 0;
-    &:hover {
-      background: #333;
-      color: #fcfcfc;
-    }
+    background: none;
   }
   select {
     height: 35px;
@@ -75,17 +68,6 @@
   &.form-inline {
     input {
       display: inline-block;
-    }
-  }
-  &.subscription-form {
-    text-align: center;
-    input {
-      display: inline-block;
-      margin-bottom: 0;
-      vertical-align: middle;
-    }
-    input[type="text"] {
-      width: 50%;
     }
   }
 

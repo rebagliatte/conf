@@ -42,15 +42,38 @@
 }
 
 // Footer
+
 .main-footer {
   background: $dark-gray;
-  margin-top: 60px;
+  margin-top: 3em;
   text-align: center;
-  .primary-heading {
-    font-size: 24px;
+  overflow: auto;
+  padding: 6em 0;
+  h2 {
+    color: $light-gray;
+    padding: 0;
   }
-  .sponsor,
-  .networks li {
-    display: inline-block;
+  .networks {
+    margin-top: 6em;
+    h2 {
+      display: none;
+    }
+    ul {
+      margin: 0;
+    }
+    li {
+      display: inline-block;
+    }
+    a {
+      font-size: 2em;
+      color: #ccc;
+      padding: 1em;
+      &:hover {
+        color: #fff;
+      }
+    }
+    span {
+      display: none;
+    }
   }
 }

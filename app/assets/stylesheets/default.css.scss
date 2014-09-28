@@ -9,6 +9,7 @@ $dark-gray: #1b1f23;
 // Includes
 @import 'application/normalize';
 @import 'application/mixins';
+@import 'default/icons';
 @import 'default/layout';
 @import 'default/forms';
 @import 'default/home';
@@ -145,5 +146,8 @@ table {
 
 // Utilities
 .hidden {
+  display: none;
+}
+.back-to-top {
   display: none;
 }

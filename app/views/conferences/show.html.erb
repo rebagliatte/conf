@@ -78,8 +78,8 @@
     <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form' }) do |form| %>
       <%= error_messages_for(@subscriber) %>
       <%= form.input_field :email, placeholder: 'john@doe.com' %>
-      <button type="submit" class="btn btn-primary">
-        <span><%= t('submit') %></span>
+      <button type="submit" class="btn btn-secondary">
+        <span><%= t('go') %></span>
       </button>
     <% end %>
   </section>
