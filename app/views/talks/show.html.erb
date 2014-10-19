@@ -1,13 +1,18 @@
-<%= title @talk.title %>
+<% title @talk.title %>
+
+<header>
+  <h2 class="primary-heading"><%= @talk.title %></h2>
+</header>
+
 <div class="markdown">
   <%= markdown(@talk.abstract) %>
 </div>
 
 <section class="speaker-details">
-  <h1 class="secondary-heading">
+  <h3 class="secondary-heading">
     <%= avatar_for(@speaker, 'avatar', :square_230_230) %>
     <%= @speaker.name %>
-  </h1>
+  </h3>
 
   <% if @speaker.bio.present? %>
     <div class="speaker-description markdown">
@@ -18,19 +23,19 @@
   <ul class="social-media unstyled">
     <% if @speaker.job_title.present? && @speaker.company.present? %>
       <li>
-        <i class="fa fa-briefcase"></i>
+        <i class="icon-briefcase"></i>
         <%= @speaker.job_title %> at <%= @speaker.company %>
       </li>
     <% end %>
     <% if @speaker.city.present? && @speaker.country.present? %>
       <li>
-        <i class="fa fa-map-marker"></i>
+        <i class="icon-map-marker"></i>
         <%= @speaker.city %>, <%= @speaker.country %>
       </li>
     <% end %>
     <% if @speaker.github_username.present? %>
       <li>
-        <i class="fa fa-github"></i>
+        <i class="icon-github"></i>
         <%= link_to "http://github.com/#{@speaker.github_username}", target: '_blank' do %>
           <%= @speaker.github_username %>
         <% end %>
@@ -38,7 +43,7 @@
     <% end %>
     <% if @speaker.twitter_username.present? %>
       <li>
-        <i class="fa fa-twitter"></i>
+        <i class="icon-twitter"></i>
         <%= link_to "http://twitter.com/#{@speaker.twitter_username}", target: '_blank' do %>
           <%= @speaker.twitter_username %>
         <% end %>
@@ -46,7 +51,7 @@
     <% end %>
     <% if @speaker.lanyrd_username.present? %>
       <li>
-        <i class="fa fa-calendar-empty"></i>
+        <i class="icon-lanyrd"></i>
         <%= link_to "http://lanyrd.com/#{@speaker.lanyrd_username}", target: '_blank' do %>
           <%= @speaker.lanyrd_username %>
         <% end %>
@@ -54,7 +59,7 @@
     <% end %>
     <% if @speaker.website.present? %>
       <li>
-        <i class="fa fa-link"></i>
+        <i class="icon-chain"></i>
         <%= link_to @speaker.website, target: '_blank' do %>
           <%= @speaker.website %>
         <% end %>
@@ -63,5 +68,4 @@
   </ul>
 </section>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <%= render(partial: 'shared/disqus', locals: { current_conference: current_conference }) %>

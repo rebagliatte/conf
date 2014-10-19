@@ -3,7 +3,7 @@ $text-color: #636f70;
 $link-color: #02779E;
 $primary-color: #D81D26;
 $secondary-color: #268D78;
-$light-gray: #f2f2f1;
+$light-gray: #e2e2e2;
 $dark-gray: #1b1f23;
 
 // Includes
@@ -12,6 +12,8 @@ $dark-gray: #1b1f23;
 @import 'default/icons';
 @import 'default/layout';
 @import 'default/forms';
+@import 'default/posts';
+@import 'default/talks';
 @import 'default/home';
 
 // Basic Styles
@@ -19,10 +21,10 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   -webkit-font-smoothing: antialiased;
   color: $dark-gray;
-  padding-top: 4em;
+  padding-top: 7em;
 }
 h2 {
-  padding-top: 3em;
+  padding-top: 1em;
   font-size: 2.3em;
   margin: 0 0 2.3em 0;
 }
@@ -132,7 +134,7 @@ table {
   th, td {
     text-align: left;
     padding: 1em;
-    border: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
   }
   th {
     width: 30%;
@@ -145,10 +147,26 @@ table {
   }
 }
 
+// Lists
+ul.unstyled {
+  margin: 0;
+  padding: 0;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+  }
+}
+
 // Utilities
 .hidden {
   display: none;
 }
 .back-to-top {
   display: none;
+}
+#disqus_thread {
+  padding-top: 6em;
 }
