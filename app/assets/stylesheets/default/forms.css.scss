@@ -6,6 +6,8 @@
   text-align: left;
   fieldset {
     margin: 4em 0;
+    border: 0;
+    padding: 0;
   }
   legend {
     text-transform: uppercase;
@@ -13,10 +15,10 @@
     font-weight: bold;
     margin-bottom: 3em;
   }
-  .control-group {
+  .form-group {
     margin-bottom: 2em;
-    &.error input,
-    &.error textarea {
+    &.has-error input,
+    &.has-error textarea {
       border: 1px solid #8c0028;
     }
   }

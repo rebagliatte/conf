@@ -49,6 +49,10 @@ module ConferenceEditionsHelper
     is_coming_soon?(ce) && ce.is_call_for_sponsorships_open
   end
 
+  def display_promo_video?(ce)
+    ce.promo_video_provider.present? && ce.promo_video_uid.present?
+  end
+
   def available_image_uploads(ce)
     maximum = Image::MAX_IMAGES_PER_EDITION
     uploaded_images = ce.images.count
