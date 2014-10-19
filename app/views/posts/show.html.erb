@@ -1,6 +1,6 @@
 <%= title(@post.title) %>
 
-<article class="post">
+<div class="post">
   <% unless @post.image.blank? %>
     <%= image_tag @post.image, alt: @post.title, class: 'primary-img' %>
   <% end %>
@@ -10,4 +10,4 @@
   <p class="created-at"><%= t 'posted' %> <%= time_ago_in_words(@post.created_at) %> ago</p>
 
   <%= render(partial: 'shared/disqus', locals: { current_conference: current_conference }) %>
-</article>
+</div>

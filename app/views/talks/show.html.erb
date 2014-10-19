@@ -9,10 +9,10 @@
 </div>
 
 <section class="speaker-details">
-  <h3 class="secondary-heading">
+  <div class="secondary-heading">
     <%= avatar_for(@speaker, 'avatar', :square_230_230) %>
-    <%= @speaker.name %>
-  </h3>
+    <h3><%= @speaker.name %></h3>
+  </div>
 
   <% if @speaker.bio.present? %>
     <div class="speaker-description markdown">
