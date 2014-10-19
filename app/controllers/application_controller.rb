@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  http_basic_authenticate_with name: 'confnu', password: 'demo' if Rails.env.staging?
   protect_from_forgery
 
   include UrlHelper
