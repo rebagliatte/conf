@@ -1,78 +1,57 @@
-<% if display_registration_link?(current_edition) %>
-  <section id="register">
-    <%= markdown(current_edition.intro) %>
-    <%= link_to current_edition.registration_url, class: 'btn btn-primary' do %>
-      <%= content_tag(:span, t('register')) %>
-    <% end %>
-  </section>
-<% end %>
+<!-- When, where, register -->
+<div class="intro-holder" <%= cover(current_edition) %>>
+  <div class="intro">
+    <h1 class="logo">
+      <%= link_to root_url do %>
+        <%= image_tag current_edition.logo_url, alt: current_conference.name %>
+      <% end %>
+    </h1>
+    <p class="date"><%= pretty_date(current_edition) %></p>
+    <p class="location"><%= pretty_city(current_edition) %></p>
 
+    <% if display_registration_link?(current_edition) %>
+      <%= link_to current_edition.registration_url, class: 'btn btn-primary' do %>
+        <%= content_tag(:span, t('register')) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<!-- Speakers -->
 <% if current_edition.speakers.promoted.any? %>
   <section id="confirmed-speakers">
-    <h1 class="box primary-heading"><%= t('confirmed_speakers') %></h1>
+    <h2 class="box primary-heading"><%= t('speakers') %></h2>
     <%= render(partial: 'speakers/list', locals: { speakers: current_edition.speakers.promoted, display_speakers_meta_data: false }) %>
   </section>
 <% end %>
 
-<% if current_edition.posts.any? %>
-  <section id="news">
-    <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
-  </section>
-<% end %>
-
-<% if current_edition.is_schedule_available %>
-  <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
-<% end %>
-
-<section id="previous-edition" class="box">
-  <h1 class="primary-heading"><%= t('previous_edition') %></h1>
-  <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
-</section>
-
-<% if current_edition.previous_editions.any? %>
-  <section id="previous-editions">
-    <h1 class="primary-heading"><%= t('previous_editions') %></h1>
-    <%= render(partial: 'conference_editions/list', locals: { conference_editions: current_edition.previous_editions }) %>
-  </section>
-<% end %>
-
-<% if display_call_for_proposals?(current_edition) %>
+<!-- Call for proposals -->
+<% if current_edition.cfp_open? %>
   <section id="call-for-proposals" class="box box-primary">
-    <h1 class="primary-heading"><%= t('call_for_proposals') %></h1>
+    <h2 class="primary-heading"><%= t('call_for_proposals') %></h2>
     <%= markdown(current_edition.speakers_call_to_action) %>
-    <%= link_to new_conference_edition_talk_path(current_edition), class:'btn btn-secondary' do %>
+    <%= link_to new_conference_edition_talk_path(current_edition), class:'btn btn-tertiary' do %>
       <%= content_tag(:span, t('submit_your_proposal')) %>
     <% end %>
   </section>
 <% end %>
 
-<% if display_call_for_sponsorships?(current_edition) || current_edition.sponsors.any? #TODO: fix %>
-  <section id="sponsors">
-    <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
-  </section>
+<!-- Schedule -->
+<% if current_edition.is_schedule_available %>
+  <%= render(partial: 'slots/schedule', locals: { conference_edition: current_edition }) %>
 <% end %>
 
+<!-- Venue -->
 <% if current_edition.is_location_available %>
   <section id="location" class="box">
-    <h1 class="primary-heading"><%= t('location') %></h1>
+    <h2 class="primary-heading"><%= t('location') %></h2>
     <div class="location-details">
-      <h2><%= current_edition.venue %></h2>
+      <p><strong><%= current_edition.venue %></strong></p>
       <p><%= current_edition.venue_address %>, <%= current_edition.city %> - <%= current_edition.country %></p>
     </div>
     <div id="map-canvas"></div>
   </section>
-<% end %>
 
-<% if display_registration_link?(current_edition) %>
-  <section class="register-secondary-cta box box-primary">
-    <%= markdown(current_edition.registration_call_to_action) %>
-    <%= link_to current_edition.registration_url, class: 'btn btn-secondary' do %>
-      <%= content_tag(:span, t('register')) %>
-    <% end %>
-  </section>
-<% end %>
-
-<% if current_edition.is_location_available %>
   <% content_for :head_js do %>
     <%= javascript_tag do %>
       window.venue_address = '<%= full_venue_address(current_edition) %>';
@@ -84,16 +63,37 @@
   <% end %>
 <% end %>
 
+<!-- News -->
+<% if current_edition.posts.any? %>
+  <section id="news">
+    <%= render(partial: 'posts/list', locals: { posts: @posts, conference_edition: current_edition }) %>
+  </section>
+<% end %>
+
+<!-- Email subscription -->
 <% if current_edition.is_email_subscription_enabled %>
   <section id="subscriptions">
-    <h1 class="primary-heading"><%= t('stay_up_to_date') %></h1>
+    <h2 class="primary-heading"><%= t('stay_up_to_date') %></h2>
     <%= markdown(current_edition.notes_to_subscribers) %>
     <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form' }) do |form| %>
       <%= error_messages_for(@subscriber) %>
       <%= form.input_field :email, placeholder: 'john@doe.com' %>
-      <button type="submit" class="btn btn-primary">
-        <span><%= t('submit') %></span>
+      <button type="submit" class="btn btn-secondary">
+        <span><%= t('go') %></span>
       </button>
     <% end %>
   </section>
 <% end %>
+
+<!-- Previous edition video -->
+<% if display_promo_video?(current_edition) %>
+  <section id="previous-edition" class="box">
+    <h2 class="primary-heading"><%= t('previous_edition') %></h2>
+    <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
+  </section>
+<% end %>
+
+<!-- Sponsors and call for sponsors -->
+<section id="sponsors">
+  <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
+</section>

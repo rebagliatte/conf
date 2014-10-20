@@ -1,0 +1,79 @@
+// Layout
+
+// Header
+.main-header {
+  padding: 0 3%;
+  position: fixed;
+  top: 0;
+  width: 94%;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  .home {
+    font-weight: bold;
+  }
+  a {
+    display: block;
+    padding: 0.5em;
+    line-height: 3em;
+    color: #303336;
+    text-decoration: none;
+  }
+  li {
+    display: inline-block;
+  }
+  nav {
+    float: left;
+  }
+  .lang {
+    float: right;
+    margin-right: 2em;
+    color: #000;
+  }
+}
+
+// Content
+.main-content {
+  padding: 0 10%;
+}
+
+// Footer
+
+.main-footer {
+  background: $dark-gray;
+  margin-top: 3em;
+  text-align: center;
+  overflow: auto;
+  padding: 6em 0;
+  h2 {
+    color: $light-gray;
+    padding: 0;
+  }
+  .networks {
+    margin-top: 6em;
+    h2 {
+      display: none;
+    }
+    ul {
+      margin: 0;
+    }
+    li {
+      display: inline-block;
+    }
+    a {
+      font-size: 2em;
+      color: #ccc;
+      padding: 1em;
+      &:hover {
+        color: #fff;
+      }
+    }
+    span {
+      display: none;
+    }
+  }
+}

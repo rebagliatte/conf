@@ -1,5 +1,8 @@
 pt:
+  about: Sobre
+  ago: atrás
   all_conferences: Todas as conferências
+  become_a_sponsor: Torne-se um patrocinador
   call_for_proposals: Chamada para apresentação de propostas
   confirmed_speakers: Palestrantes confirmados
   do_not_miss_out: Não perca
@@ -7,8 +10,6 @@ pt:
   drop_us_a_line: Contate-nos
   follow_us_on_twitter: Siga-nos no twitter
   friend_us_on_facebook: Seja nosso amigo no Facebook
-  track_us_on_lanyrd: Siga-nos no lanyrd
-  subscribe_to_our_youtube_channel: Siga-nos no YouTube
   location: Locação
   networks: Redes sociais
   news: Notícias
@@ -18,8 +19,8 @@ pt:
   powered_by: Desenvolvido por
   previous_edition: Edição anterior
   previous_editions: Edições Anteriores
-  read_more: Leia mais
   read_all_posts: Leia mais notícias
+  read_more: Leia mais
   register: Registrar
   schedule: Programa
   show_your_support_to: Torne-se um patrocinador e apoio
@@ -29,13 +30,13 @@ pt:
   speakers: Palestrantes
   sponsors: Patrocinadores
   sponsorship_packages: Pacotes de Patrocínio
-  submit_your_proposal: Envie sua proposta
-  the_talks: Palestras
-  submit: Enviar
   stay_up_to_date: Mantenha-se atualizado
+  submit: Enviar
+  submit_your_proposal: Envie sua proposta
   subscribe: Inscrever-me
-  ago: atrás
-  about: Sobre
+  subscribe_to_our_youtube_channel: Siga-nos no YouTube
+  the_talks: Palestras
+  track_us_on_lanyrd: Siga-nos no lanyrd
 
   en: Inglês
   pt: Português

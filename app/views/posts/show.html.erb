@@ -1,11 +1,13 @@
 <%= title(@post.title) %>
 
-<% unless @post.image.blank? %>
-  <%= image_tag @post.image, alt: @post.title, class: 'primary-img' %>
-<% end %>
+<div class="post">
+  <% unless @post.image.blank? %>
+    <%= image_tag @post.image, alt: @post.title, class: 'primary-img' %>
+  <% end %>
 
-<div class="markdown"><%= markdown(@post.body) %></div>
+  <div class="markdown"><%= markdown(@post.body) %></div>
 
-<p class="created-at"><%= t 'posted' %> <%= time_ago_in_words(@post.created_at) %> ago</p>
+  <p class="created-at"><%= t 'posted' %> <%= time_ago_in_words(@post.created_at) %> ago</p>
 
-<%= render(partial: 'shared/disqus', locals: { current_conference: current_conference }) %>
+  <%= render(partial: 'shared/disqus', locals: { current_conference: current_conference }) %>
+</div>

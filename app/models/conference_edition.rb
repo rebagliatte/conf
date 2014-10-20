@@ -33,6 +33,9 @@ class ConferenceEdition < ActiveRecord::Base
   validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
   validates :venue_latitude, numericality: true, if: :venue_latitude?
   validates :venue_longitude, numericality: true, if: :venue_longitude?
+  validates :city, presence: true
+  validates :country, presence: true
+  validate :valid_cfp_deadline, if: :cfp_deadline?
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
@@ -50,6 +53,7 @@ class ConferenceEdition < ActiveRecord::Base
 
   # Uploaders
   mount_uploader :logo, ImageUploader
+  mount_uploader :cover, ImageUploader
   mount_uploader :sponsorship_packages_pdf, AttachmentUploader
   mount_uploader :custom_css_file, StylesheetUploader
 
@@ -62,6 +66,10 @@ class ConferenceEdition < ActiveRecord::Base
 
   def multiple_track?
     self.kind == 'multiple_track'
+  end
+
+  def cfp_open?
+    cfp_deadline && cfp_deadline.future?
   end
 
   def to_s
@@ -98,6 +106,12 @@ class ConferenceEdition < ActiveRecord::Base
 
     if (to_date - from_date).to_i > MAX_CONFERENCE_DURATION_IN_DAYS
       errors.add(:to_date, "must be at most #{MAX_CONFERENCE_DURATION_IN_DAYS} days after the start date")
+    end
+  end
+
+  def valid_cfp_deadline
+    if cfp_deadline > from_date
+      errors.add(:cfp_deadline, "must happen before the conference starts")
     end
   end
 

@@ -1,5 +1,3 @@
-@import 'marketing/normalize';
-
 // Pallete
 $orange: #f15a24;
 $light_orange: #f8622c;
@@ -9,21 +7,9 @@ $light_gray: #f4f4f5;
 $dark_gray: #7f8081;
 $dark_blue: #1c1737;
 
-// Mixins
-@mixin flexbox() {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-@mixin flex($values) {
-  -webkit-box-flex: $values;
-  -moz-box-flex:  $values;
-  -webkit-flex:  $values;
-  -ms-flex:  $values;
-  flex:  $values;
-}
+// Imports
+@import 'application/normalize';
+@import 'application/mixins';
 
 // Global Styles
 body {
@@ -126,11 +112,9 @@ h1 {
     color: $dark_gray;
     border: 2px solid $dark_blue;
     @include flex(1 auto);
+    @include box-sizing(border-box);
     width: 33.33%;
     padding: 2.5em;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     min-height: 300px;
     h1 {
       color: $dark_blue;

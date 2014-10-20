@@ -4,14 +4,8 @@
 
 <table class="table appearance">
   <tr>
-    <th>Uploaded css file</th>
+    <th>Custom styles and Cover</th>
     <td>
-      <% if @conference_edition.custom_css_file.present? %>
-        <%= link_to @conference_edition.custom_css_file, @conference_edition.custom_css_file.url, target: :blank %>
-      <% else %>
-        <p class="alert alert-info">There's no custom css file uploaded for this edition yet.</p>
-      <% end %>
-
       <% if can? :manage, @conference_edition %>
         <%= simple_form_for [:admin, @conference, @conference_edition],
           url: update_appearance_admin_conference_conference_edition_path,
@@ -19,7 +13,9 @@
 
           <%= error_messages_for(@conference_edition) %>
 
-          <%= form.input_field :custom_css_file %>
+          <%= form.input :custom_css_file %>
+          <%= form.input :cover %>
+
           <%= form.submit "Update", class: 'btn btn-default' %>
         <% end %>
       <% end %>

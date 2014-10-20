@@ -1,16 +1,16 @@
 <%# @param conference_edition [Array<Conf::Models::ConferenceEdition>] %>
 
 <section id="schedule">
-  <h1 class="primary-heading box box-tertiary"><%= t 'schedule'%></h1>
+  <h2 class="primary-heading box box-tertiary"><%= t 'schedule'%></h2>
 
   <div class="schedule-wrapper">
     <div class="schedule-inner-wrapper">
       <% conference_edition.grouped_slots.sort.each do |day, slots| %>
         <section class="schedule box box-tertiary day-<%= day %>">
-          <h1 class="secondary-heading"><%= day.strftime("%A") %></h1>
+          <h3 class="secondary-heading"><%= day.strftime("%A") %></h3>
           <table>
             <% slots.each do |slot| %>
-              <tr class="<%= slot.kind %>">
+              <tr class="<%= slot.kind %> <%= !slot.is_talk_slot? ? 'special-slot' : ''  %>">
                 <td class="time"><%= timespan(slot) %></td>
                 <td class="description">
                   <% if slot.is_talk_slot? %>

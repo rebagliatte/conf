@@ -1,0 +1,34 @@
+// Talks
+
+.talks-show {
+  p {
+    margin: 0 0 1em 0;
+  }
+  .speaker-details .secondary-heading {
+    padding-bottom: 3em;
+    line-height: 60px;
+    h3 {
+      display: inline-block;
+    }
+    .avatar {
+      width: 60px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 0.5em;
+    }
+  }
+  .social-media {
+    padding-top: 2em;
+    li {
+      line-height: 1.5em;
+      display: inline-block;
+      margin-right: 1em;
+    }
+    i {
+      margin-right: 0.5em;
+      width: 1em;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+}

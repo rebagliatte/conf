@@ -1,6 +1,6 @@
 class Admin::ConferenceEditionsController < AdminController
 
-  before_action :set_conference_edition_params, only: [ :create, :update, :update_appearance ]
+  before_action :set_conference_edition_params, only: [ :create, :update ]
 
   load_and_authorize_resource :conference
   load_and_authorize_resource :conference_edition, through: :conference
@@ -44,9 +44,10 @@ class Admin::ConferenceEditionsController < AdminController
 
   def update_appearance
     permitted_params = [
+      :cover,
       :custom_css_file
     ]
-    update_settings('update_appearance', permitted_params)
+    update_settings('appearance', permitted_params)
   end
 
   # Call for proposals
@@ -57,7 +58,6 @@ class Admin::ConferenceEditionsController < AdminController
   def update_call_for_proposals
     permitted_params = [
       :cfp_deadline,
-      :is_call_for_proposals_open,
       translations_attributes: [
         :id,
         :notes_to_speakers,
@@ -157,16 +157,20 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def update_settings(action, permitted_params, success_url = nil)
-    conference_edition_params = params.require(:conference_edition).permit(permitted_params)
-
     if !success_url
       success_url = send("#{action}_admin_conference_conference_edition_path", @conference, @conference_edition)
     end
 
-    if @conference_edition.update(conference_edition_params)
-      redirect_to success_url, flash: { success: 'Updated!' }
+    if params[:conference_edition].blank?
+      redirect_to success_url, flash: { info: 'Nothing selected' }
     else
-      render(action.to_sym)
+      conference_edition_params = params.require(:conference_edition).permit(permitted_params)
+
+      if @conference_edition.update(conference_edition_params)
+        redirect_to success_url, flash: { success: 'Updated!' }
+      else
+        render(action.to_sym)
+      end
     end
   end
 end

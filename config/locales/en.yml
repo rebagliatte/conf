@@ -1,5 +1,8 @@
 en:
+  about_us: About the conference
+  ago: Ago
   all_conferences: All conferences
+  become_a_sponsor: Become a sponsor
   call_for_proposals: Call for proposals
   confirmed_speakers: Confirmed Speakers
   do_not_miss_out: Don't miss out
@@ -7,9 +10,7 @@ en:
   drop_us_a_line: Drop us a line
   follow_us_on_twitter: Follow us on Twitter
   friend_us_on_facebook: Friend us on Facebook
-  track_us_on_lanyrd: Track us on Lanyrd
-  subscribe_to_our_youtube_channel: Subscribe to our YouTube channel
-  location: Location
+  location: Venue
   networks: Social Networks
   news: News
   oh_snap: Oh snap!
@@ -18,8 +19,8 @@ en:
   powered_by: Powered by
   previous_edition: Previous Edition
   previous_editions: Previous Editions
-  read_more: Read more
   read_all_posts: Read all posts
+  read_more: Read more
   register: Register
   schedule: Schedule
   show_your_support_to: Become a sponsor and support
@@ -29,13 +30,13 @@ en:
   speakers: Speakers
   sponsors: Sponsors
   sponsorship_packages: Sponsorship Packages
+  stay_up_to_date: Stay up to date
   submit: Submit
   submit_your_proposal: Submit your proposal
-  the_talks: Talks
-  stay_up_to_date: Stay up to date
   subscribe: Subscribe
-  ago: Ago
-  about_us: About the conference
+  subscribe_to_our_youtube_channel: Subscribe to our YouTube channel
+  the_talks: Talks
+  track_us_on_lanyrd: Track us on Lanyrd
 
   en: English
   pt: Portuguese
