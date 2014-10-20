@@ -2,15 +2,13 @@
 
 <!-- About (includes organizing team and code of conduct) -->
 <% if current_edition.about %>
-  <section class="about">
-    <h2 class="primary-heading"><%= t('about') %> <%= current_conference.name %></h2>
-    <%= markdown(current_edition.about) %>
-  </section>
+  <h2 class="primary-heading"><%= t('about') %> <%= current_conference.name %></h2>
+  <%= markdown(current_edition.about) %>
 <% end %>
 
 <!-- Social networks -->
 <section class="networks">
-  <h2><%= t 'networks' %></h2>
+  <h3 class="secondary-heading"><%= t 'networks' %></h3>
   <ul>
     <% if current_conference.twitter_username.present? %>
       <li>

@@ -3,7 +3,13 @@
 <nav class="main-navigation">
   <h2 class="hidden">Navigation</h2>
   <ul>
-    <li class="home"><%= link_to pretty_conference_and_year(current_edition), root_path %></li>
+    <li class="home">
+      <%= link_to root_path do %>
+        <span>
+          <%= pretty_conference_and_year(current_edition) %>
+        </span>
+      <% end %>
+    </li>
 
     <% if conference_edition.speakers.confirmed.any? %>
       <li><%= anchor_nav_link_to t('speakers'), "#confirmed-speakers" %></li>

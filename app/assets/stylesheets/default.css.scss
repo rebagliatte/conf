@@ -21,7 +21,7 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   -webkit-font-smoothing: antialiased;
   color: $dark-gray;
-  padding-top: 7em;
+  padding-top: 9em;
 }
 h2 {
   padding-top: 1em;
@@ -135,6 +135,7 @@ table {
     text-align: left;
     padding: 1em;
     border-bottom: 1px solid $light-gray;
+    vertical-align: top;
   }
   th {
     width: 30%;

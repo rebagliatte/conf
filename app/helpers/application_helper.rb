@@ -35,6 +35,7 @@ module ApplicationHelper
   end
 
   def markdown(text)
+    return '' if !text
     Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, no_intra_emphasis: true).render(text).html_safe
   end
 

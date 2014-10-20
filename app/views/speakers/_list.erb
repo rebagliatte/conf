@@ -5,7 +5,7 @@
   <% speakers.each do |speaker| %>
     <% url = display_speakers_meta_data ? conference_edition_speakers_path(current_edition) : "http://twitter.com/#{speaker.twitter_username}" %>
 
-    <%= link_to url, class: 'speaker' do %>
+    <%= link_to url, class: 'speaker box' do %>
       <article id="speaker-<%= speaker.twitter_username %>">
         <%= avatar_for(speaker, :avatar, :square_230_230) %>
         <h3><%= speaker.name %></h3>

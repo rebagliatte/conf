@@ -1,7 +1,7 @@
 // Home
 
 // Layout
-body.conferences-show {
+.conferences-show {
   padding-top: 0;
   h2 {
     padding-top: 3em;
@@ -33,25 +33,37 @@ body.conferences-show {
   }
 
   // Speakers
-  #confirmed-speakers .speaker {
-    display: inline-block;
-    width: 21%;
-    padding: 0 3% 3em 0;
-    text-transform: capitalize;
-    overflow: hidden;
-    border: none;
-    p {
-      margin: 0;
-      font-size: 1em;
-      line-height: 1.2em;
-      max-width: 100%;
-      max-height: 1.2em;
-      white-space: nowrap;
+  #confirmed-speakers {
+    overflow: auto;
+    .speaker {
+      display: block;
+      float: left;
+      width: 22.75%;
+      margin: 0 3% 3em 0;
+      text-transform: capitalize;
       overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    img {
-      width: 100%;
+      p {
+        margin: 0;
+        font-size: 1em;
+        line-height: 1.2em;
+        max-width: 100%;
+        max-height: 1.2em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      img {
+        width: 100%;
+      }
+      &:nth-child(4),
+      &:nth-child(8),
+      &:nth-child(12),
+      &:nth-child(16),
+      &:nth-child(20),
+      &:nth-child(24),
+      &:nth-child(28) {
+        margin-right: 0;
+      }
     }
   }
 
