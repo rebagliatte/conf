@@ -1,64 +1,94 @@
-<section class="intro">
-  <h1>Conference organization made easy</h1>
+<section class="intro box">
+  <h2>Conference organization made easy</h2>
   <ul>
-    <li class="first">Free</li>
+    <li>Free</li>
     <li>Simple</li>
     <li>Custom</li>
   </ul>
-  <%#= link_to('Create an event', "#", class: 'btn')%>
+  <%= link_to('Create an event', new_admin_conference_path, class: 'btn')%>
 </section>
 
-<section class="stages">
-  <h1>A different site on each stage</h1>
+<section class="stages box">
+  <h2>A different site on each stage</h2>
 
-  <div class="stage-wrapper">
-    <section class="pre-conference">
-      <h1>Pre Conference</h1>
-      <p>Emphasis on call for proposals, sponsorship packages and info about previous editions.</p>
-    </section>
+  <section class="pre-conference">
+    <h3>Pre Conference</h3>
+    <p>Emphasis on call for proposals, sponsorship packages and info about previous editions.</p>
+    <%= image_tag('marketing/pre-conf.png') %>
+  </section>
 
-    <section class="during-conference">
-      <h1>During Conference</h1>
-      <p>The schedule, the speakers and the sponsors are all set. Let’s show them off!</p>
-    </section>
+  <section class="during-conference">
+    <h3>During Conference</h3>
+    <p>The schedule, the speakers and the sponsors are all set. Let’s show them off!</p>
+    <%= image_tag('marketing/during-conf.png') %>
+  </section>
 
-    <section class="after-conference">
-      <h1>After Conference</h1>
-      <p>Get everyone emotional with conference pics and easy access to each speaker’s video and slides.</p>
-    </section>
+  <section class="after-conference last">
+    <h3>After Conference</h3>
+    <p>Get everyone emotional with conference pics and easy access to each speaker’s video and slides.</p>
+    <%= image_tag('marketing/post-conf.png') %>
+  </section>
+</section>
+
+<section class="main-features box">
+  <h2>Main Features</h2>
+
+  <div class="table">
+    <div class="table-row">
+      <section>
+        <%= image_tag('marketing/house.png') %>
+        <h3>Custom Domain</h3>
+        <p>Use your brand’s own custom domain as the main conference url. You may also use one of our subdomains while you get your site ready.</p>
+      </section>
+
+      <section>
+        <%= image_tag('marketing/custom-styles.png') %>
+        <h3>Custom Styles</h3>
+        <p>Each conference has its own personality. Show off your own by uploading your own custom images and stylesheets.</p>
+      </section>
+
+      <section>
+        <%= image_tag('marketing/multi-language.png') %>
+        <h3>Multi Language</h3>
+        <p>English, Spanish, Portuguese and more to come!</p>
+      </section>
+    </div>
+
+    <div class="table-row">
+      <section>
+        <%= image_tag('marketing/single-and-multi-track.png') %>
+        <h3>Single and multi track conferences</h3>
+        <p>Host several talks simultaneously at your event or just one at a time.</p>
+      </section>
+
+      <section>
+        <%= image_tag('marketing/blog.png') %>
+        <h3>Blog</h3>
+        <p>Update your site often with fresh news to keep everyone excited. Get them ready for early bird fees, announce new sponsors and speakers as they come.</p>
+      </section>
+
+      <section>
+        <%= image_tag('marketing/free.png') %>
+        <h3>Free</h3>
+        <p>Want to spread the word about the topics that excite you the most?. Just get your conference out there. No hidden costs, no credit card required.</p>
+      </section>
+    </div>
   </div>
 </section>
 
-<!-- <section class="main-features">
-  <h1>Main Features</h1>
+<section class="customers box">
+  <h2>You are in good company</h2>
 
-  <section>
-    <h1>Custom Domain</h1>
-    <p>Use your brand’s own custom domain as the main conference url. You may also use one of our subdomains while you get your site ready.</p>
-  </section>
-
-  <section>
-    <h1>Custom Styles</h1>
-    <p>Each conference has its own personality. Show off your own by uploading your own custom images and stylesheets.</p>
-  </section>
-
-  <section>
-    <h1>Multi Language</h1>
-    <p>English, Spanish, Portuguese and more to come!</p>
-  </section>
-
-  <section>
-    <h1>Single and multi track conferences</h1>
-    <p>Host several talks simultaneously at your event or just one at a time.</p>
-  </section>
-
-  <section>
-    <h1>Blog</h1>
-    <p>Update your site often with fresh news to keep everyone excited. Get them ready for early bird fees, announce new sponsors and speakers as they come.</p>
-  </section>
-
-  <section>
-    <h1>Free</h1>
-    <p>Want to spread the word about the topics that excite you the most?. Just get your conference out there. No hidden costs, no credit card required.</p>
-  </section>
-</section> -->
+  <ul>
+    <li>
+      <%= link_to 'http://www.rubyconfuruguay.org/en' do %>
+        <%= image_tag('marketing/ruby-conf-uruguay.png') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to 'http://isa15.conf.nu/en' do %>
+        <%= image_tag('marketing/isa.png') %>
+      <% end %>
+    </li>
+  </ul>
+</section>

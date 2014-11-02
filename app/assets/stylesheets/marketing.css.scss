@@ -12,12 +12,11 @@ $dark_blue: #1c1737;
 @import 'application/mixins';
 
 // Global Styles
-body {
-  text-align: center;
-}
 h1 {
-  text-transform: uppercase;
   font-size: 1.5em;
+}
+img {
+  max-width: 100%;
 }
 .btn {
   display: inline-block;
@@ -49,140 +48,112 @@ h1 {
 // Header
 .main-header {
   background-color: $orange;
-  h1 {
+  overflow: auto;
+  .logo {
     margin: 0;
+    line-height: 0;
+    max-width: 150px;
+    padding: 0.5em;
   }
-}
-
-// Sprite usage
-.intro:after,
-.intro li:before,
-.stages section:before,
-.stages section h1:before,
-.main-features:before,
-.main-features:after {
-  content: '';
-  background: transparent url(asset_path('marketing/sprite.png')) top left no-repeat;
-  display: inline-block;
 }
 
 // Intro
 .intro {
-  padding-top: 4em;
-  color: $dark_gray;
+  padding: 10em;
+  background: transparent url(marketing/bg.jpg) center center no-repeat;
+  background-size: cover;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
   ul {
-    list-style: none;
     padding: 0;
     li {
+      list-style: none;
       display: inline-block;
-      text-transform: uppercase;
-      font-weight: bold;
-      &:before {
-        width: 8px;
-        height: 1em;
-        background-position: -728px 4px;
-        margin: 0 10px;
-      }
-      &.first:before {
-        display: none;
-      }
+      padding: 0 0.5em;
     }
-  }
-  &:after {
-    background-position: center -664px;
-    height: 185px;
-    width: 100%;
   }
 }
 
 // Stages
-.stage-wrapper {
-  @include flexbox();
-}
 .stages {
-  margin-top: 3em;
-  background: $light_gray;
-  padding: 3em 10%;
+  text-align: center;
   overflow: auto;
-  >h1 {
-    display: none;
+  padding: 5em;
+  h2 {
+    margin-bottom: 2em;
   }
   section {
-    background-color: #fff;
-    color: $dark_gray;
-    border: 2px solid $dark_blue;
-    @include flex(1 auto);
-    @include box-sizing(border-box);
-    width: 33.33%;
-    padding: 2.5em;
-    min-height: 300px;
-    h1 {
-      color: $dark_blue;
-      font-size: 1.2em;
-      position: relative;
-      margin-bottom: 2em;
-    }
-    h1:before {
-      background-position: -743px 4px;
-      width: 24px;
-      height: 18px;
-      position: absolute;
-      top: 1.5em;
-      left: 50%;
-      margin-left: -12px;
-    }
-    &.pre-conference {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-      border-right: 0;
-    }
-    &.after-conference {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-left: 0;
-    }
-    &:before {
-      width: 178px;
-      height: 170px;
-      margin-bottom: 1.5em;
-    }
-    &.pre-conference:before {
-      background-position: -456px -494px;
-    }
-    &.during-conference:before {
-      background-position: -630px -494px;
-    }
-    &.after-conference:before {
-      background-position: -807px -494px;
+    width: 30.66%;
+    margin-right: 4%;
+    float: left;
+    box-sizing: border-box;
+    &.last {
+      margin-right: 0;
     }
   }
 }
 
-// Main features
+// Main Features
 .main-features {
-  clear: both;
-  width: 100%;
-  position: relative;
-  min-height: 663px;
-  &:before,
-  &:after {
-    width: 228px;
-    height: 663px;
-    position: absolute;
-    top: -64px;
+  background: #ececec;
+  overflow: auto;
+  padding: 5em;
+  h2 {
+    text-align: center;
+    margin-bottom: 2em;
   }
-  &:before {
-    background-position: 0 0;
-    left: 20%;
+  .table {
+    display: table;
+    width: 100%;
+    .table-row {
+      display: table-row;
+    }
+    section {
+      display: table-cell;
+      text-align: center;
+      padding: 2em;
+    }
   }
-  &:after {
-    background-position: -229px 0;
-    right: 20%;
+}
+
+// Customers
+.customers {
+  padding: 5em;
+  text-align: center;
+  h2 {
+    text-align: center;
+  }
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+      display: inline-block;
+      padding: 0 1em;
+    }
   }
 }
 
 // Footer
 .main-footer{
   clear: both;
-  width: 100%;
+  background: #333;
+  padding: 1em;
+  color: #777;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+  a {
+    color: #cecece;
+    text-decoration: none;
+    padding: 1em;
+    &:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+  }
 }
