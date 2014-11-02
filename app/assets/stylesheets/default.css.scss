@@ -109,6 +109,8 @@ blockquote {
   }
   p {
     color: inherit;
+    line-height: 1em;
+    font-size: 1em;
   }
   &.alert-danger {
     color: #b94a48;
@@ -158,6 +160,18 @@ ul.unstyled {
   }
   li {
     list-style: none;
+  }
+}
+
+// Markdown
+.markdown {
+  p,
+  li {
+    line-height: 1.5em;
+  }
+  p {
+    font-size: 1em;
+    margin-bottom: 1em;
   }
 }
 

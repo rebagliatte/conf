@@ -3,7 +3,9 @@
 <%= simple_form_for [current_edition, @talk] do |form| %>
   <%= error_messages_for(@talk) %>
 
-  <%= markdown(current_edition.notes_to_speakers) %>
+  <div class="markdown">
+    <%= markdown(current_edition.notes_to_speakers) %>
+  </div>
 
   <fieldset class="box">
     <legend class="primary-heading"><%= t('.about_your_proposal') %></legend>
