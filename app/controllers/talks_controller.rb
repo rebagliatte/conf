@@ -45,9 +45,32 @@ class TalksController < ApplicationController
 
   def talk_params
     params.require(:talk).permit(
-      :abstract, :notes_to_organizers, :language, :title, :speaker_ids, \
-      :speakers_attributes, :conference_edition, :conference_edition_id, \
-      :translations_attributes
+      :abstract,
+      :notes_to_organizers,
+      :language,
+      :title,
+      :speaker_ids,
+      :conference_edition,
+      :conference_edition_id,
+      :translations_attributes,
+      speakers_attributes: [
+        :user_id,
+        :conference_edition_id,
+        :name,
+        :bio,
+        :company,
+        :job_title,
+        :avatar,
+        :avatar_cache,
+        :city,
+        :country,
+        :twitter_username,
+        :github_username,
+        :lanyrd_username,
+        :email,
+        :phone,
+        :website
+      ]
     )
   end
 end
