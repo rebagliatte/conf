@@ -22,5 +22,17 @@ module Conf
 
     # Load code under the lib directory
     config.autoload_paths << Rails.root.join('lib')
+
+    # Mailer
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: Rails.application.secrets.host,
+      authentication: 'plain',
+      enable_starttls_auto: true,
+      user_name: Rails.application.secrets.gmail_username,
+      password: Rails.application.secrets.gmail_password
+    }
   end
 end
