@@ -3,6 +3,10 @@
 // Layout
 .conferences-show {
   padding-top: 0;
+  .alert-global {
+    margin-top: 64px;
+    padding: 8px 3.5%;
+  }
   h2 {
     padding-top: 3em;
   }
@@ -123,6 +127,9 @@
   }
 
   // Subscribe
+  #subscriptions {
+    overflow: auto;
+  }
   #subscriptions form input,
   #subscriptions form button {
     float: left;

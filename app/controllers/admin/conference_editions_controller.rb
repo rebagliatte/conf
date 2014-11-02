@@ -74,7 +74,7 @@ class Admin::ConferenceEditionsController < AdminController
 
   def update_call_for_sponsors
     permitted_params = [
-      :is_call_for_sponsors_open,
+      :is_call_for_sponsorships_open,
       :sponsorship_packages_pdf,
       translations_attributes: [
         :id,

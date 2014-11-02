@@ -94,6 +94,8 @@
 <% end %>
 
 <!-- Sponsors and call for sponsors -->
-<section id="sponsors">
-  <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
-</section>
+<% if display_call_for_sponsorships?(current_edition) %>
+  <section id="sponsors">
+    <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
+  </section>
+<% end %>
