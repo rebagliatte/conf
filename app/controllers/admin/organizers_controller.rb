@@ -43,7 +43,7 @@ class Admin::OrganizersController < AdminController
       signup_url = new_organizer_signup_url(@organizer_invitation.token)
       UserMailer.organizer_invitation_email(@organizer_invitation, signup_url).deliver
 
-      path = admin_conference_edition_organizers_path(@conference_edition.conference, @conference_edition)
+      path = admin_conference_edition_organizers_path(@conference_edition)
       redirect_to(path, flash: { success: 'The invitation has been sent successfully!' })
     else
       render :new
