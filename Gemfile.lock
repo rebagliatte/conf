@@ -60,6 +60,9 @@ GEM
       countries (= 0.9.3)
     currencies (0.4.2)
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     excon (0.38.0)
     execjs (2.2.1)
     faraday (0.9.0)
@@ -216,6 +219,7 @@ DEPENDENCIES
   capistrano3-puma
   carrierwave
   country_select
+  exception_notification
   fog
   globalize (~> 4.0.2)
   liquid
