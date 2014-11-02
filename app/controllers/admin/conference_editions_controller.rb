@@ -24,6 +24,7 @@ class Admin::ConferenceEditionsController < AdminController
   end
 
   def edit
+    build_translations_for(@conference_edition, @conference_edition)
   end
 
   def update
@@ -53,6 +54,7 @@ class Admin::ConferenceEditionsController < AdminController
   # Call for proposals
 
   def call_for_proposals
+    build_translations_for(@conference_edition, @conference_edition)
   end
 
   def update_call_for_proposals
@@ -70,6 +72,7 @@ class Admin::ConferenceEditionsController < AdminController
   # Call for sponsors
 
   def call_for_sponsors
+    build_translations_for(@conference_edition, @conference_edition)
   end
 
   def update_call_for_sponsors
@@ -88,6 +91,7 @@ class Admin::ConferenceEditionsController < AdminController
   # Registration settings
 
   def registration_settings
+    build_translations_for(@conference_edition, @conference_edition)
   end
 
   def update_registration_settings
@@ -106,6 +110,7 @@ class Admin::ConferenceEditionsController < AdminController
   # Subscriber settings
 
   def subscriber_settings
+    build_translations_for(@conference_edition, @conference_edition)
   end
 
   def update_subscriber_settings
