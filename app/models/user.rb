@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   validates :role, inclusion: { in: ROLES }
   validates :image, file_size: { maximum: 0.5.megabytes.to_i }, if: :image_changed?
 
+  # Rails secure password
+  has_secure_password
+
   # Uploaders
   mount_uploader :image, ImageUploader
 

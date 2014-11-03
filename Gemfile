@@ -8,6 +8,9 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'
 
+# Authentication
+gem 'bcrypt', '~> 3.1.7'
+
 # Omniauth
 gem 'omniauth-twitter'
 gem 'omniauth-github'

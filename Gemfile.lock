@@ -31,6 +31,7 @@ GEM
     aws-sdk (1.49.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
+    bcrypt (3.1.9)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
@@ -211,6 +212,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  bcrypt (~> 3.1.7)
   bootstrap-sass
   cancan
   capistrano (~> 3.1)
