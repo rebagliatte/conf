@@ -4,40 +4,38 @@
 <%= simple_form_for [:admin, conference], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(conference) %>
 
-  <fieldset>
-    <legend>Basics</legend>
-    <%= form.input :name %>
-    <%= form.association :languages, required: true %>
-    <%= form.input :subdomain, label: 'Confnu subdomain' %>
-    <%= form.input :custom_domain %>
-  </fieldset>
-
-  <fieldset>
-    <legend>Social Networks</legend>
-    <%= form.input :email %>
-    <%= form.input :twitter_username %>
-    <%= form.input :twitter_hashtag %>
-    <%= form.input :facebook_page_username %>
-    <%= form.input :disqus_shortname %>
-    <%= form.input :lanyrd_series_name %>
-    <%= form.input :youtube_channel_id %>
-  </fieldset>
-
   <% if conference.new_record? %>
-    <%= form.input :owner_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= form.input :name %>
+    <%= form.input :email %>
+    <%= form.association :languages, required: true %>
 
     <%= form.simple_fields_for :conference_editions do |ce| %>
-      <fieldset>
-        <legend>Current Conference Edition information</legend>
-        <%= ce.input :logo %>
-        <%= ce.input :from_date %>
-        <%= ce.input :to_date %>
-        <%= ce.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
-        <%= ce.input :country %>
-        <%= ce.input :city %>
-        <%= ce.input :venue %>
-      </fieldset>
+      <%= ce.input :logo %>
+      <%= ce.input :from_date, label: 'Start date' %>
+      <%= ce.input :to_date, label: 'End date' %>
+      <%= ce.input :kind, as: :select, collection: humanized_collection(ConferenceEdition::KINDS), include_blank: false %>
+      <%= ce.input :country %>
+      <%= ce.input :city %>
     <% end %>
+  <% else %>
+    <fieldset>
+      <legend>Basics</legend>
+      <%= form.input :name %>
+      <%= form.association :languages, required: true %>
+      <%= form.input :subdomain, label: 'Confnu subdomain' %>
+      <%= form.input :custom_domain %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Social Networks</legend>
+      <%= form.input :email %>
+      <%= form.input :twitter_username %>
+      <%= form.input :twitter_hashtag %>
+      <%= form.input :facebook_page_username %>
+      <%= form.input :disqus_shortname %>
+      <%= form.input :lanyrd_series_name %>
+      <%= form.input :youtube_channel_id %>
+    </fieldset>
   <% end %>
 
   <div class="form-actions">

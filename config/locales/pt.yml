@@ -24,8 +24,6 @@ pt:
   register: Registrar
   schedule: Programa
   show_your_support_to: Torne-se um patrocinador e apoio
-  sign_in_github: Entre com Github
-  sign_in_twitter: Entre com Twitter
   sign_out: Salir
   speakers: Palestrantes
   sponsors: Patrocinadores
@@ -37,6 +35,7 @@ pt:
   subscribe_to_our_youtube_channel: Siga-nos no YouTube
   the_talks: Palestras
   track_us_on_lanyrd: Siga-nos no lanyrd
+  invalid_email_or_password: E-mail ou senha inválida
 
   en: Inglês
   pt: Português

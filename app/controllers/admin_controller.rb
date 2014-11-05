@@ -11,8 +11,8 @@ class AdminController < ApplicationController
   private
 
   def authenticate_user
-    unless current_user
-      flash[:info] = 'Please sign in.'
+    if !current_user
+      session[:redirect_path] = request.original_url
       redirect_to signup_url
     end
   end

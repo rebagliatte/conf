@@ -14,6 +14,9 @@ class Admin::ConferencesController < AdminController
   end
 
   def create
+    @conference.owner_id = current_user.id
+    @conference.subdomain = @conference.name.parameterize
+
     if @conference.save
       first_edition = @conference.conference_editions.first
       first_edition.organizers << current_user

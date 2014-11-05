@@ -1,16 +1,24 @@
-<div class="signup">
-  <%= title 'Welcome' %>
+<%= title 'Login or Register' %>
 
-  <p>
-    <% if @organizer_invitation %>
-      To join the <strong><%= @organizer_invitation.conference.name %>'s organizing team</strong> please sign in using your favorite service.
-    <% else %>
-      Please sign in using your favorite service.
-    <% end %>
+<% if @organizer_invitation %>
+  <p class="alert alert-info">
+    Please login or register to join the <%= @organizer_invitation.conference.name %>'s organizing team!
   </p>
+<% end %>
 
+<%= simple_form_for @user, url: sessions_path, html: { class: 'form-collapsed' } do |form| %>
+  <%= error_messages_for(@user) %>
+
+  <%= form.input_field :email, placeholder: 'Email', class: 'form-control', autofocus: true %>
+  <%= form.input_field :password, placeholder: 'Password', class: 'form-control last' %>
+  <%= form.submit 'Login or Register', class: 'btn btn-lg btn-primary btn-block' %>
+<% end %>
+
+<p class="horizontal-divider">Or</p>
+
+<section>
   <ul class="authentications-list">
-    <li><%= link_to t('sign_in_twitter'), '/auth/twitter', class: 'twitter btn btn-default' %></li>
-    <li><%= link_to t('sign_in_github'), '/auth/github', class: 'github btn btn-default' %></li>
+    <li><%= link_to 'Enter with Twitter', '/auth/twitter', class: 'twitter btn btn-default' %></li>
+    <li><%= link_to 'Enter with Github', '/auth/github', class: 'github btn btn-default' %></li>
   </ul>
-</div>
+</section>

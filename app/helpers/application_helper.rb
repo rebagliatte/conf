@@ -51,6 +51,8 @@ module ApplicationHelper
     elsif user.email
       email_hash = Digest::MD5.hexdigest(user.email).to_s
       "http://www.gravatar.com/avatar/#{email_hash}?s=45"
+    else
+      'fallback/default.jpg'
     end
 
     image_tag(image_src, alt: user.name, class: 'avatar')

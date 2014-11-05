@@ -1,6 +1,4 @@
 class Admin::OrganizersController < AdminController
-
-  before_action :set_organizer_invitation_params, only: [ :create ]
   load_and_authorize_resource :conference_edition
 
   # Organizers
@@ -21,7 +19,7 @@ class Admin::OrganizersController < AdminController
   def update
     @organizer = @conference_edition.organizers.find(params[:id])
 
-    if @organizer.update(params[:user])
+    if @organizer.update(user_params)
       flash[:success] = 'Organizer updated successfully'
       redirect_to(admin_conference_edition_organizer_path(@conference_edition, @organizer))
     else
@@ -36,7 +34,7 @@ class Admin::OrganizersController < AdminController
   end
 
   def create
-    @organizer_invitation = @conference_edition.organizer_invitations.new(params[:organizer_invitation])
+    @organizer_invitation = @conference_edition.organizer_invitations.new(organizer_invitation_params)
     @organizer_invitation.inviter = current_user
 
     if @organizer_invitation.save
@@ -52,7 +50,16 @@ class Admin::OrganizersController < AdminController
 
   private
 
-  def set_organizer_invitation_params
+  def user_params
+    params[:user] = params.require(:user).permit(
+      :name,
+      :nickname,
+      :email,
+      :image
+    )
+  end
+
+  def organizer_invitation_params
     params[:organizer_invitation] = params.require(:organizer_invitation).permit(
       :invitee_email,
       :invitee_id,

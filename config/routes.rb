@@ -76,11 +76,17 @@ Rails.application.routes.draw do
   end
 
   # Authentication
-  get '/signup' => 'sessions#new', as: :signup
+
+
+  resources :users, only: %w(create)
+  resources :sessions, only: %w(new create destroy)
+  get 'logout', to: 'sessions#destroy', as: :logout
+  get 'signup', to: 'sessions#new', as: :signup
+
+  # get '/signup' => 'sessions#new', as: :signup
   get '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
-  get '/logout', to: 'sessions#destroy', as: 'logout'
 
   # I18N
   get '', to: redirect("/#{I18n.default_locale}")

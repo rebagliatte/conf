@@ -136,6 +136,83 @@
   }
 }
 
+// full width layout
+
+.no-sidebar {
+  .main-admin-sidebar {
+    display: none;
+  }
+  .main-admin-content-area {
+    width: 800px;
+    padding: 0;
+    float: none;
+    margin: 0 auto;
+  }
+}
+
+// authentication
+
+.authentication {
+  .main-admin-content-area {
+    width: 300px;
+    padding-top: 20vh;
+    h1 {
+      text-align: center;
+    }
+  }
+  .form-collapsed input.form-control {
+    margin-bottom: -1px;
+    border-radius: 0;
+    padding: 10px;
+    height: auto;
+    font-size: 16px;
+    &:first-of-type {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+    &.last {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      margin-bottom: 10px;
+    }
+  }
+  .authentications-list {
+    text-align: center;
+    margin: 3em 0 0 0;
+    padding: 0;
+    li {
+      display: inline-block;
+    }
+  }
+  .horizontal-divider {
+    position: relative;
+    margin: 3rem 1.5rem;
+    padding: 0;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.8);
+    &:before,
+    &:after {
+      position: absolute;
+      top: 50%;
+      content: ' ';
+      width: 50%;
+      border-top: 1px solid rgba(0,0,0,.1);
+      border-bottom: 1px solid rgba(255,255,255,.8);
+    }
+    &:before {
+      left: 0;
+      margin-left: -1.5rem;
+    }
+    &:after {
+      left: auto;
+      right: 0;
+      margin-right: -1.5rem;
+    }
+  }
+}
+
 // conference_editions#appearance
 
 .edition-custom-images {
@@ -169,20 +246,6 @@
 }
 .appearance .btn {
   margin: 1em 0;
-}
-
-// sessions#new
-
-.signup {
-  margin: 70px auto;
-  text-align: center;
-  .authentications-list {
-    margin: 3em 0 0 0;
-    padding: 0;
-    li {
-      display: inline-block;
-    }
-  }
 }
 
 // talks#show

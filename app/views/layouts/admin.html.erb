@@ -12,7 +12,7 @@
   <%= render partial: 'shared/analytics' %>
 </head>
 
-<body class="admin">
+<body class="admin <%= current_user ? '' : 'authentication' %> <%= current_user && conferences.any? ? '' : 'no-sidebar' %>">
   <header class="navbar main-admin-header">
     <%= link_to 'Confnu ADMIN', admin_conferences_path, class: 'brand' %>
     <%= render(partial: 'shared/authentication') %>

@@ -14,7 +14,7 @@ en:
   networks: Social Networks
   news: News
   oh_snap: Oh snap!
-  please_resubmit: Please review the following fields and try submitting again
+  please_resubmit: Please review the following fields
   posted: Posted
   powered_by: Powered by
   previous_edition: Previous Edition
@@ -24,8 +24,6 @@ en:
   register: Register
   schedule: Schedule
   show_your_support_to: Become a sponsor and support
-  sign_in_github: Sign in with Github
-  sign_in_twitter: Sign in with Twitter
   sign_out: Sign out
   speakers: Speakers
   sponsors: Sponsors
@@ -37,6 +35,7 @@ en:
   subscribe_to_our_youtube_channel: Subscribe to our YouTube channel
   the_talks: Talks
   track_us_on_lanyrd: Track us on Lanyrd
+  invalid_email_or_password: Invalid email or password
 
   en: English
   pt: Portuguese
