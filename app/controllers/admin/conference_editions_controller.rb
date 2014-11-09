@@ -46,6 +46,8 @@ class Admin::ConferenceEditionsController < AdminController
   def update_appearance
     permitted_params = [
       :cover,
+      :cover_video_mp4,
+      :cover_video_webm,
       :custom_css_file
     ]
     update_settings('appearance', permitted_params)
@@ -59,6 +61,7 @@ class Admin::ConferenceEditionsController < AdminController
 
   def update_call_for_proposals
     permitted_params = [
+      :is_call_for_proposals_open,
       :cfp_deadline,
       translations_attributes: [
         :id,

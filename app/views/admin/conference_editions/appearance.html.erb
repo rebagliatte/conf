@@ -14,9 +14,11 @@
           <%= error_messages_for(@conference_edition) %>
 
           <%= form.input :custom_css_file %>
-          <%= form.input :cover %>
+          <%= form.input :cover, label: 'Cover image' %>
+          <%= form.input :cover_video_mp4, label: 'Cover video (mp4 format)' %>
+          <%= form.input :cover_video_webm, label: 'Cover video (webm format)' %>
 
-          <%= form.submit "Update", class: 'btn btn-default' %>
+          <%= form.submit 'Update', class: 'btn btn-default' %>
         <% end %>
       <% end %>
     </td>

@@ -56,6 +56,8 @@ class ConferenceEdition < ActiveRecord::Base
   mount_uploader :cover, ImageUploader
   mount_uploader :sponsorship_packages_pdf, AttachmentUploader
   mount_uploader :custom_css_file, StylesheetUploader
+  mount_uploader :cover_video_mp4, VideoUploader
+  mount_uploader :cover_video_webm, VideoUploader
 
   # Scopes
   default_scope { order(from_date: :desc) }
@@ -69,7 +71,7 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def cfp_open?
-    cfp_deadline && cfp_deadline.future?
+    is_call_for_proposals_open && cfp_deadline && cfp_deadline.future?
   end
 
   def to_s

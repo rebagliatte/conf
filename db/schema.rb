@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102212653) do
+ActiveRecord::Schema.define(version: 20141108193707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20141102212653) do
     t.boolean  "is_speaker_listing_available",  default: false,          null: false
     t.date     "cfp_deadline"
     t.string   "cover",                         default: ""
+    t.string   "cover_video_webm",              default: "",             null: false
+    t.string   "cover_video_mp4",               default: "",             null: false
   end
 
   create_table "conference_editions_users", force: true do |t|

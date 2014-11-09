@@ -15,6 +15,18 @@
       <% end %>
     <% end %>
   </div>
+
+  <!-- Teaser Video -->
+  <% if has_cover_video?(current_edition) %>
+    <video autoplay loop muted poster="<%= current_edition.cover %>" class="cover-video">
+      <% if current_edition.cover_video_webm.present? %>
+        <source src="<%= current_edition.cover_video_webm %>" type="video/webm">
+      <% end %>
+      <% if current_edition.cover_video_mp4.present? %>
+        <source src="<%= current_edition.cover_video_mp4 %>" type="video/mp4">
+      <% end %>
+    </video>
+  <% end %>
 </div>
 
 <!-- Speakers -->
