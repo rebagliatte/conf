@@ -13,10 +13,10 @@
 
           <%= error_messages_for(@conference_edition) %>
 
-          <%= form.input :custom_css_file %>
-          <%= form.input :cover, label: 'Cover image' %>
-          <%= form.input :cover_video_mp4, label: 'Cover video (mp4 format)' %>
-          <%= form.input :cover_video_webm, label: 'Cover video (webm format)' %>
+          <%= form.input :custom_css_file, hint: asset_hint(@conference_edition.custom_css_file) %>
+          <%= form.input :cover, label: 'Cover image', hint: asset_hint(@conference_edition.cover) %>
+          <%= form.input :cover_video_mp4, label: 'Cover video (mp4 format)', hint: asset_hint(@conference_edition.cover_video_mp4) %>
+          <%= form.input :cover_video_webm, label: 'Cover video (webm format)', hint: asset_hint(@conference_edition.cover_video_webm) %>
 
           <%= form.submit 'Update', class: 'btn btn-default' %>
         <% end %>

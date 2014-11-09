@@ -66,4 +66,10 @@ module ConferenceEditionsHelper
     maximum - uploaded_images
   end
 
+  def asset_hint(asset)
+    if asset.present?
+      "Current: #{link_to(asset)}".html_safe
+    end
+  end
+
 end
