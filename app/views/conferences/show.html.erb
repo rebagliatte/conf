@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-  <!-- Teaser Video -->
+  <!-- Cover Video -->
   <% if has_cover_video?(current_edition) %>
     <video autoplay loop muted poster="<%= current_edition.cover %>" class="cover-video">
       <% if current_edition.cover_video_webm.present? %>

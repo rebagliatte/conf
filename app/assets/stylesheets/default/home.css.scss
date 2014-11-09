@@ -3,6 +3,8 @@
 // Layout
 .conferences-show {
   padding-top: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   .alert-global {
     margin-top: 64px;
     padding: 8px 3.5%;
@@ -41,12 +43,12 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: auto;
-    min-width: 100%;
-    height: auto;
-    min-height: 100%;
     z-index: -10;
     background-size: cover;
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   // Speakers
@@ -220,5 +222,12 @@
   #confirmed-speakers .speaker {
     width: 100%;
     margin: 0;
+  }
+}
+
+// Mozilla-specific styles
+@-moz-document url-prefix() {
+  .conferences-show .cover-video {
+    width: auto;
   }
 }
