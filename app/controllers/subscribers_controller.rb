@@ -1,12 +1,11 @@
 class SubscribersController < ApplicationController
   def create
-    @subscriber = current_edition.subscribers.new(subscriber_params)
-    if @subscriber.save
-      flash[:success] = 'Thanks!'
-    else
-      flash[:error] = 'Invalid email'
+    @subscriber = current_edition.subscribers.create(subscriber_params)
+
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
     end
-    redirect_to root_path
   end
 
   private

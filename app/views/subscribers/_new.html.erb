@@ -1,0 +1,11 @@
+<% if @subscriber.id %>
+  <p class="alert-global alert alert-success"><%= t(:thanks) %>!</p>
+<% else %>
+  <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form', id: 'new-subscriber' }, remote: true) do |form| %>
+    <%= error_messages_for(@subscriber) %>
+    <%= form.input_field :email, placeholder: 'john@doe.com', autofocus: true %>
+    <button type="submit" class="btn btn-secondary">
+      <span><%= t('go') %></span>
+    </button>
+  <% end %>
+<% end %>

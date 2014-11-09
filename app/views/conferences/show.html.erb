@@ -98,13 +98,7 @@
   <section id="subscriptions">
     <h2 class="primary-heading"><%= t('stay_up_to_date') %></h2>
     <%= markdown(current_edition.notes_to_subscribers) %>
-    <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form' }) do |form| %>
-      <%= error_messages_for(@subscriber) %>
-      <%= form.input_field :email, placeholder: 'john@doe.com' %>
-      <button type="submit" class="btn btn-secondary">
-        <span><%= t('go') %></span>
-      </button>
-    <% end %>
+    <%= render('subscribers/new') %>
   </section>
 <% end %>
 
