@@ -1,15 +1,15 @@
 // To regenerate
 // 1. Download from https://icomoon.io/app/#/projects
 // 2. Copy over fonts and replace this file
-// 2. Remove '/fonts' from the src declarations on this file
+// 3. Remove 'url(/fonts' with 'asset-url(' for compatibility with the asset pipeline
 
 @font-face {
   font-family: 'icomoon';
-  src:url('icomoon.eot?edkgsh');
-  src:url('icomoon.eot?#iefixedkgsh') format('embedded-opentype'),
-    url('icomoon.woff?edkgsh') format('woff'),
-    url('icomoon.ttf?edkgsh') format('truetype'),
-    url('icomoon.svg?edkgsh#icomoon') format('svg');
+  src:asset-url('icomoon.eot?edkgsh');
+  src:asset-url('icomoon.eot?#iefixedkgsh') format('embedded-opentype'),
+    asset-url('icomoon.woff?edkgsh') format('woff'),
+    asset-url('icomoon.ttf?edkgsh') format('truetype'),
+    asset-url('icomoon.svg?edkgsh#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
