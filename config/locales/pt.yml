@@ -37,6 +37,8 @@ pt:
   track_us_on_lanyrd: Siga-nos no lanyrd
   invalid_email_or_password: E-mail ou senha inválida
   thanks: Obrigado
+  stay_in_touch: Ficar em contato
+  invalid_email: 'Por favor, fornecer um e-mail válido'
 
   en: Inglês
   pt: Português
