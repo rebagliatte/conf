@@ -32,7 +32,7 @@ module ConferenceEditionsHelper
     if has_cover_video?(ce)
       "style = \"background-color: transparent\"".html_safe
     elsif ce.cover.present?
-      "style = \"background: transparent url(#{ce.cover_url(:cover)}) top left no-repeat\"".html_safe
+      "style = \"background: transparent url(#{ce.cover_url(:cover)}) top left no-repeat; background-size: cover;\"".html_safe
     end
   end
 

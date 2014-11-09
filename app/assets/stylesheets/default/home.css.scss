@@ -20,8 +20,8 @@
     display: table;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     margin-left: -10vw;
-    background-size: cover;
   }
   .intro {
     display: table-cell;
@@ -34,6 +34,7 @@
     }
     .logo a {
       border: none;
+      display: block;
     }
     .btn {
       margin: 1em 0 0 0;
@@ -49,6 +50,35 @@
     min-height: 100%;
     object-fit: cover;
     object-position: center top;
+  }
+
+  // Teaser video play icon
+  .play {
+    display: inline-block;
+    cursor: pointer;
+    width: 67px;
+    height: 67px;
+    border-radius: 100%;
+    border: 4px white solid;
+    @include transition(0.4s);
+    line-height: 67px;
+    font-size: 24px;
+    margin-bottom: 2em;
+    .icon-play {
+      color: #fff;
+      padding-left: 4px;
+    }
+    &:hover {
+      background: #fff;
+      border-color: #fff;
+      @include transition(scale(1.1));
+      .icon-play {
+        color:#303336;
+      }
+    }
+    &:active {
+      @include transition(0.25s);
+    }
   }
 
   // Speakers
@@ -203,6 +233,58 @@
       width: 130px;
     }
   }
+
+  // Teaser video previewer
+  .modal {
+    @include transition(1s);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    overflow: scroll;
+    background: rgba(0,0,0,0.85);
+    cursor: pointer;
+    text-align: center;
+    display: table;
+    opacity: 1;
+    iframe {
+      width: 1024px;
+      height: 576px;
+      border: 0;
+    }
+    div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    &.hidden {
+      display: none;
+      opacity: 0;
+    }
+    #close {
+      @include transition(0.5s cubic-bezier(.27,1.64,.32,.95));
+      position: fixed;
+      top: 27px;
+      right: 27px;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      height: 45px;
+      width: 45px;
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 45px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0);
+      opacity: 0.3;
+    }
+    #close:hover {
+      @include transform(rotate(90deg));
+      border-color: rgba(255,255,255,0.3);
+      opacity: 1;
+    }
+  }
 }
 
 // Media Queries
@@ -229,5 +311,10 @@
 @-moz-document url-prefix() {
   .conferences-show .cover-video {
     width: auto;
+  }
+  @media screen and (min-width: 1632px) {
+    .conferences-show .cover-video {
+      width: 100%;
+    }
   }
 }

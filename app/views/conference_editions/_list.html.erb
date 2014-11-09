@@ -3,6 +3,5 @@
 <% conference_editions.each do |edition| %>
   <article class="conference-edition">
     <h3 class="secondary-heading"><%= link_to "#{edition.to_s}", conference_edition_talks_path(edition) %></h3>
-    <%= video_embed_code(edition.promo_video_provider, edition.promo_video_uid) %>
   </article>
 <% end %>

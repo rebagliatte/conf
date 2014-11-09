@@ -1,10 +1,15 @@
+// To regenerate
+// 1. Download from https://icomoon.io/app/#/projects
+// 2. Copy over fonts and replace this file
+// 2. Remove '/fonts' from the src declarations on this file
+
 @font-face {
   font-family: 'icomoon';
-  src:asset-url('icomoon.eot?-kb1qm7');
-  src:asset-url('icomoon.eot?#iefix-kb1qm7') format('embedded-opentype'),
-    asset-url('icomoon.woff?-kb1qm7') format('woff'),
-    asset-url('icomoon.ttf?-kb1qm7') format('truetype'),
-    asset-url('icomoon.svg?-kb1qm7#icomoon') format('svg');
+  src:url('icomoon.eot?edkgsh');
+  src:url('icomoon.eot?#iefixedkgsh') format('embedded-opentype'),
+    url('icomoon.woff?edkgsh') format('woff'),
+    url('icomoon.ttf?edkgsh') format('truetype'),
+    url('icomoon.svg?edkgsh#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,8 +28,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-close:before {
+  content: "\e600";
+}
 .icon-map-marker:before {
   content: "\f041";
+}
+.icon-play:before {
+  content: "\f04b";
 }
 .icon-twitter:before {
   content: "\f099";
@@ -55,5 +66,4 @@
 }
 .icon-lanyrd:before {
   content: "\e608";
-  font-size: 0.9em;
 }

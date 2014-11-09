@@ -1,14 +1,25 @@
 <!-- When, where, register -->
 <div class="intro-holder" <%= cover(current_edition) %>>
   <div class="intro">
+    <!-- Logo -->
     <h1 class="logo">
       <%= link_to root_url do %>
         <%= image_tag current_edition.logo_url, alt: current_conference.name %>
       <% end %>
     </h1>
+
+    <!-- Teaser video -->
+    <% if display_promo_video?(current_edition) %>
+      <a href="#" class="play" id="play-teaser-video" data-video-source="<%= video_src(current_edition.promo_video_provider, current_edition.promo_video_uid) %>">
+        <span class="icon-play"></span>
+      </a>
+    <% end %>
+
+    <!-- Date & Location -->
     <p class="date"><%= pretty_date(current_edition) %></p>
     <p class="location"><%= pretty_city(current_edition) %></p>
 
+    <!-- Register -->
     <% if display_registration_link?(current_edition) %>
       <%= link_to current_edition.registration_url, class: 'btn btn-primary' do %>
         <%= content_tag(:span, t('register')) %>
@@ -16,7 +27,7 @@
     <% end %>
   </div>
 
-  <!-- Cover Video -->
+  <!-- Cover Video Background -->
   <% if has_cover_video?(current_edition) %>
     <video autoplay loop muted poster="<%= current_edition.cover %>" class="cover-video">
       <% if current_edition.cover_video_webm.present? %>
@@ -97,17 +108,21 @@
   </section>
 <% end %>
 
-<!-- Previous edition video -->
-<% if display_promo_video?(current_edition) %>
-  <section id="previous-edition" class="box">
-    <h2 class="primary-heading"><%= t('previous_edition') %></h2>
-    <%= video_embed_code(current_edition.promo_video_provider, current_edition.promo_video_uid) %>
-  </section>
-<% end %>
-
 <!-- Sponsors and call for sponsors -->
 <% if display_call_for_sponsorships?(current_edition) %>
   <section id="sponsors">
     <%= render(partial: 'sponsors/list', locals: { conference_edition: current_edition, display_descriptions: false }) %>
   </section>
+<% end %>
+
+<!-- Teaser video modal -->
+<% if display_promo_video?(current_edition) %>
+  <div class="modal hidden" id="teaser-modal">
+    <div>
+      <iframe id="video-player" allowfullscreen src=""></iframe>
+    </div>
+    <a href="#" id="close">
+      <span class="icon-close"></span>
+    </a>
+  </div>
 <% end %>

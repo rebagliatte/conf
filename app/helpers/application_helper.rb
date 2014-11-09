@@ -21,16 +21,16 @@ module ApplicationHelper
     end
   end
 
-  def video_embed_code(provider, uid)
-    return '' unless provider.present? && uid.present?
+  def video_iframe(provider, uid)
+    "<iframe id=\"video-player\" allowfullscreen src=\"#{ video_src(provider, uid) }\"></iframe>".html_safe
+  end
 
+  def video_src(provider, uid)
     case provider
     when 'youtube'
-      "<iframe class=\"youtube-player\" width=\"640\" height=\"385\" allowfullscreen
-      src=\"http://www.youtube.com/embed/#{uid}\"></iframe>".html_safe
+      "http://www.youtube.com/embed/#{uid}?modestbranding=1&showinfo=0"
     when 'vimeo'
-      "<iframe src=\"http://player.vimeo.com/video/#{uid}\" width=\"640\" height=\"385\"
-      frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>".html_safe
+      "http://player.vimeo.com/video/#{uid}"
     end
   end
 

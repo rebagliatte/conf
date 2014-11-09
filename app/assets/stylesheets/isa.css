@@ -1,0 +1,30 @@
+/*
+ * Global Styles
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/*
+ * Home
+ */
+
+.conferences-show .main-header {
+  display: none;
+}
+.conferences-show .intro {
+  background: rgba(0,0,0,0.3);
+}
+.conferences-show .intro p {
+  line-height: 1.3em;
+}
+.conferences-show .date {
+  font-size: 2em;
+}
+.conferences-show .location {
+  font-size: 2.3em;
+  font-weight: bold;
+}
