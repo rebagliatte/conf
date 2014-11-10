@@ -51,7 +51,7 @@ module ConferenceEditionsHelper
   end
 
   def display_call_for_sponsorships?(ce)
-    is_coming_soon?(ce) && ce.is_call_for_sponsorships_open
+    ce.is_call_for_sponsorships_open
   end
 
   def display_promo_video?(ce)
