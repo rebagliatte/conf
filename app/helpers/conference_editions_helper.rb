@@ -29,10 +29,8 @@ module ConferenceEditionsHelper
   end
 
   def cover(ce)
-    if has_cover_video?(ce)
-      "style = \"background-color: transparent\"".html_safe
-    elsif ce.cover.present?
-      "style = \"background: transparent url(#{ce.cover_url(:cover)}) top left no-repeat; background-size: cover;\"".html_safe
+    if ce.cover.present?
+      "style = \"background: transparent url(#{ce.cover_url(:cover)}) center center no-repeat; background-size: cover;\"".html_safe
     end
   end
 
