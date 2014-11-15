@@ -14,11 +14,10 @@ module ApplicationHelper
   end
 
   def anchor_nav_link_to(text, anchor)
-    if current_page?(root_url)
-      link_to text, anchor
-    else
-      link_to text, "#{root_url}#{anchor}"
-    end
+    root = root_url
+    root << "?conference_edition_id=#{params[:conference_edition_id]}" if params[:conference_edition_id].present?
+    anchor = current_page?(root_url) ? anchor : "#{root}#{anchor}"
+    link_to(text, anchor)
   end
 
   def video_iframe(provider, uid)
@@ -35,7 +34,8 @@ module ApplicationHelper
   end
 
   def embedly(url)
-    embedly_client.oembed(url: url)[0][:html].html_safe
+    response = embedly_client.oembed(url: url)
+    response[0][:html].html_safe if response
   end
 
   def embedly_client

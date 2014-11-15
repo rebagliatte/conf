@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :conferences, only: %w(index show)
 
-    resources :conference_editions, only: %w(index) do
+    resources :conference_editions do
       resources :pages, only: %w(show)
       resources :posts, only: %w(index show)
       resources :speakers, only: %w(index)

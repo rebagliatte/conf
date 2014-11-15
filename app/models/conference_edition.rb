@@ -24,7 +24,6 @@ class ConferenceEdition < ActiveRecord::Base
   # Validations
   validates :from_date, presence: true
   validates :to_date, presence: true
-  validates :to_date, presence: true
   validate :valid_date_range
   validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
   validates :sponsorship_packages_pdf, file_size: { maximum: 1.megabytes.to_i }, if: :sponsorship_packages_pdf?
@@ -63,11 +62,11 @@ class ConferenceEdition < ActiveRecord::Base
   default_scope { order(from_date: :desc) }
 
   def previous_editions
-    self.conference.conference_editions - [self]
+    conference.conference_editions.where('from_date < ?', from_date).reverse
   end
 
   def multiple_track?
-    self.kind == 'multiple_track'
+    kind == 'multiple_track'
   end
 
   def cfp_open?
@@ -79,7 +78,7 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def grouped_slots
-    self.slots.order('day').group_by { |s| s.day }
+    slots.order('day').group_by { |s| s.day }
   end
 
   def grouped_sponsors

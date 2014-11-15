@@ -34,7 +34,7 @@
     <% if conference_edition.sponsors.any? %>
       <li><%= anchor_nav_link_to t('sponsors'), "#sponsors" %></li>
     <% elsif display_call_for_sponsorships?(conference_edition) %>
-      <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsorship-packages" %></li>
+      <li><%= anchor_nav_link_to t('sponsorship_packages'), "#sponsors" %></li>
     <% end %>
 
     <% if display_registration_link?(conference_edition) %>
