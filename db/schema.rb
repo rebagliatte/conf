@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115201156) do
+ActiveRecord::Schema.define(version: 20141115212536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20141115201156) do
     t.string   "cover_video_webm",              default: "",             null: false
     t.string   "cover_video_mp4",               default: "",             null: false
     t.string   "slug",                          default: "",             null: false
+    t.string   "external_url",                  default: "",             null: false
   end
 
   create_table "conference_editions_users", force: true do |t|

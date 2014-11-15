@@ -143,6 +143,7 @@ class Admin::ConferenceEditionsController < AdminController
     params[:conference_edition] = params.require(:conference_edition).permit(
       :city,
       :country,
+      :external_url,
       :from_date,
       :is_location_available,
       :kind,
