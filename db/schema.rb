@@ -347,6 +347,7 @@ ActiveRecord::Schema.define(version: 20141115201156) do
     t.text     "notes_to_organizers",   default: ""
     t.string   "language",                                  null: false
     t.integer  "ranking"
+    t.string   "slug",                  default: "",        null: false
   end
 
   create_table "users", force: true do |t|

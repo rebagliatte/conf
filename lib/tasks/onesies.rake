@@ -3,5 +3,8 @@ namespace :onesies do
     ConferenceEdition.all.each do |ce|
       ce.save
     end
+    Talk.all.each do |ce|
+      ce.save
+    end
   end
 end
