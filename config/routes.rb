@@ -88,4 +88,7 @@ Rails.application.routes.draw do
 
   # I18N
   get '', to: redirect("/#{I18n.default_locale}")
+
+  # Unmatched routes
+  get '*unmatched_route', to: 'application#not_found'
 end

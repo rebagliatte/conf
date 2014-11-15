@@ -20,6 +20,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def not_found
+    old_url = request.url
+    new_url = old_url.sub('conference_editions', 'editions').sub('talks', 'sessions')
+
+    if old_url != new_url
+      redirect_to(new_url, status: :moved_permanently)
+    end
+  end
+
   private
 
   def conditional_layout
