@@ -31,6 +31,7 @@ gem 'country_select'
 gem 'globalize', '~> 4.0.2'
 gem 'cancan'
 gem 'exception_notification'
+gem 'embedly'
 
 # App Server
 gem 'puma'

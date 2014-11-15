@@ -68,4 +68,14 @@
   </ul>
 </section>
 
+<section>
+  <h3 class="hidden"><%= t(:video) %></h3>
+  <%= embedly(@talk.video_url) %>
+</section>
+
+<section>
+  <h3 class="hidden"><%= t(:slides) %></h3>
+  <%= embedly(@talk.slides_url) %>
+</section>
+
 <%= render(partial: 'shared/disqus', locals: { current_conference: current_conference }) %>

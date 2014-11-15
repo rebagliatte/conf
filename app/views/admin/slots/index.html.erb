@@ -36,7 +36,10 @@
           <td><%= timespan(slot) %></td>
           <td>
             <% if slot.is_talk_slot? %>
-              <%= avatar_for(slot.talk.speakers.first, :avatar, :square_230_230) %><%= slot.talk %>
+              <%= link_to admin_conference_edition_talk_path(@conference_edition, slot.talk) do %>
+                <%= avatar_for(slot.talk.speakers.first, :avatar, :square_230_230) %>
+                <%= slot.talk %>
+              <% end %>
             <% else %>
               <%= slot.kind %>
             <% end %>
