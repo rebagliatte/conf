@@ -1,10 +1,10 @@
 namespace :onesies do
   task populate_slugs: :environment do
-    ConferenceEdition.all.each do |ce|
-      ce.save
+    Post.all.each do |p|
+      p.save
     end
-    Talk.all.each do |ce|
-      ce.save
+    Page.all.each do |p|
+      p.save
     end
   end
 end

@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_one :conference, through: :conference_edition
 
   # Validations
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { scope: :conference_edition_id }
   validates :conference_edition_id, presence: true
   validates :image, file_size: { maximum: 0.5.megabytes.to_i }, if: :image?
 
@@ -17,4 +17,19 @@ class Post < ActiveRecord::Base
 
   # Scopes
   default_scope { order(created_at: :desc) }
+
+  # Friendly ID
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders, :scoped], scope: :conference_edition_id
+
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
+  end
 end
