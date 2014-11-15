@@ -22,14 +22,6 @@ class Talk < ActiveRecord::Base
   validates :status, presence: true, inclusion: { in: STATUSES }
   validate :status_transition_is_valid?, if: :status_changed?
 
-  def status_transition_is_valid?
-    if !new_record? && !VALID_STATUS_TRANSITIONS.fetch(status_was).include?(status)
-      errors.add(:status, "can't transition from `#{status_was}` to `#{status}`")
-      return false
-    end
-    true
-  end
-
   # Translations
   has_many :translations
   accepts_nested_attributes_for :translations
@@ -42,6 +34,22 @@ class Talk < ActiveRecord::Base
   scope :by_ranking, -> { order('ranking DESC') }
   scope :confirmed, -> { where(status: 'confirmed') }
   scope :approved, -> { where(status: 'approved') }
+
+  # Friendly ID
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders, :scoped], scope: :conference_edition_id
+
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :speaker_names],
+      [:title, :speaker_names, :id]
+    ]
+  end
 
   # Callbacks
   after_save :update_speaker_statuses, if: :status_changed?
@@ -81,5 +89,19 @@ class Talk < ActiveRecord::Base
 
   def talk_vote_for_user(user)
     talk_votes.where(organizer_id: user.id).first.try(:vote)
+  end
+
+  private
+
+  def status_transition_is_valid?
+    if !new_record? && !VALID_STATUS_TRANSITIONS.fetch(status_was).include?(status)
+      errors.add(:status, "can't transition from `#{status_was}` to `#{status}`")
+      return false
+    end
+    true
+  end
+
+  def speaker_names
+    speakers.map(&:name).join(' and ')
   end
 end

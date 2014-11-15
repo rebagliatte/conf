@@ -32,6 +32,7 @@ gem 'globalize', '~> 4.0.2'
 gem 'cancan'
 gem 'exception_notification'
 gem 'embedly'
+gem 'friendly_id', '~> 5.0.0'
 
 # App Server
 gem 'puma'

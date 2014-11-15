@@ -60,13 +60,13 @@ Rails.application.routes.draw do
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :conferences, only: %w(index show)
 
-    resources :conference_editions, only: %w(index) do
+    resources :conference_editions, path: 'editions' do
       resources :pages, only: %w(show)
       resources :posts, only: %w(index show)
       resources :speakers, only: %w(index)
       resources :slots, only: %w(index)
       resources :sponsors, only: %w(index)
-      resources :talks
+      resources :talks, path: 'sessions'
       resources :subscribers, only: %w(create)
     end
 
@@ -82,9 +82,7 @@ Rails.application.routes.draw do
   resources :sessions, only: %w(new create destroy)
   get 'logout', to: 'sessions#destroy', as: :logout
   get 'signup', to: 'sessions#new', as: :signup
-
-  # get '/signup' => 'sessions#new', as: :signup
-  get '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
+  get '/signup/:organizer_invitation_token', to: 'sessions#new', as: :new_organizer_signup
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
 

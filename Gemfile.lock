@@ -96,6 +96,8 @@ GEM
       fog-core
       fog-json
     formatador (0.2.5)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     globalize (4.0.2)
       activemodel (>= 4.0.0, < 5)
       activerecord (>= 4.0.0, < 5)
@@ -232,6 +234,7 @@ DEPENDENCIES
   embedly
   exception_notification
   fog
+  friendly_id (~> 5.0.0)
   globalize (~> 4.0.2)
   jquery-rails
   liquid

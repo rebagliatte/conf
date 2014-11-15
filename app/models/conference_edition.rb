@@ -24,7 +24,6 @@ class ConferenceEdition < ActiveRecord::Base
   # Validations
   validates :from_date, presence: true
   validates :to_date, presence: true
-  validates :to_date, presence: true
   validate :valid_date_range
   validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
   validates :sponsorship_packages_pdf, file_size: { maximum: 1.megabytes.to_i }, if: :sponsorship_packages_pdf?
@@ -60,14 +59,34 @@ class ConferenceEdition < ActiveRecord::Base
   mount_uploader :cover_video_webm, VideoUploader
 
   # Scopes
-  default_scope { order(from_date: :desc) }
+  default_scope { order(from_date: :asc) }
+
+  # Friendly ID
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders, :scoped], scope: :conference_id
+
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
+  end
+
+  def slug_candidates
+    [
+      :year,
+      [:year, :month],
+      [:year, :month, :country],
+      [:year, :month, :country, :city],
+      [:year, :month, :country, :city, :id]
+    ]
+  end
+
+  # Methods
 
   def previous_editions
-    self.conference.conference_editions - [self]
+    conference.conference_editions.where('from_date < ?', from_date).reverse
   end
 
   def multiple_track?
-    self.kind == 'multiple_track'
+    kind == 'multiple_track'
   end
 
   def cfp_open?
@@ -79,7 +98,7 @@ class ConferenceEdition < ActiveRecord::Base
   end
 
   def grouped_slots
-    self.slots.order('day').group_by { |s| s.day }
+    slots.order('day').group_by { |s| s.day }
   end
 
   def grouped_sponsors
@@ -119,5 +138,13 @@ class ConferenceEdition < ActiveRecord::Base
 
   def destroy_uploads_folder
     FileUtils.rm_rf("#{Rails.root}/public/conference_editions/#{id}")
+  end
+
+  def year
+    from_date.year
+  end
+
+  def month
+    from_date.month
   end
 end

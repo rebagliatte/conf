@@ -42,6 +42,11 @@
         <%= t.input :venue, as: :text, label: 'Venue name', hint: 'Displayed on the homepage.' %>
       <% end %>
     </fieldset>
+
+    <fieldset>
+      <legend>External URL</legend>
+      <%= form.input :external_url, hint: 'Example: \'http://my-previous-edition-site.com\'.' %>
+    </fieldset>
   <% end %>
 
   <div class="form-actions">

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   layout :conditional_layout
 
   before_action :set_locale
+  before_action :enforce_current_edition
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -22,15 +23,7 @@ class ApplicationController < ActionController::Base
   private
 
   def conditional_layout
-    if current_conference
-      if @conference_edition && @conference_edition != current_edition
-        'previous_edition'
-      else
-        'application'
-      end
-    else
-      'marketing'
-    end
+    current_conference ? 'application' : 'marketing'
   end
 
   def set_locale
@@ -56,7 +49,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_edition
-    @current_edition ||= ConferenceEdition.where(conference_id: current_conference).last
+    @current_edition ||= if params[:conference_edition_id]
+      current_conference.conference_editions.find(params[:conference_edition_id])
+    else
+      current_conference.conference_editions.last
+    end
   end
 
   def current_user
@@ -70,6 +67,12 @@ class ApplicationController < ActionController::Base
   def current_user=(user)
     @current_user = user
     session[:user_id] = user.nil? ? user : user.id
+  end
+
+  def enforce_current_edition
+    if current_conference && !current_edition
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   helper_method :current_user, :signed_in?, :current_conference, :current_edition
