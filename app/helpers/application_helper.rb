@@ -34,6 +34,14 @@ module ApplicationHelper
     end
   end
 
+  def embedly(url)
+    embedly_client.oembed(url: url)[0][:html].html_safe
+  end
+
+  def embedly_client
+    @embedly_client ||= Embedly::API.new(key: Rails.application.secrets.embedly_api_key)
+  end
+
   def markdown(text)
     return '' if !text
     Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, no_intra_emphasis: true).render(text).html_safe
