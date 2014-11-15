@@ -82,9 +82,7 @@ Rails.application.routes.draw do
   resources :sessions, only: %w(new create destroy)
   get 'logout', to: 'sessions#destroy', as: :logout
   get 'signup', to: 'sessions#new', as: :signup
-
-  # get '/signup' => 'sessions#new', as: :signup
-  get '/signup/:organizer_invitation_token' => 'sessions#new', as: :new_organizer_signup
+  get '/signup/:organizer_invitation_token', to: 'sessions#new', as: :new_organizer_signup
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
 

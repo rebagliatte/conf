@@ -2,6 +2,6 @@
 
 <% conference_editions.each do |edition| %>
   <article class="conference-edition">
-    <h3 class="secondary-heading"><%= link_to "#{edition.to_s}", root_path(conference_edition_id: edition.id) %></h3>
+    <h3 class="secondary-heading"><%= link_to "#{edition.to_s}", root_path(conference_edition_id: edition) %></h3>
   </article>
 <% end %>

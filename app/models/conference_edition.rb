@@ -59,7 +59,27 @@ class ConferenceEdition < ActiveRecord::Base
   mount_uploader :cover_video_webm, VideoUploader
 
   # Scopes
-  default_scope { order(from_date: :desc) }
+  default_scope { order(from_date: :asc) }
+
+  # Friendly ID
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders, :scoped], scope: :conference_id
+
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
+  end
+
+  def slug_candidates
+    [
+      :year,
+      [:year, :month],
+      [:year, :month, :country],
+      [:year, :month, :country, :city],
+      [:year, :month, :country, :city, :id]
+    ]
+  end
+
+  # Methods
 
   def previous_editions
     conference.conference_editions.where('from_date < ?', from_date).reverse
@@ -118,5 +138,13 @@ class ConferenceEdition < ActiveRecord::Base
 
   def destroy_uploads_folder
     FileUtils.rm_rf("#{Rails.root}/public/conference_editions/#{id}")
+  end
+
+  def year
+    from_date.year
+  end
+
+  def month
+    from_date.month
   end
 end

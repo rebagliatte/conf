@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def current_edition
     @current_edition ||= if params[:conference_edition_id]
-      current_conference.conference_editions.where(id: params[:conference_edition_id]).first
+      current_conference.conference_editions.find(params[:conference_edition_id])
     else
       current_conference.conference_editions.last
     end
