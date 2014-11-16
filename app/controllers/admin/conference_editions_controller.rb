@@ -48,7 +48,8 @@ class Admin::ConferenceEditionsController < AdminController
       :cover,
       :cover_video_mp4,
       :cover_video_webm,
-      :custom_css_file
+      :custom_css_file,
+      :favicon
     ]
     update_settings('appearance', permitted_params)
   end

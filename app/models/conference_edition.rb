@@ -57,6 +57,7 @@ class ConferenceEdition < ActiveRecord::Base
   mount_uploader :custom_css_file, StylesheetUploader
   mount_uploader :cover_video_mp4, VideoUploader
   mount_uploader :cover_video_webm, VideoUploader
+  mount_uploader :favicon, FaviconUploader
 
   # Scopes
   default_scope { order(from_date: :asc) }

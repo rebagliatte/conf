@@ -17,6 +17,7 @@
           <%= form.input :cover, label: 'Cover image', hint: asset_hint(@conference_edition.cover) %>
           <%= form.input :cover_video_mp4, label: 'Cover video (mp4 format)', hint: asset_hint(@conference_edition.cover_video_mp4) %>
           <%= form.input :cover_video_webm, label: 'Cover video (webm format)', hint: asset_hint(@conference_edition.cover_video_webm) %>
+          <%= form.input :favicon %>
 
           <%= form.submit 'Update', class: 'btn btn-default' %>
         <% end %>

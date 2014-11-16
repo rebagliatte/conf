@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116010524) do
+ActiveRecord::Schema.define(version: 20141116214500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20141116010524) do
     t.string   "cover_video_mp4",               default: "",             null: false
     t.string   "slug",                          default: "",             null: false
     t.string   "external_url",                  default: "",             null: false
+    t.string   "favicon",                       default: "",             null: false
   end
 
   add_index "conference_editions", ["slug", "conference_id"], name: "index_conference_editions_on_slug_and_conference_id", unique: true, using: :btree

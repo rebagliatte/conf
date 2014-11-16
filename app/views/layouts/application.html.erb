@@ -6,6 +6,9 @@
   <meta name="description" content="<%= current_edition.tagline %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta charset="utf-8">
+  <% if current_edition.favicon.present?  %>
+    <link rel="icon" type="image/png" href="<%= current_edition.favicon.url %>">
+  <% end %>
   <%= stylesheet_link_tag 'default', media: 'all' %>
   <%= stylesheet_link_tag current_edition.custom_css_file, media: 'all' %>
   <%= csrf_meta_tags %>
