@@ -1,1 +1,5 @@
-$('#new-subscriber').html('<%= escape_javascript(render('new')) %>');
+$('.alert').fadeOut('fast');
+
+setTimeout(function () {
+  $('#new-subscriber').html('<%= escape_javascript(render('new')) %>');
+}, 200);
