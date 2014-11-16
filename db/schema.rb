@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115225159) do
+ActiveRecord::Schema.define(version: 20141116010524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20141115225159) do
     t.string   "slug",                          default: "",             null: false
     t.string   "external_url",                  default: "",             null: false
   end
+
+  add_index "conference_editions", ["slug", "conference_id"], name: "index_conference_editions_on_slug_and_conference_id", unique: true, using: :btree
 
   create_table "conference_editions_users", force: true do |t|
     t.integer "conference_edition_id"
@@ -191,6 +193,8 @@ ActiveRecord::Schema.define(version: 20141115225159) do
     t.string   "slug",                  default: "", null: false
   end
 
+  add_index "pages", ["slug", "conference_edition_id"], name: "index_pages_on_slug_and_conference_edition_id", unique: true, using: :btree
+
   create_table "post_translations", force: true do |t|
     t.integer  "post_id"
     t.string   "locale"
@@ -211,6 +215,8 @@ ActiveRecord::Schema.define(version: 20141115225159) do
     t.datetime "updated_at",                         null: false
     t.string   "slug",                  default: "", null: false
   end
+
+  add_index "posts", ["slug", "conference_edition_id"], name: "index_posts_on_slug_and_conference_edition_id", unique: true, using: :btree
 
   create_table "rooms", force: true do |t|
     t.string   "name",                  default: "", null: false
@@ -352,6 +358,8 @@ ActiveRecord::Schema.define(version: 20141115225159) do
     t.integer  "ranking"
     t.string   "slug",                  default: "",        null: false
   end
+
+  add_index "talks", ["slug", "conference_edition_id"], name: "index_talks_on_slug_and_conference_edition_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",            default: "",     null: false
