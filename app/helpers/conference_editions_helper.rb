@@ -66,7 +66,7 @@ module ConferenceEditionsHelper
 
   def asset_hint(asset)
     if asset.present?
-      "Current: #{link_to(asset)}".html_safe
+      "Current: <a href=\"#{ asset.url }\" download>#{ asset.file.filename }</a>".html_safe
     end
   end
 
