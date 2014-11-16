@@ -107,6 +107,7 @@ blockquote {
   margin: 0;
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
+  position: relative;
   li {
     list-style: disc inside;
     line-height: 2em;
@@ -130,6 +131,29 @@ blockquote {
     color: #3a87ad;
     background-color: #d9edf7;
     border-color: #bce8f1;
+  }
+  .close {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    display: block;
+    height: 2em;
+    line-height: 2em;
+    padding: 8px 1.5em;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    text-decoration: none;
+    &:hover {
+      color: #000;
+      text-decoration: none;
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+      cursor: pointer;
+    }
   }
 }
 

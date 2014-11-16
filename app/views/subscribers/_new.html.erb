@@ -3,7 +3,10 @@
 <% else %>
   <%= simple_form_for([current_edition, @subscriber], html: { class: 'subscription-form', id: 'new-subscriber' }, remote: true) do |form| %>
     <% if @subscriber.errors.any? %>
-      <p class="alert-global alert alert-error"><%= t(:invalid_email) %></p>
+      <p class="alert-global alert alert-error">
+        <%= t(:invalid_email) %>
+        <a class="close">×</a>
+      </p>
     <% end %>
 
     <%= form.input_field :email, placeholder: 'your@email.com', autofocus: true %>

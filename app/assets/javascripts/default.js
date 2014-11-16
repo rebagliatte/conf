@@ -31,3 +31,11 @@ $(document).keydown(function(e) {
     closeTeaserVideo();
   }
 });
+
+$(document).on('click', '.close' , function(e) {
+  e.preventDefault();
+
+  $(e.target)
+    .parent('.alert')
+    .animate({ height: 0, opacity: 0, margin: 0 }, 'slow');
+});
