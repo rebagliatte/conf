@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :enforce_current_edition
+  before_action :allow_iframe_requests
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -41,6 +42,10 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options = {})
     { locale: I18n.locale }
+  end
+
+  def allow_iframe_requests
+    response.headers.delete('X-Frame-Options')
   end
 
   protected
