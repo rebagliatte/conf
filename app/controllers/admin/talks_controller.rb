@@ -25,7 +25,7 @@ class Admin::TalksController < AdminController
 
   def create
     if @talk.save
-      redirect_to admin_conference_edition_talk_path(@conference_edition, @talk), flash: { success: 'Talk created successfully!' }
+      redirect_to admin_conference_edition_talk_path(@conference_edition.id, @talk), flash: { success: 'Talk created successfully!' }
     else
       render :new
     end
@@ -40,12 +40,12 @@ class Admin::TalksController < AdminController
       action = params[:talk][:status] ? @talk.status : 'updated'
       message = if action == 'confirmed'
         speakers = []
-        @talk.speakers.each {|speaker| speakers << "#{view_context.link_to(speaker.name, edit_admin_conference_edition_speaker_path(@conference_edition, speaker) )}" }
+        @talk.speakers.each {|speaker| speakers << "#{view_context.link_to(speaker.name, edit_admin_conference_edition_speaker_path(@conference_edition.id, speaker) )}" }
         "Talk confirmed! Would you like to edit arrival date and accomodation details for #{speakers.to_sentence}?".html_safe
       else
         "Talk #{action} successfully. #{link_to_next_talk(@talk)}".html_safe
       end
-      redirect_to admin_conference_edition_talk_path(@conference_edition, @talk), flash: { success: message }
+      redirect_to admin_conference_edition_talk_path(@conference_edition.id, @talk), flash: { success: message }
     else
       render :edit
     end
@@ -97,13 +97,13 @@ class Admin::TalksController < AdminController
 
   def success_and_redirect
     if !@conference_edition.is_talk_voting_open?
-      url = admin_conference_edition_talk_path(@conference_edition, @talk)
+      url = admin_conference_edition_talk_path(@conference_edition.id, @talk)
       message = "Vote updated successfully. #{link_to_next_talk(@talk)}".html_safe
     elsif next_non_voted_talk
-      url = admin_conference_edition_talk_path(@conference_edition, next_non_voted_talk)
+      url = admin_conference_edition_talk_path(@conference_edition.id, next_non_voted_talk)
       message = 'Vote saved successfully! Keep on going'
     else
-      url = admin_conference_edition_talks_path(@conference_edition)
+      url = admin_conference_edition_talks_path(@conference_edition.id)
       message = 'All set!'
     end
 
@@ -120,9 +120,9 @@ class Admin::TalksController < AdminController
   def link_to_next_talk(talk)
     next_talk = talk.conference_edition.talks.where(status: talk.status).where("created_at < ?", talk.created_at).by_creation_date.first
     if next_talk
-      view_context.link_to('Review next talk', admin_conference_edition_talk_path(@conference_edition, next_talk, update_vote: true), tabindex: 1)
+      view_context.link_to('Review next talk', admin_conference_edition_talk_path(@conference_edition.id, next_talk, update_vote: true), tabindex: 1)
     else
-      view_context.link_to('Back to talks listing', admin_conference_edition_talks_path(@conference_edition), tabindex: 1)
+      view_context.link_to('Back to talks listing', admin_conference_edition_talks_path(@conference_edition.id), tabindex: 1)
     end
   end
 end

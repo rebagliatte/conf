@@ -17,7 +17,7 @@ class Admin::PagesController < AdminController
 
   def create
     if @page.save
-      redirect_to admin_conference_edition_page_path(@conference_edition, @page), flash: { success: 'Page created successfully!' }
+      redirect_to admin_conference_edition_page_path(@conference_edition.id, @page), flash: { success: 'Page created successfully!' }
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::PagesController < AdminController
 
   def update
     if @page.update(params[:page])
-      redirect_to admin_conference_edition_page_path(@conference_edition, @page), flash: { success: 'Page updated successfully!' }
+      redirect_to admin_conference_edition_page_path(@conference_edition.id, @page), flash: { success: 'Page updated successfully!' }
     else
       render :edit
     end

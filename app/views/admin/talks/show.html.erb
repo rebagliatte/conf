@@ -6,7 +6,7 @@
   </h2>
 
   <% if can? :manage, @conference_edition && !@conference_edition.is_talk_voting_open %>
-    <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition, @talk), class: 'btn btn-primary main-cta' %>
+    <%= link_to 'Edit', edit_admin_conference_edition_talk_path(@conference_edition.id, @talk), class: 'btn btn-primary main-cta' %>
   <% end %>
 </header>
 
@@ -122,7 +122,7 @@
             <td><%= avatar_for(v.organizer, 'image') %></td>
             <td class="actions">
               <% if v.organizer == current_user %>
-                <%= link_to(admin_conference_edition_talk_path(@conference_edition, @talk, update_vote: true)) do %>
+                <%= link_to(admin_conference_edition_talk_path(@conference_edition.id, @talk, update_vote: true)) do %>
                   <i class="fa fa-pencil"></i>
                 <% end %>
               <% end %>

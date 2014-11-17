@@ -21,7 +21,7 @@ class Admin::OrganizersController < AdminController
 
     if @organizer.update(user_params)
       flash[:success] = 'Organizer updated successfully'
-      redirect_to(admin_conference_edition_organizer_path(@conference_edition, @organizer))
+      redirect_to(admin_conference_edition_organizer_path(@conference_edition.id, @organizer))
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class Admin::OrganizersController < AdminController
       signup_url = new_organizer_signup_url(@organizer_invitation.token)
       UserMailer.organizer_invitation_email(@organizer_invitation, signup_url).deliver
 
-      path = admin_conference_edition_organizers_path(@conference_edition)
+      path = admin_conference_edition_organizers_path(@conference_edition.id)
       redirect_to(path, flash: { success: 'The invitation has been sent successfully!' })
     else
       render :new

@@ -3,7 +3,7 @@
 
   <% if can? :manage, @conference_edition %>
     <div class="btn-wrapper">
-      <%= link_to 'Create a new slot', new_admin_conference_edition_slot_path(@conference_edition), class: 'btn btn-primary' %>
+      <%= link_to 'Create a new slot', new_admin_conference_edition_slot_path(@conference_edition.id), class: 'btn btn-primary' %>
 
       <%= simple_form_for @conference_edition, url: update_schedule_settings_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) do |form| %>
         <%= form.hidden_field :is_schedule_available, value: !@conference_edition.is_schedule_available %>
@@ -17,7 +17,7 @@
   <ul class="nav nav-tabs on-table">
     <% @days.each do |day| %>
       <li class="<%= day.to_s == @current_day ? 'active' : '' %>">
-        <%= link_to(day.to_s(:short), admin_conference_edition_slots_path(@conference_edition, day: day)) %>
+        <%= link_to(day.to_s(:short), admin_conference_edition_slots_path(@conference_edition.id, day: day)) %>
       </li>
     <% end %>
   </ul>
@@ -36,7 +36,7 @@
           <td><%= timespan(slot) %></td>
           <td>
             <% if slot.is_talk_slot? %>
-              <%= link_to admin_conference_edition_talk_path(@conference_edition, slot.talk) do %>
+              <%= link_to admin_conference_edition_talk_path(@conference_edition.id, slot.talk) do %>
                 <%= avatar_for(slot.talk.speakers.first, :avatar, :square_230_230) %>
                 <%= slot.talk %>
               <% end %>
@@ -45,10 +45,10 @@
             <% end %>
           </td>
           <td class="actions">
-            <%= link_to admin_conference_edition_slot_path(@conference_edition, slot), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_slot_path(@conference_edition.id, slot), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
 
             <% if can? :manage, @conference_edition %>
-              <%= link_to edit_admin_conference_edition_slot_path(@conference_edition, slot), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
+              <%= link_to edit_admin_conference_edition_slot_path(@conference_edition.id, slot), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
             <% end %>
           </td>
         </tr>
@@ -60,7 +60,7 @@
     It seems there are no slots for this conference edition yet.
 
     <% if can? :manage, @conference_edition %>
-      Would you like to <%= link_to 'create one', new_admin_conference_edition_slot_path(@conference_edition) %>?
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_slot_path(@conference_edition.id) %>?
     <% end %>
 
   </p>

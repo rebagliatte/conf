@@ -17,7 +17,7 @@ class Admin::PostsController < AdminController
 
   def create
     if @post.save
-      redirect_to admin_conference_edition_post_path(@conference_edition, @post), flash: { success: 'Post created successfully!' }
+      redirect_to admin_conference_edition_post_path(@conference_edition.id, @post), flash: { success: 'Post created successfully!' }
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::PostsController < AdminController
 
   def update
     if @post.update(params[:post])
-      redirect_to admin_conference_edition_post_path(@conference_edition, @post), flash: { success: 'Post updated successfully!' }
+      redirect_to admin_conference_edition_post_path(@conference_edition.id, @post), flash: { success: 'Post updated successfully!' }
     else
       render :edit
     end

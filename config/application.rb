@@ -24,15 +24,14 @@ module Conf
     config.autoload_paths << Rails.root.join('lib')
 
     # Mailer
-    config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: 587,
+      port: '587',
+      address: 'smtp.mandrillapp.com',
+      user_name: Rails.application.secrets.mandrill_username,
+      password: Rails.application.secrets.mandrill_api_key,
       domain: Rails.application.secrets.host,
-      authentication: 'plain',
-      enable_starttls_auto: true,
-      user_name: Rails.application.secrets.gmail_username,
-      password: Rails.application.secrets.gmail_password
+      authentication: :plain
     }
+    config.action_mailer.delivery_method = :smtp
   end
 end

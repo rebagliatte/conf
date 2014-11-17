@@ -20,7 +20,7 @@ class Admin::SponsorsController < AdminController
 
   def create
     if @sponsor.save
-      redirect_to admin_conference_edition_sponsor_path(@conference_edition, @sponsor), flash: { success: 'Sponsor created successfully!' }
+      redirect_to admin_conference_edition_sponsor_path(@conference_edition.id, @sponsor), flash: { success: 'Sponsor created successfully!' }
     else
       render :new
     end
@@ -31,7 +31,7 @@ class Admin::SponsorsController < AdminController
 
   def update
     if @sponsor.update(params[:sponsor])
-      redirect_to admin_conference_edition_sponsor_path(@conference_edition, @sponsor), flash: { success: 'Sponsor updated successfully!' }
+      redirect_to admin_conference_edition_sponsor_path(@conference_edition.id, @sponsor), flash: { success: 'Sponsor updated successfully!' }
     else
       render :edit
     end

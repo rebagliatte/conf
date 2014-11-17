@@ -10,7 +10,7 @@ class Admin::ImagesController < AdminController
 
   def create
     if @image.save
-      redirect_to appearance_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition), flash: { success: 'Image created successfully!' }
+      redirect_to appearance_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition.id), flash: { success: 'Image created successfully!' }
     else
       render :new
     end
@@ -18,7 +18,7 @@ class Admin::ImagesController < AdminController
 
   def destroy
     @image.destroy
-    redirect_to appearance_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition), flash: { success: 'Image removed' }
+    redirect_to appearance_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition.id), flash: { success: 'Image removed' }
   end
 
   private

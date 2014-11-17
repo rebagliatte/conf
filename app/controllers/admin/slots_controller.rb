@@ -26,7 +26,7 @@ class Admin::SlotsController < AdminController
 
   def create
     if @slot.save
-      redirect_to admin_conference_edition_slots_path(@conference_edition), flash: { success: 'Slot created successfully!' }
+      redirect_to admin_conference_edition_slots_path(@conference_edition.id), flash: { success: 'Slot created successfully!' }
     else
       render :new
     end
@@ -37,7 +37,7 @@ class Admin::SlotsController < AdminController
 
   def update
     if @slot.update(params[:slot])
-      redirect_to admin_conference_edition_slots_path(@conference_edition), flash: { success: 'Slot updated successfully!' }
+      redirect_to admin_conference_edition_slots_path(@conference_edition.id), flash: { success: 'Slot updated successfully!' }
     else
       render :edit
     end

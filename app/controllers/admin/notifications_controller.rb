@@ -25,7 +25,7 @@ class Admin::NotificationsController < AdminController
     @notification = Notification.new(notification_attributes)
 
     if @notification.save
-      redirect_to preview_admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification saved successfully!' }
+      redirect_to preview_admin_conference_edition_notification_path(@conference_edition.id, @notification), flash: { success: 'Notification saved successfully!' }
     else
       render :new
     end
@@ -38,7 +38,7 @@ class Admin::NotificationsController < AdminController
     @notification.assign_attributes(params[:notification])
 
     if composed_emails(@notification) && @notification.save
-      redirect_to preview_admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification updated successfully!' }
+      redirect_to preview_admin_conference_edition_notification_path(@conference_edition.id, @notification), flash: { success: 'Notification updated successfully!' }
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class Admin::NotificationsController < AdminController
   def trigger
     @notification.update(sent_at: Time.now, recipient_emails: @notification.recipient_users.pluck(:email).join(','))
     if trigger_emails
-      redirect_to admin_conference_edition_notification_path(@conference_edition, @notification), flash: { success: 'Notification sent successfully!' }
+      redirect_to admin_conference_edition_notification_path(@conference_edition.id, @notification), flash: { success: 'Notification sent successfully!' }
     else
       render :preview
     end

@@ -1,7 +1,7 @@
 <header class="admin-header">
   <%= title @notification.subject %>
 
-  <%= link_to 'Preview', preview_admin_conference_edition_notification_path(@conference_edition, @notification), class: 'btn btn-primary main-cta' %>
+  <%= link_to 'Preview', preview_admin_conference_edition_notification_path(@conference_edition.id, @notification), class: 'btn btn-primary main-cta' %>
 </header>
 
 <%= render(partial: 'admin/shared/locale_tabs', locals: { translations: @notification.translations, resource: @notification }) %>

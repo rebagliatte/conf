@@ -135,7 +135,7 @@ class Admin::ConferenceEditionsController < AdminController
     permitted_params = [
       :is_schedule_available
     ]
-    update_settings('subscriber_settings', permitted_params, admin_conference_edition_slots_path(@conference_edition))
+    update_settings('subscriber_settings', permitted_params, admin_conference_edition_slots_path(@conference_edition.id))
   end
 
   private

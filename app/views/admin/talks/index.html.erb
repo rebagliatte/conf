@@ -3,7 +3,7 @@
 
   <% if can? :manage, @conference_edition %>
     <div class="btn-wrapper">
-      <%= link_to 'Create a new talk', new_admin_conference_edition_talk_path(@conference_edition), class: 'btn btn-default' %>
+      <%= link_to 'Create a new talk', new_admin_conference_edition_talk_path(@conference_edition.id), class: 'btn btn-default' %>
       <%= link_to 'Manage your call for proposals', call_for_proposals_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition), class: 'btn btn-primary' %>
     </div>
   <% end %>
@@ -13,7 +13,7 @@
   <ul class="nav nav-tabs on-table">
     <% @statuses.each do |status| %>
       <li class="<%= status == @current_status ? 'active' : '' %>">
-        <%= link_to("#{status.humanize} (#{record_count(@talks, status)})", admin_conference_edition_talks_path(@conference_edition, status: status)) %>
+        <%= link_to("#{status.humanize} (#{record_count(@talks, status)})", admin_conference_edition_talks_path(@conference_edition.id, status: status)) %>
       </li>
     <% end %>
   </ul>
@@ -50,9 +50,9 @@
             <td><%= talk.ranking %></td>
           <% end %>
           <td class="actions">
-            <%= link_to admin_conference_edition_talk_path(@conference_edition, talk), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_talk_path(@conference_edition.id, talk), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
             <% if can? :manage, @conference_edition %>
-              <%= link_to edit_admin_conference_edition_talk_path(@conference_edition, talk), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
+              <%= link_to edit_admin_conference_edition_talk_path(@conference_edition.id, talk), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
             <% end %>
           </td>
         </tr>
@@ -64,7 +64,7 @@
     It seems there are no talks for this conference edition yet.
 
     <% if can? :manage, @conference_edition %>
-      Would you like to <%= link_to 'create one', new_admin_conference_edition_talk_path(@conference_edition) %> or <%= link_to 'open a call for proposals', call_for_proposals_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) %>?
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_talk_path(@conference_edition.id) %> or <%= link_to 'open a call for proposals', call_for_proposals_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) %>?
     <% end %>
 
   </p>

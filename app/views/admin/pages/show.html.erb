@@ -2,7 +2,7 @@
   <%= title @page.title %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'Edit', edit_admin_conference_edition_page_path(@conference_edition, @page), class: 'btn btn-primary main-cta' %>
+    <%= link_to 'Edit', edit_admin_conference_edition_page_path(@conference_edition.id, @page), class: 'btn btn-primary main-cta' %>
   <% end %>
 </header>
 

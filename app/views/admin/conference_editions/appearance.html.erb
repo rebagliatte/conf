@@ -32,7 +32,7 @@
       <% if can? :manage, @conference_edition %>
         <% if available_image_uploads(@conference_edition) > 0 %>
           <p class="alert alert-info">You still have <%= available_image_uploads(@conference_edition) %> image uploads available for this conference edition</p>
-          <%= link_to 'Upload an image', new_admin_conference_edition_image_path(@conference_edition), class: 'btn btn-default' %>
+          <%= link_to 'Upload an image', new_admin_conference_edition_image_path(@conference_edition.id), class: 'btn btn-default' %>
         <% else %>
           <p class="alert alert-danger">You don't have any available image uploads for this conference edition.</p>
         <% end %>

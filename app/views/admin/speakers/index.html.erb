@@ -2,7 +2,7 @@
   <%= title "Speakers" %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'Create a new speaker', new_admin_conference_edition_speaker_path(@conference_edition), class: 'btn btn-default main-cta' %>
+    <%= link_to 'Create a new speaker', new_admin_conference_edition_speaker_path(@conference_edition.id), class: 'btn btn-default main-cta' %>
   <% end %>
 </header>
 
@@ -10,7 +10,7 @@
   <ul class="nav nav-tabs on-table">
     <% @statuses.each do |status| %>
       <li class="<%= status == @current_status ? 'active' : '' %>">
-        <%= link_to("#{status.humanize} (#{record_count(@speakers, status)})", admin_conference_edition_speakers_path(@conference_edition, status: status)) %>
+        <%= link_to("#{status.humanize} (#{record_count(@speakers, status)})", admin_conference_edition_speakers_path(@conference_edition.id, status: status)) %>
       </li>
     <% end %>
   </ul>
@@ -48,10 +48,10 @@
             </td>
           <% end %>
           <td class="actions">
-            <%= link_to admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_speaker_path(@conference_edition.id, speaker), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
 
             <% if can? :manage, @conference_edition %>
-              <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition, speaker), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
+              <%= link_to edit_admin_conference_edition_speaker_path(@conference_edition.id, speaker), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
             <% end %>
           </td>
           <% if can?(:manage, @conference_edition) && @current_status == 'confirmed' %>
@@ -73,7 +73,7 @@
     It seems there are no approved speakers for this conference edition yet.
 
     <% if can? :manage, @conference_edition %>
-      Would you like to <%= link_to 'create one', new_admin_conference_edition_speaker_path(@conference_edition) %>?
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_speaker_path(@conference_edition.id) %>?
     <% end %>
 
   </p>
