@@ -78,7 +78,7 @@ class Admin::NotificationsController < AdminController
   end
 
   def trigger_emails
-    sender_email = @notification.organizer.email
+    sender_email = @notification.conference.email
 
     composed_emails(@notification).each do |email|
       UserMailer.notification_email(email[:subject], email[:body], email[:recipient_email], sender_email).deliver
