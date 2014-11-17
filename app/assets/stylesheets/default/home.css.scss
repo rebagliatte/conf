@@ -71,7 +71,7 @@
     &:hover {
       background: #fff;
       border-color: #fff;
-      @include transition(scale(1.1));
+      @include transform(scale(1.1));
       .icon-play {
         color:#303336;
       }
