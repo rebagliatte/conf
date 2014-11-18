@@ -27,6 +27,7 @@ class Ability
     #
 
     # Can manage all in the scope of his/her manageable editions
+    can :manage, Conference, id: user.manageable_edition_ids
     can :manage, ConferenceEdition, id: user.manageable_edition_ids
     can :manage, Notification, conference_edition_id: user.manageable_edition_ids
     can :manage, OrganizerInvitation, conference_edition_id: user.manageable_edition_ids
