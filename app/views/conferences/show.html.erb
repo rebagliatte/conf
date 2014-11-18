@@ -10,7 +10,7 @@
 
     <!-- Teaser video -->
     <% if display_promo_video?(current_edition) %>
-      <a href="#" class="play" id="play-teaser-video" data-video-source="<%= video_src(current_edition.promo_video_provider, current_edition.promo_video_uid) %>">
+      <a href="<%= video_src(current_edition.promo_video_provider, current_edition.promo_video_uid) %>" class="play" id="play-teaser-video">
         <span class="icon-play"></span>
       </a>
     <% end %>
