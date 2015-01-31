@@ -21,7 +21,7 @@ class Admin::ConferencesController < AdminController
       first_edition = @conference.conference_editions.first
       first_edition.organizers << current_user
 
-      redirect_url = admin_conference_edition_organizers_path(first_edition)
+      redirect_url = admin_conference_edition_organizers_url(first_edition, subdomain: @conference.subdomain)
       message = "Conference created successfully! Go ahead and invite in some co-organizers."
       redirect_to redirect_url, flash: { success: message }
     else
