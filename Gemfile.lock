@@ -32,6 +32,12 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
@@ -54,12 +60,14 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    coderay (1.1.0)
     colorize (0.7.3)
     countries (0.9.3)
       currencies (~> 0.4.2)
     country_select (1.3.1)
       countries (= 0.9.3)
     currencies (0.4.2)
+    debug_inspector (0.0.2)
     embedly (1.9.1)
       json
       oauth
@@ -115,6 +123,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.8.0)
       subexec (~> 0.2.1)
@@ -154,6 +163,12 @@ GEM
       omniauth-oauth (~> 1.0)
     pg (0.17.1)
     polyglot (0.3.5)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     puma (2.9.0)
       rack (>= 1.1, < 2.0)
     querystring (0.1.0)
@@ -188,6 +203,7 @@ GEM
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    slop (3.6.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -223,6 +239,8 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bcrypt (~> 3.1.7)
+  better_errors
+  binding_of_caller
   bootstrap-sass
   cancan
   capistrano (~> 3.1)
@@ -242,6 +260,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-twitter
   pg
+  pry-rails
   puma
   quiet_assets
   rails (= 4.1.4)
