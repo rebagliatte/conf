@@ -47,7 +47,7 @@ module ConferenceEditionsHelper
   end
 
   def display_registration_link?(ce)
-    !is_over?(ce) && ce.is_registration_open && ce.registration_url.present?
+    @display_registration_link ||= ce.is_registration_open && !is_over?(ce)
   end
 
   def display_call_for_sponsorships?(ce)
@@ -67,6 +67,20 @@ module ConferenceEditionsHelper
   def asset_hint(asset)
     if asset.present?
       "Current: <a href=\"#{ asset.url }\" download>#{ asset.file.filename }</a>".html_safe
+    end
+  end
+
+  def registration_link(ce)
+    return unless display_registration_link?(current_edition)
+
+    url = if ce.registration_url.present?
+      ce.registration_url
+    else
+      '#'
+    end
+
+    link_to url, class: 'btn btn-primary' do
+      content_tag(:span, t('register'))
     end
   end
 

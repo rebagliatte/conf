@@ -20,11 +20,7 @@
     <p class="location"><%= pretty_city(current_edition) %></p>
 
     <!-- Register -->
-    <% if display_registration_link?(current_edition) %>
-      <%= link_to current_edition.registration_url, class: 'btn btn-primary' do %>
-        <%= content_tag(:span, t('register')) %>
-      <% end %>
-    <% end %>
+    <%= registration_link(current_edition) %>
   </div>
 
   <!-- Cover Video Background -->
