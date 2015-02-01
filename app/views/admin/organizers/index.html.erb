@@ -2,7 +2,7 @@
   <%= title 'Organizers' %>
 
   <% if can? :manage, @conference_edition %>
-    <%= link_to 'Invite a new organizer', new_admin_conference_edition_organizer_path(@conference_edition.id), class: 'btn btn-default main-cta' %>
+    <%= link_to 'Invite a new organizer', new_admin_conference_edition_organizer_path(@conference_edition), class: 'btn btn-default main-cta' %>
   <% end %>
 </header>
 

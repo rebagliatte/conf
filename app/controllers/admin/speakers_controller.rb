@@ -42,7 +42,7 @@ class Admin::SpeakersController < AdminController
         else
           'will no longer be displayed on the homepage.'
         end
-        redirect_to admin_conference_edition_speakers_path(@conference_edition.id), flash: { success: "#{ @speaker.name } #{ promtion_status }" }
+        redirect_to admin_conference_edition_speakers_path(@conference_edition), flash: { success: "#{ @speaker.name } #{ promtion_status }" }
       else
         redirect_to admin_conference_edition_speaker_path(@conference_edition.id, @speaker), flash: { success: 'Speaker updated successfully!' }
       end
