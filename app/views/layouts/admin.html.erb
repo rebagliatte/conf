@@ -43,6 +43,8 @@
                         <li><%= link_to 'Organizers', admin_conference_edition_organizers_path(e.id) %></li>
                         <li><%= link_to 'Appearance', appearance_admin_conference_conference_edition_path(conference, e.id) %></li>
                         <li><%= link_to 'Pages', admin_conference_edition_pages_path(e.id) %></li>
+                        <li><%= link_to 'Tickets', admin_conference_edition_tickets_path(e.id) %></li>
+                        <li><%= link_to 'Discounts', admin_conference_edition_codes_path(e.id) %></li>
                       </ul>
                     </li>
                   <% end %>

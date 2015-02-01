@@ -50,7 +50,7 @@
             <td><%= talk.ranking %></td>
           <% end %>
           <td class="actions">
-            <%= link_to admin_conference_edition_talk_path(@conference_edition.id, talk), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_talk_path(@conference_edition.id, talk), title: 'View' do %><i class="fa fa-eye"></i><% end %>
             <% if can? :manage, @conference_edition %>
               <%= link_to edit_admin_conference_edition_talk_path(@conference_edition.id, talk), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
             <% end %>

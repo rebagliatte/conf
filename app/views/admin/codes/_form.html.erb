@@ -1,0 +1,17 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param code [Models::Code] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, code], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(code) %>
+
+  <%= form.input :code %>
+  <%= form.input :discount, label: 'Discount in percentage' %>
+  <%= form.input :start_date, include_blank: true %>
+  <%= form.input :end_date, include_blank: true %>
+  <%= form.input :quantity, label: 'Available quantity' %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Code", class: 'btn btn-lg btn-primary' %>
+  </div>
+<% end %>

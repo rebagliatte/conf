@@ -1,0 +1,48 @@
+<header class="admin-header">
+  <%= title 'Discount Codes' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Create a new discount code', new_admin_conference_edition_code_path(@conference_edition.id), class: 'btn btn-default main-cta' %>
+  <% end %>
+
+</header>
+
+<% if @codes.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Discount</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @codes.each do |code| %>
+        <tr>
+          <td><%= code.code %></td>
+          <td><%= code.discount %>%</td>
+          <td><%= code.start_date ? code.start_date.to_s(:short) : '' %></td>
+          <td><%= code.end_date ? code.end_date.to_s(:short) : '' %></td>
+          <td><%= code.quantity %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_code_path(@conference_edition.id, code), title: 'View' do %><i class="fa fa-eye"></i><% end %>
+            <% if can? :manage, @conference_edition %>
+              <%= link_to edit_admin_conference_edition_code_path(@conference_edition.id, code), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no codes for this conference edition.
+
+    <% if can? :manage, @conference_edition %>
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_code_path(@conference_edition.id) %>?
+    <% end %>
+  </p>
+<% end %>

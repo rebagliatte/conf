@@ -51,6 +51,8 @@ Rails.application.routes.draw do
       resources :posts
       resources :subscribers, only: %w(index)
       resources :slots
+      resources :tickets
+      resources :codes
     end
 
     root 'conferences#index'
