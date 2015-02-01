@@ -17,7 +17,7 @@ class Admin::TicketsController < AdminController
   def create
     if @ticket.save
       flash[:success] = 'Ticket created successfully!'
-      redirect_to admin_conference_edition_ticket_path(@conference_edition.id, @ticket)
+      redirect_to admin_conference_edition_tickets_path(@conference_edition)
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::TicketsController < AdminController
   def update
     if @ticket.update(params[:ticket])
       flash[:success] = 'Ticket updated successfully!'
-      redirect_to admin_conference_edition_ticket_path(@conference_edition.id, @ticket)
+      redirect_to admin_conference_edition_ticket_path(@conference_edition, @ticket)
     else
       render :edit
     end
