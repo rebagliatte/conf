@@ -3,7 +3,7 @@
 <% conference_editions.each do |edition| %>
   <article class="conference-edition">
     <h3 class="secondary-heading">
-      <% url = edition.external_url.present? ? edition.external_url : root_path(conference_edition_id: edition) %>
+      <% url = edition.external_url.present? ? edition.external_url : root_path(conference_edition_slug: edition.slug) %>
       <%= link_to edition.to_s, url %>
     </h3>
   </article>
