@@ -4,44 +4,48 @@
 <%= simple_form_for [:admin, conference, conference_edition], html: { class: 'form-horizontal' } do |form| %>
   <%= error_messages_for(conference_edition) %>
 
-  <fieldset>
-    <legend>Basics</legend>
-    <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
-    <%= form.input :logo %>
-  </fieldset>
+  <% if conference_edition.is_internal? %>
+    <fieldset>
+      <legend>Basics</legend>
+      <%= form.input :kind, as: :select, collection: ConferenceEdition::KINDS, include_blank: false %>
+      <%= form.input :logo %>
+    </fieldset>
 
-  <fieldset>
-    <legend>Date</legend>
-    <%= form.input :from_date %>
-    <%= form.input :to_date %>
-  </fieldset>
+    <fieldset>
+      <legend>Date</legend>
+      <%= form.input :from_date %>
+      <%= form.input :to_date %>
+    </fieldset>
 
-  <fieldset>
-    <legend>Venue</legend>
-    <%= form.input :is_location_available, label: 'Display location at the homepage?', inline_label: 'Yes' %>
-    <%= form.input :country %>
-    <%= form.input :city %>
-    <%= form.input :venue_address %>
-    <%= form.input :venue_latitude %>
-    <%= form.input :venue_longitude %>
-  </fieldset>
+    <fieldset>
+      <legend>Venue</legend>
+      <%= form.input :is_location_available, label: 'Display location at the homepage?', inline_label: 'Yes' %>
+      <%= form.input :country %>
+      <%= form.input :city %>
+      <%= form.input :venue_address %>
+      <%= form.input :venue_latitude %>
+      <%= form.input :venue_longitude %>
+    </fieldset>
 
-  <fieldset>
-    <legend>Promotional Video</legend>
-    <%= form.input :promo_video_provider, as: :select, collection: ConferenceEdition::VIDEO_PROVIDERS, include_blank: false, label: 'Service' %>
-    <%= form.input :promo_video_uid, label: 'Identifier', hint: 'Example: FCZs6Ijnyx8' %>
-  </fieldset>
+    <fieldset>
+      <legend>Promotional Video</legend>
+      <%= form.input :promo_video_provider, as: :select, collection: ConferenceEdition::VIDEO_PROVIDERS, include_blank: false, label: 'Service' %>
+      <%= form.input :promo_video_uid, label: 'Identifier', hint: 'Example: FCZs6Ijnyx8' %>
+    </fieldset>
+  <% end %>
 
   <% if !conference_edition.new_record? %>
-    <fieldset>
-      <legend>Copy* <span class="note">*markdown available on all fields</span></legend>
-      <%= translatable_fields_for(form) do |t| %>
-        <%= t.input :tagline, label: 'Conference tagline', hint: 'Displayed below the conference logo on every page.' %>
-        <%= t.input :about, as: :text, label: 'Conference description', hint: 'Displayed on the footer on every page.' %>
-        <%= t.input :news_intro, as: :text, label: 'Blog description', hint: 'Displayed on the homepage and news listing.' %>
-        <%= t.input :venue, as: :text, label: 'Venue name', hint: 'Displayed on the homepage.' %>
-      <% end %>
-    </fieldset>
+    <% if conference_edition.is_internal? %>
+      <fieldset>
+        <legend>Copy* <span class="note">*markdown available on all fields</span></legend>
+        <%= translatable_fields_for(form) do |t| %>
+          <%= t.input :tagline, label: 'Conference tagline', hint: 'Displayed below the conference logo on every page.' %>
+          <%= t.input :about, as: :text, label: 'Conference description', hint: 'Displayed on the footer on every page.' %>
+          <%= t.input :news_intro, as: :text, label: 'Blog description', hint: 'Displayed on the homepage and news listing.' %>
+          <%= t.input :venue, as: :text, label: 'Venue name', hint: 'Displayed on the homepage.' %>
+        <% end %>
+      </fieldset>
+    <% end %>
 
     <fieldset>
       <legend>External URL</legend>

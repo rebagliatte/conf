@@ -7,86 +7,88 @@
 
 </header>
 
-<h2>Basics</h2>
+<% if @conference_edition.is_internal? %>
+  <h2>Basics</h2>
 
-<table class="table">
-  <tr>
-    <th>Kind</th>
-    <td><%= @conference_edition.kind %></td>
-  </tr>
-  <tr>
-    <th>Logo</th>
-    <td><%= @conference_edition.logo.file.filename %></td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>Kind</th>
+      <td><%= @conference_edition.kind %></td>
+    </tr>
+    <tr>
+      <th>Logo</th>
+      <td><%= @conference_edition.logo.file.filename %></td>
+    </tr>
+  </table>
 
-<h2>Date</h2>
+  <h2>Date</h2>
 
-<table class="table">
-  <tr>
-    <th>From Date</th>
-    <td><%= @conference_edition.from_date %></td>
-  </tr>
-  <tr>
-    <th>To Date</th>
-    <td><%= @conference_edition.to_date %></td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>From Date</th>
+      <td><%= @conference_edition.from_date %></td>
+    </tr>
+    <tr>
+      <th>To Date</th>
+      <td><%= @conference_edition.to_date %></td>
+    </tr>
+  </table>
 
-<h2>Location</h2>
+  <h2>Location</h2>
 
-<table class="table">
-  <tr>
-    <th>Display location at the homepage?</th>
-    <td><%= @conference_edition.is_location_available %></td>
-  </tr>
-  <tr>
-    <th>Country</th>
-    <td><%= @conference_edition.country %></td>
-  </tr>
-  <tr>
-    <th>City</th>
-    <td><%= @conference_edition.city %></td>
-  </tr>
-  <tr>
-    <th>Venue Address</th>
-    <td><%= @conference_edition.venue_address %></td>
-  </tr>
-  <tr>
-    <th>Venue Geographical Coordinates</th>
-    <td><%= @conference_edition.venue_latitude %>,<%= @conference_edition.venue_longitude %></td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>Display location at the homepage?</th>
+      <td><%= @conference_edition.is_location_available %></td>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <td><%= @conference_edition.country %></td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td><%= @conference_edition.city %></td>
+    </tr>
+    <tr>
+      <th>Venue Address</th>
+      <td><%= @conference_edition.venue_address %></td>
+    </tr>
+    <tr>
+      <th>Venue Geographical Coordinates</th>
+      <td><%= @conference_edition.venue_latitude %>,<%= @conference_edition.venue_longitude %></td>
+    </tr>
+  </table>
 
-<h2>Promotional Video</h2>
+  <h2>Promotional Video</h2>
 
-<table class="table">
-  <tr>
-    <th>Video</th>
-    <td><%= video_iframe(@conference_edition.promo_video_provider, @conference_edition.promo_video_uid) %></td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>Video</th>
+      <td><%= video_iframe(@conference_edition.promo_video_provider, @conference_edition.promo_video_uid) %></td>
+    </tr>
+  </table>
 
-<h2>Copy</h2>
+  <h2>Copy</h2>
 
-<table class="table">
-  <tr>
-    <th>Conference Tagline</th>
-    <td><%= @conference_edition.tagline %></td>
-  </tr>
-  <tr>
-    <th>Conference description</th>
-    <td><%= @conference_edition.about %></td>
-  </tr>
-  <tr>
-    <th>Blog description</th>
-    <td><%= @conference_edition.news_intro %></td>
-  </tr>
-  <tr>
-    <th>Venue name</th>
-    <td><%= @conference_edition.venue %></td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>Conference Tagline</th>
+      <td><%= @conference_edition.tagline %></td>
+    </tr>
+    <tr>
+      <th>Conference description</th>
+      <td><%= @conference_edition.about %></td>
+    </tr>
+    <tr>
+      <th>Blog description</th>
+      <td><%= @conference_edition.news_intro %></td>
+    </tr>
+    <tr>
+      <th>Venue name</th>
+      <td><%= @conference_edition.venue %></td>
+    </tr>
+  </table>
+<% end %>
 
 <h2>External URL</h2>
 

@@ -26,7 +26,7 @@ class ConferenceEdition < ActiveRecord::Base
   # Validations
   validates :from_date, presence: true
   validates :to_date, presence: true
-  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
+  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }, if: :logo?
   validates :sponsorship_packages_pdf, file_size: { maximum: 10.megabytes.to_i }, if: :sponsorship_packages_pdf?
   validates :custom_css_file, file_size: { maximum: 0.5.megabytes.to_i }, if: :custom_css_file?
   validates :kind, presence: true, inclusion: { in: KINDS }
@@ -71,6 +71,10 @@ class ConferenceEdition < ActiveRecord::Base
 
   def previous_editions
     conference.conference_editions.where('from_date < ?', from_date).reverse
+  end
+
+  def is_internal?
+    !external_url.present?
   end
 
   def multiple_track?
