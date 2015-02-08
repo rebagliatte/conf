@@ -91,6 +91,12 @@ pg_restore --dbname=conf_development --verbose ~/latest.backup --clean
 bundle exec rake db:migrate
 ```
 
+To sync the development S3 bucket
+
+```
+bundle exec rake s3:sync_development_bucket
+```
+
 ## To load the latest dump on staging
 
 ```
@@ -99,4 +105,10 @@ cap staging puma:stop
 ssh deploy@confnu-staging
 pg_restore --dbname=conf_staging --verbose /home/deploy/db_backups/latest.backup --clean
 cap staging puma:start
+```
+
+To sync the staging S3 bucket
+
+```
+bundle exec rake s3:sync_staging_bucket
 ```
