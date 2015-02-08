@@ -71,3 +71,32 @@ Host confnu-staging
   User deployer
   IdentityFile ~/.ssh/id_rsa
 ```
+
+## To backup production DB
+
+```
+ssh deploy@confnu-production
+cd db_backups
+pg_dump -U deploy -F c -b -v -f latest.backup conf_production
+exit
+scp deploy@confnu-production:/home/deploy/db_backups/latest.backup ~/
+```
+
+## To load the latest dump on your development DB
+
+```
+bundle exec rake db:drop
+bundle exec rake db:create
+pg_restore --dbname=conf_development --verbose ~/latest.backup --clean
+bundle exec rake db:migrate
+```
+
+## To load the latest dump on staging
+
+```
+scp ~/latest.backup deploy@confnu-staging:/home/deploy/db_backups
+cap staging puma:stop
+ssh deploy@confnu-staging
+pg_restore --dbname=conf_staging --verbose /home/deploy/db_backups/latest.backup --clean
+cap staging puma:start
+```
