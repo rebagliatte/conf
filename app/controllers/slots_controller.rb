@@ -1,5 +1,5 @@
 class SlotsController < ApplicationController
   def index
-    @conference_edition = ConferenceEdition.find(params[:conference_edition_id])
+    @conference_edition = ConferenceEdition.find_by(slug: params[:conference_edition_slug])
   end
 end

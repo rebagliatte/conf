@@ -14,6 +14,8 @@ class ConferenceEdition < ActiveRecord::Base
   has_many :talks, dependent: :destroy
   has_many :talk_votes, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :tickets, dependent: :destroy
+  has_many :codes, dependent: :destroy
   has_many :languages, through: :conference
 
   KINDS = %w( single_track multiple_track )
@@ -24,23 +26,26 @@ class ConferenceEdition < ActiveRecord::Base
   # Validations
   validates :from_date, presence: true
   validates :to_date, presence: true
-  validate :valid_date_range
-  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }
+  validates :logo, presence: true, file_size: { maximum: 0.5.megabytes.to_i }, if: :logo?
   validates :sponsorship_packages_pdf, file_size: { maximum: 10.megabytes.to_i }, if: :sponsorship_packages_pdf?
   validates :custom_css_file, file_size: { maximum: 0.5.megabytes.to_i }, if: :custom_css_file?
   validates :kind, presence: true, inclusion: { in: KINDS }
-  validates :registration_url, presence: true, format: URL_REGEX, if: :is_registration_open?
+  validates :registration_url, format: URL_REGEX, if: :registration_url?
   validates :venue_latitude, numericality: true, if: :venue_latitude?
   validates :venue_longitude, numericality: true, if: :venue_longitude?
   validates :city, presence: true
   validates :country, presence: true
+  validates :slug, uniqueness: { scope: :conference }
   validate :valid_cfp_deadline, if: :cfp_deadline?
+  validate :valid_registration_options, if: :is_registration_open?
+  validate :valid_date_range
 
   with_options if: 'promo_video_uid.present?' do |c|
     c.validates :promo_video_provider, presence: true, inclusion: { in: VIDEO_PROVIDERS }
   end
 
   # Callbacks
+  before_validation :set_slug
   after_destroy :destroy_uploads_folder
 
   # Translations
@@ -62,28 +67,14 @@ class ConferenceEdition < ActiveRecord::Base
   # Scopes
   default_scope { order(from_date: :asc) }
 
-  # Friendly ID
-  extend FriendlyId
-  friendly_id :slug_candidates, use: [:slugged, :finders, :scoped], scope: :conference_id
-
-  def should_generate_new_friendly_id?
-    new_record? || slug.blank?
-  end
-
-  def slug_candidates
-    [
-      :year,
-      [:year, :month],
-      [:year, :month, :country],
-      [:year, :month, :country, :city],
-      [:year, :month, :country, :city, :id]
-    ]
-  end
-
   # Methods
 
   def previous_editions
     conference.conference_editions.where('from_date < ?', from_date).reverse
+  end
+
+  def is_internal?
+    !external_url.present?
   end
 
   def multiple_track?
@@ -137,6 +128,12 @@ class ConferenceEdition < ActiveRecord::Base
     end
   end
 
+  def valid_registration_options
+    if !(registration_url.present? || tickets.any?)
+      errors.add(:base, "registration url must be present or some tickets need to be created in order to open registration")
+    end
+  end
+
   def destroy_uploads_folder
     FileUtils.rm_rf("#{Rails.root}/public/conference_editions/#{id}")
   end
@@ -147,5 +144,17 @@ class ConferenceEdition < ActiveRecord::Base
 
   def month
     from_date.month
+  end
+
+  def set_slug
+    slugs = conference.conference_editions.pluck(:slug)
+
+    slug = if !slugs.include?(year)
+      year
+    elsif !slugs.include?("#{ month }-#{ year }")
+      "#{ month }-#{ year }"
+    else
+      "#{ from_date.day }-#{ month }-#{ year }"
+    end
   end
 end

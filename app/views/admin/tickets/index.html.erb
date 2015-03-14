@@ -1,0 +1,48 @@
+<header class="admin-header">
+  <%= title 'Tickets' %>
+
+  <% if can? :manage, @conference_edition %>
+    <%= link_to 'Create a new ticket', new_admin_conference_edition_ticket_path(@conference_edition), class: 'btn btn-default main-cta' %>
+  <% end %>
+
+</header>
+
+<% if @tickets.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.name %></td>
+          <td>$<%= ticket.price %></td>
+          <td><%= ticket.quantity %></td>
+          <td><%= ticket.start_date ? ticket.start_date.to_s(:short) : '' %></td>
+          <td><%= ticket.end_date ? ticket.end_date.to_s(:short) : '' %></td>
+          <td class="actions">
+            <%= link_to admin_conference_edition_ticket_path(@conference_edition.id, ticket), title: 'View' do %><i class="fa fa-eye"></i><% end %>
+            <% if can? :manage, @conference_edition %>
+              <%= link_to edit_admin_conference_edition_ticket_path(@conference_edition.id, ticket), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-info">
+    It seems there are no tickets for this conference edition.
+
+    <% if can? :manage, @conference_edition %>
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_ticket_path(@conference_edition) %>?
+    <% end %>
+  </p>
+<% end %>

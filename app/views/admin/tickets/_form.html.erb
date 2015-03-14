@@ -1,0 +1,18 @@
+<%# @param conference_edition [Models::ConferenceEdition] %>
+<%# @param ticket [Models::Ticket] %>
+<%# @param action [String] %>
+
+<%= simple_form_for [:admin, conference_edition, ticket], html: { class: 'form-horizontal' } do |form| %>
+  <%= error_messages_for(ticket) %>
+
+  <%= form.input :name %>
+  <%= form.input :price, hint: 'Amount in USD' %>
+  <%= form.input :description %>
+  <%= form.input :quantity, label: 'Available quantity' %>
+  <%= form.input :start_date, include_blank: true, label: 'Sales start date' %>
+  <%= form.input :end_date, include_blank: true, label: 'Sales end date' %>
+
+  <div class="form-actions">
+    <%= form.submit "#{action.titleize} Ticket", class: 'btn btn-lg btn-primary' %>
+  </div>
+<% end %>

@@ -63,8 +63,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_edition
-    @current_edition ||= if params[:conference_edition_id]
-      current_conference.conference_editions.find(params[:conference_edition_id])
+    @current_edition ||= if params[:conference_edition_slug]
+      current_conference.conference_editions.find_by(slug: params[:conference_edition_slug])
     else
       current_conference.conference_editions.last
     end

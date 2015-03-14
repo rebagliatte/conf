@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116214500) do
+ActiveRecord::Schema.define(version: 20150201011459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "codes", force: true do |t|
+    t.integer  "conference_edition_id",              null: false
+    t.string   "code",                  default: "", null: false
+    t.integer  "discount",                           null: false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conference_edition_translations", force: true do |t|
     t.integer  "conference_edition_id"
@@ -361,6 +372,18 @@ ActiveRecord::Schema.define(version: 20141116214500) do
   end
 
   add_index "talks", ["slug", "conference_edition_id"], name: "index_talks_on_slug_and_conference_edition_id", unique: true, using: :btree
+
+  create_table "tickets", force: true do |t|
+    t.integer  "conference_edition_id",              null: false
+    t.string   "name",                  default: "", null: false
+    t.text     "description",           default: "", null: false
+    t.float    "price",                              null: false
+    t.integer  "quantity"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",            default: "",     null: false

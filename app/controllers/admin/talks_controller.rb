@@ -103,7 +103,7 @@ class Admin::TalksController < AdminController
       url = admin_conference_edition_talk_path(@conference_edition.id, next_non_voted_talk)
       message = 'Vote saved successfully! Keep on going'
     else
-      url = admin_conference_edition_talks_path(@conference_edition.id)
+      url = admin_conference_edition_talks_path(@conference_edition)
       message = 'All set!'
     end
 
@@ -122,7 +122,7 @@ class Admin::TalksController < AdminController
     if next_talk
       view_context.link_to('Review next talk', admin_conference_edition_talk_path(@conference_edition.id, next_talk, update_vote: true), tabindex: 1)
     else
-      view_context.link_to('Back to talks listing', admin_conference_edition_talks_path(@conference_edition.id), tabindex: 1)
+      view_context.link_to('Back to talks listing', admin_conference_edition_talks_path(@conference_edition), tabindex: 1)
     end
   end
 end

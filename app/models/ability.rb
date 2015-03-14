@@ -40,6 +40,8 @@ class Ability
     can :manage, SponsorContact, conference_edition_id: user.manageable_edition_ids
     can :manage, Subscriber, conference_edition_id: user.manageable_edition_ids
     can :manage, Talk, conference_edition_id: user.manageable_edition_ids
+    can :manage, Ticket, conference_edition_id: user.manageable_edition_ids
+    can :manage, Code, conference_edition_id: user.manageable_edition_ids
 
     # Can read all in the scope of his/her manageable editions' conference
     can :read, Conference, id: user.readable_conference_ids

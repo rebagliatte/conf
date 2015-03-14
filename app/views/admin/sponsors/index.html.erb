@@ -3,7 +3,7 @@
 
   <% if can? :manage, @conference_edition %>
     <div class="btn-wrapper">
-      <%= link_to 'Create a new sponsor', new_admin_conference_edition_sponsor_path(@conference_edition.id), class: 'btn btn-default' %>
+      <%= link_to 'Create a new sponsor', new_admin_conference_edition_sponsor_path(@conference_edition), class: 'btn btn-default' %>
       <%= link_to 'Manage your call for sponsors', call_for_sponsors_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition.id), class: 'btn btn-primary' %>
     </div>
   <% end %>
@@ -29,7 +29,7 @@
           <td><%= sponsor.kind %></td>
           <td><%= sponsor.created_at.to_s(:short) %></td>
           <td class="actions">
-            <%= link_to admin_conference_edition_sponsor_path(@conference_edition.id, sponsor), title: 'View' do %><i class="fa fa-eye-open"></i><% end %>
+            <%= link_to admin_conference_edition_sponsor_path(@conference_edition.id, sponsor), title: 'View' do %><i class="fa fa-eye"></i><% end %>
 
             <% if can? :manage, @conference_edition %>
               <%= link_to edit_admin_conference_edition_sponsor_path(@conference_edition.id, sponsor), title: 'Edit' do %><i class="fa fa-pencil"></i><% end %>
@@ -45,7 +45,7 @@
     It seems there are no sponsors for this conference edition yet.
 
     <% if can? :manage, @conference_edition %>
-      Would you like to <%= link_to 'create one', new_admin_conference_edition_sponsor_path(@conference_edition.id) %> or <%= link_to 'open a call for sponsors', call_for_sponsors_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) %>?
+      Would you like to <%= link_to 'create one', new_admin_conference_edition_sponsor_path(@conference_edition) %> or <%= link_to 'open a call for sponsors', call_for_sponsors_admin_conference_conference_edition_path(@conference_edition.conference, @conference_edition) %>?
     <% end %>
 
   </p>

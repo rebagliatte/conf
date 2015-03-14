@@ -15,7 +15,7 @@
                 <td class="description">
                   <% if slot.is_talk_slot? %>
                     <% talk = slot.talk %>
-                    <%= link_to conference_edition_talk_path(conference_edition, talk) do %>
+                    <%= link_to conference_edition_talk_path(conference_edition.slug, talk) do %>
                       <span class="title"><%= talk.title %></span>
                       <span class="speaker"><%= talk.speakers.first.name %></span>
                     <% end %>

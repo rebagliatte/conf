@@ -5,7 +5,7 @@
   <h2 class="primary-heading"><%= t 'news' %></h2>
   <%= markdown(conference_edition.news_intro) %>
   <% unless current_page?(conference_edition_posts_path(conference_edition)) %>
-    <%= link_to conference_edition_posts_path(conference_edition), class:'btn btn-tertiary' do %>
+    <%= link_to conference_edition_posts_path(conference_edition.slug), class:'btn btn-tertiary' do %>
       <%= content_tag(:span, t('read_all_posts')) %>
     <% end %>
   <% end %>
@@ -15,7 +15,7 @@
   <% posts.each do |post| %>
     <article class="post <%= post == last_post(conference_edition) ? 'last' : '' %>">
       <h3 class="secondary-heading">
-        <%= link_to post.title, conference_edition_post_path(conference_edition, post) %>
+        <%= link_to post.title, conference_edition_post_path(conference_edition.slug, post) %>
       </h3>
       <p class="created-at"><%= time_ago_in_words(post.created_at) %> <%= t 'ago' %></p>
       <div class="markdown"><%= markdown(post.summary) %></div>

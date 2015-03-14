@@ -1,0 +1,3 @@
+<%= title "Edit Ticket ##{@ticket.id}" %>
+
+<%= render partial: 'form', locals: { ticket: @ticket, conference_edition: @conference_edition, action: 'update' } %>
