@@ -104,6 +104,7 @@ scp ~/latest.backup deploy@confnu-staging:/home/deploy/db_backups
 cap staging puma:stop
 ssh deploy@confnu-staging
 pg_restore --dbname=conf_staging --verbose /home/deploy/db_backups/latest.backup --clean
+exit
 cap staging puma:start
 ```
 

@@ -67,6 +67,7 @@ class Admin::ConferenceEditionsController < AdminController
       translations_attributes: [
         :id,
         :notes_to_speakers,
+        :speakers_call_to_action,
         :locale
       ]
     ]
