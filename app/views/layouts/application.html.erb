@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="<%= current_edition.favicon.url %>">
   <% end %>
   <%= stylesheet_link_tag 'default', media: 'all' %>
-  <%= stylesheet_link_tag current_edition.custom_css_file, media: 'all' %>
+  <%#= stylesheet_link_tag current_edition.custom_css_file, media: 'all' %>
   <%= csrf_meta_tags %>
   <%= render partial: 'shared/analytics' %>
   <%= yield(:head_js) %>
